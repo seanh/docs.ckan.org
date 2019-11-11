@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installing CKAN &mdash; CKAN 2.5.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="CKAN 2.5.3 documentation" href="../../index.html"/>
+        <link rel="up" title="Maintainer’s guide" href="../index.html"/>
+        <link rel="next" title="Installing CKAN from package" href="install-from-package.html"/>
+        <link rel="prev" title="Maintainer’s guide" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/maintaining/installing/" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'maintaining/installing/index'
+</script>
+
+<script type="text/javascript" src="../../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents.html" class="icon icon-home"> CKAN
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                ckan-2.5.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="http://docs.ckan.org/en/ckan-2.5.3/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Maintainer&#8217;s guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="index.html">Installing CKAN</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install-from-package.html">Installing CKAN from package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install-from-source.html">Installing CKAN from source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install-using-docker.html">Installing CKAN using a Docker image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment.html">Deploying a source install</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrading/index.html">Upgrading CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../authorization.html">Organizations and authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data-viewer.html">Data preview and visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../filestore.html">FileStore and file uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datastore.html">DataStore extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../background-tasks.html">Background tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email-notifications.html">Email notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tracking.html">Page View Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multilingual.html">Multilingual Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stats.html">Stats Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solr-multicore.html">Multicore Solr setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extensions/index.html">Extending guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theming/index.html">Theming guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Maintainer&#8217;s guide</a> &raquo;</li>
+      
+    <li>Installing CKAN</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/ckan/ckan/blob/ckan-2.5.3/doc/maintaining/installing/index.rst" class="fa fa-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installing-ckan">
+<h1>Installing CKAN<a class="headerlink" href="index.html#installing-ckan" title="Permalink to this headline">¶</a></h1>
+<p>Before you can use CKAN on your own computer, you need to install it. There are
+three ways to install CKAN:</p>
+<ol class="arabic simple">
+<li>Install from an operating system package</li>
+<li>Install from source</li>
+<li>Install using a <a class="reference external" href="http://www.docker.com/">Docker</a> image</li>
+</ol>
+<p>From package is the quickest and easiest way to install CKAN, but it requires
+Ubuntu 14.04 64-bit or Ubuntu 12.04 64-bit. <strong>You should install CKAN from package if</strong>:</p>
+<ul class="simple">
+<li>You want to install CKAN on an Ubuntu 14.04 or 12.04, 64-bit server, <em>and</em></li>
+<li>You only want to run one CKAN website per server</li>
+</ul>
+<p>See <a class="reference internal" href="install-from-package.html"><em>Installing CKAN from package</em></a>.</p>
+<p><strong>You should install CKAN from source if</strong>:</p>
+<ul class="simple">
+<li>You want to install CKAN on a 32-bit computer, <em>or</em></li>
+<li>You want to install CKAN on a different version of Ubuntu, not 14.04 or 12.04, <em>or</em></li>
+<li>You want to install CKAN on another operating system
+(eg. RedHat, CentOS, OS X), <em>or</em></li>
+<li>You want to run multiple CKAN websites on the same server, <em>or</em></li>
+<li>You want to install CKAN for development</li>
+</ul>
+<p>See <a class="reference internal" href="install-from-source.html"><em>Installing CKAN from source</em></a>.</p>
+<p><strong>You should install using Docker if</strong>:</p>
+<ul class="simple">
+<li>You want to deploy CKAN on any server that can run Docker, regardless of
+operating system</li>
+<li>You want a deployment mechanism that remains the same as you move from vanilla
+CKAN to a heavily customised deployment</li>
+</ul>
+<p>See <a class="reference internal" href="install-using-docker.html"><em>Installing CKAN using a Docker image</em></a>.</p>
+<p>If you&#8217;ve already setup a CKAN website and want to upgrade it to a newer
+version of CKAN, see <a class="reference internal" href="../upgrading/index.html"><em>Upgrading CKAN</em></a>.</p>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install-from-package.html">Installing CKAN from package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-from-source.html">Installing CKAN from source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-using-docker.html">Installing CKAN using a Docker image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deploying a source install</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="install-from-package.html" class="btn btn-neutral float-right"
+           title="Installing CKAN from package"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral"
+           title="Maintainer’s guide">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: ckan-2.5.3
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../index.html">latest</a></dd>
+        
+          <dd><a href="../../../ckan-2.6.0/index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../../index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../../../ckan-2.4.4/index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../../../ckan-2.3.5/index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2.5.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

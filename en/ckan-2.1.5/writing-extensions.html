@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Writing Extensions &mdash; CKAN Documentation 2.1.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.1.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN Documentation 2.1.5 documentation" href="index.html" />
+    <link rel="next" title="Plugins Toolkit" href="toolkit.html" />
+    <link rel="prev" title="Stats Extension" href="stats.html" />
+
+
+<!-- RTD Extra Head -->
+
+
+
+  
+  <!-- 
+  Always link to the latest version, as canonical.
+  http://docs.readthedocs.org/en/latest/canonical.html
+  -->
+  <link rel="canonical" href="http://docs.ckan.org//en/latest/writing-extensions.html" />
+  
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "ckan",
+    version: "ckan-2.1.5",
+    language: "en",
+    page: "writing-extensions",
+    builder: "sphinx",
+    theme: "sphinx-theme-okfn",
+    docroot: "/doc/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org/",
+    commit: "1d691ae3ba38a6b98dc69d0e2c16c71e186cd36e"
+  }
+  // Old variables
+  var doc_version = "ckan-2.1.5";
+  var doc_slug = "ckan";
+  var page_name = "writing-extensions";
+  var html_theme = "sphinx-theme-okfn";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body role="document">
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="index.html"><img src="http://docs.ckan.org/en/ckan-2.1.5/_static/http://assets.okfn.org/p/opendatahandbook/img/data-wrench-inverted.png" alt="CKAN Documentation" /></a>
+        
+        <a class="brand" href="index.html">CKAN Documentation<span class="version"> v2.1.5</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.1.5/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="stats.html"
+                        title="previous chapter">Stats Extension</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="toolkit.html"
+                        title="next chapter">Plugins Toolkit</a></p><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="writing-extensions.html">Writing Extensions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="writing-extensions.html#plugins-an-overview">Plugins: An Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing-extensions.html#libraries-available-to-extensions">Libraries Available To Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing-extensions.html#example-extension">Example Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing-extensions.html#guidelines-for-writing-extensions">Guidelines for writing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing-extensions.html#creating-ckan-extensions">Creating CKAN Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing-extensions.html#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="writing-extensions.html#testing-ckan-extensions">Testing CKAN Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="writing-extensions.html#testing-plugins">Testing Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="writing-extensions.html#plugin-api-documentation">Plugin API Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="writing-extensions.html#core-plugin-reference">Core Plugin Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="writing-extensions.html#ckan-interface-reference">CKAN Interface Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="index.html">CKAN Documentation 2.1.5 documentation</a> &raquo;
+        </div>
+
+        
+  <div class="section" id="writing-extensions">
+<h1>Writing Extensions<a class="headerlink" href="writing-extensions.html#writing-extensions" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A CKAN <strong>extension</strong> is a Python package that contains one or more
+<strong>plugins</strong>. A plugin is a class that implements one or more of CKAN&#8217;s
+<strong>plugin interfaces</strong> to customize CKAN or add new features.</p>
+</div>
+<div class="section" id="plugins-an-overview">
+<h2>Plugins: An Overview<a class="headerlink" href="writing-extensions.html#plugins-an-overview" title="Permalink to this headline">¶</a></h2>
+<p>Plugins are created as classes inheriting from either the <cite>Plugin</cite> or
+<cite>SingletonPlugin</cite> base classes.  Most Extensions use the <cite>SingletonPlugin</cite>
+base class and we advise you to use this if possible.</p>
+<p>Having created your class you need to inherit from one or more plugin
+interfaces to allow CKAN to interact with your extension.  When specifying
+the interfaces that will be implemented you must remember to either (a)
+define all methods required by the interface or (b) use the <cite>inherits=True</cite>
+parameter which will use the interfaces default methods for any that you
+have not defined.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When writing extensions it is important to keep your code separate from
+CKAN by not importing ckan modules, so that internal CKAN changes do not
+break your code between releases.  You can however import ckan.plugins
+without this risk.</p>
+</div>
+</div>
+<div class="section" id="libraries-available-to-extensions">
+<h2>Libraries Available To Extensions<a class="headerlink" href="writing-extensions.html#libraries-available-to-extensions" title="Permalink to this headline">¶</a></h2>
+<p>As well as using the variables made available to them by implementing
+various plugin hooks, extensions will likely want to be able to use parts of
+the CKAN core library.  To allow this, CKAN provides a stable set of modules
+that extensions can use safe in the knowledge the interface will remain
+stable, backward-compatible and with clear deprecation guidelines as
+development of CKAN core progresses.  This interface is available in
+<a class="reference internal" href="toolkit.html"><em>Plugins Toolkit</em></a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="example-extension">
+<h2>Example Extension<a class="headerlink" href="writing-extensions.html#example-extension" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Example Extension</span>
+<span class="c"># This extension adds a new template helper function `hello_world` when</span>
+<span class="c"># enabled templates can `{{ h.hello_world() }}` to add this html snippet.</span>
+
+<span class="kn">import</span> <span class="nn">ckan.plugins</span> <span class="kn">as</span> <span class="nn">p</span>
+
+<span class="k">class</span> <span class="nc">HelloWorldPlugin</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">SingletonPlugin</span><span class="p">):</span>
+
+    <span class="n">p</span><span class="o">.</span><span class="n">implements</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">ITemplateHelpers</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
+        <span class="c"># This is our simple helper function.</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="s">&#39;&lt;span&gt;Hello World&lt;/span&gt;&#39;</span>
+        <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">toolkit</span><span class="o">.</span><span class="n">literal</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_helpers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># This method is defined in the ITemplateHelpers interface and</span>
+        <span class="c"># is used to return a dict of named helper functions.</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">&#39;hello_world&#39;</span><span class="p">:</span> <span class="n">hello_world</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="guidelines-for-writing-extensions">
+<h2>Guidelines for writing extensions<a class="headerlink" href="writing-extensions.html#guidelines-for-writing-extensions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Use the plugins <a class="reference internal" href="toolkit.html"><em>Plugins Toolkit</em></a>.</li>
+<li>Extensions should use actions via <code class="docutils literal"><span class="pre">get_action()</span></code>. This function is
+available in the toolkit.</li>
+<li>No foreign key constraints into core as these cause problems.</li>
+</ul>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Anything else?</p>
+</div>
+</div>
+<div class="section" id="creating-ckan-extensions">
+<h2>Creating CKAN Extensions<a class="headerlink" href="writing-extensions.html#creating-ckan-extensions" title="Permalink to this headline">¶</a></h2>
+<p>All CKAN extensions must start with the name <code class="docutils literal"><span class="pre">ckanext-</span></code>. You can create
+your own CKAN extension like this (you must be in your CKAN pyenv):</p>
+<div class="highlight-python"><div class="highlight"><pre>(pyenv)$ paster create -t ckanext ckanext-myextension
+</pre></div>
+</div>
+<p>You&#8217;ll get prompted to complete a number of variables which will be used in
+your dataset. You change these later by editing the generated <code class="docutils literal"><span class="pre">setup.py</span></code>
+file.</p>
+<p>Once you&#8217;ve run this, you should now install the extension in your virtual environment:</p>
+<div class="highlight-python"><div class="highlight"><pre>(pyenv)$ cd ckanext-myextension
+(pyenv)$ python setup.py develop
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Running <code class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">develop</span></code> will add a <code class="docutils literal"><span class="pre">.egg-link</span></code> file to
+your python site-packages directory (which is on your python path).
+This allows your extension to be imported and used, with any changes
+made to the extension source code showing up immediately without needing
+to be reinstalled, which is very useful during development.</p>
+<p class="last">To instead install a python package by copying all of the files to the
+site-packages directory run <code class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code>.</p>
+</div>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="writing-extensions.html#testing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="testing-ckan-extensions">
+<h3>Testing CKAN Extensions<a class="headerlink" href="writing-extensions.html#testing-ckan-extensions" title="Permalink to this headline">¶</a></h3>
+<p>CKAN extensions ordinarily have their own <code class="docutils literal"><span class="pre">test.ini</span></code> that refers to the CKAN <code class="docutils literal"><span class="pre">test.ini</span></code>, so you can run them in exactly the same way. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre>cd ckanext-dgu
+nosetests ckanext/stats/tests --ckan
+nosetests ckanext/stats/tests --ckan --with-pylons=test-core.ini
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing-plugins">
+<h3>Testing Plugins<a class="headerlink" href="writing-extensions.html#testing-plugins" title="Permalink to this headline">¶</a></h3>
+<p>When writing tests for your plugin code you will need setup and teardown code
+similar to the following to ensure that your plugin is loaded while testing:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">ckan</span> <span class="kn">import</span> <span class="n">plugins</span>
+
+<span class="k">class</span> <span class="nc">TestMyPlugin</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+   <span class="nd">@classmethod</span>
+   <span class="k">def</span> <span class="nf">setup_class</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+       <span class="c"># Use the entry point name of your plugin as declared</span>
+       <span class="c"># in your package&#39;s setup.py</span>
+       <span class="n">plugins</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;my_plugin&#39;</span><span class="p">)</span>
+
+   <span class="nd">@classmethod</span>
+   <span class="k">def</span> <span class="nf">teardown_class</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+       <span class="n">plugins</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The exception to using <code class="docutils literal"><span class="pre">plugins.load()</span></code> is for when your plug-in is for routes.
+In this case, the plugin must be configured before the WSGI app is started.
+Here is an example test set-up:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pylons</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="kn">import</span> <span class="nn">paste.fixture</span>
+<span class="kn">from</span> <span class="nn">ckan.config.middleware</span> <span class="kn">import</span> <span class="n">make_app</span>
+
+<span class="k">class</span> <span class="nc">TestMyRoutesPlugin</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">setup_class</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">_original_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">config</span><span class="p">[</span><span class="s">&#39;ckan.plugins&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;my_routes_plugin&#39;</span>
+        <span class="n">wsgiapp</span> <span class="o">=</span> <span class="n">make_app</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;global_conf&#39;</span><span class="p">],</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">local_conf</span><span class="p">)</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">paste</span><span class="o">.</span><span class="n">fixture</span><span class="o">.</span><span class="n">TestApp</span><span class="p">(</span><span class="n">wsgiapp</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">teardown_class</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">cls</span><span class="o">.</span><span class="n">_original_config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>At this point you should be able to write your own plugins and extensions
+together with their tests.</p>
+</div>
+</div>
+<div class="section" id="plugin-api-documentation">
+<span id="plugin-reference"></span><h2>Plugin API Documentation<a class="headerlink" href="writing-extensions.html#plugin-api-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="core-plugin-reference">
+<h3>Core Plugin Reference<a class="headerlink" href="writing-extensions.html#core-plugin-reference" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="ckan-interface-reference">
+<h3>CKAN Interface Reference<a class="headerlink" href="writing-extensions.html#ckan-interface-reference" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="toolkit.html"
+                  title="Plugins Toolkit" accesskey="N">
+                    
+                      
+                    
+                    Plugins Toolkit→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="stats.html"
+                  title="Stats Extension" accesskey="P">
+                    
+                      
+                    
+                    ← Stats Extension
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2012, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0" 
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/okfn/ckan">Source</a>
+&mdash;
+<a href="https://github.com/okfn/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

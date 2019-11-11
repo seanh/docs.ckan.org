@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installing CKAN from Package &mdash; CKAN Documentation 2.1.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.1.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN Documentation 2.1.5 documentation" href="index.html" />
+    <link rel="up" title="Installing CKAN" href="installing.html" />
+    <link rel="next" title="Installing CKAN from Source" href="install-from-source.html" />
+    <link rel="prev" title="Installing CKAN" href="installing.html" />
+
+
+<!-- RTD Extra Head -->
+
+
+
+  
+  <!-- 
+  Always link to the latest version, as canonical.
+  http://docs.readthedocs.org/en/latest/canonical.html
+  -->
+  <link rel="canonical" href="http://docs.ckan.org//en/latest/install-from-package.html" />
+  
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "ckan",
+    version: "ckan-2.1.5",
+    language: "en",
+    page: "install-from-package",
+    builder: "sphinx",
+    theme: "sphinx-theme-okfn",
+    docroot: "/doc/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org/",
+    commit: "1d691ae3ba38a6b98dc69d0e2c16c71e186cd36e"
+  }
+  // Old variables
+  var doc_version = "ckan-2.1.5";
+  var doc_slug = "ckan";
+  var page_name = "install-from-package";
+  var html_theme = "sphinx-theme-okfn";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body role="document">
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="index.html"><img src="http://docs.ckan.org/en/ckan-2.1.5/_static/http://assets.okfn.org/p/opendatahandbook/img/data-wrench-inverted.png" alt="CKAN Documentation" /></a>
+        
+        <a class="brand" href="index.html">CKAN Documentation<span class="version"> v2.1.5</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.1.5/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installing.html"
+                        title="previous chapter">Installing CKAN</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="install-from-source.html"
+                        title="next chapter">Installing CKAN from Source</a></p><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="installing.html">Installing CKAN</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="install-from-package.html">Installing CKAN from Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install-from-package.html#install-the-ckan-package">1. Install the CKAN Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install-from-package.html#install-postgresql-and-solr">2. Install PostgreSQL and Solr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install-from-package.html#you-re-done">3. You&#8217;re done!</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install-from-source.html">Installing CKAN from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html">Deploying a Source Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="writing-extensions.html">Writing Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="index.html">CKAN Documentation 2.1.5 documentation</a> &raquo;
+              <a href="installing.html"
+                    accesskey="U">
+                    Installing CKAN
+                  </a>
+                   &raquo;
+        </div>
+
+        
+  <div class="section" id="installing-ckan-from-package">
+<h1>Installing CKAN from Package<a class="headerlink" href="install-from-package.html#installing-ckan-from-package" title="Permalink to this headline">¶</a></h1>
+<p>This section describes how to install CKAN from package. This is the quickest
+and easiest way to install CKAN, but it requires <strong>Ubuntu 12.04 64-bit</strong>. If
+you&#8217;re not using Ubuntu 12.04 64-bit, or if you&#8217;re installing CKAN for
+development, you should follow <a class="reference internal" href="install-from-source.html"><em>Installing CKAN from Source</em></a> instead.</p>
+<div class="section" id="install-the-ckan-package">
+<span id="run-package-installer"></span><h2>1. Install the CKAN Package<a class="headerlink" href="install-from-package.html#install-the-ckan-package" title="Permalink to this headline">¶</a></h2>
+<p>On your Ubuntu 12.04 system, open a terminal and run these commands to install
+CKAN:</p>
+<ol class="arabic">
+<li><p class="first">Update Ubuntu&#8217;s package index:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get update
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install the Ubuntu packages that CKAN requires:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install -y nginx apache2 libapache2-mod-wsgi libpq5
+</pre></div>
+</div>
+</li>
+<li><p class="first">Download the CKAN package:</p>
+<div class="highlight-python"><div class="highlight"><pre>wget http://packaging.ckan.org/python-ckan_2.0_amd64.deb
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If <code class="docutils literal"><span class="pre">wget</span></code> is not present, you can install it
+via:</p>
+<div class="last highlight-python"><div class="highlight"><pre>sudo apt-get install wget
+</pre></div>
+</div>
+</div>
+</li>
+<li><p class="first">Install the CKAN package:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo dpkg -i python-ckan_2.0_amd64.deb
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you get the following error it means that for some reason the
+Apache WSGI module was not enabled:</p>
+<div class="highlight-python"><div class="highlight"><pre>Syntax error on line 1 of /etc/apache2/sites-enabled/ckan_default:
+Invalid command &#39;WSGISocketPrefix&#39;, perhaps misspelled or defined by a module not included in the server configuration
+Action &#39;configtest&#39; failed.
+The Apache error log may have more information.
+   ...fail!
+</pre></div>
+</div>
+<p>You can enable it by running these commands in a terminal:</p>
+<div class="last highlight-python"><div class="highlight"><pre>sudo a2enmod wsgi
+sudo service apache2 restart
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="install-postgresql-and-solr">
+<h2>2. Install PostgreSQL and Solr<a class="headerlink" href="install-from-package.html#install-postgresql-and-solr" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">You can install PostgreSQL, Solr and CKAN on different servers. Just
+change the <a class="reference internal" href="configuration.html#sqlalchemy-url"><span>sqlalchemy.url</span></a> and <a class="reference internal" href="configuration.html#solr-url"><span>solr_url</span></a> settings in your
+/etc/ckan/default/production.ini file to reference your PostgreSQL and Solr servers.</p>
+</div>
+<ol class="arabic">
+<li><p class="first">Install PostgreSQL and Solr, run this command in a terminal:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install -y postgresql solr-jetty
+</pre></div>
+</div>
+<p>The install will whirr away, then towards the end you&#8217;ll see this:</p>
+<div class="highlight-python"><div class="highlight"><pre>* Not starting jetty - edit /etc/default/jetty and change NO_START to be 0 (or comment it out).
+</pre></div>
+</div>
+</li>
+<li><p class="first">Follow the instructions in <a class="reference internal" href="solr-setup.html#solr-single"><span>Single Solr instance</span></a> or <a class="reference internal" href="solr-setup.html#solr-multi-core"><span>Multiple Solr cores</span></a> to
+setup Solr.</p>
+</li>
+<li><p class="first">Follow the instructions in <a class="reference internal" href="install-from-source.html#postgres-setup"><span>3. Setup a PostgreSQL database</span></a> to setup PostgreSQL,
+then edit the <a class="reference internal" href="configuration.html#sqlalchemy-url"><span>sqlalchemy.url</span></a> option in your /etc/ckan/default/production.ini file and
+set the correct password, database and database user.</p>
+</li>
+<li><p class="first">Initialize your CKAN database by running this command in a terminal:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo ckan db init
+</pre></div>
+</div>
+</li>
+<li><p class="first">Optionally, setup the DataStore by following the instructions in
+<a class="reference internal" href="datastore.html"><em>DataStore Extension</em></a>.</p>
+</li>
+<li><p class="first">Also optionally, you can enable file uploads by following the
+instructions in <a class="reference internal" href="filestore.html"><em>FileStore and File Uploads</em></a>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="you-re-done">
+<h2>3. You&#8217;re done!<a class="headerlink" href="install-from-package.html#you-re-done" title="Permalink to this headline">¶</a></h2>
+<p>Open <a class="reference external" href="http://localhost">http://localhost</a> in your web browser. You should see the CKAN front
+page, which will look something like this:</p>
+<a class="reference internal image-reference" href="_images/9.png"><img alt="_images/9.png" src="_images/9.png" style="width: 807px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can now move on to <a class="reference internal" href="getting-started.html"><em>Getting Started</em></a> to begin using and customizing
+your CKAN site.</p>
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="install-from-source.html"
+                  title="Installing CKAN from Source" accesskey="N">
+                    
+                      
+                    
+                    Installing CKAN from Source→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="installing.html"
+                  title="Installing CKAN" accesskey="P">
+                    
+                      
+                    
+                    ← Installing CKAN
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2012, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0" 
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/okfn/ckan">Source</a>
+&mdash;
+<a href="https://github.com/okfn/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,786 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installing CKAN from source &mdash; CKAN 2.7.0a documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="CKAN 2.7.0a documentation" href="../../index.html"/>
+        <link rel="up" title="Installing CKAN" href="index.html"/>
+        <link rel="next" title="Deploying a source install" href="deployment.html"/>
+        <link rel="prev" title="Installing CKAN from package" href="install-from-package.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/maintaining/installing/install-from-source.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'maintaining/installing/install-from-source'
+</script>
+
+<script type="text/javascript" src="../../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../contents.html" class="icon icon-home"> CKAN
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="http://docs.ckan.org//en/latest/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Maintainer&#8217;s guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Installing CKAN</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="install-from-package.html">Installing CKAN from package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="install-from-source.html">Installing CKAN from source</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="install-from-source.html#install-the-required-packages">1. Install the required packages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install-from-source.html#install-ckan-into-a-python-virtual-environment">2. Install CKAN into a Python virtual environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install-from-source.html#setup-a-postgresql-database">3. Setup a PostgreSQL database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install-from-source.html#create-a-ckan-config-file">4. Create a CKAN config file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install-from-source.html#setup-solr">5. Setup Solr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install-from-source.html#create-database-tables">6. Create database tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install-from-source.html#set-up-the-datastore">7. Set up the DataStore</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install-from-source.html#link-to-who-ini">8. Link to <tt class="docutils literal"><span class="pre">who.ini</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="install-from-source.html#you-re-done">9. You&#8217;re done!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install-from-source.html#source-install-troubleshooting">Source install troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="deployment.html">Deploying a source install</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrading/index.html">Upgrading CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database-management.html">Database Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../authorization.html">Organizations and authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data-viewer.html">Data preview and visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../filestore.html">FileStore and file uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../datastore.html">DataStore extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../background-tasks.html">Background jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../email-notifications.html">Email notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tracking.html">Page View Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multilingual.html">Multilingual Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stats.html">Stats Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extensions/index.html">Extending guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theming/index.html">Theming guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Maintainer&#8217;s guide</a> &raquo;</li>
+      
+          <li><a href="index.html">Installing CKAN</a> &raquo;</li>
+      
+    <li>Installing CKAN from source</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/ckan/ckan/blob/master/doc/maintaining/installing/install-from-source.rst" class="fa fa-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installing-ckan-from-source">
+<h1>Installing CKAN from source<a class="headerlink" href="install-from-source.html#installing-ckan-from-source" title="Permalink to this headline">¶</a></h1>
+<p>This section describes how to install CKAN from source. Although
+<a class="reference internal" href="install-from-package.html"><em>Installing CKAN from package</em></a> is simpler, it requires Ubuntu 14.04 64-bit or
+Ubuntu 12.04 64-bit. Installing CKAN from source works with other versions of
+Ubuntu and with other operating systems (e.g. RedHat, Fedora, CentOS, OS X).
+If you install CKAN from source on your own operating system, please share your
+experiences on our
+<a class="reference external" href="https://github.com/ckan/ckan/wiki/How-to-Install-CKAN">How to Install CKAN</a>
+wiki page.</p>
+<p>From source is also the right installation method for developers who want to
+work on CKAN.</p>
+<div class="section" id="install-the-required-packages">
+<h2>1. Install the required packages<a class="headerlink" href="install-from-source.html#install-the-required-packages" title="Permalink to this headline">¶</a></h2>
+<p>If you&#8217;re using a Debian-based operating system (such as Ubuntu) install the
+required packages with this command:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>sudo apt-get install python-dev postgresql libpq-dev python-pip python-virtualenv git-core solr-jetty openjdk-6-jdk redis-server
+</pre></div>
+</div>
+<p>If you&#8217;re not using a Debian-based operating system, find the best way to
+install the following packages on your operating system (see
+our <a class="reference external" href="https://github.com/ckan/ckan/wiki/How-to-Install-CKAN">How to Install CKAN</a>
+wiki page for help):</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Package</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Python</td>
+<td><a class="reference external" href="http://www.python.org/getit/">The Python programming language, v2.7</a></td>
+</tr>
+<tr class="row-odd"><td>PostgreSQL</td>
+<td><a class="reference external" href="http://www.postgresql.org/download/">The PostgreSQL database system, v9.2 or newer</a></td>
+</tr>
+<tr class="row-even"><td>libpq</td>
+<td><a class="reference external" href="http://www.postgresql.org/docs/8.1/static/libpq.html">The C programmer&#8217;s interface to PostgreSQL</a></td>
+</tr>
+<tr class="row-odd"><td>pip</td>
+<td><a class="reference external" href="http://www.pip-installer.org">A tool for installing and managing Python packages</a></td>
+</tr>
+<tr class="row-even"><td>virtualenv</td>
+<td><a class="reference external" href="http://www.virtualenv.org">The virtual Python environment builder</a></td>
+</tr>
+<tr class="row-odd"><td>Git</td>
+<td><a class="reference external" href="http://book.git-scm.com/2_installing_git.html">A distributed version control system</a></td>
+</tr>
+<tr class="row-even"><td>Apache Solr</td>
+<td><a class="reference external" href="http://lucene.apache.org/solr">A search platform</a></td>
+</tr>
+<tr class="row-odd"><td>Jetty</td>
+<td><a class="reference external" href="http://jetty.codehaus.org/jetty/">An HTTP server</a> (used for Solr).</td>
+</tr>
+<tr class="row-even"><td>OpenJDK 6 JDK</td>
+<td><a class="reference external" href="http://openjdk.java.net/install/">The Java Development Kit</a></td>
+</tr>
+<tr class="row-odd"><td>Redis</td>
+<td><a class="reference external" href="http://redis.io/">An in-memory data structure store</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="install-ckan-into-a-python-virtual-environment">
+<span id="install-ckan-in-virtualenv"></span><h2>2. Install CKAN into a Python virtual environment<a class="headerlink" href="install-from-source.html#install-ckan-into-a-python-virtual-environment" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>If you&#8217;re installing CKAN for development and want it to be installed in
+your home directory, you can symlink the directories used in this
+documentation to your home directory. This way, you can copy-paste the
+example commands from this documentation without having to modify them, and
+still have CKAN installed in your home directory:</p>
+<pre class="last literal-block">
+mkdir -p ~/ckan/lib
+sudo ln -s ~/ckan/lib /usr/lib/ckan
+mkdir -p ~/ckan/etc
+sudo ln -s ~/ckan/etc /etc/ckan
+</pre>
+</div>
+<ol class="loweralpha">
+<li><p class="first">Create a Python <a class="reference external" href="http://www.virtualenv.org">virtual environment</a>
+(virtualenv) to install CKAN into, and activate it:</p>
+<pre class="literal-block">
+sudo mkdir -p /usr/lib/ckan/default
+sudo chown `whoami` /usr/lib/ckan/default
+virtualenv --no-site-packages /usr/lib/ckan/default
+. /usr/lib/ckan/default/bin/activate
+</pre>
+</li>
+</ol>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>The final command above activates your virtualenv. The virtualenv has to
+remain active for the rest of the installation and deployment process,
+or commands will fail. You can tell when the virtualenv is active because
+its name appears in front of your shell prompt, something like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>(default) $ _
+</pre></div>
+</div>
+<p>For example, if you logout and login again, or if you close your terminal
+window and open it again, your virtualenv will no longer be activated. You
+can always reactivate the virtualenv with this command:</p>
+<pre class="last literal-block">
+. /usr/lib/ckan/default/bin/activate
+</pre>
+</div>
+<ol class="loweralpha" start="2">
+<li><p class="first">Install the CKAN source code into your virtualenv.
+To install the latest stable release of CKAN (CKAN 2.6.0),
+run:</p>
+<pre class="literal-block">
+pip install -e 'git+https://github.com/ckan/ckan.git&#64;ckan-2.6.0#egg=ckan'
+</pre>
+<p>If you&#8217;re installing CKAN for development, you may want to install the
+latest development version (the most recent commit on the master branch of
+the CKAN git repository). In that case, run this command instead:</p>
+<pre class="literal-block">
+pip install -e 'git+https://github.com/ckan/ckan.git#egg=ckan'
+</pre>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The development version may contain bugs and should not be used for
+production websites! Only install this version if you&#8217;re doing CKAN
+development.</p>
+</div>
+</li>
+<li><p class="first">Install the Python modules that CKAN requires into your virtualenv:</p>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 2.1: </span>In CKAN 2.0 and earlier the requirement file was called
+<tt class="docutils literal"><span class="pre">pip-requirements.txt</span></tt> not <tt class="docutils literal"><span class="pre">requirements.txt</span></tt> as below.</p>
+</div>
+<pre class="literal-block">
+pip install -r /usr/lib/ckan/default/src/ckan/requirements.txt
+</pre>
+</li>
+<li><p class="first">Deactivate and reactivate your virtualenv, to make sure you&#8217;re using the
+virtualenv&#8217;s copies of commands like <tt class="docutils literal"><span class="pre">paster</span></tt> rather than any system-wide
+installed copies:</p>
+<pre class="literal-block">
+deactivate
+. /usr/lib/ckan/default/bin/activate
+</pre>
+</li>
+</ol>
+</div>
+<div class="section" id="setup-a-postgresql-database">
+<span id="postgres-setup"></span><h2>3. Setup a PostgreSQL database<a class="headerlink" href="install-from-source.html#setup-a-postgresql-database" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">orphan:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<p>Check that PostgreSQL was installed correctly by listing the existing databases:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>sudo -u postgres psql -l
+</pre></div>
+</div>
+<p>Check that the encoding of databases is <tt class="docutils literal"><span class="pre">UTF8</span></tt>, if not internationalisation
+may be a problem. Since changing the encoding of PostgreSQL may mean deleting
+existing databases, it is suggested that this is fixed before continuing with
+the CKAN install.</p>
+<p>Next you&#8217;ll need to create a database user if one doesn&#8217;t already exist.
+Create a new PostgreSQL database user called ckan_default, and enter a
+password for the user when prompted. You&#8217;ll need this password later:</p>
+<pre class="literal-block">
+sudo -u postgres createuser -S -D -R -P ckan_default
+</pre>
+<p>Create a new PostgreSQL database, called ckan_default, owned by the
+database user you just created:</p>
+<pre class="literal-block">
+sudo -u postgres createdb -O ckan_default ckan_default -E utf-8
+</pre>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If PostgreSQL is run on a separate server, you will need to edit
+<cite>postgresql.conf</cite> and <cite>pg_hba.conf</cite>. For PostgreSQL 9.1 on Ubuntu, these
+files are located in <cite>etc/postgresql/9.1/main</cite>.</p>
+<p>Uncomment the <cite>listen_addresses</cite> parameter and specify a comma-separated
+list of IP addresses of the network interfaces PostgreSQL should listen on
+or &#8216;*&#8217; to listen on all interfaces. For example,</p>
+<p><tt class="docutils literal"><span class="pre">listen_addresses</span> <span class="pre">=</span> <span class="pre">'localhost,192.168.1.21'</span></tt></p>
+<p>Add a line similar to the line below to the bottom of <cite>pg_hba.conf</cite> to
+allow the machine running Apache to connect to PostgreSQL. Please change
+the IP address as desired according to your network settings.</p>
+<p class="last"><tt class="docutils literal"><span class="pre">host</span>&nbsp;&nbsp;&nbsp; <span class="pre">all</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">all</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">192.168.1.22/32</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="pre">md5</span></tt></p>
+</div>
+</div>
+<div class="section" id="create-a-ckan-config-file">
+<h2>4. Create a CKAN config file<a class="headerlink" href="install-from-source.html#create-a-ckan-config-file" title="Permalink to this headline">¶</a></h2>
+<p>Create a directory to contain the site&#8217;s config files:</p>
+<pre class="literal-block">
+sudo mkdir -p /etc/ckan/default
+sudo chown -R `whoami` /etc/ckan/
+sudo chown -R `whoami` ~/ckan/etc
+</pre>
+<p>Create the CKAN config file:</p>
+<pre class="literal-block">
+paster make-config ckan /etc/ckan/default/development.ini
+</pre>
+<p>Edit the <tt class="docutils literal"><span class="pre">development.ini</span></tt> file in a text editor, changing the following
+options:</p>
+<dl class="docutils">
+<dt>sqlalchemy.url</dt>
+<dd><p class="first">This should refer to the database we created in <a class="reference internal" href="install-from-source.html#setup-a-postgresql-database">3. Setup a PostgreSQL
+database</a> above:</p>
+<pre class="literal-block">
+sqlalchemy.url = postgresql://ckan_default:<a class="reference external" href="mailto:pass&#37;&#52;&#48;localhost/">pass<span>&#64;</span>localhost/</a>ckan_default
+</pre>
+<p>Replace <tt class="docutils literal"><span class="pre">pass</span></tt> with the password that you created in <a class="reference internal" href="install-from-source.html#setup-a-postgresql-database">3. Setup a
+PostgreSQL database</a> above.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>If you&#8217;re using a remote host with password authentication rather than SSL
+authentication, use:</p>
+<pre class="last literal-block">
+sqlalchemy.url = postgresql://ckan_default:pass&#64;&lt;remotehost&gt;/ckan_default?sslmode=disable
+</pre>
+</div>
+</dd>
+<dt>site_id</dt>
+<dd><p class="first">Each CKAN site should have a unique <tt class="docutils literal"><span class="pre">site_id</span></tt>, for example:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="n">ckan</span><span class="o">.</span><span class="n">site_id</span> <span class="o">=</span> <span class="n">default</span>
+</pre></div>
+</div>
+</dd>
+<dt>site_url</dt>
+<dd><p class="first">Provide the site&#8217;s URL (used when putting links to the site into the
+FileStore, notification emails etc). For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>ckan.site_url = http://demo.ckan.org
+</pre></div>
+</div>
+<p class="last">Do not add a trailing slash to the URL.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="setup-solr">
+<span id="setting-up-solr"></span><h2>5. Setup Solr<a class="headerlink" href="install-from-source.html#setup-solr" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">orphan:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<p>CKAN uses <a class="reference external" href="http://lucene.apache.org/solr/">Solr</a> as its search platform, and uses a customized Solr schema file
+that takes into account CKAN&#8217;s specific search needs. Now that we have CKAN
+installed, we need to install and configure Solr.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">These instructions explain how to deploy Solr using the Jetty web
+server, but CKAN doesn&#8217;t require Jetty - you can deploy Solr to another web
+server, such as Tomcat, if that&#8217;s convenient on your operating system.</p>
+</div>
+<ol class="arabic">
+<li><p class="first">Edit the Jetty configuration file (<tt class="docutils literal"><span class="pre">/etc/default/jetty</span></tt>) and change the
+following variables:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>NO_START=0            # (line 4)
+JETTY_HOST=127.0.0.1  # (line 16)
+JETTY_PORT=8983       # (line 19)
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This <tt class="docutils literal"><span class="pre">JETTY_HOST</span></tt> setting will only allow connections from the same machine.
+If CKAN is not installed on the same machine as Jetty/Solr you will need to
+change it to the relevant host or to 0.0.0.0 (and probably set up your firewall
+accordingly).</p>
+</div>
+<p>Start the Jetty server:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>sudo service jetty start
+</pre></div>
+</div>
+<p>You should now see a welcome page from Solr if you open
+<a class="reference external" href="http://localhost:8983/solr/">http://localhost:8983/solr/</a> in your web browser (replace localhost with
+your server address if needed).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you get the message <tt class="docutils literal"><span class="pre">Could</span> <span class="pre">not</span> <span class="pre">start</span> <span class="pre">Jetty</span> <span class="pre">servlet</span> <span class="pre">engine</span> <span class="pre">because</span> <span class="pre">no</span>
+<span class="pre">Java</span> <span class="pre">Development</span> <span class="pre">Kit</span> <span class="pre">(JDK)</span> <span class="pre">was</span> <span class="pre">found.</span></tt> then you will have to edit the
+<tt class="docutils literal"><span class="pre">JAVA_HOME</span></tt> setting in <tt class="docutils literal"><span class="pre">/etc/default/jetty</span></tt> to point to your machine&#8217;s
+JDK install location. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64/
+</pre></div>
+</div>
+<p>or:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>JAVA_HOME=/usr/lib/jvm/java-6-openjdk-i386/
+</pre></div>
+</div>
+</div>
+</li>
+<li><p class="first">Replace the default <tt class="docutils literal"><span class="pre">schema.xml</span></tt> file with a symlink to the CKAN schema
+file included in the sources.</p>
+<pre class="literal-block">
+sudo mv /etc/solr/conf/schema.xml /etc/solr/conf/schema.xml.bak
+sudo ln -s /usr/lib/ckan/default/src/ckan/ckan/config/solr/schema.xml /etc/solr/conf/schema.xml
+</pre>
+<p>Now restart Solr:</p>
+<pre class="literal-block">
+sudo service jetty restart
+</pre>
+<p>and check that Solr is running by opening <a class="reference external" href="http://localhost:8983/solr/">http://localhost:8983/solr/</a>.</p>
+</li>
+<li><p class="first">Finally, change the <a class="reference internal" href="../configuration.html#solr-url"><em>solr_url</em></a> setting in your <a class="reference internal" href="../configuration.html#config-file"><em>CKAN configuration file</em></a> (/etc/ckan/default/production.ini) to
+point to your Solr server, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>solr_url=http://127.0.0.1:8983/solr
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="create-database-tables">
+<span id="postgres-init"></span><h2>6. Create database tables<a class="headerlink" href="install-from-source.html#create-database-tables" title="Permalink to this headline">¶</a></h2>
+<p>Now that you have a configuration file that has the correct settings for your
+database, you can <a class="reference internal" href="../database-management.html#db-init"><em>create the database tables</em></a>:</p>
+<pre class="literal-block">
+cd /usr/lib/ckan/default/src/ckan
+paster db init -c /etc/ckan/default/development.ini
+</pre>
+<p>You should see <tt class="docutils literal"><span class="pre">Initialising</span> <span class="pre">DB:</span> <span class="pre">SUCCESS</span></tt>.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If the command prompts for a password it is likely you haven&#8217;t set up the
+<tt class="docutils literal"><span class="pre">sqlalchemy.url</span></tt> option in your CKAN configuration file properly.
+See <a class="reference internal" href="install-from-source.html#create-a-ckan-config-file">4. Create a CKAN config file</a>.</p>
+</div>
+</div>
+<div class="section" id="set-up-the-datastore">
+<h2>7. Set up the DataStore<a class="headerlink" href="install-from-source.html#set-up-the-datastore" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Setting up the DataStore is optional. However, if you do skip this step,
+the <a class="reference internal" href="../datastore.html"><em>DataStore features</em></a> will not be available
+and the DataStore tests will fail.</p>
+</div>
+<p>Follow the instructions in <a class="reference internal" href="../datastore.html"><em>DataStore extension</em></a> to create the required
+databases and users, set the right permissions and set the appropriate values
+in your CKAN config file.</p>
+</div>
+<div class="section" id="link-to-who-ini">
+<h2>8. Link to <tt class="docutils literal"><span class="pre">who.ini</span></tt><a class="headerlink" href="install-from-source.html#link-to-who-ini" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">who.ini</span></tt> (the Repoze.who configuration file) needs to be accessible in the
+same directory as your CKAN config file, so create a symlink to it:</p>
+<pre class="literal-block">
+ln -s /usr/lib/ckan/default/src/ckan/who.ini /etc/ckan/default/who.ini
+</pre>
+</div>
+<div class="section" id="you-re-done">
+<h2>9. You&#8217;re done!<a class="headerlink" href="install-from-source.html#you-re-done" title="Permalink to this headline">¶</a></h2>
+<p>You can now use the Paste development server to serve CKAN from the
+command-line.  This is a simple and lightweight way to serve CKAN that is
+useful for development and testing:</p>
+<pre class="literal-block">
+cd /usr/lib/ckan/default/src/ckan
+paster serve /etc/ckan/default/development.ini
+</pre>
+<p>Open <a class="reference external" href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a> in a web browser, and you should see the CKAN front
+page.</p>
+<p>Now that you&#8217;ve installed CKAN, you should:</p>
+<ul class="simple">
+<li>Run CKAN&#8217;s tests to make sure that everything&#8217;s working, see <a class="reference internal" href="../../contributing/test.html"><em>Testing CKAN</em></a>.</li>
+<li>If you want to use your CKAN site as a production site, not just for testing
+or development purposes, then deploy CKAN using a production web server such
+as Apache or Nginx. See <a class="reference internal" href="deployment.html"><em>Deploying a source install</em></a>.</li>
+<li>Begin using and customizing your site, see <a class="reference internal" href="../getting-started.html"><em>Getting started</em></a>.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The default authorization settings on a new install are deliberately
+restrictive. Regular users won&#8217;t be able to create datasets or organizations.
+You should check the <a class="reference internal" href="../authorization.html"><em>Organizations and authorization</em></a> documentation, configure CKAN accordingly
+and grant other users the relevant permissions using the <a class="reference internal" href="../getting-started.html#create-admin-user"><em>sysadmin account</em></a>.</p>
+</div>
+</div>
+<div class="section" id="source-install-troubleshooting">
+<h2>Source install troubleshooting<a class="headerlink" href="install-from-source.html#source-install-troubleshooting" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="solr-setup-troubleshooting">
+<span id="solr-troubleshooting"></span><h3>Solr setup troubleshooting<a class="headerlink" href="install-from-source.html#solr-setup-troubleshooting" title="Permalink to this headline">¶</a></h3>
+<p>Solr requests and errors are logged in the web server log files.</p>
+<ul>
+<li><p class="first">For Jetty servers, the log files are:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>/var/log/jetty/&lt;date&gt;.stderrout.log
+</pre></div>
+</div>
+</li>
+<li><p class="first">For Tomcat servers, they&#8217;re:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>/var/log/tomcat6/catalina.&lt;date&gt;.log
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="section" id="unable-to-find-a-javac-compiler">
+<h4>Unable to find a javac compiler<a class="headerlink" href="install-from-source.html#unable-to-find-a-javac-compiler" title="Permalink to this headline">¶</a></h4>
+<p>If when running Solr it says:</p>
+<blockquote>
+<div>Unable to find a javac compiler; com.sun.tools.javac.Main is not on the classpath. Perhaps JAVA_HOME does not point to the JDK.</div></blockquote>
+<p>See the note in <a class="reference internal" href="install-from-source.html#setting-up-solr"><em>5. Setup Solr</em></a> about <tt class="docutils literal"><span class="pre">JAVA_HOME</span></tt>.
+Alternatively you may not have installed the JDK.
+Check by seeing if <tt class="docutils literal"><span class="pre">javac</span></tt> is installed:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>which javac
+</pre></div>
+</div>
+<p>If <tt class="docutils literal"><span class="pre">javac</span></tt> isn&#8217;t installed, do:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>sudo apt-get install openjdk-6-jdk
+</pre></div>
+</div>
+<p>and then restart Solr:</p>
+<pre class="literal-block">
+sudo service jetty restart
+</pre>
+</div>
+<div class="section" id="attributeerror-module-object-has-no-attribute-css-main-debug-css">
+<h4>AttributeError: &#8216;module&#8217; object has no attribute &#8216;css/main.debug.css&#8217;<a class="headerlink" href="install-from-source.html#attributeerror-module-object-has-no-attribute-css-main-debug-css" title="Permalink to this headline">¶</a></h4>
+<p>This error is likely to show up when <cite>debug</cite> is set to <cite>True</cite>. To fix this
+error, install frontend dependencies. See <a class="reference internal" href="../../contributing/frontend/index.html"><em>Frontend development guidelines</em></a>.</p>
+<p>After installing the dependencies, run <cite>bin/less</cite> and then start paster server
+again.</p>
+<p>If you do not want to compile CSS, you can also copy the main.css to
+main.debug.css to get CKAN running.</p>
+<blockquote>
+<div>cp /usr/lib/ckan/default/src/ckan/ckan/public/base/css/main.css /usr/lib/ckan/default/src/ckan/ckan/public/base/css/main.debug.css</div></blockquote>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="deployment.html" class="btn btn-neutral float-right"
+           title="Deploying a source install"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="install-from-package.html" class="btn btn-neutral"
+           title="Installing CKAN from package">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>Support the <a href="http://ckan.org">CKAN Association</a>.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: latest
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../index.html">latest</a></dd>
+        
+          <dd><a href="../../../ckan-2.6.0/index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../../../ckan-2.5.3/index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../../../ckan-2.4.4/index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../../../ckan-2.3.5/index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/pdf/latest/">pdf</a></dd>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/htmlzip/latest/">htmlzip</a></dd>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/epub/latest/">epub</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2.7.0a',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

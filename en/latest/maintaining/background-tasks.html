@@ -1,0 +1,685 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Background jobs &mdash; CKAN 2.7.0a documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="CKAN 2.7.0a documentation" href="../index.html"/>
+        <link rel="up" title="Maintainer’s guide" href="index.html"/>
+        <link rel="next" title="Email notifications" href="email-notifications.html"/>
+        <link rel="prev" title="Linked Data and RDF" href="linked-data-and-rdf.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/maintaining/background-tasks.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'maintaining/background-tasks'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> CKAN
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="http://docs.ckan.org//en/latest/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Maintainer&#8217;s guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installing/index.html">Installing CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/index.html">Upgrading CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database-management.html">Database Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html">Organizations and authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html">Data preview and visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filestore.html">FileStore and file uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html">DataStore extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="background-tasks.html">Background jobs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="background-tasks.html#writing-and-enqueuing-background-jobs">Writing and enqueuing background jobs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="background-tasks.html#accessing-the-database-from-background-jobs">Accessing the database from background jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="background-tasks.html#running-background-jobs">Running background jobs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="background-tasks.html#using-supervisor">Using Supervisor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="background-tasks.html#managing-background-jobs">Managing background jobs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="background-tasks.html#list-enqueues-jobs">List enqueues jobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="background-tasks.html#show-details-about-a-job">Show details about a job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="background-tasks.html#cancel-a-job">Cancel a job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="background-tasks.html#clear-all-enqueued-jobs">Clear all enqueued jobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="background-tasks.html#logging">Logging</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="background-tasks.html#background-job-queues">Background job queues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="background-tasks.html#migrating-from-ckan-s-previous-background-job-system">Migrating from CKAN&#8217;s previous background job system</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="background-tasks.html#supporting-both-systems-at-once">Supporting both systems at once</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="email-notifications.html">Email notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html">Page View Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multilingual.html">Multilingual Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stats.html">Stats Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Configuration Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extending guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theming/index.html">Theming guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Maintainer&#8217;s guide</a> &raquo;</li>
+      
+    <li>Background jobs</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/ckan/ckan/blob/master/doc/maintaining/background-tasks.rst" class="fa fa-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="background-jobs">
+<span id="id1"></span><h1>Background jobs<a class="headerlink" href="background-tasks.html#background-jobs" title="Permalink to this headline">¶</a></h1>
+<p>CKAN allows you to create jobs that run in the &#8216;background&#8217;, i.e.
+asynchronously and without blocking the main application. Such jobs can be
+created in <a class="reference internal" href="../extensions/index.html"><em>Extensions</em></a> or in core CKAN.</p>
+<p>Background jobs can be essential to providing certain kinds of functionality,
+for example:</p>
+<ul class="simple">
+<li>Creating web-hooks that notify other services when certain changes occur (for
+example a dataset is updated)</li>
+<li>Performing processing or validation or on data (as done by the Archiver and
+DataStorer Extensions)</li>
+</ul>
+<p>Basically, any piece of work that takes too long to perform while the main
+application is waiting is a good candidate for a background job.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The current background job system is based on <a class="reference external" href="http://python-rq.org">RQ</a> and was introduced in
+CKAN 2.7. See <a class="reference internal" href="background-tasks.html#background-jobs-migration"><em>Migrating from CKAN&#8217;s previous background job system</em></a> for details on how to
+migrate your jobs from the previous system introduced in CKAN 1.5.</p>
+</div>
+<div class="section" id="writing-and-enqueuing-background-jobs">
+<span id="background-jobs-writing"></span><h2>Writing and enqueuing background jobs<a class="headerlink" href="background-tasks.html#writing-and-enqueuing-background-jobs" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This section is only relevant for developers working on CKAN or an
+extension.</p>
+</div>
+<p>The core of a background job is a regular Python function. For example, here&#8217;s
+a very simply job function that logs a message:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="k">def</span> <span class="nf">log_job</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="s1">u&#39;ckan&#39;</span><span class="p">):</span>
+    <span class="sd">u&#39;&#39;&#39;</span>
+<span class="sd">    Background job to log a message.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">logger</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And that&#8217;s it. Your job function can use all the usual Python features. Just
+keep in mind that your function will be run in a separate process by a
+<a class="reference internal" href="background-tasks.html#background-jobs-workers"><em>worker</em></a>, so your function should not depend on
+the current state of global variables, etc. Ideally your job function should
+receive all the information it needs via its arguments.</p>
+<p>In addition, the module that contains your job function must be importable by
+the worker, which must also be able to get the function from its module. This
+means that nested functions, lambdas and instance methods cannot be used as job
+functions. While class methods of top-level classes can be used it&#8217;s best to
+stick to ordinary module-level functions.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Background jobs do not support return values (since they run asynchronously
+there is no place to return those values to). If your job function produces
+a result then it needs to store that result, for example in a file or in
+CKAN&#8217;s database.</p>
+</div>
+<p>Once you have a job function, all you need to do is to use
+<tt class="docutils literal"><span class="pre">ckan.lib.jobs.enqueue</span></tt> to create an actual job out of it:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ckan.lib.jobs</span> <span class="kn">as</span> <span class="nn">jobs</span>
+
+<span class="n">jobs</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">log_job</span><span class="p">,</span> <span class="p">[</span><span class="s1">u&#39;My log message&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>This will place a job on the <a class="reference internal" href="background-tasks.html#background-jobs-queues"><em>job queue</em></a> where it
+can be picked up and executed by a worker.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Extensions should use <tt class="xref py py-func docutils literal"><span class="pre">ckan.plugins.toolkit.enqueue_job()</span></tt> instead.
+It&#8217;s the same function but accessing it via <a class="reference internal" href="../extensions/plugins-toolkit.html#module-ckan.plugins.toolkit" title="ckan.plugins.toolkit"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.plugins.toolkit</span></tt></a>
+<a class="reference internal" href="../extensions/best-practices.html#use-the-plugins-toolkit"><em>decouples your code from CKAN&#8217;s internal structure</em></a>.</p>
+</div>
+<p>The first argument to <tt class="docutils literal"><span class="pre">enqueue</span></tt> is the job function to use. The second is a
+list of the arguments which should be passed to the function. You can omit it
+in which case no arguments will be passed. You can also pass keyword arguments
+in a dict as the third argument:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">log_job</span><span class="p">,</span> <span class="p">[</span><span class="s1">u&#39;My log message&#39;</span><span class="p">],</span> <span class="p">{</span><span class="s1">u&#39;logger&#39;</span><span class="p">:</span> <span class="s1">u&#39;ckanext.foo&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>You can also give the job a title which can be useful for identifying it when
+<a class="reference internal" href="background-tasks.html#background-jobs-management"><em>managing the job queue</em></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">log_job</span><span class="p">,</span> <span class="p">[</span><span class="s1">u&#39;My log message&#39;</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">u&#39;My log job&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="accessing-the-database-from-background-jobs">
+<h3>Accessing the database from background jobs<a class="headerlink" href="background-tasks.html#accessing-the-database-from-background-jobs" title="Permalink to this headline">¶</a></h3>
+<p>Code running in a background job can access the CKAN database like any other
+CKAN code.</p>
+<p>In particular, using the action functions to modify the database from within a
+background job is perfectly fine. Just keep in mind that while your job is
+running in the background, the CKAN main process or other background jobs may
+also modify the database. Hence a single call to an action function is atomic
+from your job&#8217;s view point, but between multiple calls there may be foreign
+changes to the database.</p>
+<p>Special care has to be taken if your background job needs low-level access to
+the database, for example to modify SQLAlchemy model instances directly without
+going through an action function. Each background job runs in a separate
+process and therefore has its own SQLAlchemy session. Your code has to make
+sure that the changes it makes are properly contained in transactions and that
+you refresh your view of the database to receive updates where necessary. For
+these (and other) reasons it is recommended to <a class="reference internal" href="../contributing/architecture.html#always-use-action-functions"><em>use the action functions
+to interact with the database</em></a>.</p>
+</div>
+</div>
+<div class="section" id="running-background-jobs">
+<span id="background-jobs-workers"></span><h2>Running background jobs<a class="headerlink" href="background-tasks.html#running-background-jobs" title="Permalink to this headline">¶</a></h2>
+<p>Jobs are placed on the <a class="reference internal" href="background-tasks.html#background-jobs-queues"><em>job queue</em></a>, from which
+they can be retrieved and executed. Since jobs are designed to run
+asynchronously that happens in a separate process called a <em>worker</em>.</p>
+<p>After it has been started, a worker listens on the queue until a job is
+enqueued. The worker then removes the job from the queue and executes it.
+Afterwards the worker waits again for the next job to be enqueued.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Executed jobs are discarded. In particular, no information about past jobs
+is kept.</p>
+</div>
+<p>Workers can be started using the <a class="reference internal" href="paster.html#paster-jobs-worker"><em>Run a background job worker</em></a> command:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>paster --plugin=ckan jobs worker --config=/etc/ckan/default/development.ini
+</pre></div>
+</div>
+<p>The worker process will run indefinitely (you can stop it using <tt class="docutils literal"><span class="pre">CTRL+C</span></tt>).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can run multiple workers if your setup uses many or particularly long
+background jobs.</p>
+</div>
+<div class="section" id="using-supervisor">
+<span id="background-jobs-supervisor"></span><h3>Using Supervisor<a class="headerlink" href="background-tasks.html#using-supervisor" title="Permalink to this headline">¶</a></h3>
+<p>In a production setting, the worker should be run in a more robust way. One
+possibility is to use <a class="reference external" href="http://supervisord.org/">Supervisor</a>.</p>
+<p>First install Supervisor:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>sudo apt-get install supervisor
+</pre></div>
+</div>
+<p>Next copy the configuration file template:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>sudo cp /usr/lib/ckan/default/src/ckan/ckan/config/supervisor-ckan-worker.conf /etc/supervisor/conf.d
+</pre></div>
+</div>
+<p>Open <tt class="docutils literal"><span class="pre">/etc/supervisor/conf.d/supervisor-ckan-worker.conf</span></tt> in your favourite
+text editor and make sure all the settings suit your needs. If you installed
+CKAN in a non-default location (somewhere other than <tt class="docutils literal"><span class="pre">/usr/lib/ckan/default</span></tt>)
+then you will need to update the paths in the config file (see the comments in
+the file for details).</p>
+<p>Restart Supervisor:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>sudo service supervisor restart
+</pre></div>
+</div>
+<p>The worker should now be running. To check its status, use</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>sudo supervisorctl status
+</pre></div>
+</div>
+<p>You can restart the worker via</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>sudo supervisorctl restart ckan-worker:*
+</pre></div>
+</div>
+<p>To test that background jobs are processed correctly you can enqueue a test job
+via</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>paster --plugin=ckan jobs test -c /etc/ckan/default/production.ini
+</pre></div>
+</div>
+<p>The worker&#8217;s log (<tt class="docutils literal"><span class="pre">/var/log/ckan-worker.log</span></tt>) should then show how the job
+was processed by the worker.</p>
+<p>In case you run into problems, make sure to check the logs of Supervisor and
+the worker:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">supervisor</span><span class="o">/</span><span class="n">supervisord</span><span class="o">.</span><span class="n">log</span>
+<span class="n">cat</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">ckan</span><span class="o">-</span><span class="n">worker</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="managing-background-jobs">
+<span id="background-jobs-management"></span><h2>Managing background jobs<a class="headerlink" href="background-tasks.html#managing-background-jobs" title="Permalink to this headline">¶</a></h2>
+<p>Once they are enqueued, background jobs can be managed via
+<a class="reference internal" href="paster.html#paster"><em>paster</em></a> and the <a class="reference internal" href="../api/index.html#action-api"><em>web API</em></a>.</p>
+<div class="section" id="list-enqueues-jobs">
+<h3>List enqueues jobs<a class="headerlink" href="background-tasks.html#list-enqueues-jobs" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference internal" href="paster.html#paster-jobs-list"><em>paster jobs list</em></a></li>
+<li><a class="reference internal" href="../api/index.html#ckan.logic.action.get.job_list" title="ckan.logic.action.get.job_list"><tt class="xref py py-func docutils literal"><span class="pre">ckan.logic.action.get.job_list()</span></tt></a></li>
+</ul>
+</div>
+<div class="section" id="show-details-about-a-job">
+<h3>Show details about a job<a class="headerlink" href="background-tasks.html#show-details-about-a-job" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference internal" href="paster.html#paster-jobs-show"><em>paster jobs show</em></a></li>
+<li><a class="reference internal" href="../api/index.html#ckan.logic.action.get.job_show" title="ckan.logic.action.get.job_show"><tt class="xref py py-func docutils literal"><span class="pre">ckan.logic.action.get.job_show()</span></tt></a></li>
+</ul>
+</div>
+<div class="section" id="cancel-a-job">
+<h3>Cancel a job<a class="headerlink" href="background-tasks.html#cancel-a-job" title="Permalink to this headline">¶</a></h3>
+<p>A job that hasn&#8217;t been processed yet can be canceled via</p>
+<ul class="simple">
+<li><a class="reference internal" href="paster.html#paster-jobs-cancel"><em>paster jobs cancel</em></a></li>
+<li><a class="reference internal" href="../api/index.html#ckan.logic.action.delete.job_cancel" title="ckan.logic.action.delete.job_cancel"><tt class="xref py py-func docutils literal"><span class="pre">ckan.logic.action.delete.job_cancel()</span></tt></a></li>
+</ul>
+</div>
+<div class="section" id="clear-all-enqueued-jobs">
+<h3>Clear all enqueued jobs<a class="headerlink" href="background-tasks.html#clear-all-enqueued-jobs" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference internal" href="paster.html#paster-jobs-clear"><em>paster jobs clear</em></a></li>
+<li><a class="reference internal" href="../api/index.html#ckan.logic.action.delete.job_clear" title="ckan.logic.action.delete.job_clear"><tt class="xref py py-func docutils literal"><span class="pre">ckan.logic.action.delete.job_clear()</span></tt></a></li>
+</ul>
+</div>
+<div class="section" id="logging">
+<h3>Logging<a class="headerlink" href="background-tasks.html#logging" title="Permalink to this headline">¶</a></h3>
+<p>Information about enqueued and processed background jobs is automatically
+logged to the CKAN logs. You may need to update your logging configuration to
+record messages at the <em>INFO</em> level for the messages to be stored.</p>
+</div>
+</div>
+<div class="section" id="background-job-queues">
+<span id="background-jobs-queues"></span><h2>Background job queues<a class="headerlink" href="background-tasks.html#background-job-queues" title="Permalink to this headline">¶</a></h2>
+<p>By default, all functionality related to background jobs uses a single job
+queue that is specific to the current CKAN instance. However, in some
+situations it is useful to have more than one queue. For example, you might
+want to distinguish between short, urgent jobs and longer, less urgent ones.
+The urgent jobs should be processed even if a long and less urgent job is
+already running.</p>
+<p>For such scenarios, the job system supports multiple queues. To use a different
+queue, all you have to do is pass the (arbitrary) queue name. For example, to
+enqueue a job at a non-default queue:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">log_job</span><span class="p">,</span> <span class="p">[</span><span class="s2">u&quot;I&#39;m from a different queue!&quot;</span><span class="p">],</span>
+             <span class="n">queue</span><span class="o">=</span><span class="s1">u&#39;my-own-queue&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Similarly, to start a worker that only listens to the queue you just posted a
+job to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>paster --plugin=ckan jobs worker my-own-queue --config=/etc/ckan/default/development.ini
+</pre></div>
+</div>
+<p>See the documentation of the various functions and commands for details on how
+to use non-standard queues.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you create a custom queue in your extension then you should prefix the
+queue name using your extension&#8217;s name. See <a class="reference internal" href="../extensions/best-practices.html#avoid-name-clashes"><em>Avoid name clashes</em></a>.</p>
+<p class="last">Queue names are internally automatically prefixed with the CKAN site ID,
+so multiple parallel CKAN instances are not a problem.</p>
+</div>
+</div>
+<div class="section" id="migrating-from-ckan-s-previous-background-job-system">
+<span id="background-jobs-migration"></span><h2>Migrating from CKAN&#8217;s previous background job system<a class="headerlink" href="background-tasks.html#migrating-from-ckan-s-previous-background-job-system" title="Permalink to this headline">¶</a></h2>
+<p>Before version 2.7 (starting from 1.5), CKAN offered a different background job
+system built around <a class="reference external" href="http://celeryproject.org/">Celery</a>. That system is still available but deprecated and
+will be removed in future versions of CKAN. You should therefore update your
+code to use the new system described above.</p>
+<p>Migrating existing job functions is easy. In the old system, a job function
+would look like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@celery.task</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">u&#39;my_extension.echofunction&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">echo</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">message</span>
+</pre></div>
+</div>
+<p>As <a class="reference internal" href="background-tasks.html#background-jobs-writing"><em>described above</em></a>, under the new system the
+same function would be simply written as</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">echo</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">message</span>
+</pre></div>
+</div>
+<p>There is no need for a special decorator. In the new system there is also no
+need for registering your tasks via <tt class="docutils literal"><span class="pre">setup.py</span></tt>.</p>
+<p>Migrating the code that enqueues a task is also easy. Previously it would look
+like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">celery</span><span class="o">.</span><span class="n">send_task</span><span class="p">(</span><span class="s1">u&#39;my_extension.echofunction&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="s1">u&#39;Hello World&#39;</span><span class="p">],</span>
+                 <span class="n">task_id</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()))</span>
+</pre></div>
+</div>
+<p>With the new system, it looks as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ckan.lib.jobs</span> <span class="kn">as</span> <span class="nn">jobs</span>
+
+<span class="n">jobs</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">ckanext</span><span class="o">.</span><span class="n">my_extension</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">echo</span><span class="p">,</span> <span class="p">[</span><span class="s1">u&#39;Hello World&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>As you can see, the new system does not use strings to identify job functions
+but uses the functions directly instead. There is also no need for creating a
+job ID, that will be done automatically for you.</p>
+<div class="section" id="supporting-both-systems-at-once">
+<h3>Supporting both systems at once<a class="headerlink" href="background-tasks.html#supporting-both-systems-at-once" title="Permalink to this headline">¶</a></h3>
+<p>Not all CKAN installations will immediately update to CKAN 2.7. It might
+therefore make sense for you to support both the new and the old job system.
+That way you are ready when the old system is removed but can continue to
+support older CKAN installations.</p>
+<p>Such a setup might look as follows. First split your Celery-based job
+functions into the job itself and its Celery handler. That is, change</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@celery.task</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">u&#39;my_extension.echofunction&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">echo</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">message</span>
+</pre></div>
+</div>
+<p>to</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">echo</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">message</span>
+
+<span class="nd">@celery.task</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">u&#39;my_extension.echofunction&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">echo_celery</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+  <span class="n">echo</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>That way, you can call <tt class="docutils literal"><span class="pre">echo</span></tt> using the new system and use the name for
+Celery.</p>
+<p>Then use the new system if it is available and fall back to Celery otherwise:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compat_enqueue</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">u&#39;&#39;&#39;</span>
+<span class="sd">    Enqueue a background job using Celery or RQ.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Try to use RQ</span>
+        <span class="kn">from</span> <span class="nn">ckan.lib.jobs</span> <span class="kn">import</span> <span class="n">enqueue</span>
+        <span class="n">enqueue</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="c1"># Fallback to Celery</span>
+        <span class="kn">import</span> <span class="nn">uuid</span>
+        <span class="kn">from</span> <span class="nn">ckan.lib.celery_app</span> <span class="kn">import</span> <span class="n">celery</span>
+        <span class="n">celery</span><span class="o">.</span><span class="n">send_task</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">task_id</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()))</span>
+</pre></div>
+</div>
+<p>Use that function as follows for enqueuing a job:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">compat_enqueue</span><span class="p">(</span><span class="s1">u&#39;my_extension.echofunction&#39;</span><span class="p">,</span>
+               <span class="n">ckanext</span><span class="o">.</span><span class="n">my_extension</span><span class="o">.</span><span class="n">plugin</span><span class="o">.</span><span class="n">echo</span><span class="p">,</span>
+               <span class="p">[</span><span class="s1">u&#39;Hello World&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="email-notifications.html" class="btn btn-neutral float-right"
+           title="Email notifications"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="linked-data-and-rdf.html" class="btn btn-neutral"
+           title="Linked Data and RDF">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>Support the <a href="http://ckan.org">CKAN Association</a>.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: latest
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../index.html">latest</a></dd>
+        
+          <dd><a href="../../ckan-2.6.0/index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../../ckan-2.5.3/index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../../ckan-2.4.4/index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../../ckan-2.3.5/index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/pdf/latest/">pdf</a></dd>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/htmlzip/latest/">htmlzip</a></dd>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/epub/latest/">epub</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.7.0a',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,2267 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Plugin interfaces reference &mdash; CKAN 2.7.0a documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="CKAN 2.7.0a documentation" href="../index.html"/>
+        <link rel="up" title="Extending guide" href="index.html"/>
+        <link rel="next" title="Plugins toolkit reference" href="plugins-toolkit.html"/>
+        <link rel="prev" title="Customizing dataset and resource metadata fields using IDatasetForm" href="adding-custom-fields.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/extensions/plugin-interfaces.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'extensions/plugin-interfaces'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> CKAN
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="http://docs.ckan.org//en/latest/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maintaining/index.html">Maintainer&#8217;s guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Extending guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html">Writing extensions tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-config-settings.html">Using custom config settings in extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-config-update.html">Making configuration options runtime-editable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing-extensions.html">Testing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="best-practices.html">Best practices for writing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adding-custom-fields.html">Customizing dataset and resource metadata fields using IDatasetForm</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="plugin-interfaces.html">Plugin interfaces reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins-toolkit.html">Plugins toolkit reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validators.html">Validator functions reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating-extensions.html">Internationalizing strings in extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theming/index.html">Theming guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Extending guide</a> &raquo;</li>
+      
+    <li>Plugin interfaces reference</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/ckan/ckan/blob/master/doc/extensions/plugin-interfaces.rst" class="fa fa-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="plugin-interfaces-reference">
+<h1>Plugin interfaces reference<a class="headerlink" href="plugin-interfaces.html#plugin-interfaces-reference" title="Permalink to this headline">¶</a></h1>
+<p><tt class="xref py py-mod docutils literal"><span class="pre">ckan.plugins</span></tt> contains a few core classes and functions for plugins
+to use:</p>
+<p class="rubric"><tt class="docutils literal"><span class="pre">ckan.plugins</span></tt></p>
+<dl class="class">
+<dt id="ckan.plugins.SingletonPlugin">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.</tt><tt class="descname">SingletonPlugin</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.SingletonPlugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for plugins which are singletons (ie most of them)</p>
+<p>One singleton instance of this class will be created when the plugin is
+loaded. Subsequent calls to the class constructor will always return the
+same singleton instance.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.Plugin">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.</tt><tt class="descname">Plugin</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.Plugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for plugins which require multiple instances.</p>
+<p>Unless you need multiple instances of your plugin object you should
+probably use SingletonPlugin.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.plugins.implements">
+<tt class="descclassname">ckan.plugins.</tt><tt class="descname">implements</tt><big>(</big><em>interface</em>, <em>namespace=None</em>, <em>inherit=False</em>, <em>service=True</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.implements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Can be used in the class definition of <cite>Plugin</cite> subclasses to
+declare the extension points that are implemented by this
+interface class.</p>
+<p>If the <cite>inherits</cite> option is True, then this <cite>Plugin</cite> class
+inherits from the <cite>interface</cite> class.</p>
+</dd></dl>
+
+<p class="rubric"><tt class="docutils literal"><span class="pre">ckan.plugins.interfaces</span></tt></p>
+<span class="target" id="module-ckan.plugins.interfaces"></span><p>A collection of interfaces that CKAN plugins can implement to customize and
+extend CKAN.</p>
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IMiddleware">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IMiddleware</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IMiddleware" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook into Pylons middleware stack</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IMiddleware.make_middleware">
+<tt class="descname">make_middleware</tt><big>(</big><em>app</em>, <em>config</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IMiddleware.make_middleware" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an app configured with this middleware</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IMiddleware.make_error_log_middleware">
+<tt class="descname">make_error_log_middleware</tt><big>(</big><em>app</em>, <em>config</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IMiddleware.make_error_log_middleware" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an app configured with this error log middleware</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IRoutes">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IRoutes</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IRoutes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plugin into the setup of the routes map creation.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IRoutes.before_map">
+<tt class="descname">before_map</tt><big>(</big><em>map</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IRoutes.before_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called before the routes map is generated. <tt class="docutils literal"><span class="pre">before_map</span></tt> is before any
+other mappings are created so can override all other mappings.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>map</strong> &#8211; Routes map object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified version of the map object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IRoutes.after_map">
+<tt class="descname">after_map</tt><big>(</big><em>map</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IRoutes.after_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called after routes map is set up. <tt class="docutils literal"><span class="pre">after_map</span></tt> can be used to
+add fall-back handlers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>map</strong> &#8211; Routes map object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modified version of the map object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IMapper">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IMapper</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IMapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>A subset of the SQLAlchemy mapper extension hooks.
+See <a class="reference external" href="http://docs.sqlalchemy.org/en/rel_0_9/orm/deprecated.html#sqlalchemy.orm.interfaces.MapperExtension">http://docs.sqlalchemy.org/en/rel_0_9/orm/deprecated.html#sqlalchemy.orm.interfaces.MapperExtension</a></p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyPlugin</span><span class="p">(</span><span class="n">SingletonPlugin</span><span class="p">):</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="n">implements</span><span class="p">(</span><span class="n">IMapper</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">after_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapper</span><span class="p">,</span> <span class="n">connection</span><span class="p">,</span> <span class="n">instance</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="n">log</span><span class="p">(</span><span class="s1">u&#39;Updated: </span><span class="si">%r</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IMapper.before_insert">
+<tt class="descname">before_insert</tt><big>(</big><em>mapper</em>, <em>connection</em>, <em>instance</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IMapper.before_insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive an object instance before that instance is INSERTed into
+its table.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IMapper.before_update">
+<tt class="descname">before_update</tt><big>(</big><em>mapper</em>, <em>connection</em>, <em>instance</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IMapper.before_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive an object instance before that instance is UPDATEed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IMapper.before_delete">
+<tt class="descname">before_delete</tt><big>(</big><em>mapper</em>, <em>connection</em>, <em>instance</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IMapper.before_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive an object instance before that instance is PURGEd.
+(whereas usually in ckan &#8216;delete&#8217; means to change the state property to
+deleted, so use before_update for that case.)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IMapper.after_insert">
+<tt class="descname">after_insert</tt><big>(</big><em>mapper</em>, <em>connection</em>, <em>instance</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IMapper.after_insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive an object instance after that instance is INSERTed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IMapper.after_update">
+<tt class="descname">after_update</tt><big>(</big><em>mapper</em>, <em>connection</em>, <em>instance</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IMapper.after_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive an object instance after that instance is UPDATEed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IMapper.after_delete">
+<tt class="descname">after_delete</tt><big>(</big><em>mapper</em>, <em>connection</em>, <em>instance</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IMapper.after_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive an object instance after that instance is PURGEd.
+(whereas usually in ckan &#8216;delete&#8217; means to change the state property to
+deleted, so use before_update for that case.)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.ISession">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">ISession</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ISession" title="Permalink to this definition">¶</a></dt>
+<dd><p>A subset of the SQLAlchemy session extension hooks.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.ISession.after_begin">
+<tt class="descname">after_begin</tt><big>(</big><em>session</em>, <em>transaction</em>, <em>connection</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ISession.after_begin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute after a transaction is begun on a connection</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.ISession.before_flush">
+<tt class="descname">before_flush</tt><big>(</big><em>session</em>, <em>flush_context</em>, <em>instances</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ISession.before_flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute before flush process has started.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.ISession.after_flush">
+<tt class="descname">after_flush</tt><big>(</big><em>session</em>, <em>flush_context</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ISession.after_flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute after flush has completed, but before commit has been called.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.ISession.before_commit">
+<tt class="descname">before_commit</tt><big>(</big><em>session</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ISession.before_commit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute right before commit is called.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.ISession.after_commit">
+<tt class="descname">after_commit</tt><big>(</big><em>session</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ISession.after_commit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute after a commit has occured.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.ISession.after_rollback">
+<tt class="descname">after_rollback</tt><big>(</big><em>session</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ISession.after_rollback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute after a rollback has occured.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IDomainObjectModification">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IDomainObjectModification</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDomainObjectModification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives notification of new, changed and deleted datasets.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDomainObjectModification.notify">
+<tt class="descname">notify</tt><big>(</big><em>entity</em>, <em>operation</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDomainObjectModification.notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a notification on entity modification.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>entity</strong> &#8211; instance of module.Package.</li>
+<li><strong>operation</strong> &#8211; &#8216;new&#8217;, &#8216;changed&#8217; or &#8216;deleted&#8217;.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDomainObjectModification.notify_after_commit">
+<tt class="descname">notify_after_commit</tt><big>(</big><em>entity</em>, <em>operation</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDomainObjectModification.notify_after_commit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a notification after entity modification.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>entity</strong> &#8211; instance of module.Package.</li>
+<li><strong>operation</strong> &#8211; &#8216;new&#8217;, &#8216;changed&#8217; or &#8216;deleted&#8217;.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IFeed">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IFeed</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IFeed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows extension of the default Atom feeds</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IFeed.get_feed_class">
+<tt class="descname">get_feed_class</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IFeed.get_feed_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows plugins to provide a custom class to generate feed items.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">feed class</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">type</td>
+</tr>
+</tbody>
+</table>
+<p>The feed item generator&#8217;s constructor is called as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">feed_class</span><span class="p">(</span>
+    <span class="n">feed_title</span><span class="p">,</span>        <span class="c1"># Mandatory</span>
+    <span class="n">feed_link</span><span class="p">,</span>         <span class="c1"># Mandatory</span>
+    <span class="n">feed_description</span><span class="p">,</span>  <span class="c1"># Mandatory</span>
+    <span class="n">language</span><span class="p">,</span>          <span class="c1"># Optional, always set to &#39;en&#39;</span>
+    <span class="n">author_name</span><span class="p">,</span>       <span class="c1"># Optional</span>
+    <span class="n">author_link</span><span class="p">,</span>       <span class="c1"># Optional</span>
+    <span class="n">feed_guid</span><span class="p">,</span>         <span class="c1"># Optional</span>
+    <span class="n">feed_url</span><span class="p">,</span>          <span class="c1"># Optional</span>
+    <span class="n">previous_page</span><span class="p">,</span>     <span class="c1"># Optional, url of previous page of feed</span>
+    <span class="n">next_page</span><span class="p">,</span>         <span class="c1"># Optional, url of next page of feed</span>
+    <span class="n">first_page</span><span class="p">,</span>        <span class="c1"># Optional, url of first page of feed</span>
+    <span class="n">last_page</span><span class="p">,</span>         <span class="c1"># Optional, url of last page of feed</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IFeed.get_item_additional_fields">
+<tt class="descname">get_item_additional_fields</tt><big>(</big><em>dataset_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IFeed.get_item_additional_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows plugins to set additional fields on a feed item.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dataset_dict</strong> (<em>dictionary</em>) &#8211; the dataset metadata</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the fields to set</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IResourceUrlChange">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IResourceUrlChange</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceUrlChange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives notification of changed urls.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourceUrlChange.notify">
+<tt class="descname">notify</tt><big>(</big><em>resource</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceUrlChange.notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Give user a notify is resource url has changed.</p>
+<p>:param resource, instance of model.Resource</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IResourceView">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IResourceView</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add custom view renderings for different resource types.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourceView.info">
+<tt class="descname">info</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceView.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary with configuration options for the view.</p>
+<p>The available keys are:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; name of the view type. This should match the name of the
+actual plugin (eg <tt class="docutils literal"><span class="pre">image_view</span></tt> or <tt class="docutils literal"><span class="pre">recline_view</span></tt>).</li>
+<li><strong>title</strong> &#8211; title of the view type, will be displayed on the
+frontend. This should be translatable (ie wrapped on
+<tt class="docutils literal"><span class="pre">toolkit._('Title')</span></tt>).</li>
+<li><strong>default_title</strong> &#8211; default title that will be used if the view is
+created automatically (optional, defaults to &#8216;View&#8217;).</li>
+<li><strong>default_description</strong> &#8211; default description that will be used if
+the view is created automatically (optional, defaults to &#8216;&#8217;).</li>
+<li><strong>icon</strong> &#8211; icon for the view type. Should be one of the
+<a class="reference external" href="http://fortawesome.github.io/Font-Awesome/3.2.1/icons">Font Awesome</a> types without the <cite>icon-</cite> prefix eg. <cite>compass</cite>
+(optional, defaults to &#8216;picture&#8217;).</li>
+<li><strong>always_available</strong> &#8211; the view type should be always available when
+creating new views regardless of the format of the resource
+(optional, defaults to False).</li>
+<li><strong>iframed</strong> &#8211; the view template should be iframed before rendering.
+You generally want this option to be True unless the view styles
+and JavaScript don&#8217;t clash with the main site theme (optional,
+defaults to True).</li>
+<li><strong>preview_enabled</strong> &#8211; the preview button should appear on the edit
+view form. Some view types have their previews integrated with the
+form (optional, defaults to False).</li>
+<li><strong>full_page_edit</strong> &#8211; the edit form should take the full page width
+of the page (optional, defaults to False).</li>
+<li><strong>schema</strong> &#8211; <p>schema to validate extra configuration fields for the
+view (optional). Schemas are defined as a dictionary, with the
+keys being the field name and the values a list of validator
+functions that will get applied to the field. For instance:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">ignore_empty</span><span class="p">,</span> <span class="n">natural_number_validator</span><span class="p">],</span>
+    <span class="s1">&#39;limit&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">ignore_empty</span><span class="p">,</span> <span class="n">natural_number_validator</span><span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example configuration object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;image_view&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Image&#39;</span><span class="p">),</span>
+ <span class="s1">&#39;schema&#39;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">&#39;image_url&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">ignore_empty</span><span class="p">,</span> <span class="nb">unicode</span><span class="p">]</span>
+ <span class="p">},</span>
+ <span class="s1">&#39;icon&#39;</span><span class="p">:</span> <span class="s1">&#39;picture&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;always_available&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+ <span class="s1">&#39;iframed&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a dictionary with the view type configuration</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourceView.can_view">
+<tt class="descname">can_view</tt><big>(</big><em>data_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceView.can_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the plugin can render a particular resource.</p>
+<p>The <tt class="docutils literal"><span class="pre">data_dict</span></tt> contains the following keys:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> &#8211; dict of the resource fields</li>
+<li><strong>package</strong> &#8211; dict of the full parent dataset</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True if the plugin can render a particular resource, False
+otherwise</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourceView.setup_template_variables">
+<tt class="descname">setup_template_variables</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceView.setup_template_variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds variables to be passed to the template being rendered.</p>
+<p>This should return a new dict instead of updating the input
+<tt class="docutils literal"><span class="pre">data_dict</span></tt>.</p>
+<p>The <tt class="docutils literal"><span class="pre">data_dict</span></tt> contains the following keys:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource_view</strong> &#8211; dict of the resource view being rendered</li>
+<li><strong>resource</strong> &#8211; dict of the parent resource fields</li>
+<li><strong>package</strong> &#8211; dict of the full parent dataset</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a dictionary with the extra variables to pass</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourceView.view_template">
+<tt class="descname">view_template</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceView.view_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string representing the location of the template to be
+rendered when the view is displayed</p>
+<p>The path will be relative to the template directory you registered
+using the <tt class="xref py py-func docutils literal"><span class="pre">add_template_directory()</span></tt>
+on the <a class="reference internal" href="plugin-interfaces.html#ckan.plugins.interfaces.IConfigurer.update_config" title="ckan.plugins.interfaces.IConfigurer.update_config"><tt class="xref py py-class docutils literal"><span class="pre">update_config</span></tt></a>
+method, for instance <tt class="docutils literal"><span class="pre">views/my_view.html</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource_view</strong> &#8211; dict of the resource view being rendered</li>
+<li><strong>resource</strong> &#8211; dict of the parent resource fields</li>
+<li><strong>package</strong> &#8211; dict of the full parent dataset</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the location of the view template.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourceView.form_template">
+<tt class="descname">form_template</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceView.form_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string representing the location of the template to be
+rendered when the edit view form is displayed</p>
+<p>The path will be relative to the template directory you registered
+using the <tt class="xref py py-func docutils literal"><span class="pre">add_template_directory()</span></tt>
+on the <a class="reference internal" href="plugin-interfaces.html#ckan.plugins.interfaces.IConfigurer.update_config" title="ckan.plugins.interfaces.IConfigurer.update_config"><tt class="xref py py-class docutils literal"><span class="pre">update_config</span></tt></a>
+method, for instance <tt class="docutils literal"><span class="pre">views/my_view_form.html</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource_view</strong> &#8211; dict of the resource view being rendered</li>
+<li><strong>resource</strong> &#8211; dict of the parent resource fields</li>
+<li><strong>package</strong> &#8211; dict of the full parent dataset</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the location of the edit view form template.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IResourcePreview">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IResourcePreview</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourcePreview" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This interface is deprecated, and is only kept for backwards
+compatibility with the old resource preview code. Please
+use <a class="reference internal" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceView" title="ckan.plugins.interfaces.IResourceView"><tt class="xref py py-class docutils literal"><span class="pre">IResourceView</span></tt></a> for writing
+custom view plugins.</p>
+</div>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourcePreview.can_preview">
+<tt class="descname">can_preview</tt><big>(</big><em>data_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourcePreview.can_preview" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return info on whether the plugin can preview the resource.</p>
+<p>This can be done in two ways:</p>
+<ol class="arabic simple">
+<li>The old way is to just return <tt class="docutils literal"><span class="pre">True</span></tt> or <tt class="docutils literal"><span class="pre">False</span></tt>.</li>
+<li>The new way is to return a dict with  three keys:<ul>
+<li><tt class="docutils literal"><span class="pre">can_preview</span></tt> (<tt class="docutils literal"><span class="pre">boolean</span></tt>)
+<tt class="docutils literal"><span class="pre">True</span></tt> if the extension can preview the resource.</li>
+<li><tt class="docutils literal"><span class="pre">fixable</span></tt> (<tt class="docutils literal"><span class="pre">string</span></tt>)
+A string explaining how preview for the resource could be enabled,
+for example if the <tt class="docutils literal"><span class="pre">resource_proxy</span></tt> plugin was enabled.</li>
+<li><tt class="docutils literal"><span class="pre">quality</span></tt> (<tt class="docutils literal"><span class="pre">int</span></tt>)
+How good the preview is: <tt class="docutils literal"><span class="pre">1</span></tt> (poor), <tt class="docutils literal"><span class="pre">2</span></tt> (average) or
+<tt class="docutils literal"><span class="pre">3</span></tt> (good). When multiple preview extensions can preview the
+same resource, this is used to determine which extension will
+be used.</li>
+</ul>
+</li>
+</ol>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data_dict</strong> (<em>dictionary</em>) &#8211; the resource to be previewed and the dataset that it
+belongs to.</td>
+</tr>
+</tbody>
+</table>
+<p>Make sure to check the <tt class="docutils literal"><span class="pre">on_same_domain</span></tt> value of the resource or the
+url if your preview requires the resource to be on the same domain
+because of the same-origin policy.  To find out how to preview
+resources that are on a different domain, read <a class="reference internal" href="../maintaining/data-viewer.html#resource-proxy"><em>Resource Proxy</em></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourcePreview.setup_template_variables">
+<tt class="descname">setup_template_variables</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourcePreview.setup_template_variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add variables to c just prior to the template being rendered.
+The <tt class="docutils literal"><span class="pre">data_dict</span></tt> contains the resource and the package.</p>
+<p>Change the url to a proxied domain if necessary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourcePreview.preview_template">
+<tt class="descname">preview_template</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourcePreview.preview_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string representing the location of the template to be
+rendered for the read page.
+The <tt class="docutils literal"><span class="pre">data_dict</span></tt> contains the resource and the package.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.ITagController">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">ITagController</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ITagController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook into the Tag controller. These will usually be called just before
+committing or returning the respective object, i.e. all validation,
+synchronization and authorization setup are complete.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.ITagController.before_view">
+<tt class="descname">before_view</tt><big>(</big><em>tag_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ITagController.before_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will recieve this before the tag gets displayed. The
+dictionary passed will be the one that gets sent to the template.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IGroupController">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IGroupController</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook into the Group controller. These will
+usually be called just before committing or returning the
+respective object, i.e. all validation, synchronization
+and authorization setup are complete.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupController.before_view">
+<tt class="descname">before_view</tt><big>(</big><em>pkg_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupController.before_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will recieve this before the group gets
+displayed. The dictionary passed will be the one that gets
+sent to the template.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IOrganizationController">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IOrganizationController</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IOrganizationController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook into the Organization controller. These will
+usually be called just before committing or returning the
+respective object, i.e. all validation, synchronization
+and authorization setup are complete.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IOrganizationController.before_view">
+<tt class="descname">before_view</tt><big>(</big><em>pkg_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IOrganizationController.before_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will recieve this before the organization gets
+displayed. The dictionary passed will be the one that gets
+sent to the template.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IPackageController">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IPackageController</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPackageController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook into the package controller.
+(see IGroupController)</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IPackageController.after_create">
+<tt class="descname">after_create</tt><big>(</big><em>context</em>, <em>pkg_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPackageController.after_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will receive the validated data dict after the package
+has been created (Note that the create method will return a package
+domain object, which may not include all fields). Also the newly
+created package id will be added to the dict.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IPackageController.after_update">
+<tt class="descname">after_update</tt><big>(</big><em>context</em>, <em>pkg_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPackageController.after_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will receive the validated data dict after the package
+has been updated (Note that the edit method will return a package
+domain object, which may not include all fields).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IPackageController.after_delete">
+<tt class="descname">after_delete</tt><big>(</big><em>context</em>, <em>pkg_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPackageController.after_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will receive the data dict (tipically containing
+just the package id) after the package has been deleted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IPackageController.after_show">
+<tt class="descname">after_show</tt><big>(</big><em>context</em>, <em>pkg_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPackageController.after_show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will receive the validated data dict after the package
+is ready for display (Note that the read method will return a
+package domain object, which may not include all fields).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IPackageController.before_search">
+<tt class="descname">before_search</tt><big>(</big><em>search_params</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPackageController.before_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will receive a dictionary with the query parameters,
+and should return a modified (or not) version of it.</p>
+<p>search_params will include an <cite>extras</cite> dictionary with all values
+from fields starting with <cite>ext_</cite>, so extensions can receive user
+input from specific fields.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IPackageController.after_search">
+<tt class="descname">after_search</tt><big>(</big><em>search_results</em>, <em>search_params</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPackageController.after_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will receive the search results, as well as the search
+parameters, and should return a modified (or not) object with the
+same structure:</p>
+<blockquote>
+<div>{&#8216;count&#8217;: &#8216;&#8217;, &#8216;results&#8217;: &#8216;&#8217;, &#8216;facets&#8217;: &#8216;&#8217;}</div></blockquote>
+<p>Note that count and facets may need to be adjusted if the extension
+changed the results for some reason.</p>
+<p>search_params will include an <cite>extras</cite> dictionary with all values
+from fields starting with <cite>ext_</cite>, so extensions can receive user
+input from specific fields.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IPackageController.before_index">
+<tt class="descname">before_index</tt><big>(</big><em>pkg_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPackageController.before_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will receive what will be given to the solr for
+indexing. This is essentially a flattened dict (except for
+multli-valued fields such as tags) of all the terms sent to
+the indexer. The extension can modify this by returning an
+altered version.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IPackageController.before_view">
+<tt class="descname">before_view</tt><big>(</big><em>pkg_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPackageController.before_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will recieve this before the dataset gets
+displayed. The dictionary passed will be the one that gets
+sent to the template.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IResourceController">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IResourceController</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook into the resource controller.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourceController.before_create">
+<tt class="descname">before_create</tt><big>(</big><em>context</em>, <em>resource</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceController.before_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will receive this before a resource is created.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>context</strong> (<em>dictionary</em>) &#8211; The context object of the current request, this
+includes for example access to the <tt class="docutils literal"><span class="pre">model</span></tt> and the <tt class="docutils literal"><span class="pre">user</span></tt>.</li>
+<li><strong>resource</strong> (<em>dictionary</em>) &#8211; An object representing the resource to be added
+to the dataset (the one that is about to be created).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourceController.after_create">
+<tt class="descname">after_create</tt><big>(</big><em>context</em>, <em>resource</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceController.after_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will receive this after a resource is created.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>context</strong> (<em>dictionary</em>) &#8211; The context object of the current request, this
+includes for example access to the <tt class="docutils literal"><span class="pre">model</span></tt> and the <tt class="docutils literal"><span class="pre">user</span></tt>.</li>
+<li><strong>resource</strong> (<em>dictionary</em>) &#8211; An object representing the latest resource added
+to the dataset (the one that was just created). A key in the
+resource dictionary worth mentioning is <tt class="docutils literal"><span class="pre">url_type</span></tt> which is
+set to <tt class="docutils literal"><span class="pre">upload</span></tt> when the resource file is uploaded instead
+of linked.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourceController.before_update">
+<tt class="descname">before_update</tt><big>(</big><em>context</em>, <em>current</em>, <em>resource</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceController.before_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will receive this before a resource is updated.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>context</strong> (<em>dictionary</em>) &#8211; The context object of the current request, this
+includes for example access to the <tt class="docutils literal"><span class="pre">model</span></tt> and the <tt class="docutils literal"><span class="pre">user</span></tt>.</li>
+<li><strong>current</strong> (<em>dictionary</em>) &#8211; The current resource which is about to be updated</li>
+<li><strong>resource</strong> (<em>dictionary</em>) &#8211; An object representing the updated resource which
+will replace the <tt class="docutils literal"><span class="pre">current</span></tt> one.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourceController.after_update">
+<tt class="descname">after_update</tt><big>(</big><em>context</em>, <em>resource</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceController.after_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will receive this after a resource is updated.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>context</strong> (<em>dictionary</em>) &#8211; The context object of the current request, this
+includes for example access to the <tt class="docutils literal"><span class="pre">model</span></tt> and the <tt class="docutils literal"><span class="pre">user</span></tt>.</li>
+<li><strong>resource</strong> (<em>dictionary</em>) &#8211; An object representing the updated resource in
+the dataset (the one that was just updated). As with
+<tt class="docutils literal"><span class="pre">after_create</span></tt>, a noteworthy key in the resource dictionary
+<tt class="docutils literal"><span class="pre">url_type</span></tt> which is set to <tt class="docutils literal"><span class="pre">upload</span></tt> when the resource file
+is uploaded instead of linked.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourceController.before_delete">
+<tt class="descname">before_delete</tt><big>(</big><em>context</em>, <em>resource</em>, <em>resources</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceController.before_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will receive this before a previously created resource is
+deleted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>context</strong> (<em>dictionary</em>) &#8211; The context object of the current request, this
+includes for example access to the <tt class="docutils literal"><span class="pre">model</span></tt> and the <tt class="docutils literal"><span class="pre">user</span></tt>.</li>
+<li><strong>resource</strong> (<em>dictionary</em>) &#8211; An object representing the resource that is about
+to be deleted. This is a dictionary with one key: <tt class="docutils literal"><span class="pre">id</span></tt> which
+holds the id <tt class="docutils literal"><span class="pre">string</span></tt> of the resource that should be deleted.</li>
+<li><strong>resources</strong> (<em>list</em>) &#8211; The list of resources from which the resource will
+be deleted (including the resource to be deleted if it existed
+in the package).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourceController.after_delete">
+<tt class="descname">after_delete</tt><big>(</big><em>context</em>, <em>resources</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceController.after_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will receive this after a previously created resource is
+deleted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>context</strong> (<em>dictionary</em>) &#8211; The context object of the current request, this
+includes for example access to the <tt class="docutils literal"><span class="pre">model</span></tt> and the <tt class="docutils literal"><span class="pre">user</span></tt>.</li>
+<li><strong>resources</strong> &#8211; A list of objects representing the remaining
+resources after a resource has been removed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IResourceController.before_show">
+<tt class="descname">before_show</tt><big>(</big><em>resource_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IResourceController.before_show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions will receive the validated data dict before the resource
+is ready for display.</p>
+<p>Be aware that this method is not only called for UI display, but also
+in other methods like when a resource is deleted because showing a
+package is used to get access to the resources in a package.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IPluginObserver">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IPluginObserver</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPluginObserver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plugin to the plugin loading mechanism</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IPluginObserver.before_load">
+<tt class="descname">before_load</tt><big>(</big><em>plugin</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPluginObserver.before_load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called before a plugin is loaded
+This method is passed the plugin class.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IPluginObserver.after_load">
+<tt class="descname">after_load</tt><big>(</big><em>service</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPluginObserver.after_load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called after a plugin has been loaded.
+This method is passed the instantiated service object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IPluginObserver.before_unload">
+<tt class="descname">before_unload</tt><big>(</big><em>plugin</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPluginObserver.before_unload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called before a plugin is loaded
+This method is passed the plugin class.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IPluginObserver.after_unload">
+<tt class="descname">after_unload</tt><big>(</big><em>service</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPluginObserver.after_unload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called after a plugin has been unloaded.
+This method is passed the instantiated service object.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IConfigurable">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IConfigurable</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IConfigurable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialization hook for plugins.</p>
+<p>See also <a class="reference internal" href="plugin-interfaces.html#ckan.plugins.interfaces.IConfigurer" title="ckan.plugins.interfaces.IConfigurer"><tt class="xref py py-class docutils literal"><span class="pre">IConfigurer</span></tt></a>.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IConfigurable.configure">
+<tt class="descname">configure</tt><big>(</big><em>config</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IConfigurable.configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called during CKAN&#8217;s initialization.</p>
+<p>This function allows plugins to initialize themselves during
+CKAN&#8217;s initialization. It is called after most of the
+environment (e.g. the database) is already set up.</p>
+<p>Note that this function is not only called during the
+initialization of the main CKAN process but also during the
+execution of paster commands and background jobs, since these
+run in separate processes and are therefore initialized
+independently.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config</strong> (<tt class="xref py py-class docutils literal"><span class="pre">ckan.common.CKANConfig</span></tt>) &#8211; dict-like configuration object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IConfigurer">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IConfigurer</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IConfigurer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure CKAN environment via the <tt class="docutils literal"><span class="pre">config</span></tt> object</p>
+<p>See also <a class="reference internal" href="plugin-interfaces.html#ckan.plugins.interfaces.IConfigurable" title="ckan.plugins.interfaces.IConfigurable"><tt class="xref py py-class docutils literal"><span class="pre">IConfigurable</span></tt></a>.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IConfigurer.update_config">
+<tt class="descname">update_config</tt><big>(</big><em>config</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IConfigurer.update_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by load_environment at earliest point when config is
+available to plugins. The config should be updated in place.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config</strong> &#8211; <tt class="docutils literal"><span class="pre">config</span></tt> object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IConfigurer.update_config_schema">
+<tt class="descname">update_config_schema</tt><big>(</big><em>schema</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IConfigurer.update_config_schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a schema with the runtime-editable config options</p>
+<p>CKAN will use the returned schema to decide which configuration options
+can be edited during runtime (using
+<a class="reference internal" href="../api/index.html#ckan.logic.action.update.config_option_update" title="ckan.logic.action.update.config_option_update"><tt class="xref py py-func docutils literal"><span class="pre">ckan.logic.action.update.config_option_update()</span></tt></a>) and to
+validate them before storing them.</p>
+<p>Defaults to
+<tt class="xref py py-func docutils literal"><span class="pre">ckan.logic.schema.default_update_configuration_schema()</span></tt>, which
+will be passed to all extensions implementing this method, which can
+add or remove runtime-editable config options to it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>schema</strong> (<em>dictionary</em>) &#8211; a dictionary mapping runtime-editable configuration
+option keys to lists
+of validator and converter functions to be applied to those keys</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a dictionary mapping runtime-editable configuration option
+keys to lists of
+validator and converter functions to be applied to those keys</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IActions">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IActions</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IActions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow adding of actions to the logic layer.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IActions.get_actions">
+<tt class="descname">get_actions</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IActions.get_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should return a dict, the keys being the name of the logic
+function and the values being the functions themselves.</p>
+<p>By decorating a function with the <cite>ckan.logic.side_effect_free</cite>
+decorator, the associated action will be made available by a GET
+request (as well as the usual POST request) through the action API.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IValidators">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IValidators</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IValidators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add extra validators to be returned by
+<tt class="xref py py-func docutils literal"><span class="pre">ckan.plugins.toolkit.get_validator()</span></tt>.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IValidators.get_validators">
+<tt class="descname">get_validators</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IValidators.get_validators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the validator functions provided by this plugin.</p>
+<p>Return a dictionary mapping validator names (strings) to
+validator functions. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;valid_shoe_size&#39;</span><span class="p">:</span> <span class="n">shoe_size_validator</span><span class="p">,</span>
+ <span class="s1">&#39;valid_hair_color&#39;</span><span class="p">:</span> <span class="n">hair_color_validator</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>These validator functions would then be available when a
+plugin calls <tt class="xref py py-func docutils literal"><span class="pre">ckan.plugins.toolkit.get_validator()</span></tt>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IAuthFunctions">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IAuthFunctions</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IAuthFunctions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override CKAN&#8217;s authorization functions, or add new auth functions.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IAuthFunctions.get_auth_functions">
+<tt class="descname">get_auth_functions</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IAuthFunctions.get_auth_functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the authorization functions provided by this plugin.</p>
+<p>Return a dictionary mapping authorization function names (strings) to
+functions. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;user_create&#39;</span><span class="p">:</span> <span class="n">my_custom_user_create_function</span><span class="p">,</span>
+ <span class="s1">&#39;group_create&#39;</span><span class="p">:</span> <span class="n">my_custom_group_create</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>When a user tries to carry out an action via the CKAN API or web
+interface and CKAN or a CKAN plugin calls
+<tt class="docutils literal"><span class="pre">check_access('some_action')</span></tt> as a result, an authorization function
+named <tt class="docutils literal"><span class="pre">'some_action'</span></tt> will be searched for in the authorization
+functions registered by plugins and in CKAN&#8217;s core authorization
+functions (found in <tt class="docutils literal"><span class="pre">ckan/logic/auth/</span></tt>).</p>
+<p>For example when a user tries to create a package, a
+<tt class="docutils literal"><span class="pre">'package_create'</span></tt> authorization function is searched for.</p>
+<p>If an extension registers an authorization function with the same name
+as one of CKAN&#8217;s default authorization functions (as with
+<tt class="docutils literal"><span class="pre">'user_create'</span></tt> and <tt class="docutils literal"><span class="pre">'group_create'</span></tt> above), the extension&#8217;s
+function will override the default one.</p>
+<p>Each authorization function should take two parameters <tt class="docutils literal"><span class="pre">context</span></tt> and
+<tt class="docutils literal"><span class="pre">data_dict</span></tt>, and should return a dictionary <tt class="docutils literal"><span class="pre">{'success':</span> <span class="pre">True}</span></tt> to
+authorize the action or <tt class="docutils literal"><span class="pre">{'success':</span> <span class="pre">False}</span></tt> to deny it, for
+example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>def user_create(context, data_dict=None):
+    if (some condition):
+        return {&#39;success&#39;: True}
+    else:
+        return {&#39;success&#39;: False, &#39;msg&#39;: &#39;Not allowed to register&#39;}
+</pre></div>
+</div>
+<p>The context object will contain a <tt class="docutils literal"><span class="pre">model</span></tt> that can be used to query
+the database, a <tt class="docutils literal"><span class="pre">user</span></tt> containing the name of the user doing the
+request (or their IP if it is an anonymous web request) and an
+<tt class="docutils literal"><span class="pre">auth_user_obj</span></tt> containing the actual model.User object (or None if
+it is an anonymous request).</p>
+<p>See <tt class="docutils literal"><span class="pre">ckan/logic/auth/</span></tt> for more examples.</p>
+<p>Note that by default, all auth functions provided by extensions are assumed
+to require a validated user or API key, otherwise a
+<tt class="xref py py-class docutils literal"><span class="pre">ckan.logic.NotAuthorized</span></tt>: exception will be raised. This check
+will be performed <em>before</em> calling the actual auth function. If you want
+to allow anonymous access to one of your actions, its auth function must
+be decorated with the <tt class="docutils literal"><span class="pre">auth_allow_anonymous_access</span></tt> decorator, available
+on the plugins toolkit.</p>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>import ckan.plugins as p
+
+@p.toolkit.auth_allow_anonymous_access
+def my_search_action(context, data_dict):
+    # Note that you can still return {&#39;success&#39;: False} if for some
+    # reason access is denied.
+
+def my_create_action(context, data_dict):
+    # Unless there is a logged in user or a valid API key provided
+    # NotAuthorized will be raised before reaching this function.
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.ITemplateHelpers">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">ITemplateHelpers</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ITemplateHelpers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add custom template helper functions.</p>
+<p>By implementing this plugin interface plugins can provide their own
+template helper functions, which custom templates can then access via the
+<tt class="docutils literal"><span class="pre">h</span></tt> variable.</p>
+<p>See <tt class="docutils literal"><span class="pre">ckanext/example_itemplatehelpers</span></tt> for an example plugin.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.ITemplateHelpers.get_helpers">
+<tt class="descname">get_helpers</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ITemplateHelpers.get_helpers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dict mapping names to helper functions.</p>
+<p>The keys of the dict should be the names with which the helper
+functions will be made available to templates, and the values should be
+the functions themselves. For example, a dict like:
+<tt class="docutils literal"><span class="pre">{'example_helper':</span> <span class="pre">example_helper}</span></tt> allows templates to access the
+<tt class="docutils literal"><span class="pre">example_helper</span></tt> function via <tt class="docutils literal"><span class="pre">h.example_helper()</span></tt>.</p>
+<p>Function names should start with the name of the extension providing
+the function, to prevent name clashes between extensions.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IDatasetForm">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IDatasetForm</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Customize CKAN&#8217;s dataset (package) schemas and forms.</p>
+<p>By implementing this interface plugins can customise CKAN&#8217;s dataset schema,
+for example to add new custom fields to datasets.</p>
+<p>Multiple IDatasetForm plugins can be used at once, each plugin associating
+itself with different package types using the <tt class="docutils literal"><span class="pre">package_types()</span></tt> and
+<tt class="docutils literal"><span class="pre">is_fallback()</span></tt> methods below, and then providing different schemas and
+templates for different types of dataset.  When a package controller action
+is invoked, the <tt class="docutils literal"><span class="pre">type</span></tt> field of the package will determine which
+IDatasetForm plugin (if any) gets delegated to.</p>
+<p>When implementing IDatasetForm, you can inherit from
+<tt class="docutils literal"><span class="pre">ckan.plugins.toolkit.DefaultDatasetForm</span></tt>, which provides default
+implementations for each of the methods defined in this interface.</p>
+<p>See <tt class="docutils literal"><span class="pre">ckanext/example_idatasetform</span></tt> for an example plugin.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.package_types">
+<tt class="descname">package_types</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.package_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an iterable of package types that this plugin handles.</p>
+<p>If a request involving a package of one of the returned types is made,
+then this plugin instance will be delegated to.</p>
+<p>There cannot be two IDatasetForm plugins that return the same package
+type, if this happens then CKAN will raise an exception at startup.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">iterable of strings</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.is_fallback">
+<tt class="descname">is_fallback</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.is_fallback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <tt class="docutils literal"><span class="pre">True</span></tt> if this plugin is the fallback plugin.</p>
+<p>When no IDatasetForm plugin&#8217;s <tt class="docutils literal"><span class="pre">package_types()</span></tt> match the <tt class="docutils literal"><span class="pre">type</span></tt> of
+the package being processed, the fallback plugin is delegated to
+instead.</p>
+<p>There cannot be more than one IDatasetForm plugin whose
+<tt class="docutils literal"><span class="pre">is_fallback()</span></tt> method returns <tt class="docutils literal"><span class="pre">True</span></tt>, if this happens CKAN will
+raise an exception at startup.</p>
+<p>If no IDatasetForm plugin&#8217;s <tt class="docutils literal"><span class="pre">is_fallback()</span></tt> method returns <tt class="docutils literal"><span class="pre">True</span></tt>,
+CKAN will use <tt class="docutils literal"><span class="pre">DefaultDatasetForm</span></tt> as the fallback.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.create_package_schema">
+<tt class="descname">create_package_schema</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.create_package_schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the schema for validating new dataset dicts.</p>
+<p>CKAN will use the returned schema to validate and convert data coming
+from users (via the dataset form or API) when creating new datasets,
+before entering that data into the database.</p>
+<p>If it inherits from <tt class="docutils literal"><span class="pre">ckan.plugins.toolkit.DefaultDatasetForm</span></tt>, a
+plugin can call <tt class="docutils literal"><span class="pre">DefaultDatasetForm</span></tt>&#8216;s <tt class="docutils literal"><span class="pre">create_package_schema()</span></tt>
+method to get the default schema and then modify and return it.</p>
+<p>CKAN&#8217;s <tt class="docutils literal"><span class="pre">convert_to_tags()</span></tt> or <tt class="docutils literal"><span class="pre">convert_to_extras()</span></tt> functions can
+be used to convert custom fields into dataset tags or extras for
+storing in the database.</p>
+<p>See <tt class="docutils literal"><span class="pre">ckanext/example_idatasetform</span></tt> for examples.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a dictionary mapping dataset dict keys to lists of validator
+and converter functions to be applied to those keys</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.update_package_schema">
+<tt class="descname">update_package_schema</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.update_package_schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the schema for validating updated dataset dicts.</p>
+<p>CKAN will use the returned schema to validate and convert data coming
+from users (via the dataset form or API) when updating datasets, before
+entering that data into the database.</p>
+<p>If it inherits from <tt class="docutils literal"><span class="pre">ckan.plugins.toolkit.DefaultDatasetForm</span></tt>, a
+plugin can call <tt class="docutils literal"><span class="pre">DefaultDatasetForm</span></tt>&#8216;s <tt class="docutils literal"><span class="pre">update_package_schema()</span></tt>
+method to get the default schema and then modify and return it.</p>
+<p>CKAN&#8217;s <tt class="docutils literal"><span class="pre">convert_to_tags()</span></tt> or <tt class="docutils literal"><span class="pre">convert_to_extras()</span></tt> functions can
+be used to convert custom fields into dataset tags or extras for
+storing in the database.</p>
+<p>See <tt class="docutils literal"><span class="pre">ckanext/example_idatasetform</span></tt> for examples.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a dictionary mapping dataset dict keys to lists of validator
+and converter functions to be applied to those keys</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.show_package_schema">
+<tt class="descname">show_package_schema</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.show_package_schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a schema to validate datasets before they&#8217;re shown to the user.</p>
+<p>CKAN will use the returned schema to validate and convert data coming
+from the database before it is returned to the user via the API or
+passed to a template for rendering.</p>
+<p>If it inherits from <tt class="docutils literal"><span class="pre">ckan.plugins.toolkit.DefaultDatasetForm</span></tt>, a
+plugin can call <tt class="docutils literal"><span class="pre">DefaultDatasetForm</span></tt>&#8216;s <tt class="docutils literal"><span class="pre">show_package_schema()</span></tt>
+method to get the default schema and then modify and return it.</p>
+<p>If you have used <tt class="docutils literal"><span class="pre">convert_to_tags()</span></tt> or <tt class="docutils literal"><span class="pre">convert_to_extras()</span></tt> in
+your <tt class="docutils literal"><span class="pre">create_package_schema()</span></tt> and <tt class="docutils literal"><span class="pre">update_package_schema()</span></tt> then
+you should use <tt class="docutils literal"><span class="pre">convert_from_tags()</span></tt> or <tt class="docutils literal"><span class="pre">convert_from_extras()</span></tt> in
+your <tt class="docutils literal"><span class="pre">show_package_schema()</span></tt> to convert the tags or extras in the
+database back into your custom dataset fields.</p>
+<p>See <tt class="docutils literal"><span class="pre">ckanext/example_idatasetform</span></tt> for examples.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a dictionary mapping dataset dict keys to lists of validator
+and converter functions to be applied to those keys</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.setup_template_variables">
+<tt class="descname">setup_template_variables</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.setup_template_variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add variables to the template context for use in templates.</p>
+<p>This function is called before a dataset template is rendered. If you
+have custom dataset templates that require some additional variables,
+you can add them to the template context <tt class="docutils literal"><span class="pre">ckan.plugins.toolkit.c</span></tt>
+here and they will be available in your templates. See
+<tt class="docutils literal"><span class="pre">ckanext/example_idatasetform</span></tt> for an example.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.new_template">
+<tt class="descname">new_template</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.new_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the path to the template for the new dataset page.</p>
+<p>The path should be relative to the plugin&#8217;s templates dir, e.g.
+<tt class="docutils literal"><span class="pre">'package/new.html'</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.read_template">
+<tt class="descname">read_template</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.read_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the path to the template for the dataset read page.</p>
+<p>The path should be relative to the plugin&#8217;s templates dir, e.g.
+<tt class="docutils literal"><span class="pre">'package/read.html'</span></tt>.</p>
+<p>If the user requests the dataset in a format other than HTML, then
+CKAN will try to render a template file with the same path as returned
+by this function, but a different filename extension,
+e.g. <tt class="docutils literal"><span class="pre">'package/read.rdf'</span></tt>.  If your extension (or another one)
+does not provide this version of the template file, the user
+will get a 404 error.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.edit_template">
+<tt class="descname">edit_template</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.edit_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the path to the template for the dataset edit page.</p>
+<p>The path should be relative to the plugin&#8217;s templates dir, e.g.
+<tt class="docutils literal"><span class="pre">'package/edit.html'</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.search_template">
+<tt class="descname">search_template</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.search_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the path to the template for use in the dataset search page.</p>
+<p>This template is used to render each dataset that is listed in the
+search results on the dataset search page.</p>
+<p>The path should be relative to the plugin&#8217;s templates dir, e.g.
+<tt class="docutils literal"><span class="pre">'package/search.html'</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.history_template">
+<tt class="descname">history_template</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.history_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the path to the template for the dataset history page.</p>
+<p>The path should be relative to the plugin&#8217;s templates dir, e.g.
+<tt class="docutils literal"><span class="pre">'package/history.html'</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.resource_template">
+<tt class="descname">resource_template</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.resource_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the path to the template for the resource read page.</p>
+<p>The path should be relative to the plugin&#8217;s templates dir, e.g.
+<tt class="docutils literal"><span class="pre">'package/resource_read.html'</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.package_form">
+<tt class="descname">package_form</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.package_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the path to the template for the dataset form.</p>
+<p>The path should be relative to the plugin&#8217;s templates dir, e.g.
+<tt class="docutils literal"><span class="pre">'package/form.html'</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.resource_form">
+<tt class="descname">resource_form</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.resource_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the path to the template for the resource form.</p>
+<p>The path should be relative to the plugin&#8217;s templates dir, e.g.
+<tt class="docutils literal"><span class="pre">'package/snippets/resource_form.html'</span></tt></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IDatasetForm.validate">
+<tt class="descname">validate</tt><big>(</big><em>context</em>, <em>data_dict</em>, <em>schema</em>, <em>action</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Customize validation of datasets.</p>
+<p>When this method is implemented it is used to perform all validation
+for these datasets. The default implementation calls and returns the
+result from <tt class="docutils literal"><span class="pre">ckan.plugins.toolkit.navl_validate</span></tt>.</p>
+<p>This is an adavanced interface. Most changes to validation should be
+accomplished by customizing the schemas returned from
+<tt class="docutils literal"><span class="pre">show_package_schema()</span></tt>, <tt class="docutils literal"><span class="pre">create_package_schema()</span></tt>
+and <tt class="docutils literal"><span class="pre">update_package_schama()</span></tt>. If you need to have a different
+schema depending on the user or value of any field stored in the
+dataset, or if you wish to use a different method for validation, then
+this method may be used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>context</strong> (<em>dictionary</em>) &#8211; extra information about the request</li>
+<li><strong>data_dict</strong> (<em>dictionary</em>) &#8211; the dataset to be validated</li>
+<li><strong>schema</strong> (<em>dictionary</em>) &#8211; a schema, typically from <tt class="docutils literal"><span class="pre">show_package_schema()</span></tt>,
+<tt class="docutils literal"><span class="pre">create_package_schema()</span></tt> or <tt class="docutils literal"><span class="pre">update_package_schama()</span></tt></li>
+<li><strong>action</strong> (<em>string</em>) &#8211; <tt class="docutils literal"><span class="pre">'package_show'</span></tt>, <tt class="docutils literal"><span class="pre">'package_create'</span></tt> or
+<tt class="docutils literal"><span class="pre">'package_update'</span></tt></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">(data_dict, errors) where data_dict is the possibly-modified
+dataset and errors is a dictionary with keys matching data_dict
+and lists-of-string-error-messages as values</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(dictionary, dictionary)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IGroupForm">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IGroupForm</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows customisation of the group controller as a plugin.</p>
+<p>The behaviour of the plugin is determined by 5 method hooks:</p>
+<blockquote>
+<div><ul class="simple">
+<li>group_form(self)</li>
+<li>form_to_db_schema(self)</li>
+<li>db_to_form_schema(self)</li>
+<li>check_data_dict(self, data_dict)</li>
+<li>setup_template_variables(self, context, data_dict)</li>
+</ul>
+</div></blockquote>
+<p>Furthermore, there can be many implementations of this plugin registered
+at once.  With each instance associating itself with 0 or more group
+type strings.  When a group controller action is invoked, the group
+type determines which of the registered plugins to delegate to.  Each
+implementation must implement two methods which are used to determine the
+group-type -&gt; plugin mapping:</p>
+<blockquote>
+<div><ul class="simple">
+<li>is_fallback(self)</li>
+<li>group_types(self)</li>
+<li>group_controller(self)</li>
+</ul>
+</div></blockquote>
+<p>Implementations might want to consider mixing in
+ckan.lib.plugins.DefaultGroupForm which provides
+default behaviours for the 5 method hooks.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupForm.is_fallback">
+<tt class="descname">is_fallback</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm.is_fallback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this provides the fallback behaviour, when no other
+plugin instance matches a group&#8217;s type.</p>
+<p>There must be exactly one fallback controller defined, any attempt to
+register more than one will throw an exception at startup.  If there&#8217;s
+no fallback registered at startup the
+ckan.lib.plugins.DefaultGroupForm used as the fallback.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupForm.group_types">
+<tt class="descname">group_types</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm.group_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterable of group type strings.</p>
+<p>If a request involving a group of one of those types is made, then
+this plugin instance will be delegated to.</p>
+<p>There must only be one plugin registered to each group type.  Any
+attempts to register more than one plugin instance to a given group
+type will raise an exception at startup.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupForm.group_controller">
+<tt class="descname">group_controller</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm.group_controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the group controller.</p>
+<p>The group controller is the controller, that is used to handle requests
+of the group type(s) of this plugin.</p>
+<p>If this method is not provided, the default group controller is used
+(<cite>group</cite>).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupForm.new_template">
+<tt class="descname">new_template</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm.new_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string representing the location of the template to be
+rendered for the &#8216;new&#8217; page. Uses the default_group_type configuration
+option to determine which plugin to use the template from.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupForm.index_template">
+<tt class="descname">index_template</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm.index_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string representing the location of the template to be
+rendered for the index page. Uses the default_group_type configuration
+option to determine which plugin to use the template from.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupForm.read_template">
+<tt class="descname">read_template</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm.read_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string representing the location of the template to be
+rendered for the read page</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupForm.history_template">
+<tt class="descname">history_template</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm.history_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string representing the location of the template to be
+rendered for the history page</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupForm.edit_template">
+<tt class="descname">edit_template</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm.edit_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string representing the location of the template to be
+rendered for the edit page</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupForm.group_form">
+<tt class="descname">group_form</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm.group_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string representing the location of the template to be
+rendered.  e.g. <tt class="docutils literal"><span class="pre">group/new_group_form.html</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupForm.form_to_db_schema">
+<tt class="descname">form_to_db_schema</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm.form_to_db_schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the schema for mapping group data from a form to a format
+suitable for the database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupForm.db_to_form_schema">
+<tt class="descname">db_to_form_schema</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm.db_to_form_schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the schema for mapping group data from the database into a
+format suitable for the form (optional)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupForm.check_data_dict">
+<tt class="descname">check_data_dict</tt><big>(</big><em>data_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm.check_data_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the return data is correct.</p>
+<p>raise a DataError if not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupForm.setup_template_variables">
+<tt class="descname">setup_template_variables</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm.setup_template_variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add variables to c just prior to the template being rendered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IGroupForm.validate">
+<tt class="descname">validate</tt><big>(</big><em>context</em>, <em>data_dict</em>, <em>schema</em>, <em>action</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Customize validation of groups.</p>
+<p>When this method is implemented it is used to perform all validation
+for these groups. The default implementation calls and returns the
+result from <tt class="docutils literal"><span class="pre">ckan.plugins.toolkit.navl_validate</span></tt>.</p>
+<p>This is an adavanced interface. Most changes to validation should be
+accomplished by customizing the schemas returned from
+<tt class="docutils literal"><span class="pre">form_to_db_schema()</span></tt> and <tt class="docutils literal"><span class="pre">db_to_form_schema()</span></tt>
+If you need to have a different
+schema depending on the user or value of any field stored in the
+group, or if you wish to use a different method for validation, then
+this method may be used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>context</strong> (<em>dictionary</em>) &#8211; extra information about the request</li>
+<li><strong>data_dict</strong> (<em>dictionary</em>) &#8211; the group to be validated</li>
+<li><strong>schema</strong> (<em>dictionary</em>) &#8211; a schema, typically from <tt class="docutils literal"><span class="pre">form_to_db_schema()</span></tt>,
+or <tt class="docutils literal"><span class="pre">db_to_form_schama()</span></tt></li>
+<li><strong>action</strong> (<em>string</em>) &#8211; <tt class="docutils literal"><span class="pre">'group_show'</span></tt>, <tt class="docutils literal"><span class="pre">'group_create'</span></tt>,
+<tt class="docutils literal"><span class="pre">'group_update'</span></tt>, <tt class="docutils literal"><span class="pre">'organization_show'</span></tt>,
+<tt class="docutils literal"><span class="pre">'organization_create'</span></tt> or <tt class="docutils literal"><span class="pre">'organization_update'</span></tt></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">(data_dict, errors) where data_dict is the possibly-modified
+group and errors is a dictionary with keys matching data_dict
+and lists-of-string-error-messages as values</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(dictionary, dictionary)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IFacets">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IFacets</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IFacets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Customize the search facets shown on search pages.</p>
+<p>By implementing this interface plugins can customize the search facets that
+are displayed for filtering search results on the dataset search page,
+organization pages and group pages.</p>
+<p>The <tt class="docutils literal"><span class="pre">facets_dict</span></tt> passed to each of the functions below is an
+<tt class="docutils literal"><span class="pre">OrderedDict</span></tt> in which the keys are CKAN&#8217;s internal names for the facets
+and the values are the titles that will be shown for the facets in the web
+interface. The order of the keys in the dict determine the order that
+facets appear in on the page.  For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;groups&#39;</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Groups&#39;</span><span class="p">),</span>
+ <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Tags&#39;</span><span class="p">),</span>
+ <span class="s1">&#39;res_format&#39;</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Formats&#39;</span><span class="p">),</span>
+ <span class="s1">&#39;license&#39;</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;License&#39;</span><span class="p">)}</span>
+</pre></div>
+</div>
+<p>To preserve ordering, make sure to add new facets to the existing dict
+rather than updating it, ie do this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">facets_dict</span><span class="p">[</span><span class="s1">&#39;groups&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">toolkit</span><span class="o">.</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Publisher&#39;</span><span class="p">)</span>
+<span class="n">facets_dict</span><span class="p">[</span><span class="s1">&#39;secondary_publisher&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">toolkit</span><span class="o">.</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Secondary Publisher&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>rather than this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">facets_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+   <span class="s1">&#39;groups&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">toolkit</span><span class="o">.</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Publisher&#39;</span><span class="p">),</span>
+   <span class="s1">&#39;secondary_publisher&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">toolkit</span><span class="o">.</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;Secondary Publisher&#39;</span><span class="p">),</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Dataset searches can be faceted on any field in the dataset schema that it
+makes sense to facet on. This means any dataset field that is in CKAN&#8217;s
+Solr search index, basically any field that you see returned by
+<a class="reference internal" href="../api/index.html#ckan.logic.action.get.package_show" title="ckan.logic.action.get.package_show"><tt class="xref py py-func docutils literal"><span class="pre">package_show()</span></tt></a>.</p>
+<p>If there are multiple <tt class="docutils literal"><span class="pre">IFacets</span></tt> plugins active at once, each plugin will
+be called (in the order that they&#8217;re listed in the CKAN config file) and
+they will each be able to modify the facets dict in turn.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IFacets.dataset_facets">
+<tt class="descname">dataset_facets</tt><big>(</big><em>facets_dict</em>, <em>package_type</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IFacets.dataset_facets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify and return the <tt class="docutils literal"><span class="pre">facets_dict</span></tt> for the dataset search page.</p>
+<p>The <tt class="docutils literal"><span class="pre">package_type</span></tt> is the type of package that these facets apply to.
+Plugins can provide different search facets for different types of
+package. See <a class="reference internal" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm" title="ckan.plugins.interfaces.IDatasetForm"><tt class="xref py py-class docutils literal"><span class="pre">IDatasetForm</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>facets_dict</strong> (<em>OrderedDict</em>) &#8211; the search facets as currently specified</li>
+<li><strong>package_type</strong> (<em>string</em>) &#8211; the package type that these facets apply to</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the updated <tt class="docutils literal"><span class="pre">facets_dict</span></tt></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">OrderedDict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IFacets.group_facets">
+<tt class="descname">group_facets</tt><big>(</big><em>facets_dict</em>, <em>group_type</em>, <em>package_type</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IFacets.group_facets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify and return the <tt class="docutils literal"><span class="pre">facets_dict</span></tt> for a group&#8217;s page.</p>
+<p>The <tt class="docutils literal"><span class="pre">package_type</span></tt> is the type of package that these facets apply to.
+Plugins can provide different search facets for different types of
+package. See <a class="reference internal" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm" title="ckan.plugins.interfaces.IDatasetForm"><tt class="xref py py-class docutils literal"><span class="pre">IDatasetForm</span></tt></a>.</p>
+<p>The <tt class="docutils literal"><span class="pre">group_type</span></tt> is the type of group that these facets apply to.
+Plugins can provide different search facets for different types of
+group. See <a class="reference internal" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm" title="ckan.plugins.interfaces.IGroupForm"><tt class="xref py py-class docutils literal"><span class="pre">IGroupForm</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>facets_dict</strong> (<em>OrderedDict</em>) &#8211; the search facets as currently specified</li>
+<li><strong>group_type</strong> (<em>string</em>) &#8211; the group type that these facets apply to</li>
+<li><strong>package_type</strong> (<em>string</em>) &#8211; the package type that these facets apply to</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the updated <tt class="docutils literal"><span class="pre">facets_dict</span></tt></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">OrderedDict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IFacets.organization_facets">
+<tt class="descname">organization_facets</tt><big>(</big><em>facets_dict</em>, <em>organization_type</em>, <em>package_type</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IFacets.organization_facets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify and return the <tt class="docutils literal"><span class="pre">facets_dict</span></tt> for an organization&#8217;s page.</p>
+<p>The <tt class="docutils literal"><span class="pre">package_type</span></tt> is the type of package that these facets apply to.
+Plugins can provide different search facets for different types of
+package. See <a class="reference internal" href="plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm" title="ckan.plugins.interfaces.IDatasetForm"><tt class="xref py py-class docutils literal"><span class="pre">IDatasetForm</span></tt></a>.</p>
+<p>The <tt class="docutils literal"><span class="pre">organization_type</span></tt> is the type of organization that these facets
+apply to.  Plugins can provide different search facets for different
+types of organization. See
+<a class="reference internal" href="plugin-interfaces.html#ckan.plugins.interfaces.IGroupForm" title="ckan.plugins.interfaces.IGroupForm"><tt class="xref py py-class docutils literal"><span class="pre">IGroupForm</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>facets_dict</strong> (<em>OrderedDict</em>) &#8211; the search facets as currently specified</li>
+<li><strong>organization_type</strong> (<em>string</em>) &#8211; the organization type that these facets apply
+to</li>
+<li><strong>package_type</strong> (<em>string</em>) &#8211; the package type that these facets apply to</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the updated <tt class="docutils literal"><span class="pre">facets_dict</span></tt></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">OrderedDict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IAuthenticator">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IAuthenticator</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IAuthenticator" title="Permalink to this definition">¶</a></dt>
+<dd><p>EXPERIMENTAL</p>
+<p>Allows custom authentication methods to be integrated into CKAN.
+Currently it is experimental and the interface may change.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IAuthenticator.identify">
+<tt class="descname">identify</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IAuthenticator.identify" title="Permalink to this definition">¶</a></dt>
+<dd><p>called to identify the user.</p>
+<p>If the user is identified then it should set
+c.user: The id of the user
+c.userobj: The actual user object (this may be removed as a
+requirement in a later release so that access to the model is not
+required)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IAuthenticator.login">
+<tt class="descname">login</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IAuthenticator.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>called at login.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IAuthenticator.logout">
+<tt class="descname">logout</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IAuthenticator.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>called at logout.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IAuthenticator.abort">
+<tt class="descname">abort</tt><big>(</big><em>status_code</em>, <em>detail</em>, <em>headers</em>, <em>comment</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IAuthenticator.abort" title="Permalink to this definition">¶</a></dt>
+<dd><p>called on abort.  This allows aborts due to authorization issues
+to be overriden</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.ITranslation">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">ITranslation</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ITranslation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows extensions to provide their own translation strings.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.ITranslation.i18n_directory">
+<tt class="descname">i18n_directory</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ITranslation.i18n_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the directory of the .mo translation files</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.ITranslation.i18n_locales">
+<tt class="descname">i18n_locales</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ITranslation.i18n_locales" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the list of locales that this plugin handles</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.ITranslation.i18n_domain">
+<tt class="descname">i18n_domain</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.ITranslation.i18n_domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the gettext domain handled by this plugin</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IUploader">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IUploader</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IUploader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions implementing this interface can provide custom uploaders to
+upload resources and group images.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IUploader.get_uploader">
+<tt class="descname">get_uploader</tt><big>(</big><em>upload_to</em>, <em>old_filename</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IUploader.get_uploader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an uploader object to upload general files that must
+implement the following methods:</p>
+<p><tt class="docutils literal"><span class="pre">__init__(upload_to,</span> <span class="pre">old_filename=None)</span></tt></p>
+<p>Set up the uploader.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>upload_to</strong> (<em>string</em>) &#8211; name of the subdirectory within the storage
+directory to upload the file</li>
+<li><strong>old_filename</strong> (<em>string</em>) &#8211; name of an existing image asset, so the extension
+can replace it if necessary</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><tt class="docutils literal"><span class="pre">update_data_dict(data_dict,</span> <span class="pre">url_field,</span> <span class="pre">file_field,</span> <span class="pre">clear_field)</span></tt></p>
+<p>Allow the data_dict to be manipulated before it reaches any
+validators.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data_dict</strong> (<em>dictionary</em>) &#8211; data_dict to be updated</li>
+<li><strong>url_field</strong> (<em>string</em>) &#8211; name of the field where the upload is going to be</li>
+<li><strong>file_field</strong> (<em>string</em>) &#8211; name of the key where the FieldStorage is kept (i.e
+the field where the file data actually is).</li>
+<li><strong>clear_field</strong> (<em>string</em>) &#8211; name of a boolean field which requests the upload
+to be deleted.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><tt class="docutils literal"><span class="pre">upload(max_size)</span></tt></p>
+<p>Perform the actual upload.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_size</strong> (<em>int</em>) &#8211; upload size can be limited by this value in MBs.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IUploader.get_resource_uploader">
+<tt class="descname">get_resource_uploader</tt><big>(</big><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IUploader.get_resource_uploader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an uploader object used to upload resource files that must
+implement the following methods:</p>
+<p><tt class="docutils literal"><span class="pre">__init__(resource)</span></tt></p>
+<p>Set up the resource uploader.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>resource</strong> (<em>dictionary</em>) &#8211; resource dict</td>
+</tr>
+</tbody>
+</table>
+<p>Optionally, this method can set the following two attributes
+on the class instance so they are set in the resource object:</p>
+<blockquote>
+<div>filesize (int):  Uploaded file filesize.
+mimetype (str):  Uploaded file mimetype.</div></blockquote>
+<p><tt class="docutils literal"><span class="pre">upload(id,</span> <span class="pre">max_size)</span></tt></p>
+<p>Perform the actual upload.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>id</strong> (<em>string</em>) &#8211; resource id, can be used to create filepath</li>
+<li><strong>max_size</strong> (<em>int</em>) &#8211; upload size can be limited by this value in MBs.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><tt class="docutils literal"><span class="pre">get_path(id)</span></tt></p>
+<p>Required by the <tt class="docutils literal"><span class="pre">resource_download</span></tt> action to determine the path to
+the file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> (<em>string</em>) &#8211; resource id</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.plugins.interfaces.IPermissionLabels">
+<em class="property">class </em><tt class="descclassname">ckan.plugins.interfaces.</tt><tt class="descname">IPermissionLabels</tt><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPermissionLabels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensions implementing this interface can override the permission
+labels applied to datasets to precisely control which datasets are
+visible to each user.</p>
+<p>Implementations might want to consider mixing in
+<tt class="docutils literal"><span class="pre">ckan.lib.plugins.DefaultPermissionLabels</span></tt> which provides
+default behaviours for these methods.</p>
+<p>See <tt class="docutils literal"><span class="pre">ckanext/example_ipermissionlabels</span></tt> for an example plugin.</p>
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IPermissionLabels.get_dataset_labels">
+<tt class="descname">get_dataset_labels</tt><big>(</big><em>dataset_obj</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPermissionLabels.get_dataset_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of unicode strings to be stored in the search index
+as the permission lables for a dataset dict.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dataset_obj</strong> (<em>Package model object</em>) &#8211; dataset details</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">permission labels</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list of unicode strings</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ckan.plugins.interfaces.IPermissionLabels.get_user_dataset_labels">
+<tt class="descname">get_user_dataset_labels</tt><big>(</big><em>user_obj</em><big>)</big><a class="headerlink" href="plugin-interfaces.html#ckan.plugins.interfaces.IPermissionLabels.get_user_dataset_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the permission labels that give a user permission to view
+a dataset. If any of the labels returned from this method match
+any of the labels returned from <a class="reference internal" href="plugin-interfaces.html#ckan.plugins.interfaces.IPermissionLabels.get_dataset_labels" title="ckan.plugins.interfaces.IPermissionLabels.get_dataset_labels"><tt class="xref py py-meth docutils literal"><span class="pre">get_dataset_labels()</span></tt></a>
+then this user is permitted to view that dataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user_obj</strong> (<em>User model object or None</em>) &#8211; user details</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">permission labels</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list of unicode strings</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="plugins-toolkit.html" class="btn btn-neutral float-right"
+           title="Plugins toolkit reference"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="adding-custom-fields.html" class="btn btn-neutral"
+           title="Customizing dataset and resource metadata fields using IDatasetForm">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>Support the <a href="http://ckan.org">CKAN Association</a>.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: latest
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../index.html">latest</a></dd>
+        
+          <dd><a href="../../ckan-2.6.0/index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../../ckan-2.5.3/index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../../ckan-2.4.4/index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../../ckan-2.3.5/index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/pdf/latest/">pdf</a></dd>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/htmlzip/latest/">htmlzip</a></dd>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/epub/latest/">epub</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.7.0a',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

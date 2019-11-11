@@ -1,0 +1,442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Deploying a Source Install &mdash; CKAN Documentation 2.1.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.1.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN Documentation 2.1.5 documentation" href="index.html" />
+    <link rel="up" title="Installing CKAN" href="installing.html" />
+    <link rel="next" title="Upgrading CKAN" href="upgrading.html" />
+    <link rel="prev" title="Setting up Solr" href="solr-setup.html" />
+
+
+<!-- RTD Extra Head -->
+
+
+
+  
+  <!-- 
+  Always link to the latest version, as canonical.
+  http://docs.readthedocs.org/en/latest/canonical.html
+  -->
+  <link rel="canonical" href="http://docs.ckan.org//en/latest/deployment.html" />
+  
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "ckan",
+    version: "ckan-2.1.5",
+    language: "en",
+    page: "deployment",
+    builder: "sphinx",
+    theme: "sphinx-theme-okfn",
+    docroot: "/doc/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org/",
+    commit: "1d691ae3ba38a6b98dc69d0e2c16c71e186cd36e"
+  }
+  // Old variables
+  var doc_version = "ckan-2.1.5";
+  var doc_slug = "ckan";
+  var page_name = "deployment";
+  var html_theme = "sphinx-theme-okfn";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body role="document">
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="index.html"><img src="http://docs.ckan.org/en/ckan-2.1.5/_static/http://assets.okfn.org/p/opendatahandbook/img/data-wrench-inverted.png" alt="CKAN Documentation" /></a>
+        
+        <a class="brand" href="index.html">CKAN Documentation<span class="version"> v2.1.5</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.1.5/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="solr-setup.html"
+                        title="previous chapter">Setting up Solr</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="upgrading.html"
+                        title="next chapter">Upgrading CKAN</a></p><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="installing.html">Installing CKAN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="install-from-package.html">Installing CKAN from Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install-from-source.html">Installing CKAN from Source</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="deployment.html">Deploying a Source Install</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deployment.html#create-a-production-ini-file">1. Create a <code class="docutils literal"><span class="pre">production.ini</span></code> File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment.html#install-apache-and-modwsgi">2. Install Apache and modwsgi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment.html#install-an-email-server">3. Install an Email Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment.html#create-the-wsgi-script-file">4. Create the WSGI Script File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment.html#create-the-apache-config-file">5. Create the Apache Config File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment.html#enable-your-ckan-site">6. Enable Your CKAN Site</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="writing-extensions.html">Writing Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="index.html">CKAN Documentation 2.1.5 documentation</a> &raquo;
+              <a href="installing.html"
+                    accesskey="U">
+                    Installing CKAN
+                  </a>
+                   &raquo;
+        </div>
+
+        
+  <div class="section" id="deploying-a-source-install">
+<h1>Deploying a Source Install<a class="headerlink" href="deployment.html#deploying-a-source-install" title="Permalink to this headline">¶</a></h1>
+<p>Once you&#8217;ve installed CKAN from source by following the instructions in
+<a class="reference internal" href="install-from-source.html"><em>Installing CKAN from Source</em></a>, you can follow these instructions to deploy
+your CKAN site using a production web server (Apache), so that it&#8217;s available
+to the Internet.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you installed CKAN from package you don&#8217;t need to follow this section,
+your site is already deployed using Apache and modwsgi as described below.</p>
+</div>
+<p>Because CKAN uses WSGI, a standard interface between web servers and Python web
+applications, CKAN can be used with a number of different web server and
+deployment configurations including:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://httpd.apache.org/">Apache</a> with the modwsgi Apache module</li>
+<li><a class="reference external" href="http://httpd.apache.org/">Apache</a> with paster and reverse proxy</li>
+<li><a class="reference external" href="http://nginx.org/">Nginx</a> with paster and reverse proxy</li>
+<li><a class="reference external" href="http://nginx.org/">Nginx</a> with uwsgi</li>
+</ul>
+<p>This guide explains how to deploy CKAN using Apache and modwsgi on an Ubuntu
+server. These instructions have been tested on Ubuntu 12.04.</p>
+<p>If run into any problems following these instructions, see <a class="reference internal" href="deployment.html#troubleshooting">Troubleshooting</a>
+below.</p>
+<div class="section" id="create-a-production-ini-file">
+<h2>1. Create a <code class="docutils literal"><span class="pre">production.ini</span></code> File<a class="headerlink" href="deployment.html#create-a-production-ini-file" title="Permalink to this headline">¶</a></h2>
+<p>Create your site&#8217;s <code class="docutils literal"><span class="pre">production.ini</span></code> file, by copying the <code class="docutils literal"><span class="pre">development.ini</span></code>
+file you created in <a class="reference internal" href="install-from-source.html"><em>Installing CKAN from Source</em></a> earlier:</p>
+<pre class="literal-block">
+cp /etc/ckan/default/development.ini /etc/ckan/default/production.ini
+</pre>
+</div>
+<div class="section" id="install-apache-and-modwsgi">
+<h2>2. Install Apache and modwsgi<a class="headerlink" href="deployment.html#install-apache-and-modwsgi" title="Permalink to this headline">¶</a></h2>
+<p>Install <a class="reference external" href="http://httpd.apache.org/">Apache</a> (a web server) and <a class="reference external" href="https://code.google.com/p/modwsgi/">modwsgi</a> (an Apache module that adds WSGI
+support to Apache):</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install apache2 libapache2-mod-wsgi
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-an-email-server">
+<h2>3. Install an Email Server<a class="headerlink" href="deployment.html#install-an-email-server" title="Permalink to this headline">¶</a></h2>
+<p>If one isn&#8217;t installed already, install an email server to enable CKAN&#8217;s email
+features (such as sending traceback emails to sysadmins when crashes occur, or
+sending new activity <a class="reference internal" href="email-notifications.html"><em>email notifications</em></a> to
+users). For example, to install the <a class="reference external" href="http://www.postfix.org/">Postfix</a> email
+server, do:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install postfix
+</pre></div>
+</div>
+<p>When asked to choose a Postfix configuration, choose <em>Internet Site</em> and press
+return.</p>
+</div>
+<div class="section" id="create-the-wsgi-script-file">
+<h2>4. Create the WSGI Script File<a class="headerlink" href="deployment.html#create-the-wsgi-script-file" title="Permalink to this headline">¶</a></h2>
+<p>Create your site&#8217;s WSGI script file /etc/ckan/default/apache.wsgi with the following
+contents:</p>
+<pre class="literal-block">
+import os
+activate_this = os.path.join('/usr/lib/ckan/default/bin/activate_this.py')
+execfile(activate_this, dict(__file__=activate_this))
+
+from paste.deploy import loadapp
+config_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'production.ini')
+from paste.script.util.logging_config import fileConfig
+fileConfig(config_filepath)
+application = loadapp('config:%s' % config_filepath)
+</pre>
+<p>The modwsgi Apache module will redirect requests to your web server to this
+WSGI script file. The script file then handles those requests by directing them
+on to your CKAN instance (after first configuring the Python environment for
+CKAN to run in).</p>
+</div>
+<div class="section" id="create-the-apache-config-file">
+<h2>5. Create the Apache Config File<a class="headerlink" href="deployment.html#create-the-apache-config-file" title="Permalink to this headline">¶</a></h2>
+<p>Create your site&#8217;s Apache config file at /etc/apache2/sites-available/ckan_default, with the
+following contents:</p>
+<pre class="literal-block">
+&lt;VirtualHost 0.0.0.0:80&gt;
+    ServerName default.ckanhosted.com
+    ServerAlias www.default.ckanhosted.com
+    WSGIScriptAlias / /etc/ckan/default/apache.wsgi
+
+    # Pass authorization info on (needed for rest api).
+    WSGIPassAuthorization On
+
+    # Deploy as a daemon (avoids conflicts between CKAN instances).
+    WSGIDaemonProcess ckan_default display-name=ckan_default processes=2 threads=15
+
+    WSGIProcessGroup ckan_default
+
+    ErrorLog /var/log/apache2/ckan_default.error.log
+    CustomLog /var/log/apache2/ckan_default.custom.log combined
+&lt;/VirtualHost&gt;
+</pre>
+<p>Replace <code class="docutils literal"><span class="pre">default.ckanhosted.com</span></code> and <code class="docutils literal"><span class="pre">www.default.ckanhosted.com</span></code> with the
+domain name for your site.</p>
+<p>This tells the Apache modwsgi module to redirect any requests to the web server
+to the WSGI script that you created above. Your WSGI script in turn directs the
+requests to your CKAN instance.</p>
+</div>
+<div class="section" id="enable-your-ckan-site">
+<h2>6. Enable Your CKAN Site<a class="headerlink" href="deployment.html#enable-your-ckan-site" title="Permalink to this headline">¶</a></h2>
+<p>Finally, enable your CKAN site in Apache:</p>
+<pre class="literal-block">
+sudo a2ensite ckan_default
+sudo service apache2 reload
+</pre>
+<p>You should now be able to visit your server in a web browser and see your new
+CKAN instance.</p>
+</div>
+<div class="section" id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="deployment.html#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="default-apache-welcome-page">
+<h3>Default Apache Welcome Page<a class="headerlink" href="deployment.html#default-apache-welcome-page" title="Permalink to this headline">¶</a></h3>
+<p>If you see a default Apache welcome page where your CKAN front page should be,
+it may be because the default Apache config file is overriding your CKAN config
+file (both use port 80), so disable it and restart Apache:</p>
+<pre class="literal-block">
+sudo a2dissite default
+sudo service apache2 reload
+</pre>
+</div>
+<div class="section" id="forbidden-and-500-internal-server-error">
+<h3>403 Forbidden and 500 Internal Server Error<a class="headerlink" href="deployment.html#forbidden-and-500-internal-server-error" title="Permalink to this headline">¶</a></h3>
+<p>If you see a 403 Forbidden or 500 Internal Server Error page where your CKAN
+front page should be, you may have a problem with your unix file permissions.
+The Apache web server needs to have permission to access your WSGI script file
+and all of its parent directories. The permissions of the file should look
+like <code class="docutils literal"><span class="pre">-rw-r--r--</span></code> and the permissions of each of its parent directories
+should look like <code class="docutils literal"><span class="pre">drwxr-xr-x</span></code>.</p>
+</div>
+<div class="section" id="ioerror-sys-stdout-access-restricted-by-mod-wsgi">
+<h3>IOError: sys.stdout access restricted by mod_wsgi<a class="headerlink" href="deployment.html#ioerror-sys-stdout-access-restricted-by-mod-wsgi" title="Permalink to this headline">¶</a></h3>
+<p>If you&#8217;re getting 500 Internal Server Error pages and you see <code class="docutils literal"><span class="pre">IOError:</span>
+<span class="pre">sys.stdout</span> <span class="pre">access</span> <span class="pre">restricted</span> <span class="pre">by</span> <span class="pre">mod_wsgi</span></code> in your log files, it means that
+something in your WSGI application (e.g. your WSGI script file, your CKAN
+instance, or one of your CKAN extensions) is trying to print to stdout, for
+example by using standard Python <code class="docutils literal"><span class="pre">print</span></code> statements. WSGI applications are
+not allowed to write to stdout. Possible solutions include:</p>
+<ol class="arabic">
+<li><p class="first">Remove the offending print statements. One option is to replace print
+statements with statements like <code class="docutils literal"><span class="pre">print</span> <span class="pre">&gt;&gt;</span> <span class="pre">sys.stderr,</span> <span class="pre">&quot;...&quot;</span></code></p>
+</li>
+<li><p class="first">Redirect all print statements to stderr:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Allow your application to print to stdout by putting <code class="docutils literal"><span class="pre">WSGIRestrictStdout</span> <span class="pre">Off</span></code> in your Apache config file (not recommended).</p>
+</li>
+</ol>
+<p>Also see <a class="reference external" href="https://code.google.com/p/modwsgi/wiki/ApplicationIssues">https://code.google.com/p/modwsgi/wiki/ApplicationIssues</a></p>
+</div>
+<div class="section" id="log-files">
+<h3>Log Files<a class="headerlink" href="deployment.html#log-files" title="Permalink to this headline">¶</a></h3>
+<p>In general, if it&#8217;s not working look in the log files in <code class="docutils literal"><span class="pre">/var/log/apache2</span></code>
+for error messages. <code class="docutils literal"><span class="pre">ckan_default.error.log</span></code> should be particularly
+interesting.</p>
+</div>
+<div class="section" id="modwsgi-wiki">
+<h3>modwsgi wiki<a class="headerlink" href="deployment.html#modwsgi-wiki" title="Permalink to this headline">¶</a></h3>
+<p>Some pages on the modwsgi wiki have some useful information for troubleshooting modwsgi problems:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://code.google.com/p/modwsgi/wiki/ApplicationIssues">https://code.google.com/p/modwsgi/wiki/ApplicationIssues</a></li>
+<li><a class="reference external" href="http://code.google.com/p/modwsgi/wiki/DebuggingTechniques">http://code.google.com/p/modwsgi/wiki/DebuggingTechniques</a></li>
+<li><a class="reference external" href="http://code.google.com/p/modwsgi/wiki/QuickConfigurationGuide">http://code.google.com/p/modwsgi/wiki/QuickConfigurationGuide</a></li>
+<li><a class="reference external" href="http://code.google.com/p/modwsgi/wiki/ConfigurationGuidelines">http://code.google.com/p/modwsgi/wiki/ConfigurationGuidelines</a></li>
+<li><a class="reference external" href="http://code.google.com/p/modwsgi/wiki/FrequentlyAskedQuestions">http://code.google.com/p/modwsgi/wiki/FrequentlyAskedQuestions</a></li>
+<li><a class="reference external" href="http://code.google.com/p/modwsgi/wiki/ConfigurationIssues">http://code.google.com/p/modwsgi/wiki/ConfigurationIssues</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="upgrading.html"
+                  title="Upgrading CKAN" accesskey="N">
+                    
+                      
+                    
+                    Upgrading CKAN→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="solr-setup.html"
+                  title="Setting up Solr" accesskey="P">
+                    
+                      
+                    
+                    ← Setting up Solr
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2012, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0" 
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/okfn/ckan">Source</a>
+&mdash;
+<a href="https://github.com/okfn/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

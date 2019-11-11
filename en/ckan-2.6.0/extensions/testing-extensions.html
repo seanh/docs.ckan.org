@@ -1,0 +1,646 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Testing extensions &mdash; CKAN 2.6.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="CKAN 2.6.0 documentation" href="../index.html"/>
+        <link rel="up" title="Extending guide" href="index.html"/>
+        <link rel="next" title="Best practices for writing extensions" href="best-practices.html"/>
+        <link rel="prev" title="Making configuration options runtime-editable" href="remote-config-update.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/extensions/testing-extensions.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'extensions/testing-extensions'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> CKAN
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                ckan-2.6.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="http://docs.ckan.org/en/ckan-2.6.0/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maintaining/index.html">Maintainer&#8217;s guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Extending guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html">Writing extensions tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-config-settings.html">Using custom config settings in extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-config-update.html">Making configuration options runtime-editable</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="testing-extensions.html">Testing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="best-practices.html">Best practices for writing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adding-custom-fields.html">Customizing dataset and resource metadata fields using IDatasetForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin-interfaces.html">Plugin interfaces reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins-toolkit.html">Plugins toolkit reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validators.html">Validator functions reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating-extensions.html">Internationalizing strings in extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theming/index.html">Theming guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Extending guide</a> &raquo;</li>
+      
+    <li>Testing extensions</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/ckan/ckan/blob/ckan-2.6.0/doc/extensions/testing-extensions.rst" class="fa fa-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="testing-extensions">
+<h1>Testing extensions<a class="headerlink" href="testing-extensions.html#testing-extensions" title="Permalink to this headline">¶</a></h1>
+<p>CKAN extensions can have their own tests that are run using <tt class="docutils literal"><span class="pre">nosetests</span></tt>
+in much the same way as running CKAN&#8217;s own tests (see <a class="reference internal" href="../contributing/test.html"><em>Testing CKAN</em></a>).</p>
+<p>Continuing with our <a class="reference internal" href="tutorial.html"><em>example_iauthfunctions extension</em></a>,
+first we need a CKAN config file to be used when running our tests.
+Create the file <tt class="docutils literal"><span class="pre">ckanext-iauthfunctions/test.ini</span></tt> with the following
+contents:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>[app:main]
+use = config:../ckan/test-core.ini
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">use</span></tt> line declares that this config file inherits the settings from the
+config file used to run CKAN&#8217;s own tests (<tt class="docutils literal"><span class="pre">../ckan</span></tt> should be the path to
+your CKAN source directory, relative to your <tt class="docutils literal"><span class="pre">test.ini</span></tt> file).</p>
+<p>The <tt class="docutils literal"><span class="pre">test.ini</span></tt> file is a CKAN config file just like your /etc/ckan/default/development.ini
+and /etc/ckan/default/production.ini files, and it can contain any
+<a class="reference internal" href="../maintaining/configuration.html"><em>CKAN config file settings</em></a> that you want
+CKAN to use when running your tests, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>[app:main]
+use = config:../ckan/test-core.ini
+ckan.site_title = My Test CKAN Site
+ckan.site_description = A test site for testing my CKAN extension
+</pre></div>
+</div>
+<p>Next, make the directory that will contain our test modules:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>mkdir ckanext-iauthfunctions/ckanext/iauthfunctions/tests/
+</pre></div>
+</div>
+<p>Finally, create the file
+<tt class="docutils literal"><span class="pre">ckanext-iauthfunctions/ckanext/iauthfunctions/tests/test_iauthfunctions.py</span></tt>
+with the following contents:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># encoding: utf-8</span>
+
+<span class="sd">&#39;&#39;&#39;Tests for the ckanext.example_iauthfunctions extension.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">paste.fixture</span>
+<span class="kn">import</span> <span class="nn">pylons.test</span>
+<span class="kn">import</span> <span class="nn">webtest</span>
+
+<span class="kn">from</span> <span class="nn">nose.tools</span> <span class="kn">import</span> <span class="n">assert_raises</span>
+<span class="kn">from</span> <span class="nn">nose.tools</span> <span class="kn">import</span> <span class="n">assert_equal</span>
+
+<span class="kn">import</span> <span class="nn">ckan.model</span> <span class="kn">as</span> <span class="nn">model</span>
+<span class="kn">import</span> <span class="nn">ckan.tests.legacy</span> <span class="kn">as</span> <span class="nn">tests</span>
+<span class="kn">import</span> <span class="nn">ckan.plugins</span>
+<span class="kn">import</span> <span class="nn">ckan.tests.factories</span> <span class="kn">as</span> <span class="nn">factories</span>
+<span class="kn">import</span> <span class="nn">ckan.logic</span> <span class="kn">as</span> <span class="nn">logic</span>
+<span class="kn">from</span> <span class="nn">ckan.common</span> <span class="kn">import</span> <span class="n">config</span>
+
+
+<span class="k">class</span> <span class="nc">TestExampleIAuthFunctionsPluginV6ParentAuthFunctions</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Tests for the ckanext.example_iauthfunctions.plugin module.</span>
+
+<span class="sd">    Specifically tests that overriding parent auth functions will cause</span>
+<span class="sd">    child auth functions to use the overridden version.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">setup_class</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Nose runs this method once to setup our test class.&#39;&#39;&#39;</span>
+        <span class="c1"># Test code should use CKAN&#39;s plugins.load() function to load plugins</span>
+        <span class="c1"># to be tested.</span>
+        <span class="n">ckan</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;example_iauthfunctions_v6_parent_auth_functions&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">teardown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Nose runs this method after each test method in our test class.&#39;&#39;&#39;</span>
+        <span class="c1"># Rebuild CKAN&#39;s database after each test method, so that each test</span>
+        <span class="c1"># method runs with a clean slate.</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">repo</span><span class="o">.</span><span class="n">rebuild_db</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">teardown_class</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Nose runs this method once after all the test methods in our class</span>
+<span class="sd">        have been run.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># We have to unload the plugin we loaded, so it doesn&#39;t affect any</span>
+        <span class="c1"># tests that run after ours.</span>
+        <span class="n">ckan</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">unload</span><span class="p">(</span><span class="s1">&#39;example_iauthfunctions_v6_parent_auth_functions&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_resource_delete_editor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Normally organization admins can delete resources</span>
+<span class="sd">        Our plugin prevents this by blocking delete organization.</span>
+
+<span class="sd">        Ensure the delete button is not displayed (as only resource delete</span>
+<span class="sd">        is checked for showing this)</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="p">()</span>
+        <span class="n">owner_org</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">Organization</span><span class="p">(</span>
+            <span class="n">users</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="s1">&#39;capacity&#39;</span><span class="p">:</span> <span class="s1">&#39;admin&#39;</span><span class="p">}]</span>
+        <span class="p">)</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">owner_org</span><span class="o">=</span><span class="n">owner_org</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+        <span class="n">resource</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">Resource</span><span class="p">(</span><span class="n">package_id</span><span class="o">=</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+        <span class="k">with</span> <span class="n">assert_raises</span><span class="p">(</span><span class="n">logic</span><span class="o">.</span><span class="n">NotAuthorized</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logic</span><span class="o">.</span><span class="n">check_access</span><span class="p">(</span><span class="s1">&#39;resource_delete&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]},</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">resource</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]})</span>
+
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">exception</span><span class="o">.</span><span class="n">message</span><span class="p">,</span> <span class="s1">&#39;User </span><span class="si">%s</span><span class="s1"> not authorized to delete resource </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">resource</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]))</span>
+
+    <span class="k">def</span> <span class="nf">test_resource_delete_sysadmin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Normally organization admins can delete resources</span>
+<span class="sd">        Our plugin prevents this by blocking delete organization.</span>
+
+<span class="sd">        Ensure the delete button is not displayed (as only resource delete</span>
+<span class="sd">        is checked for showing this)</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">Sysadmin</span><span class="p">()</span>
+        <span class="n">owner_org</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">Organization</span><span class="p">(</span>
+            <span class="n">users</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="s1">&#39;capacity&#39;</span><span class="p">:</span> <span class="s1">&#39;admin&#39;</span><span class="p">}]</span>
+        <span class="p">)</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">owner_org</span><span class="o">=</span><span class="n">owner_org</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+        <span class="n">resource</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">Resource</span><span class="p">(</span><span class="n">package_id</span><span class="o">=</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+        <span class="n">assert_equal</span><span class="p">(</span><span class="n">logic</span><span class="o">.</span><span class="n">check_access</span><span class="p">(</span><span class="s1">&#39;resource_delete&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]},</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">resource</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]}),</span> <span class="bp">True</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">TestExampleIAuthFunctionsCustomConfigSetting</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Tests for the plugin_v5_custom_config_setting module.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">_get_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">users_can_create_groups</span><span class="p">):</span>
+
+        <span class="c1"># Set the custom config option in config.</span>
+        <span class="n">config</span><span class="p">[</span><span class="s1">&#39;ckan.iauthfunctions.users_can_create_groups&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">users_can_create_groups</span><span class="p">)</span>
+
+        <span class="c1"># Return a test app with the custom config.</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="n">ckan</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">middleware</span><span class="o">.</span><span class="n">make_app</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;global_conf&#39;</span><span class="p">],</span> <span class="o">**</span><span class="n">config</span><span class="p">)</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="n">webtest</span><span class="o">.</span><span class="n">TestApp</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+        <span class="n">ckan</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;example_iauthfunctions_v5_custom_config_setting&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">app</span>
+
+    <span class="k">def</span> <span class="nf">teardown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># Remove the custom config option from config.</span>
+        <span class="k">del</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;ckan.iauthfunctions.users_can_create_groups&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Delete any stuff that&#39;s been created in the db, so it doesn&#39;t</span>
+        <span class="c1"># interfere with the next test.</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">repo</span><span class="o">.</span><span class="n">rebuild_db</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">teardown_class</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="n">ckan</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">unload</span><span class="p">(</span><span class="s1">&#39;example_iauthfunctions_v5_custom_config_setting&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_sysadmin_can_create_group_when_config_is_False</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_app</span><span class="p">(</span><span class="n">users_can_create_groups</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">sysadmin</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">Sysadmin</span><span class="p">()</span>
+
+        <span class="n">tests</span><span class="o">.</span><span class="n">call_action_api</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;group_create&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;test-group&#39;</span><span class="p">,</span>
+                              <span class="n">apikey</span><span class="o">=</span><span class="n">sysadmin</span><span class="p">[</span><span class="s1">&#39;apikey&#39;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">test_user_cannot_create_group_when_config_is_False</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_app</span><span class="p">(</span><span class="n">users_can_create_groups</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="p">()</span>
+
+        <span class="n">tests</span><span class="o">.</span><span class="n">call_action_api</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;group_create&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;test-group&#39;</span><span class="p">,</span>
+                              <span class="n">apikey</span><span class="o">=</span><span class="n">user</span><span class="p">[</span><span class="s1">&#39;apikey&#39;</span><span class="p">],</span> <span class="n">status</span><span class="o">=</span><span class="mi">403</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_visitor_cannot_create_group_when_config_is_False</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_app</span><span class="p">(</span><span class="n">users_can_create_groups</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+        <span class="n">tests</span><span class="o">.</span><span class="n">call_action_api</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;group_create&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;test-group&#39;</span><span class="p">,</span>
+                              <span class="n">status</span><span class="o">=</span><span class="mi">403</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_sysadmin_can_create_group_when_config_is_True</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_app</span><span class="p">(</span><span class="n">users_can_create_groups</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">sysadmin</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">Sysadmin</span><span class="p">()</span>
+
+        <span class="n">tests</span><span class="o">.</span><span class="n">call_action_api</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;group_create&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;test-group&#39;</span><span class="p">,</span>
+                              <span class="n">apikey</span><span class="o">=</span><span class="n">sysadmin</span><span class="p">[</span><span class="s1">&#39;apikey&#39;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">test_user_can_create_group_when_config_is_True</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_app</span><span class="p">(</span><span class="n">users_can_create_groups</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="p">()</span>
+
+        <span class="n">tests</span><span class="o">.</span><span class="n">call_action_api</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;group_create&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;test-group&#39;</span><span class="p">,</span>
+                              <span class="n">apikey</span><span class="o">=</span><span class="n">user</span><span class="p">[</span><span class="s1">&#39;apikey&#39;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">test_visitor_cannot_create_group_when_config_is_True</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_app</span><span class="p">(</span><span class="n">users_can_create_groups</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+        <span class="n">tests</span><span class="o">.</span><span class="n">call_action_api</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;group_create&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;test-group&#39;</span><span class="p">,</span>
+                              <span class="n">status</span><span class="o">=</span><span class="mi">403</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">TestExampleIAuthFunctionsPluginV4</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Tests for the ckanext.example_iauthfunctions.plugin module.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">setup_class</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Nose runs this method once to setup our test class.&#39;&#39;&#39;</span>
+
+        <span class="c1"># Make the Paste TestApp that we&#39;ll use to simulate HTTP requests to</span>
+        <span class="c1"># CKAN.</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">paste</span><span class="o">.</span><span class="n">fixture</span><span class="o">.</span><span class="n">TestApp</span><span class="p">(</span><span class="n">pylons</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">pylonsapp</span><span class="p">)</span>
+
+        <span class="c1"># Test code should use CKAN&#39;s plugins.load() function to load plugins</span>
+        <span class="c1"># to be tested.</span>
+        <span class="n">ckan</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;example_iauthfunctions_v4&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">teardown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Nose runs this method after each test method in our test class.&#39;&#39;&#39;</span>
+
+        <span class="c1"># Rebuild CKAN&#39;s database after each test method, so that each test</span>
+        <span class="c1"># method runs with a clean slate.</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">repo</span><span class="o">.</span><span class="n">rebuild_db</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">teardown_class</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Nose runs this method once after all the test methods in our class</span>
+<span class="sd">        have been run.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># We have to unload the plugin we loaded, so it doesn&#39;t affect any</span>
+        <span class="c1"># tests that run after ours.</span>
+        <span class="n">ckan</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">unload</span><span class="p">(</span><span class="s1">&#39;example_iauthfunctions_v4&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_curators_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;This is a helper method for test methods to call when they want</span>
+<span class="sd">        the &#39;curators&#39; group to be created.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">sysadmin</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">Sysadmin</span><span class="p">()</span>
+
+        <span class="c1"># Create a user who will *not* be a member of the curators group.</span>
+        <span class="n">noncurator</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="p">()</span>
+
+        <span class="c1"># Create a user who will be a member of the curators group.</span>
+        <span class="n">curator</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="p">()</span>
+
+        <span class="c1"># Create the curators group, with the &#39;curator&#39; user as a member.</span>
+        <span class="n">users</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">curator</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="s1">&#39;capacity&#39;</span><span class="p">:</span> <span class="s1">&#39;member&#39;</span><span class="p">}]</span>
+        <span class="n">curators_group</span> <span class="o">=</span> <span class="n">tests</span><span class="o">.</span><span class="n">call_action_api</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;group_create&#39;</span><span class="p">,</span>
+                                               <span class="n">apikey</span><span class="o">=</span><span class="n">sysadmin</span><span class="p">[</span><span class="s1">&#39;apikey&#39;</span><span class="p">],</span>
+                                               <span class="n">name</span><span class="o">=</span><span class="s1">&#39;curators&#39;</span><span class="p">,</span>
+                                               <span class="n">users</span><span class="o">=</span><span class="n">users</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">noncurator</span><span class="p">,</span> <span class="n">curator</span><span class="p">,</span> <span class="n">curators_group</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_group_create_with_no_curators_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Test that group_create doesn&#39;t crash when there&#39;s no curators group.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">sysadmin</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">Sysadmin</span><span class="p">()</span>
+
+        <span class="c1"># Make sure there&#39;s no curators group.</span>
+        <span class="k">assert</span> <span class="s1">&#39;curators&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tests</span><span class="o">.</span><span class="n">call_action_api</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;group_list&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Make our sysadmin user create a group. CKAN should not crash.</span>
+        <span class="n">tests</span><span class="o">.</span><span class="n">call_action_api</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;group_create&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;test-group&#39;</span><span class="p">,</span>
+                              <span class="n">apikey</span><span class="o">=</span><span class="n">sysadmin</span><span class="p">[</span><span class="s1">&#39;apikey&#39;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">test_group_create_with_visitor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;A visitor (not logged in) should not be able to create a group.</span>
+
+<span class="sd">        Note: this also tests that the group_create auth function doesn&#39;t</span>
+<span class="sd">        crash when the user isn&#39;t logged in.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">noncurator</span><span class="p">,</span> <span class="n">curator</span><span class="p">,</span> <span class="n">curators_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_curators_group</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">tests</span><span class="o">.</span><span class="n">call_action_api</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;group_create&#39;</span><span class="p">,</span>
+                                       <span class="n">name</span><span class="o">=</span><span class="s1">&#39;this_group_should_not_be_created&#39;</span><span class="p">,</span>
+                                       <span class="n">status</span><span class="o">=</span><span class="mi">403</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;__type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Authorization Error&#39;</span>
+
+    <span class="k">def</span> <span class="nf">test_group_create_with_non_curator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;A user who isn&#39;t a member of the curators group should not be able</span>
+<span class="sd">        to create a group.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">noncurator</span><span class="p">,</span> <span class="n">curator</span><span class="p">,</span> <span class="n">curators_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_curators_group</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">tests</span><span class="o">.</span><span class="n">call_action_api</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;group_create&#39;</span><span class="p">,</span>
+                                       <span class="n">name</span><span class="o">=</span><span class="s1">&#39;this_group_should_not_be_created&#39;</span><span class="p">,</span>
+                                       <span class="n">apikey</span><span class="o">=</span><span class="n">noncurator</span><span class="p">[</span><span class="s1">&#39;apikey&#39;</span><span class="p">],</span>
+                                       <span class="n">status</span><span class="o">=</span><span class="mi">403</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;__type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Authorization Error&#39;</span>
+
+    <span class="k">def</span> <span class="nf">test_group_create_with_curator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;A member of the curators group should be able to create a group.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">noncurator</span><span class="p">,</span> <span class="n">curator</span><span class="p">,</span> <span class="n">curators_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_curators_group</span><span class="p">()</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;my-new-group&#39;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">tests</span><span class="o">.</span><span class="n">call_action_api</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;group_create&#39;</span><span class="p">,</span>
+                                       <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                                       <span class="n">apikey</span><span class="o">=</span><span class="n">curator</span><span class="p">[</span><span class="s1">&#39;apikey&#39;</span><span class="p">])</span>
+        <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">name</span>
+</pre></div>
+</div>
+<p>To run these extension tests, <tt class="docutils literal"><span class="pre">cd</span></tt> into the <tt class="docutils literal"><span class="pre">ckanext-iauthfunctions</span></tt>
+directory and run this command:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>nosetests --ckan --with-pylons=test.ini ckanext/iauthfunctions/tests
+</pre></div>
+</div>
+<p>Some notes on how these tests work:</p>
+<ul class="simple">
+<li>Nose has lots of useful functions for testing, see the
+<a class="reference external" href="https://nose.readthedocs.org/en/latest/">nose documentation</a>.</li>
+<li>We&#8217;re using a <tt class="xref py py-class docutils literal"><span class="pre">paste.fixture.TestApp</span></tt> object to simulate sending HTTP
+requests to the CKAN API or frontend.
+See <a class="reference external" href="http://pythonpaste.org/testing-applications.html">Testing Applications with Paste</a>
+for some documentation of this.</li>
+<li>We&#8217;re calling <tt class="xref py py-func docutils literal"><span class="pre">ckan.tests.call_action_api()</span></tt> to post (simulated) HTTP
+requests to the CKAN API. This is a convenience function that CKAN provides
+for its own tests.</li>
+<li>You might also find it useful to read the
+<a class="reference external" href="http://docs.pylonsproject.org/projects/pylons-webframework/en/latest/testing.html">Pylons testing documentation</a>.</li>
+<li>The Pylons book also has a <a class="reference external" href="http://pylonsbook.com/en/1.0/testing.html">chapter on testing</a>.</li>
+<li>Avoid importing the plugin modules directly into your test modules
+(e.g from example_iauthfunctions import plugin_v5_custom_config_setting).
+This causes the plugin to be registered and loaded before the entire test run,
+so the plugin will be loaded for all tests. This can cause conflicts and
+test failures.</li>
+</ul>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Link to CKAN guidelines for <em>how</em> to write tests, once those guidelines have
+been written. Also add any more extension-specific testing details here.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="best-practices.html" class="btn btn-neutral float-right"
+           title="Best practices for writing extensions"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="remote-config-update.html" class="btn btn-neutral"
+           title="Making configuration options runtime-editable">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>Support the <a href="http://ckan.org">CKAN Association</a>.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: ckan-2.6.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../index.html">latest</a></dd>
+        
+          <dd><a href="../index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../../ckan-2.5.3/index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../../ckan-2.4.4/index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../../ckan-2.3.5/index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.6.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

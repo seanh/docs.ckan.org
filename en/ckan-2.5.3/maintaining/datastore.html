@@ -1,0 +1,1006 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DataStore extension &mdash; CKAN 2.5.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="CKAN 2.5.3 documentation" href="../index.html"/>
+        <link rel="up" title="Maintainer’s guide" href="index.html"/>
+        <link rel="next" title="Apps &amp; Ideas" href="apps-ideas.html"/>
+        <link rel="prev" title="FileStore and file uploads" href="filestore.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/maintaining/datastore.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'maintaining/datastore'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> CKAN
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                ckan-2.5.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="http://docs.ckan.org/en/ckan-2.5.3/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Maintainer&#8217;s guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installing/index.html">Installing CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/index.html">Upgrading CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html">Organizations and authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html">Data preview and visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filestore.html">FileStore and file uploads</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="datastore.html">DataStore extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="datastore.html#relationship-to-filestore">Relationship to FileStore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datastore.html#setting-up-the-datastore">Setting up the DataStore</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="datastore.html#enable-the-plugin">1. Enable the plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="datastore.html#set-up-the-database">2. Set-up the database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="datastore.html#test-the-set-up">3. Test the set-up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="datastore.html#legacy-mode-use-the-datastore-with-old-postgresql-versions">Legacy mode: use the DataStore with old PostgreSQL versions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="datastore.html#datapusher-automatically-add-data-to-the-datastore">DataPusher: Automatically Add Data to the DataStore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datastore.html#the-datastore-api">The DataStore API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="datastore.html#making-a-datastore-api-request">Making a DataStore API request</a></li>
+<li class="toctree-l4"><a class="reference internal" href="datastore.html#api-reference">API reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background-tasks.html">Background tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email-notifications.html">Email notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html">Page View Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multilingual.html">Multilingual Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stats.html">Stats Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Configuration Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solr-multicore.html">Multicore Solr setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extending guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theming/index.html">Theming guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Maintainer&#8217;s guide</a> &raquo;</li>
+      
+    <li>DataStore extension</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/ckan/ckan/blob/ckan-2.5.3/doc/maintaining/datastore.rst" class="fa fa-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="datastore-extension">
+<h1>DataStore extension<a class="headerlink" href="datastore.html#datastore-extension" title="Permalink to this headline">¶</a></h1>
+<p>The CKAN DataStore extension provides an <em>ad hoc</em> database for storage of structured data from
+CKAN resources. Data can be pulled out of resource files and stored in
+the DataStore.</p>
+<p>When a resource is added to the DataStore, you get:</p>
+<ul class="simple">
+<li>Automatic data previews on the resource&#8217;s page, using the <a class="reference internal" href="data-viewer.html#data-explorer"><em>Data Explorer extension</em></a></li>
+<li><a class="reference internal" href="datastore.html#the-datastore-api">The DataStore API</a>: search, filter and update the data, without having to download
+and upload the entire data file</li>
+</ul>
+<p>The DataStore is integrated into the <a class="reference internal" href="../api/index.html"><em>CKAN API</em></a> and
+authorization system.</p>
+<p>The DataStore is generally used alongside the
+<a class="reference external" href="../../../projects/datapusher">DataPusher</a>, which will
+automatically upload data to the DataStore from suitable files, whether
+uploaded to CKAN&#8217;s FileStore or externally linked.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="datastore.html#relationship-to-filestore" id="id4">Relationship to FileStore</a></li>
+<li><a class="reference internal" href="datastore.html#setting-up-the-datastore" id="id5">Setting up the DataStore</a></li>
+<li><a class="reference internal" href="datastore.html#datapusher-automatically-add-data-to-the-datastore" id="id6">DataPusher: Automatically Add Data to the DataStore</a></li>
+<li><a class="reference internal" href="datastore.html#the-datastore-api" id="id7">The DataStore API</a></li>
+</ul>
+</div>
+<div class="section" id="relationship-to-filestore">
+<h2><a class="toc-backref" href="datastore.html#id4">Relationship to FileStore</a><a class="headerlink" href="datastore.html#relationship-to-filestore" title="Permalink to this headline">¶</a></h2>
+<p>The DataStore is distinct but complementary to the FileStore (see
+<a class="reference internal" href="filestore.html"><em>FileStore and file uploads</em></a>). In contrast to the FileStore which provides &#8216;blob&#8217;
+storage of whole files with no way to access or query parts of that file, the
+DataStore is like a database in which individual data elements are accessible
+and queryable. To illustrate this distinction, consider storing a spreadsheet
+file like a CSV or Excel document. In the FileStore this file would be stored
+directly. To access it you would download the file as a whole. By contrast, if
+the spreadsheet data is stored in the DataStore, one would be able to access
+individual spreadsheet rows via a simple web API, as well as being able to make
+queries over the spreadsheet contents.</p>
+</div>
+<div class="section" id="setting-up-the-datastore">
+<h2><a class="toc-backref" href="datastore.html#id5">Setting up the DataStore</a><a class="headerlink" href="datastore.html#setting-up-the-datastore" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The DataStore requires PostgreSQL 9.0 or later. It is possible to use the
+DataStore on versions prior to 9.0 (for example 8.4). However, the
+<a class="reference internal" href="datastore.html#ckanext.datastore.logic.action.datastore_search_sql" title="ckanext.datastore.logic.action.datastore_search_sql"><tt class="xref py py-meth docutils literal"><span class="pre">datastore_search_sql()</span></tt></a> will not be
+available and the set-up is slightly different. Make sure, you read
+<a class="reference internal" href="datastore.html#legacy-mode"><em>Legacy mode: use the DataStore with old PostgreSQL versions</em></a> for more details.</p>
+</div>
+<div class="section" id="enable-the-plugin">
+<h3>1. Enable the plugin<a class="headerlink" href="datastore.html#enable-the-plugin" title="Permalink to this headline">¶</a></h3>
+<p>Add the <tt class="docutils literal"><span class="pre">datastore</span></tt> plugin to your CKAN config file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ckan</span><span class="o">.</span><span class="n">plugins</span> <span class="o">=</span> <span class="n">datastore</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-up-the-database">
+<h3>2. Set-up the database<a class="headerlink" href="datastore.html#set-up-the-database" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure that you follow the steps in <a class="reference internal" href="datastore.html#set-permissions">Set Permissions</a> below correctly. Wrong settings could lead to serious security issues.</p>
+</div>
+<p>The DataStore requires a separate PostgreSQL database to save the DataStore resources to.</p>
+<p>List existing databases:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo -u postgres psql -l
+</pre></div>
+</div>
+<p>Check that the encoding of databases is <tt class="docutils literal"><span class="pre">UTF8</span></tt>, if not internationalisation may be a problem. Since changing the encoding of PostgreSQL may mean deleting existing databases, it is suggested that this is fixed before continuing with the datastore setup.</p>
+<div class="section" id="create-users-and-databases">
+<h4>Create users and databases<a class="headerlink" href="datastore.html#create-users-and-databases" title="Permalink to this headline">¶</a></h4>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>If your CKAN database and DataStore databases are on different servers, then
+you need to create a new database user on the server where the DataStore
+database will be created. As in <a class="reference internal" href="installing/install-from-source.html"><em>Installing CKAN from source</em></a> we&#8217;ll
+name the database user ckan_default:</p>
+<pre class="last literal-block">
+sudo -u postgres createuser -S -D -R -P -l ckan_default
+</pre>
+</div>
+<p>Create a database_user called datastore_default. This user will be given
+read-only access to your DataStore database in the <a class="reference internal" href="datastore.html#set-permissions">Set Permissions</a> step
+below:</p>
+<pre class="literal-block">
+sudo -u postgres createuser -S -D -R -P -l datastore_default
+</pre>
+<p>Create the database (owned by ckan_default), which we&#8217;ll call
+datastore_default:</p>
+<pre class="literal-block">
+sudo -u postgres createdb -O ckan_default datastore_default -E utf-8
+</pre>
+</div>
+<div class="section" id="set-urls">
+<h4>Set URLs<a class="headerlink" href="datastore.html#set-urls" title="Permalink to this headline">¶</a></h4>
+<p>Now, uncomment the <a class="reference internal" href="configuration.html#ckan-datastore-write-url"><em>ckan.datastore.write_url</em></a> and
+<a class="reference internal" href="configuration.html#ckan-datastore-read-url"><em>ckan.datastore.read_url</em></a> lines in your CKAN config file and edit them
+if necessary, for example:</p>
+<pre class="literal-block">
+ckan.datastore.write_url = postgresql://ckan_default:<a class="reference external" href="mailto:pass&#37;&#52;&#48;localhost/">pass<span>&#64;</span>localhost/</a>datastore_default
+ckan.datastore.read_url = postgresql://datastore_default:<a class="reference external" href="mailto:pass&#37;&#52;&#48;localhost/">pass<span>&#64;</span>localhost/</a>datastore_default
+</pre>
+<p>Replace <tt class="docutils literal"><span class="pre">pass</span></tt> with the passwords you created for your ckan_default and
+datastore_default database users.</p>
+</div>
+<div class="section" id="set-permissions">
+<h4>Set permissions<a class="headerlink" href="datastore.html#set-permissions" title="Permalink to this headline">¶</a></h4>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">See <a class="reference internal" href="datastore.html#legacy-mode"><em>Legacy mode: use the DataStore with old PostgreSQL versions</em></a> if these steps continue to fail or seem too complicated for your set-up. However, keep in mind that the legacy mode is limited in its capabilities.</p>
+</div>
+<p>Once the DataStore database and the users are created, the permissions on the DataStore and CKAN database have to be set. CKAN provides a paster command to help you correctly set these permissions.</p>
+<p>If you are able to use the <tt class="docutils literal"><span class="pre">psql</span></tt> command to connect to your database as a
+superuser, you can use the <tt class="docutils literal"><span class="pre">datastore</span> <span class="pre">set-permissions</span></tt> command to emit the
+appropriate SQL to set the permissions.</p>
+<p>For example, if you can connect to your database server as the <tt class="docutils literal"><span class="pre">postgres</span></tt>
+superuser using:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo -u postgres psql
+</pre></div>
+</div>
+<p>Then you can use this connection to set the permissions:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo ckan datastore set-permissions | sudo -u postgres psql --set ON_ERROR_STOP=1
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you performed a source install, you will need to replace all references to
+<tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">ckan</span> <span class="pre">...</span></tt> with <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">--plugin=ckan</span> <span class="pre">...</span></tt> and provide the path to
+the config file, e.g. <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">--plugin=ckan</span> <span class="pre">datastore</span> <span class="pre">set-permissions</span> <span class="pre">-c</span> <span class="pre">/etc/ckan/default/development.ini</span></tt></p>
+</div>
+<p>If your database server is not local, but you can access it over SSH, you can
+pipe the permissions script over SSH:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo ckan datastore set-permissions |
+ssh dbserver sudo -u postgres psql --set ON_ERROR_STOP=1
+</pre></div>
+</div>
+<p>If you can&#8217;t use the <tt class="docutils literal"><span class="pre">psql</span></tt> command in this way, you can simply copy and paste
+the output of:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo ckan datastore set-permissions
+</pre></div>
+</div>
+<p>into a PostgreSQL superuser console.</p>
+</div>
+</div>
+<div class="section" id="test-the-set-up">
+<h3>3. Test the set-up<a class="headerlink" href="datastore.html#test-the-set-up" title="Permalink to this headline">¶</a></h3>
+<p>The DataStore is now set-up. To test the set-up, (re)start CKAN and run the
+following command to list all DataStore resources:</p>
+<div class="highlight-python"><div class="highlight"><pre>curl -X GET &quot;http://127.0.0.1:5000/api/3/action/datastore_search?resource_id=_table_metadata&quot;
+</pre></div>
+</div>
+<p>This should return a JSON page without errors.</p>
+<p>To test the whether the set-up allows writing, you can create a new DataStore resource.
+To do so, run the following command:</p>
+<div class="highlight-python"><div class="highlight"><pre>curl -X POST http://127.0.0.1:5000/api/3/action/datastore_create -H &quot;Authorization: {YOUR-API-KEY}&quot; -d &#39;{&quot;resource&quot;: {&quot;package_id&quot;: &quot;{PACKAGE-ID}&quot;}, &quot;fields&quot;: [ {&quot;id&quot;: &quot;a&quot;}, {&quot;id&quot;: &quot;b&quot;} ], &quot;records&quot;: [ { &quot;a&quot;: 1, &quot;b&quot;: &quot;xyz&quot;}, {&quot;a&quot;: 2, &quot;b&quot;: &quot;zzz&quot;} ]}&#39;
+</pre></div>
+</div>
+<p>Replace <tt class="docutils literal"><span class="pre">{YOUR-API-KEY}</span></tt> with a valid API key and <tt class="docutils literal"><span class="pre">{PACKAGE-ID}</span></tt> with the
+id of an existing CKAN dataset.</p>
+<p>A table named after the resource id should have been created on your DataStore
+database. Visiting this URL should return a response from the DataStore with
+the records inserted above:</p>
+<div class="highlight-python"><div class="highlight"><pre>http://127.0.0.1:5000/api/3/action/datastore_search?resource_id={RESOURCE_ID}
+</pre></div>
+</div>
+<p>Replace <tt class="docutils literal"><span class="pre">{RESOURCE-ID}</span></tt> with the resource id that was returned as part of the
+response of the previous API call.</p>
+<p>You can now delete the DataStore table with:</p>
+<div class="highlight-python"><div class="highlight"><pre>curl -X POST http://127.0.0.1:5000/api/3/action/datastore_delete -H &quot;Authorization: {YOUR-API-KEY}&quot; -d &#39;{&quot;resource_id&quot;: &quot;{RESOURCE-ID}&quot;}&#39;
+</pre></div>
+</div>
+<p>To find out more about the DataStore API, see <a class="reference internal" href="datastore.html#the-datastore-api">The DataStore API</a>.</p>
+</div>
+<div class="section" id="legacy-mode-use-the-datastore-with-old-postgresql-versions">
+<span id="legacy-mode"></span><h3>Legacy mode: use the DataStore with old PostgreSQL versions<a class="headerlink" href="datastore.html#legacy-mode-use-the-datastore-with-old-postgresql-versions" title="Permalink to this headline">¶</a></h3>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The legacy mode can also be used to simplify the set-up since it does not require you to set the permissions or create a separate user.</p>
+</div>
+<p>The DataStore can be used with a PostgreSQL version prior to 9.0 in <em>legacy mode</em>. Due to the lack of some functionality, the <a class="reference internal" href="datastore.html#ckanext.datastore.logic.action.datastore_search_sql" title="ckanext.datastore.logic.action.datastore_search_sql"><tt class="xref py py-meth docutils literal"><span class="pre">datastore_search_sql()</span></tt></a> and consequently the <a class="reference internal" href="datastore.html#datastore-search-htsql"><em>HTSQL support</em></a> cannot be used. To enable the legacy mode, remove the declaration of the <tt class="docutils literal"><span class="pre">ckan.datastore.read_url</span></tt>.</p>
+<p>The set-up for legacy mode is analogous to the normal set-up as described above with a few changes and consists of the following steps:</p>
+<ol class="arabic simple">
+<li>Enable the plugin</li>
+<li>The legacy mode is enabled by <strong>not</strong> setting the <tt class="docutils literal"><span class="pre">ckan.datastore.read_url</span></tt></li>
+<li>Set-Up the database<ol class="loweralpha">
+<li>Create a separate database</li>
+<li>Create a write user on the DataStore database (optional since the CKAN user can be used)</li>
+</ol>
+</li>
+<li>Test the set-up</li>
+</ol>
+<p>There is no need for a read-only user or special permissions. Therefore the legacy mode can be used for simple set-ups as well.</p>
+</div>
+</div>
+<div class="section" id="datapusher-automatically-add-data-to-the-datastore">
+<h2><a class="toc-backref" href="datastore.html#id6">DataPusher: Automatically Add Data to the DataStore</a><a class="headerlink" href="datastore.html#datapusher-automatically-add-data-to-the-datastore" title="Permalink to this headline">¶</a></h2>
+<p>Often, one wants data that is added to CKAN (whether it is linked to or
+uploaded to the <a class="reference internal" href="filestore.html"><em>FileStore</em></a>) to be automatically added to the
+DataStore. This requires some processing, to extract the data from your files
+and to add it to the DataStore in the format the DataStore can handle.</p>
+<p>This task of automatically parsing and then adding data to the DataStore is
+performed by the <a class="reference external" href="../../../projects/datapusher">DataPusher</a>, a service that runs asynchronously and can be installed
+alongside CKAN.</p>
+<p>To install this please look at the docs here: <a class="reference external" href="../../../projects/datapusher">http://docs.ckan.org/projects/datapusher</a></p>
+</div>
+<div class="section" id="the-datastore-api">
+<h2><a class="toc-backref" href="datastore.html#id7">The DataStore API</a><a class="headerlink" href="datastore.html#the-datastore-api" title="Permalink to this headline">¶</a></h2>
+<p>The CKAN DataStore offers an API for reading, searching and filtering data without
+the need to download the entire file first. The DataStore is an ad hoc database which
+means that it is a collection of tables with unknown relationships. This allows
+you to search in one DataStore resource (a <em>table</em> in the database) as well as queries
+across DataStore resources.</p>
+<p>Data can be written incrementally to the DataStore through the API. New data can be
+inserted, existing data can be updated or deleted. You can also add a new column to
+an existing table even if the DataStore resource already contains some data.</p>
+<p>You will notice that we tried to keep the layer between the underlying PostgreSQL
+database and the API as thin as possible to allow you to use the features you would
+expect from a powerful database management system.</p>
+<p>A DataStore resource can not be created on its own. It is always required to have an
+associated CKAN resource. If data is stored in the DataStore, it will automatically be
+previewed by the <a class="reference internal" href="data-viewer.html#data-explorer"><em>recline preview extension</em></a>.</p>
+<div class="section" id="making-a-datastore-api-request">
+<h3>Making a DataStore API request<a class="headerlink" href="datastore.html#making-a-datastore-api-request" title="Permalink to this headline">¶</a></h3>
+<p>Making a DataStore API request is the same as making an Action API request: you
+post a JSON dictionary in an HTTP POST request to an API URL, and the API also
+returns its response in a JSON dictionary. See the <a class="reference internal" href="../api/index.html"><em>API guide</em></a> for details.</p>
+</div>
+<div class="section" id="api-reference">
+<h3>API reference<a class="headerlink" href="datastore.html#api-reference" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Lists can always be expressed in different ways. It is possible to use lists, comma separated strings or single items. These are valid lists: <tt class="docutils literal"><span class="pre">['foo',</span> <span class="pre">'bar']</span></tt>, <tt class="docutils literal"><span class="pre">'foo,</span> <span class="pre">bar'</span></tt>, <tt class="docutils literal"><span class="pre">&quot;foo&quot;,</span> <span class="pre">&quot;bar&quot;</span></tt> and <tt class="docutils literal"><span class="pre">'foo'</span></tt>. Additionally, there are several ways to define a boolean value. <tt class="docutils literal"><span class="pre">True</span></tt>, <tt class="docutils literal"><span class="pre">on</span></tt> and <tt class="docutils literal"><span class="pre">1</span></tt> are all vaid boolean values.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The table structure of the DataStore is explained in <a class="reference internal" href="datastore.html#db-internals"><em>Internal structure of the database</em></a>.</p>
+</div>
+<span class="target" id="module-ckanext.datastore.logic.action"></span><dl class="function">
+<dt id="ckanext.datastore.logic.action.datastore_create">
+<tt class="descclassname">ckanext.datastore.logic.action.</tt><tt class="descname">datastore_create</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="datastore.html#ckanext.datastore.logic.action.datastore_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new table to the DataStore.</p>
+<p>The datastore_create action allows you to post JSON data to be
+stored against a resource. This endpoint also supports altering tables,
+aliases and indexes and bulk insertion. This endpoint can be called multiple
+times to initially insert more data, add fields, change the aliases or indexes
+as well as the primary keys.</p>
+<p>To create an empty datastore resource and a CKAN resource at the same time,
+provide <tt class="docutils literal"><span class="pre">resource</span></tt> with a valid <tt class="docutils literal"><span class="pre">package_id</span></tt> and omit the <tt class="docutils literal"><span class="pre">resource_id</span></tt>.</p>
+<p>If you want to create a datastore resource from the content of a file,
+provide <tt class="docutils literal"><span class="pre">resource</span></tt> with a valid <tt class="docutils literal"><span class="pre">url</span></tt>.</p>
+<p>See <a class="reference internal" href="datastore.html#fields"><em>Fields</em></a> and <a class="reference internal" href="datastore.html#records"><em>Records</em></a> for details on how to lay out records.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>resource_id</strong> (<em>string</em>) &#8211; resource id that the data is going to be stored against.</li>
+<li><strong>force</strong> (<em>bool (optional, default: False)</em>) &#8211; set to True to edit a read-only resource</li>
+<li><strong>resource</strong> (<em>dictionary</em>) &#8211; resource dictionary that is passed to
+<a class="reference internal" href="../api/index.html#ckan.logic.action.create.resource_create" title="ckan.logic.action.create.resource_create"><tt class="xref py py-meth docutils literal"><span class="pre">resource_create()</span></tt></a>.
+Use instead of <tt class="docutils literal"><span class="pre">resource_id</span></tt> (optional)</li>
+<li><strong>aliases</strong> (<em>list or comma separated string</em>) &#8211; names for read only aliases of the resource. (optional)</li>
+<li><strong>fields</strong> (<em>list of dictionaries</em>) &#8211; fields/columns and their extra metadata. (optional)</li>
+<li><strong>records</strong> (<em>list of dictionaries</em>) &#8211; the data, eg: [{&#8220;dob&#8221;: &#8220;2005&#8221;, &#8220;some_stuff&#8221;: [&#8220;a&#8221;, &#8220;b&#8221;]}]  (optional)</li>
+<li><strong>primary_key</strong> (<em>list or comma separated string</em>) &#8211; fields that represent a unique key (optional)</li>
+<li><strong>indexes</strong> (<em>list or comma separated string</em>) &#8211; indexes on table (optional)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Please note that setting the <tt class="docutils literal"><span class="pre">aliases</span></tt>, <tt class="docutils literal"><span class="pre">indexes</span></tt> or <tt class="docutils literal"><span class="pre">primary_key</span></tt> replaces the exising
+aliases or constraints. Setting <tt class="docutils literal"><span class="pre">records</span></tt> appends the provided records to the resource.</p>
+<p><strong>Results:</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The newly created data object.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dictionary</td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference internal" href="datastore.html#fields"><em>Fields</em></a> and <a class="reference internal" href="datastore.html#records"><em>Records</em></a> for details on how to lay out records.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckanext.datastore.logic.action.datastore_upsert">
+<tt class="descclassname">ckanext.datastore.logic.action.</tt><tt class="descname">datastore_upsert</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="datastore.html#ckanext.datastore.logic.action.datastore_upsert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates or inserts into a table in the DataStore</p>
+<p>The datastore_upsert API action allows you to add or edit records to
+an existing DataStore resource. In order for the <em>upsert</em> and <em>update</em>
+methods to work, a unique key has to be defined via the datastore_create
+action. The available methods are:</p>
+<dl class="docutils">
+<dt><em>upsert</em></dt>
+<dd>Update if record with same key already exists, otherwise insert.
+Requires unique key.</dd>
+<dt><em>insert</em></dt>
+<dd>Insert only. This method is faster that upsert, but will fail if any
+inserted record matches an existing one. Does <em>not</em> require a unique
+key.</dd>
+<dt><em>update</em></dt>
+<dd>Update only. An exception will occur if the key that should be updated
+does not exist. Requires unique key.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>resource_id</strong> (<em>string</em>) &#8211; resource id that the data is going to be stored under.</li>
+<li><strong>force</strong> (<em>bool (optional, default: False)</em>) &#8211; set to True to edit a read-only resource</li>
+<li><strong>records</strong> (<em>list of dictionaries</em>) &#8211; the data, eg: [{&#8220;dob&#8221;: &#8220;2005&#8221;, &#8220;some_stuff&#8221;: [&#8220;a&#8221;,&#8221;b&#8221;]}] (optional)</li>
+<li><strong>method</strong> (<em>string</em>) &#8211; the method to use to put the data into the datastore.
+Possible options are: upsert, insert, update (optional, default: upsert)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Results:</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The modified data object.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckanext.datastore.logic.action.datastore_info">
+<tt class="descclassname">ckanext.datastore.logic.action.</tt><tt class="descname">datastore_info</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="datastore.html#ckanext.datastore.logic.action.datastore_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns information about the data imported, such as column names
+and types.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">A dictionary describing the columns and their types.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> (<em>A UUID</em>) &#8211; Id of the resource we want info about</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckanext.datastore.logic.action.datastore_delete">
+<tt class="descclassname">ckanext.datastore.logic.action.</tt><tt class="descname">datastore_delete</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="datastore.html#ckanext.datastore.logic.action.datastore_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes a table or a set of records from the DataStore.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>resource_id</strong> (<em>string</em>) &#8211; resource id that the data will be deleted from. (optional)</li>
+<li><strong>force</strong> (<em>bool (optional, default: False)</em>) &#8211; set to True to edit a read-only resource</li>
+<li><strong>filters</strong> (<em>dictionary</em>) &#8211; filters to apply before deleting (eg {&#8220;name&#8221;: &#8220;fred&#8221;}).
+If missing delete whole table and all dependent views. (optional)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Results:</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Original filters sent.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckanext.datastore.logic.action.datastore_search">
+<tt class="descclassname">ckanext.datastore.logic.action.</tt><tt class="descname">datastore_search</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="datastore.html#ckanext.datastore.logic.action.datastore_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search a DataStore resource.</p>
+<p>The datastore_search action allows you to search data in a resource.
+DataStore resources that belong to private CKAN resource can only be
+read by you if you have access to the CKAN resource and send the appropriate
+authorization.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>resource_id</strong> (<em>string</em>) &#8211; id or alias of the resource to be searched against</li>
+<li><strong>filters</strong> (<em>dictionary</em>) &#8211; matching conditions to select, e.g {&#8220;key1&#8221;: &#8220;a&#8221;, &#8220;key2&#8221;: &#8220;b&#8221;} (optional)</li>
+<li><strong>q</strong> (<em>string or dictionary</em>) &#8211; full text query. If it&#8217;s a string, it&#8217;ll search on all fields on
+each row. If it&#8217;s a dictionary as {&#8220;key1&#8221;: &#8220;a&#8221;, &#8220;key2&#8221;: &#8220;b&#8221;},
+it&#8217;ll search on each specific field (optional)</li>
+<li><strong>distinct</strong> (<em>bool</em>) &#8211; return only distinct rows (optional, default: false)</li>
+<li><strong>plain</strong> (<em>bool</em>) &#8211; treat as plain text query (optional, default: true)</li>
+<li><strong>language</strong> (<em>string</em>) &#8211; language of the full text query (optional, default: english)</li>
+<li><strong>limit</strong> (<em>int</em>) &#8211; maximum number of rows to return (optional, default: 100)</li>
+<li><strong>offset</strong> (<em>int</em>) &#8211; offset this number of rows (optional)</li>
+<li><strong>fields</strong> (<em>list or comma separated string</em>) &#8211; fields to return (optional, default: all fields in original order)</li>
+<li><strong>sort</strong> (<em>string</em>) &#8211; comma separated field names with ordering
+e.g.: &#8220;fieldname1, fieldname2 desc&#8221;</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Setting the <tt class="docutils literal"><span class="pre">plain</span></tt> flag to false enables the entire PostgreSQL <a class="reference external" href="http://www.postgresql.org/docs/9.1/static/datatype-textsearch.html#DATATYPE-TSQUERY">full text search query language</a>.</p>
+<p>A listing of all available resources can be found at the alias <tt class="docutils literal"><span class="pre">_table_metadata</span></tt>.</p>
+<p>If you need to download the full resource, read <a class="reference internal" href="datastore.html#dump"><em>Download resource as CSV</em></a>.</p>
+<p><strong>Results:</strong></p>
+<p>The result of this action is a dictionary with the following keys:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">A dictionary with the following keys</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>fields</strong> (<em>list of dictionaries</em>) &#8211; fields/columns and their extra metadata</li>
+<li><strong>offset</strong> (<em>int</em>) &#8211; query offset value</li>
+<li><strong>limit</strong> (<em>int</em>) &#8211; query limit value</li>
+<li><strong>filters</strong> (<em>list of dictionaries</em>) &#8211; query filters</li>
+<li><strong>total</strong> (<em>int</em>) &#8211; number of total matching records</li>
+<li><strong>records</strong> (<em>list of dictionaries</em>) &#8211; list of matching results</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckanext.datastore.logic.action.datastore_search_sql">
+<tt class="descclassname">ckanext.datastore.logic.action.</tt><tt class="descname">datastore_search_sql</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="datastore.html#ckanext.datastore.logic.action.datastore_search_sql" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute SQL queries on the DataStore.</p>
+<p>The datastore_search_sql action allows a user to search data in a resource
+or connect multiple resources with join expressions. The underlying SQL
+engine is the
+<a class="reference external" href="http://www.postgresql.org/docs/9.1/interactive/sql/.html">PostgreSQL engine</a>.
+There is an enforced timeout on SQL queries to avoid an unintended DOS.
+DataStore resource that belong to a private CKAN resource cannot be searched with
+this action. Use <a class="reference internal" href="datastore.html#ckanext.datastore.logic.action.datastore_search" title="ckanext.datastore.logic.action.datastore_search"><tt class="xref py py-meth docutils literal"><span class="pre">datastore_search()</span></tt></a> instead.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This action is only available when using PostgreSQL 9.X and using a read-only user on the database.
+It is not available in <a class="reference internal" href="datastore.html#legacy-mode"><em>legacy mode</em></a>.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sql</strong> (<em>string</em>) &#8211; a single SQL select statement</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Results:</strong></p>
+<p>The result of this action is a dictionary with the following keys:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">A dictionary with the following keys</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>fields</strong> (<em>list of dictionaries</em>) &#8211; fields/columns and their extra metadata</li>
+<li><strong>records</strong> (<em>list of dictionaries</em>) &#8211; list of matching results</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckanext.datastore.logic.action.datastore_make_private">
+<tt class="descclassname">ckanext.datastore.logic.action.</tt><tt class="descname">datastore_make_private</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="datastore.html#ckanext.datastore.logic.action.datastore_make_private" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deny access to the DataStore table through
+<a class="reference internal" href="datastore.html#ckanext.datastore.logic.action.datastore_search_sql" title="ckanext.datastore.logic.action.datastore_search_sql"><tt class="xref py py-meth docutils literal"><span class="pre">datastore_search_sql()</span></tt></a>.</p>
+<p>This action is called automatically when a CKAN dataset becomes
+private or a new DataStore table is created for a CKAN resource
+that belongs to a private dataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>resource_id</strong> (<em>string</em>) &#8211; id of resource that should become private</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckanext.datastore.logic.action.datastore_make_public">
+<tt class="descclassname">ckanext.datastore.logic.action.</tt><tt class="descname">datastore_make_public</tt><big>(</big><em>context</em>, <em>data_dict</em><big>)</big><a class="headerlink" href="datastore.html#ckanext.datastore.logic.action.datastore_make_public" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow access to the DataStore table through
+<a class="reference internal" href="datastore.html#ckanext.datastore.logic.action.datastore_search_sql" title="ckanext.datastore.logic.action.datastore_search_sql"><tt class="xref py py-meth docutils literal"><span class="pre">datastore_search_sql()</span></tt></a>.</p>
+<p>This action is called automatically when a CKAN dataset becomes
+public.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>resource_id</strong> (<em>string</em>) &#8211; if of resource that should become public</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="download-resource-as-csv">
+<span id="dump"></span><h4>Download resource as CSV<a class="headerlink" href="datastore.html#download-resource-as-csv" title="Permalink to this headline">¶</a></h4>
+<p>A DataStore resource can be downloaded in the <a class="reference external" href="http://en.wikipedia.org/wiki/Comma-separated_values">CSV</a> file format from <tt class="docutils literal"><span class="pre">{CKAN-URL}/datastore/dump/{RESOURCE-ID}</span></tt>.</p>
+</div>
+<div class="section" id="fields">
+<span id="id1"></span><h4>Fields<a class="headerlink" href="datastore.html#fields" title="Permalink to this headline">¶</a></h4>
+<p>Fields define the column names and the type of the data in a column. A field is defined as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre>{
+    &quot;id&quot;:    # a string which defines the column name
+    &quot;type&quot;:  # the data type for the column
+}
+</pre></div>
+</div>
+<p>Field <strong>types are optional</strong> and will be guessed by the DataStore from the provided data. However, setting the types ensures that future inserts will not fail because of wrong types. See <a class="reference internal" href="datastore.html#valid-types"><em>Field types</em></a> for details on which types are valid.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;foo&quot;</span><span class="p">,</span>
+        <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;int4&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;bar&quot;</span>
+        <span class="c"># type is optional</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="records">
+<span id="id2"></span><h4>Records<a class="headerlink" href="datastore.html#records" title="Permalink to this headline">¶</a></h4>
+<p>A record is the data to be inserted in a DataStore resource and is defined as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre>{
+    &quot;&lt;id&gt;&quot;:  # data to be set
+    # .. more data
+}
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s">&quot;foo&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s">&quot;bar&quot;</span><span class="p">:</span> <span class="s">&quot;Here&#39;s some text&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s">&quot;foo&quot;</span><span class="p">:</span> <span class="mi">42</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="field-types">
+<span id="valid-types"></span><h4>Field types<a class="headerlink" href="datastore.html#field-types" title="Permalink to this headline">¶</a></h4>
+<p>The DataStore supports all types supported by PostgreSQL as well as a few additions. A list of the PostgreSQL types can be found in the <a class="reference external" href="http://www.postgresql.org/docs/9.1/static/datatype.html">type section of the documentation</a>. Below you can find a list of the most common data types. The <tt class="docutils literal"><span class="pre">json</span></tt> type has been added as a storage for nested data.</p>
+<p>In addition to the listed types below, you can also use array types. They are defines by prepending a <tt class="docutils literal"><span class="pre">_</span></tt> or appending <tt class="docutils literal"><span class="pre">[]</span></tt> or <tt class="docutils literal"><span class="pre">[n]</span></tt> where n denotes the length of the array. An arbitrarily long array of integers would be defined as <tt class="docutils literal"><span class="pre">int[]</span></tt>.</p>
+<dl class="docutils">
+<dt>text</dt>
+<dd>Arbitrary text data, e.g. <tt class="docutils literal"><span class="pre">Here's</span> <span class="pre">some</span> <span class="pre">text</span></tt>.</dd>
+<dt>json</dt>
+<dd>Arbitrary nested json data, e.g <tt class="docutils literal"><span class="pre">{&quot;foo&quot;:</span> <span class="pre">42,</span> <span class="pre">&quot;bar&quot;:</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]}</span></tt>.
+Please note that this type is a custom type that is wrapped by the DataStore.</dd>
+<dt>date</dt>
+<dd>Date without time, e.g <tt class="docutils literal"><span class="pre">2012-5-25</span></tt>.</dd>
+<dt>time</dt>
+<dd>Time without date, e.g <tt class="docutils literal"><span class="pre">12:42</span></tt>.</dd>
+<dt>timestamp</dt>
+<dd>Date and time, e.g <tt class="docutils literal"><span class="pre">2012-10-01T02:43Z</span></tt>.</dd>
+<dt>int</dt>
+<dd>Integer numbers, e.g <tt class="docutils literal"><span class="pre">42</span></tt>, <tt class="docutils literal"><span class="pre">7</span></tt>.</dd>
+<dt>float</dt>
+<dd>Floats, e.g. <tt class="docutils literal"><span class="pre">1.61803</span></tt>.</dd>
+<dt>bool</dt>
+<dd>Boolean values, e.g. <tt class="docutils literal"><span class="pre">true</span></tt>, <tt class="docutils literal"><span class="pre">0</span></tt></dd>
+</dl>
+<p>You can find more information about the formatting of dates in the <a class="reference external" href="http://www.postgresql.org/docs/9.1/static/datatype-datetime.html">date/time types section of the PostgreSQL documentation</a>.</p>
+</div>
+<div class="section" id="resource-aliases">
+<span id="id3"></span><h4>Resource aliases<a class="headerlink" href="datastore.html#resource-aliases" title="Permalink to this headline">¶</a></h4>
+<p>A resource in the DataStore can have multiple aliases that are easier to remember than the resource id. Aliases can be created and edited with the <a class="reference internal" href="datastore.html#ckanext.datastore.logic.action.datastore_create" title="ckanext.datastore.logic.action.datastore_create"><tt class="xref py py-meth docutils literal"><span class="pre">datastore_create()</span></tt></a> API endpoint. All aliases can be found in a special view called <tt class="docutils literal"><span class="pre">_table_metadata</span></tt>. See <a class="reference internal" href="datastore.html#db-internals"><em>Internal structure of the database</em></a> for full reference.</p>
+</div>
+<div class="section" id="htsql-support">
+<span id="datastore-search-htsql"></span><h4>HTSQL support<a class="headerlink" href="datastore.html#htsql-support" title="Permalink to this headline">¶</a></h4>
+<p>The <a class="reference external" href="https://github.com/okfn/ckanext-htsql">ckanext-htsql</a> extension adds an API action that allows a user to search data in a resource using the <a class="reference external" href="http://htsql.org/doc/">HTSQL</a> query expression language. Please refer to the extension documentation to know more.</p>
+</div>
+<div class="section" id="comparison-of-different-querying-methods">
+<span id="comparison-querying"></span><h4>Comparison of different querying methods<a class="headerlink" href="datastore.html#comparison-of-different-querying-methods" title="Permalink to this headline">¶</a></h4>
+<p>The DataStore supports querying with multiple API endpoints. They are similar but support different features. The following list gives an overview of the different methods.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="31%" />
+<col width="33%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><a class="reference internal" href="datastore.html#ckanext.datastore.logic.action.datastore_search" title="ckanext.datastore.logic.action.datastore_search"><tt class="xref py py-meth docutils literal"><span class="pre">datastore_search()</span></tt></a></th>
+<th class="head"><a class="reference internal" href="datastore.html#ckanext.datastore.logic.action.datastore_search_sql" title="ckanext.datastore.logic.action.datastore_search_sql"><tt class="xref py py-meth docutils literal"><span class="pre">datastore_search_sql()</span></tt></a></th>
+<th class="head"><a class="reference internal" href="datastore.html#datastore-search-htsql"><em>HTSQL</em></a></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Ease of use</strong></td>
+<td>Easy</td>
+<td>Complex</td>
+<td>Medium</td>
+</tr>
+<tr class="row-odd"><td><strong>Flexibility</strong></td>
+<td>Low</td>
+<td>High</td>
+<td>Medium</td>
+</tr>
+<tr class="row-even"><td><strong>Query language</strong></td>
+<td>Custom (JSON)</td>
+<td>SQL</td>
+<td>HTSQL</td>
+</tr>
+<tr class="row-odd"><td><strong>Join resources</strong></td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="internal-structure-of-the-database">
+<span id="db-internals"></span><h4>Internal structure of the database<a class="headerlink" href="datastore.html#internal-structure-of-the-database" title="Permalink to this headline">¶</a></h4>
+<p>The DataStore is a thin layer on top of a PostgreSQL database. Each DataStore resource belongs to a CKAN resource. The name of a table in the DataStore is always the resource id of the CKAN resource for the data.</p>
+<p>As explained in <a class="reference internal" href="datastore.html#resource-aliases"><em>Resource aliases</em></a>, a resource can have mnemonic aliases which are stored as views in the database.</p>
+<p>All aliases (views) and resources (tables respectively relations) of the DataStore can be found in a special view called <tt class="docutils literal"><span class="pre">_table_metadata</span></tt>. To access the list, open <tt class="docutils literal"><span class="pre">http://{YOUR-CKAN-INSTALLATION}/api/3/action/datastore_search?resource_id=_table_metadata</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">_table_metadata</span></tt> has the following fields:</p>
+<dl class="docutils">
+<dt>_id</dt>
+<dd>Unique key of the relation in <tt class="docutils literal"><span class="pre">_table_metadata</span></tt>.</dd>
+<dt>alias_of</dt>
+<dd>Name of a relation that this alias point to. This field is <tt class="docutils literal"><span class="pre">null</span></tt> iff the name is not an alias.</dd>
+<dt>name</dt>
+<dd>Contains the name of the alias if alias_of is not null. Otherwise, this is the resource id of the CKAN resource for the DataStore resource.</dd>
+<dt>oid</dt>
+<dd>The PostgreSQL object ID of the table that belongs to name.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="apps-ideas.html" class="btn btn-neutral float-right"
+           title="Apps &amp; Ideas"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="filestore.html" class="btn btn-neutral"
+           title="FileStore and file uploads">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: ckan-2.5.3
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../index.html">latest</a></dd>
+        
+          <dd><a href="../../ckan-2.6.0/index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../../ckan-2.4.4/index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../../ckan-2.3.5/index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

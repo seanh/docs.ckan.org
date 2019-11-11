@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Upgrading the dependencies &mdash; CKAN 2.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN 2.2.3 documentation" href="index.html" />
+    <link rel="up" title="Contributing to CKAN" href="contributing.html" />
+    <link rel="next" title="Frontend Development Guidelines" href="frontend-development.html" />
+    <link rel="prev" title="Testing coding standards" href="testing-coding-standards.html" />
+
+  
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/upgrading-dependencies.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'upgrading-dependencies'
+</script>
+
+<script type="text/javascript" src="_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+  <body>
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="contents.html"><img src="_static/ckanlogo.png" alt="CKAN" /></a>
+        
+        <a class="brand" href="contents.html">CKAN<span class="version"> v2.2.3</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.2.3/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to CKAN&#8217;s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions/index.html">Writing CKAN extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/index.html">Appendices</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="contents.html">CKAN 2.2.3 documentation</a> &raquo;
+              <a href="contributing.html"
+                    accesskey="U">
+                    Contributing to CKAN
+                  </a>
+                   &raquo;
+        </div>
+
+        
+  <div class="section" id="upgrading-the-dependencies">
+<h1>Upgrading the dependencies<a class="headerlink" href="upgrading-dependencies.html#upgrading-the-dependencies" title="Permalink to this headline">¶</a></h1>
+<p>The Python modules that CKAN depends on are pinned to specific versions, so we
+can guarantee that whenever anyone installs CKAN, they&#8217;ll always get the same
+versions of the Python modules in their virtual environment.</p>
+<p>Our dependencies are defined in three files:</p>
+<dl class="docutils">
+<dt>requirements.in</dt>
+<dd>This file is only used to create a new version of the <tt class="docutils literal"><span class="pre">requirements.txt</span></tt>
+file when upgrading the dependencies.
+Contains our direct dependencies only (not dependencies of dependencies)
+with loosely defined versions. For example, <tt class="docutils literal"><span class="pre">apachemiddleware&gt;=0.1.1,&lt;0.2</span></tt>.</dd>
+<dt>requirements.txt</dt>
+<dd>This is the file that people actually use to install CKAN&#8217;s dependencies into
+their virtualenvs. It contains every dependency, including dependencies of
+dependencies, each pinned to a specific version.
+For example, <tt class="docutils literal"><span class="pre">simplejson==3.3.1</span></tt>.</dd>
+<dt>dev-requirements.txt</dt>
+<dd>Contains those dependencies only needed by developers, not needed for
+production sites. These are pinned to a specific version. For example,
+<tt class="docutils literal"><span class="pre">factory-boy==2.1.1</span></tt>.</dd>
+</dl>
+<p>We haven&#8217;t created a <tt class="docutils literal"><span class="pre">dev-requirements.in</span></tt> file because we have too few dev
+dependencies, we don&#8217;t update them often, and none of them have a known
+incompatible version.</p>
+<div class="section" id="steps-to-upgrade">
+<h2>Steps to upgrade<a class="headerlink" href="upgrading-dependencies.html#steps-to-upgrade" title="Permalink to this headline">¶</a></h2>
+<p>These steps will upgrade all of CKAN&#8217;s dependencies to the latest versions that
+work with CKAN:</p>
+<ol class="arabic simple">
+<li>Create a new virtualenv: <tt class="docutils literal"><span class="pre">virtualenv</span> <span class="pre">--no-site-packages</span> <span class="pre">upgrading</span></tt></li>
+<li>Install the requirements with unpinned versions: <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span>
+<span class="pre">requirements.in</span></tt></li>
+<li>Save the new dependencies versions: <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">freeze</span> <span class="pre">&gt;</span> <span class="pre">requirements.txt</span></tt>. We
+have to do this before installing the other dependencies so we get only what
+was in <tt class="docutils literal"><span class="pre">requirements.in</span></tt></li>
+<li>Install CKAN: <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">develop</span></tt></li>
+<li>Install the development dependencies: <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span>
+<span class="pre">dev-requirements.txt</span></tt></li>
+<li>Run the tests to make sure everything still works (see <a class="reference internal" href="test.html"><em>Testing CKAN</em></a>).<ul>
+<li>If not, try to fix the problem. If it&#8217;s too complicated, pinpoint which
+dependency&#8217;s version broke our tests, find an older version that still
+works, and add it to <tt class="docutils literal"><span class="pre">requirements.in</span></tt> (i.e., if <tt class="docutils literal"><span class="pre">python-dateutil</span></tt>
+2.0.0 broke CKAN, you&#8217;d add <tt class="docutils literal"><span class="pre">python-dateutil&gt;=1.5.0,&lt;2.0.0</span></tt>). Go back to
+step 1.</li>
+</ul>
+</li>
+<li>Navigate a bit on CKAN to make sure the tests didn&#8217;t miss anything. Review
+the dependencies changes and their changelogs. If everything seems fine, go
+ahead and make a pull request (see <a class="reference internal" href="contributing.html#making-a-pull-request"><em>Making a pull request</em></a>).</li>
+</ol>
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="frontend-development.html"
+                  title="Frontend Development Guidelines" accesskey="N">
+                    
+                      
+                    
+                    Frontend Development Guidelines→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="testing-coding-standards.html"
+                  title="Testing coding standards" accesskey="P">
+                    
+                      
+                    
+                    ← Testing coding standards
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/ckan/ckan">Source</a>
+&mdash;
+<a href="https://github.com/ckan/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

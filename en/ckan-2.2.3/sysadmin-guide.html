@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Sysadmin guide &mdash; CKAN 2.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN 2.2.3 documentation" href="index.html" />
+    <link rel="next" title="Installing CKAN" href="installing.html" />
+    <link rel="prev" title="User guide" href="user-guide.html" />
+
+  
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/sysadmin-guide.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'sysadmin-guide'
+</script>
+
+<script type="text/javascript" src="_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+  <body>
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="contents.html"><img src="_static/ckanlogo.png" alt="CKAN" /></a>
+        
+        <a class="brand" href="contents.html">CKAN<span class="version"> v2.2.3</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.2.3/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to CKAN&#8217;s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="sysadmin-guide.html">Sysadmin guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sysadmin-guide.html#creating-a-sysadmin-account">Creating a sysadmin account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysadmin-guide.html#customizing-look-and-feel">Customizing look and feel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysadmin-guide.html#managing-organizations-and-datasets">Managing organizations and datasets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sysadmin-guide.html#moving-a-dataset-between-organizations">Moving a dataset between organizations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sysadmin-guide.html#permanently-deleting-datasets">Permanently deleting datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysadmin-guide.html#managing-users">Managing users</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions/index.html">Writing CKAN extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/index.html">Appendices</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="contents.html">CKAN 2.2.3 documentation</a> &raquo;
+        </div>
+
+        
+  <div class="section" id="sysadmin-guide">
+<h1>Sysadmin guide<a class="headerlink" href="sysadmin-guide.html#sysadmin-guide" title="Permalink to this headline">¶</a></h1>
+<p>This guide covers the administration features of CKAN 2.0, such as managing
+users and datasets. These features are available via the web user interface to
+a user with sysadmin rights. The guide assumes familiarity with the
+<a class="reference internal" href="user-guide.html"><em>User guide</em></a>.</p>
+<p>Certain administration tasks are not available through the web UI but need
+access to the server where CKAN is installed. These include the range of
+configuration options using the site&#8217;s &#8220;config&#8221; file, documented in
+<a class="reference internal" href="configuration.html"><em>Config File Options</em></a>, and those available via the <a class="reference internal" href="paster.html"><em>Command Line Interface</em></a>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">A sysadmin user can access and edit any organizations, view and change user
+details, and permanently delete datasets. You should carefully consider who has
+access to a sysadmin account on your CKAN system.</p>
+</div>
+<div class="section" id="creating-a-sysadmin-account">
+<h2>Creating a sysadmin account<a class="headerlink" href="sysadmin-guide.html#creating-a-sysadmin-account" title="Permalink to this headline">¶</a></h2>
+<p>Normally, a sysadmin account is created as part of the process of setting up
+CKAN. If one does not already exist, you will need to create a sysadmin user,
+or give sysadmin rights to an existing user. To do this requires access to the
+server; see <a class="reference internal" href="getting-started.html#create-admin-user"><em>Creating a sysadmin user</em></a> for details.  If another organization is hosting
+CKAN, you will need to ask them to create a sysadmin user.</p>
+<p>Adding more sysadmin accounts is done in the same way. It cannot be done via
+the web UI.</p>
+</div>
+<div class="section" id="customizing-look-and-feel">
+<h2>Customizing look and feel<a class="headerlink" href="sysadmin-guide.html#customizing-look-and-feel" title="Permalink to this headline">¶</a></h2>
+<p>Some simple customizations to customize the &#8216;look and feel&#8217; of your CKAN site
+are available via the UI, at <tt class="docutils literal"><span class="pre">http://&lt;my-ckan-url&gt;/ckan-admin/config/</span></tt>.</p>
+<img alt="_images/customize_look_and_feel.jpg" src="_images/customize_look_and_feel.jpg" />
+<p>Here you can edit the following:</p>
+<dl class="docutils">
+<dt>Site title</dt>
+<dd>This title is used in the HTML &lt;title&gt; of pages served by CKAN (which may
+be displayed on your browser&#8217;s title bar). For example if your site title is
+&#8220;CKAN Demo&#8221;, the home page is called &#8220;Welcome - CKAN Demo&#8221;. The site title is
+also used in a few other places, e.g. in the alt-text of the main site logo.</dd>
+<dt>Style</dt>
+<dd>Choose one of five colour schemes for the default theme.</dd>
+<dt>Site tag line</dt>
+<dd>This is not used in CKAN&#8217;s current default themes, but may be used in
+future.</dd>
+<dt>Site tag logo</dt>
+<dd>A URL for the site logo, used at the head of every page of CKAN.</dd>
+<dt>About</dt>
+<dd>Text that appears on the &#8220;about&#8221; page, <tt class="docutils literal"><span class="pre">http://&lt;my-ckan-url&gt;/about</span></tt>. You
+can use <a class="reference external" href="http://daringfireball.net/projects/markdown/basics">Markdown</a> here. If it is left empty, a standard text describing CKAN
+will appear.</dd>
+</dl>
+<dl class="docutils">
+<dt>Intro text</dt>
+<dd>This text appears prominently on the home page of your site.</dd>
+<dt>Custom CSS</dt>
+<dd>For simple style changes, you can add CSS code here which will be added to
+the <tt class="docutils literal"><span class="pre">&lt;head&gt;</span></tt> of every page.</dd>
+</dl>
+</div>
+<div class="section" id="managing-organizations-and-datasets">
+<h2>Managing organizations and datasets<a class="headerlink" href="sysadmin-guide.html#managing-organizations-and-datasets" title="Permalink to this headline">¶</a></h2>
+<p>A sysadmin user has full access to user accounts, organizations and datasets.
+For example, you have access to every organization as if you were a member of
+that organization. Thus most management operations are done in exactly the same
+way as in the normal web interface.</p>
+<p>For example, to add or delete users to an organization, change a user&#8217;s role in
+the organization, delete the organization or edit its description, etc, visit
+the organization&#8217;s home page. You will see the &#8216;Admin&#8217; button as if you were a
+member of the organization. You can use this to perform all organization admin
+functions. For details, see the <a class="reference internal" href="user-guide.html"><em>User guide</em></a>.</p>
+<p>Similarly, to edit, update or delete a dataset, go to the dataset page and use
+the &#8216;Edit&#8217; button. As an admin user you can see all datasets including those
+that are private to an organization. They will show up when doing a dataset
+search.</p>
+<div class="section" id="moving-a-dataset-between-organizations">
+<h3>Moving a dataset between organizations<a class="headerlink" href="sysadmin-guide.html#moving-a-dataset-between-organizations" title="Permalink to this headline">¶</a></h3>
+<p>To move a dataset between organizations, visit the dataset&#8217;s Edit page. Choose
+the appropriate entry from the &#8220;organization&#8221; drop-down list, and press &#8220;Save&#8221;.</p>
+<img alt="_images/move_dataset_between_organizations.jpg" src="_images/move_dataset_between_organizations.jpg" />
+</div>
+</div>
+<div class="section" id="permanently-deleting-datasets">
+<h2>Permanently deleting datasets<a class="headerlink" href="sysadmin-guide.html#permanently-deleting-datasets" title="Permalink to this headline">¶</a></h2>
+<p>A dataset which has been deleted is not permanently removed from CKAN; it is
+simply marked as &#8216;deleted&#8217; and will no longer show up in search, etc. The
+dataset&#8217;s URL cannot be re-used for a new dataset.</p>
+<p>To permanently delete (&#8220;purge&#8221;) a dataset:</p>
+<ul class="simple">
+<li>Navigate to the dataset&#8217;s &#8220;Edit&#8221; page, and delete it.</li>
+<li>Visit <tt class="docutils literal"><span class="pre">http://&lt;my-ckan-url&gt;/ckan-admin/trash/</span></tt>.</li>
+</ul>
+<p>This page shows all deleted datasets and allows you to delete them permanently.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This operation cannot be reversed!</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">At present, it is not possible to purge organizations or groups using the
+web UI. This can only be done with access to the server, by directly deleting
+them from CKAN&#8217;s database.</p>
+</div>
+</div>
+<div class="section" id="managing-users">
+<h2>Managing users<a class="headerlink" href="sysadmin-guide.html#managing-users" title="Permalink to this headline">¶</a></h2>
+<p>To find a user&#8217;s profile, go to <tt class="docutils literal"><span class="pre">http://&lt;my-ckan-url&gt;/user/</span></tt>. You can search
+for users in the search box provided.</p>
+<p>You can search by any part of the user profile, including their e-mail address.
+This is useful if, for example, a user has forgotten their user ID. For
+non-sysadmin users, the search on this page will only match public parts of the
+profile, so they cannot search by e-mail address.</p>
+<p>On their user profile, you will see an &#8220;Edit&#8221; button. CKAN displays the user
+settings page. You can change any settings for the user, including their
+username, name and password.</p>
+<img alt="_images/manage_users.jpg" src="_images/manage_users.jpg" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">At present, it is not possible to delete users.</p>
+</div>
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="installing.html"
+                  title="Installing CKAN" accesskey="N">
+                    
+                      
+                    
+                    Installing CKAN→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="user-guide.html"
+                  title="User guide" accesskey="P">
+                    
+                      
+                    
+                    ← User guide
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/ckan/ckan">Source</a>
+&mdash;
+<a href="https://github.com/ckan/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

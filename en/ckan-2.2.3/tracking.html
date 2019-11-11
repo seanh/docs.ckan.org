@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Page View Tracking &mdash; CKAN 2.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN 2.2.3 documentation" href="index.html" />
+    <link rel="up" title="Features" href="features.html" />
+    <link rel="next" title="Multilingual Extension" href="multilingual.html" />
+    <link rel="prev" title="Email notifications" href="email-notifications.html" />
+
+  
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/tracking.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'tracking'
+</script>
+
+<script type="text/javascript" src="_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+  <body>
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="contents.html"><img src="_static/ckanlogo.png" alt="CKAN" /></a>
+        
+        <a class="brand" href="contents.html">CKAN<span class="version"> v2.2.3</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.2.3/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to CKAN&#8217;s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="features.html">Features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html">Organizations and authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html">Data Viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filestore.html">FileStore and file uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html">DataStore extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background-tasks.html">Background tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email-notifications.html">Email notifications</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="tracking.html">Page View Tracking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#enabling-page-view-tracking">Enabling Page View Tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#retrieving-tracking-data">Retrieving Tracking Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#sorting-datasets-by-popularity">Sorting Datasets by Popularity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracking.html#highlighting-popular-datasets-and-resources">Highlighting Popular Datasets and Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="multilingual.html">Multilingual Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stats.html">Stats Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extensions/index.html">Writing CKAN extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/index.html">Appendices</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="contents.html">CKAN 2.2.3 documentation</a> &raquo;
+              <a href="features.html"
+                    accesskey="U">
+                    Features
+                  </a>
+                   &raquo;
+        </div>
+
+        
+  <div class="section" id="page-view-tracking">
+<span id="tracking"></span><h1>Page View Tracking<a class="headerlink" href="tracking.html#page-view-tracking" title="Permalink to this headline">¶</a></h1>
+<p>CKAN can track visits to pages of your site and use this tracking data to:</p>
+<ul class="simple">
+<li>Sort datasets by popularity</li>
+<li>Highlight popular datasets and resources</li>
+<li>Show view counts next to datasets and resources</li>
+<li>Show a list of the most popular datasets</li>
+<li>Export page-view data to a CSV file</li>
+</ul>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference external" href="https://github.com/ckan/ckanext-googleanalytics">ckanext-googleanalytics</a></dt>
+<dd>A CKAN extension that integrates Google Analytics into CKAN.</dd>
+</dl>
+</div>
+<div class="section" id="enabling-page-view-tracking">
+<h2>Enabling Page View Tracking<a class="headerlink" href="tracking.html#enabling-page-view-tracking" title="Permalink to this headline">¶</a></h2>
+<p>To enable page view tracking:</p>
+<ol class="arabic">
+<li><p class="first">Set <a class="reference internal" href="configuration.html#ckan-tracking-enabled"><em>ckan.tracking_enabled</em></a> to true in the <tt class="docutils literal"><span class="pre">[app:main]</span></tt> section of your
+CKAN configuration file (e.g. <tt class="docutils literal"><span class="pre">development.ini</span></tt> or <tt class="docutils literal"><span class="pre">production.ini</span></tt>):</p>
+<div class="highlight-python"><div class="highlight"><pre>[app:main]
+ckan.tracking_enabled = true
+</pre></div>
+</div>
+<p>Save the file and restart your web server. CKAN will now record raw page
+view tracking data in your CKAN database as pages are viewed.</p>
+</li>
+<li><p class="first">Setup a cron job to update the tracking summary data.</p>
+<p>For operations based on the tracking data CKAN uses a summarised version of
+the data, not the raw tracking data that is recorded &#8220;live&#8221; as page views
+happen. The <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">tracking</span> <span class="pre">update</span></tt> and <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">search-index</span> <span class="pre">rebuild</span></tt>
+commands need to be run periodicially to update this tracking summary data.</p>
+<p>You can setup a cron job to run these commands. On most UNIX systems you can
+setup a cron job by running <tt class="docutils literal"><span class="pre">crontab</span> <span class="pre">-e</span></tt> in a shell to edit your crontab
+file, and adding a line to the file to specify the new job. For more
+information run <tt class="docutils literal"><span class="pre">man</span> <span class="pre">crontab</span></tt> in a shell. For example, here is a crontab
+line to update the tracking data and rebuild the search index hourly:</p>
+<div class="highlight-python"><div class="highlight"><pre>@hourly /usr/lib/ckan/bin/paster --plugin=ckan tracking update -c /etc/ckan/production.ini &amp;&amp; /usr/lib/ckan/bin/paster --plugin=ckan search-index rebuild -r -c /etc/ckan/production.ini
+</pre></div>
+</div>
+<p>Replace <tt class="docutils literal"><span class="pre">/usr/lib/ckan/bin/</span></tt> with the path to the <tt class="docutils literal"><span class="pre">bin</span></tt> directory of the
+virtualenv that you&#8217;ve installed CKAN into, and replace <tt class="docutils literal"><span class="pre">/etc/ckan/production.ini</span></tt>
+with the path to your CKAN configuration file.</p>
+<p>The <tt class="docutils literal"><span class="pre">&#64;hourly</span></tt> can be replaced with <tt class="docutils literal"><span class="pre">&#64;daily</span></tt>, <tt class="docutils literal"><span class="pre">&#64;weekly</span></tt> or
+<tt class="docutils literal"><span class="pre">&#64;monthly</span></tt>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="retrieving-tracking-data">
+<h2>Retrieving Tracking Data<a class="headerlink" href="tracking.html#retrieving-tracking-data" title="Permalink to this headline">¶</a></h2>
+<p>Tracking summary data for datasets and resources is available in the dataset
+and resource dictionaries returned by, for example, the <tt class="docutils literal"><span class="pre">package_show()</span></tt>
+API:</p>
+<div class="highlight-python"><div class="highlight"><pre>&quot;tracking_summary&quot;: {
+    &quot;recent&quot;: 5,
+    &quot;total&quot;: 15
+},
+</pre></div>
+</div>
+<p>This can be used, for example, by custom templates to show the number of views
+next to datasets and resources.  A dataset or resource&#8217;s <tt class="docutils literal"><span class="pre">recent</span></tt> count is
+its number of views in the last 14 days, the <tt class="docutils literal"><span class="pre">total</span></tt> count is all of its
+tracked views (including recent ones).</p>
+<p>You can also export tracking data for all datasets to a CSV file using the
+<tt class="docutils literal"><span class="pre">paster</span> <span class="pre">tracking</span> <span class="pre">export</span></tt> command. For details, run <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">tracking</span> <span class="pre">-h</span></tt>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Repeatedly visiting the same page will not increase the page&#8217;s view count!
+Page view counting is limited to one view per user per page per day.</p>
+</div>
+</div>
+<div class="section" id="sorting-datasets-by-popularity">
+<h2>Sorting Datasets by Popularity<a class="headerlink" href="tracking.html#sorting-datasets-by-popularity" title="Permalink to this headline">¶</a></h2>
+<p>Once you&#8217;ve enabled page view tracking on your CKAN site, you can view datasets
+most-popular-first by selecting <tt class="docutils literal"><span class="pre">Popular</span></tt> from the <tt class="docutils literal"><span class="pre">Order</span> <span class="pre">by:</span></tt> dropdown on
+the dataset search page:</p>
+<img alt="_images/sort-datasets-by-popularity.png" src="_images/sort-datasets-by-popularity.png" />
+<p>The datasets are sorted by their number of recent views.</p>
+<p>You can retrieve datasets most-popular-first from the
+<a class="reference internal" href="api.html"><em>CKAN API</em></a> by passing <tt class="docutils literal"><span class="pre">'sort':</span> <span class="pre">'views_recent</span> <span class="pre">desc'</span></tt> to the
+<tt class="docutils literal"><span class="pre">package_search()</span></tt> action. This could be used, for example, by a custom
+template to show a list of the most popular datasets on the site&#8217;s front page.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">You can also sort datasets by total views rather than recent views. Pass
+<tt class="docutils literal"><span class="pre">'sort':</span> <span class="pre">'views_total</span> <span class="pre">desc'</span></tt> to the <tt class="docutils literal"><span class="pre">package_search()</span></tt> API, or use the
+URL <tt class="docutils literal"><span class="pre">/dataset?q=&amp;sort=views_total+desc</span></tt> in the web interface.</p>
+</div>
+</div>
+<div class="section" id="highlighting-popular-datasets-and-resources">
+<h2>Highlighting Popular Datasets and Resources<a class="headerlink" href="tracking.html#highlighting-popular-datasets-and-resources" title="Permalink to this headline">¶</a></h2>
+<p>Once you&#8217;ve enabled page view tracking on your CKAN site, popular datasets and
+resources (those with more than 10 views) will be highlighted with a &#8220;popular&#8221;
+badge and a tooltip showing the number of views:</p>
+<img alt="_images/popular-dataset.png" src="_images/popular-dataset.png" />
+<img alt="_images/popular-resource.png" src="_images/popular-resource.png" />
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="multilingual.html"
+                  title="Multilingual Extension" accesskey="N">
+                    
+                      
+                    
+                    Multilingual Extension→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="email-notifications.html"
+                  title="Email notifications" accesskey="P">
+                    
+                      
+                    
+                    ← Email notifications
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/ckan/ckan">Source</a>
+&mdash;
+<a href="https://github.com/ckan/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

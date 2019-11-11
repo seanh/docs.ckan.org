@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Upgrading CKAN &mdash; CKAN Documentation 2.1.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.1.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN Documentation 2.1.5 documentation" href="index.html" />
+    <link rel="next" title="Doing a CKAN Release" href="release-process.html" />
+    <link rel="prev" title="Deploying a Source Install" href="deployment.html" />
+
+
+<!-- RTD Extra Head -->
+
+
+
+  
+  <!-- 
+  Always link to the latest version, as canonical.
+  http://docs.readthedocs.org/en/latest/canonical.html
+  -->
+  <link rel="canonical" href="http://docs.ckan.org//en/latest/upgrading.html" />
+  
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "ckan",
+    version: "ckan-2.1.5",
+    language: "en",
+    page: "upgrading",
+    builder: "sphinx",
+    theme: "sphinx-theme-okfn",
+    docroot: "/doc/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org/",
+    commit: "1d691ae3ba38a6b98dc69d0e2c16c71e186cd36e"
+  }
+  // Old variables
+  var doc_version = "ckan-2.1.5";
+  var doc_slug = "ckan";
+  var page_name = "upgrading";
+  var html_theme = "sphinx-theme-okfn";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body role="document">
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="index.html"><img src="http://docs.ckan.org/en/ckan-2.1.5/_static/http://assets.okfn.org/p/opendatahandbook/img/data-wrench-inverted.png" alt="CKAN Documentation" /></a>
+        
+        <a class="brand" href="index.html">CKAN Documentation<span class="version"> v2.1.5</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.1.5/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="deployment.html"
+                        title="previous chapter">Deploying a Source Install</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="release-process.html"
+                        title="next chapter">Doing a CKAN Release</a></p><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing CKAN</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="upgrading.html">Upgrading CKAN</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="upgrading.html#ckan-releases">CKAN releases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading.html#release-process">Release process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="release-process.html">Doing a CKAN Release</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading.html#upgrading">Upgrading CKAN</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="upgrading.html#backup-your-database">1. Backup your database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="upgrading.html#upgrade-ckan">2. Upgrade CKAN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="writing-extensions.html">Writing Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="index.html">CKAN Documentation 2.1.5 documentation</a> &raquo;
+        </div>
+
+        
+  <div class="section" id="upgrading-ckan">
+<h1>Upgrading CKAN<a class="headerlink" href="upgrading.html#upgrading-ckan" title="Permalink to this headline">¶</a></h1>
+<p>This document covers CKAN releases and how to upgrade a site to a newer version
+of CKAN:</p>
+<ul class="simple">
+<li><a class="reference internal" href="upgrading.html#releases"><span>CKAN releases</span></a> describes the different types of CKAN release</li>
+<li><a class="reference internal" href="upgrading.html#release-process"><span>Release process</span></a> describes the process that the CKAN dev team follows,
+when we make a new CKAN release</li>
+<li>Finally, <a class="reference internal" href="upgrading.html#upgrading"><span>Upgrading CKAN</span></a> will walk you through the steps for upgrading a
+CKAN site to a newer version of CKAN</li>
+</ul>
+<p>For a list of CKAN releases and the changes introduced in each release, see the
+<a class="reference internal" href="changelog.html"><em>Changelog</em></a>.</p>
+<div class="section" id="ckan-releases">
+<span id="releases"></span><h2>CKAN releases<a class="headerlink" href="upgrading.html#ckan-releases" title="Permalink to this headline">¶</a></h2>
+<p>CKAN follows a predictable release cycle so that users can depend on stable
+releases of CKAN, and can plan their upgrades to new releases.
+The <a class="reference internal" href="changelog.html"><em>Changelog</em></a> documents the main changes in each release.</p>
+<p>Each release has a version number of the form <code class="docutils literal"><span class="pre">M.m</span></code> (eg. 2.1) or <code class="docutils literal"><span class="pre">M.m.p</span></code>
+(eg. 1.8.2), where <code class="docutils literal"><span class="pre">M</span></code> is the <strong>major version</strong>, <code class="docutils literal"><span class="pre">m</span></code> is the <strong>minor
+version</strong> and <code class="docutils literal"><span class="pre">p</span></code> is the <strong>patch version</strong> number. There are three types of
+release:</p>
+<dl class="docutils">
+<dt>Major Releases</dt>
+<dd>Major releases, such as CKAN 1.0 and CKAN 2.0, increment the major version
+number.  These releases contain major changes in the CKAN code base, with
+significant refactorings and breaking changes, for instance in the API or the
+templates.  These releases are very infrequent.</dd>
+<dt>Minor Releases</dt>
+<dd>Minor releases, such as CKAN 1.8 and CKAN 2.1, increment the minor version
+number. These releases are not as disruptive as major releases, but
+backwards-incompatible changes <em>may</em> be introduced in minor releases. The
+<a class="reference internal" href="changelog.html"><em>Changelog</em></a> will document any breaking changes. We aim to release a minor
+version of CKAN roughly every three months.</dd>
+<dt>Patch Releases</dt>
+<dd><p class="first">Patch releases, such as CKAN 1.8.1 or CKAN 2.0.1, increment the patch version
+number. These releases do not break backwards-compatibility, they include
+only bug fixes and non-breaking optimizations and features.
+Patch releases do not contain:</p>
+<ul class="last simple">
+<li>Database schema changes or migrations</li>
+<li>Function interface changes</li>
+<li>Plugin interface changes</li>
+<li>New dependencies</li>
+<li>Big refactorings or new features in critical parts of the code</li>
+</ul>
+</dd>
+</dl>
+<p>Users should always run the latest patch release for the minor release they
+are on, as they contain important bug fixes and security updates. As they
+don&#8217;t include backwards incompatible changes, the upgrade process (as
+described in <a class="reference internal" href="upgrade-package-to-patch-release.html"><em>Upgrading a CKAN 2 package install to a new patch release</em></a>) should be
+straightforward.</p>
+<p>Outdated patch releases will no longer be supported after a newer patch
+release has been released. For example once CKAN 2.0.2 has been released,
+CKAN 2.0.1 will no longer be supported.</p>
+<p>Releases are announced on the <code class="docutils literal"><span class="pre">ckan-announce</span></code> mailing list, a low-volume
+list that CKAN instance maintainers can subscribe to in order to be up to date
+with upcoming releases. You can sign up to the list here:</p>
+<p><a class="reference external" href="http://lists.okfn.org/mailman/listinfo/ckan-announce">http://lists.okfn.org/mailman/listinfo/ckan-announce</a></p>
+</div>
+<div class="section" id="release-process">
+<span id="id1"></span><h2>Release process<a class="headerlink" href="upgrading.html#release-process" title="Permalink to this headline">¶</a></h2>
+<p>When the development is ready to start the process of releasing a new version
+of CKAN, we will:</p>
+<ol class="arabic simple">
+<li>Create a new release branch from the master branch, named <code class="docutils literal"><span class="pre">release-v*</span></code>
+where <code class="docutils literal"><span class="pre">*</span></code> is the release&#8217;s version number.</li>
+<li>Deploy the release branch on <a class="reference external" href="http://beta.ckan.org">beta.ckan.org</a> for testing.</li>
+<li>During the next two-three weeks, we&#8217;ll allow changes on the release branch
+only to stabilize the code, update translations and documentation, etc.
+(new features are usually not added on the release branch).</li>
+<li>During the final week before the release, we&#8217;ll only allow critical bug
+fixes to be committed on the release branch.</li>
+</ol>
+<p>At some point during the beta period a <strong>strings freeze</strong> will begin.
+That means that no changes to translatable strings are allowed on the release
+branch (no new strings, or changes to existing strings). This will give
+translators time to update the translations on <a class="reference external" href="https://www.transifex.com/projects/p/ckan">Transifex</a>. We&#8217;ll publish a
+<strong>call for translations</strong> to the <a class="reference external" href="http://lists.okfn.org/mailman/listinfo/ckan-dev">ckan-dev</a> and <a class="reference external" href="http://lists.okfn.org/mailman/listinfo/ckan-discuss">ckan-discuss</a> mailing
+lists, announcing that the new version is ready to be translated.</p>
+<p>At some point before the final release, we&#8217;ll announce an <strong>end of
+translations</strong> after which no new translations will be pulled into the release
+branch. At this point we&#8217;ll deploy the translations to <a class="reference external" href="http://beta.ckan.org">beta.ckan.org</a> and
+we&#8217;ll put out a request for people to test CKAN in their languages.</p>
+<p>The upcoming releases are announced on the <a class="reference external" href="http://lists.okfn.org/mailman/listinfo/ckan-announce">ckan-announce</a> mailing list.</p>
+<p>Release branches are not merged back into master. All changes on a release
+branch are cherry-picked from master (or merged from special branches based on
+the release branch).</p>
+<p>To ensure that the release guidelines are enforced one of the CKAN core
+developers will act as <strong>Release Manager</strong>. They have the final say on what is
+merged into the release branches.</p>
+<p>Detailed release process instructions for CKAN Developers can be found in the
+<a class="reference internal" href="release-process.html"><em>Doing a CKAN Release</em></a> document:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-process.html">Doing a CKAN Release</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="upgrading">
+<span id="id2"></span><h2>Upgrading CKAN<a class="headerlink" href="upgrading.html#upgrading" title="Permalink to this headline">¶</a></h2>
+<p>This section will walk you through the steps to upgrade your CKAN site to a
+newer version of CKAN.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Before upgrading your version of CKAN you should check that any custom
+templates or extensions you&#8217;re using work with the new version of CKAN.
+For example, you could install the new version of CKAN in a new virtual
+environment and use that to test your templates and extensions.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You should also read the <a class="reference internal" href="changelog.html"><em>Changelog</em></a> to see if there are any extra
+notes to be aware of when upgrading to the new version.</p>
+</div>
+<div class="section" id="backup-your-database">
+<h3>1. Backup your database<a class="headerlink" href="upgrading.html#backup-your-database" title="Permalink to this headline">¶</a></h3>
+<p>You should always backup your CKAN database before upgrading CKAN. If something
+goes wrong with the CKAN upgrade you can use the backup to restore the database
+to its pre-upgrade state.</p>
+<ol class="arabic">
+<li><p class="first">Activate your virtualenv and switch to the ckan source directory, e.g.:</p>
+<pre class="literal-block">
+. /usr/lib/ckan/default/bin/activate
+cd /usr/lib/ckan/default/src/ckan
+</pre>
+</li>
+<li><p class="first">Backup your CKAN database using the <code class="docutils literal"><span class="pre">db</span> <span class="pre">dump</span></code> command, for
+example:</p>
+<pre class="literal-block">
+paster db dump --config=/etc/ckan/default/development.ini my_ckan_database.pg_dump
+</pre>
+<p>This will create a file called <code class="docutils literal"><span class="pre">my_ckan_database.pg_dump</span></code>, you can use the
+the <code class="docutils literal"><span class="pre">db</span> <span class="pre">load</span></code> command to restore your database to the state recorded in
+this file. See <a class="reference internal" href="paster.html#paster-db"><span>db: Manage databases</span></a> for details of the <code class="docutils literal"><span class="pre">db</span> <span class="pre">dump</span></code> and <code class="docutils literal"><span class="pre">db</span>
+<span class="pre">load</span></code> commands.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="upgrade-ckan">
+<h3>2. Upgrade CKAN<a class="headerlink" href="upgrading.html#upgrade-ckan" title="Permalink to this headline">¶</a></h3>
+<p>The process of upgrading CKAN differs depending on whether you have a package
+install or a source install of CKAN, and whether you&#8217;re upgrading to a
+<a class="reference internal" href="upgrading.html#releases"><span>major, minor or patch release</span></a> of CKAN. Follow the
+appropriate one of these documents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="upgrade-package-ckan-1-to-2.html">Upgrading a CKAN 1 package install to CKAN 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade-package-to-patch-release.html">Upgrading a CKAN 2 package install to a new patch release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade-package-to-minor-release.html">Upgrading a CKAN 2 package install to a new minor release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade-source.html">Upgrading a source install</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="release-process.html"
+                  title="Doing a CKAN Release" accesskey="N">
+                    
+                      
+                    
+                    Doing a CKAN Release→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="deployment.html"
+                  title="Deploying a Source Install" accesskey="P">
+                    
+                      
+                    
+                    ← Deploying a Source Install
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2012, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0" 
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/okfn/ckan">Source</a>
+&mdash;
+<a href="https://github.com/okfn/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

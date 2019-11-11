@@ -1,0 +1,449 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Building a JavaScript Module &mdash; CKAN 2.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN 2.2.3 documentation" href="index.html" />
+    <link rel="up" title="Contributing to CKAN" href="contributing.html" />
+    <link rel="next" title="Documentation guidelines" href="documentation-guidelines.html" />
+    <link rel="prev" title="Template Blocks" href="template-blocks.html" />
+
+  
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/javascript-module-tutorial.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'javascript-module-tutorial'
+</script>
+
+<script type="text/javascript" src="_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+  <body>
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="contents.html"><img src="_static/ckanlogo.png" alt="CKAN" /></a>
+        
+        <a class="brand" href="contents.html">CKAN<span class="version"> v2.2.3</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.2.3/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to CKAN&#8217;s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions/index.html">Writing CKAN extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/index.html">Appendices</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="contents.html">CKAN 2.2.3 documentation</a> &raquo;
+              <a href="contributing.html"
+                    accesskey="U">
+                    Contributing to CKAN
+                  </a>
+                   &raquo;
+        </div>
+
+        
+  <div class="section" id="building-a-javascript-module">
+<h1>Building a JavaScript Module<a class="headerlink" href="javascript-module-tutorial.html#building-a-javascript-module" title="Permalink to this headline">¶</a></h1>
+<p>CKAN makes heavy use of modules to add additional functionality to the
+page. Essentially all a module consists of is an object with an
+<tt class="docutils literal"><span class="pre">.initialize()</span></tt> and <tt class="docutils literal"><span class="pre">.teardown()</span></tt> method.</p>
+<p>Here we will go through the basic functionality of building a simple
+module that sends a &#8220;favourite&#8221; request to the server when the user
+clicks a button.</p>
+<div class="section" id="html">
+<h2>HTML<a class="headerlink" href="javascript-module-tutorial.html#html" title="Permalink to this headline">¶</a></h2>
+<p>The idea behind modules is that the element should already be in the
+document when the page loads. For example our favourite button will work
+just fine without our module JavaScript loaded.</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;form action=&quot;/favourite&quot; method=&quot;post&quot; data-module=&quot;favorite&quot;&gt;
+  &lt;button class=&quot;btn&quot; name=&quot;package&quot; value=&quot;101&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</pre></div>
+</div>
+<p>Here it&#8217;s the <tt class="docutils literal"><span class="pre">data-module=&quot;favorite&quot;</span></tt> that tells the CKAN module
+loader to create a new instance for this element.</p>
+</div>
+<div class="section" id="javascript">
+<h2>JavaScript<a class="headerlink" href="javascript-module-tutorial.html#javascript" title="Permalink to this headline">¶</a></h2>
+<p>Modules reside in the <em>javascript/modules</em> directory and should share
+the same name as the module. We use hyphens to delimit spaces in both
+filenames and modules.</p>
+<div class="highlight-python"><div class="highlight"><pre>/javascript/modules/favorite.js
+</pre></div>
+</div>
+<p>A module can be created by calling <tt class="docutils literal"><span class="pre">ckan.module()</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>ckan.module(&#39;favorite&#39;, function (jQuery, _) {
+  return {};
+});
+</pre></div>
+</div>
+<p>We pass in the module name and a factory function that should return our
+module object. This factory gets passed a local jQuery object and a
+translation object.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In order to include a module for page render inclusion within an
+extension it is recommended that you use <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">resource</span> <span class="pre">%}</span></tt> within
+your templates. See the <a class="reference external" href="resources.html">Resource Documentation</a></p>
+</div>
+<div class="section" id="initialisation">
+<h3>Initialisation<a class="headerlink" href="javascript-module-tutorial.html#initialisation" title="Permalink to this headline">¶</a></h3>
+<p>Once ckan has found an element on the page it creates a new instance of
+your module and if present calls the <tt class="docutils literal"><span class="pre">.initialize()</span></tt> method.</p>
+<div class="highlight-python"><div class="highlight"><pre>ckan.module(&#39;favorite&#39;, function (jQuery, _) {
+  return {
+    initialize: function () {
+      console.log(&#39;I&#39;ve been called for element: %o&#39;, this.el);
+    }
+  };
+});
+</pre></div>
+</div>
+<p>Here we can set up event listeners and other setup functions.</p>
+<div class="highlight-python"><div class="highlight"><pre>initialize: function () {
+  // Grab our button and assign it to a property of our module.
+  this.button = this.$(&#39;button&#39;);
+
+  // Watch for our favourite button to be clicked.
+  this.button.on(&#39;submit&#39;, jQuery.proxy(this._onClick, this));
+},
+_onClick: function (event) {}
+</pre></div>
+</div>
+</div>
+<div class="section" id="event-handling">
+<h3>Event Handling<a class="headerlink" href="javascript-module-tutorial.html#event-handling" title="Permalink to this headline">¶</a></h3>
+<p>Now we create our click handler for the button:</p>
+<div class="highlight-python"><div class="highlight"><pre>_onClick: function (event) {
+  event.preventDefault();
+  this.favorite();
+}
+</pre></div>
+</div>
+<p>And this calls a <tt class="docutils literal"><span class="pre">.favorite()</span></tt> method. It&#8217;s generally best not to do
+too much in event handlers it means that you can&#8217;t use the same
+functionality elsewhere.</p>
+<div class="highlight-python"><div class="highlight"><pre>favorite: function () {
+  // The client on the sandbox should always be used to talk to the api.
+  this.sandbox.client.favoriteDataset(this.button.val());
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="notifications-and-internationalisation">
+<h3>Notifications and Internationalisation<a class="headerlink" href="javascript-module-tutorial.html#notifications-and-internationalisation" title="Permalink to this headline">¶</a></h3>
+<p>This submits the dataset to the API but ideally we want to tell the user
+what we&#8217;re doing.</p>
+<div class="highlight-python"><div class="highlight"><pre>options: {
+  i18n: {
+    loading: _(&#39;Favouriting dataset&#39;),
+    done: _(&#39;Favourited dataset %(id)s&#39;)
+  }
+},
+favorite: function () {
+  // i18n gets a translation key from the options object.
+  this.button.text(this.i18n(&#39;loading&#39;));
+
+  // The client on the sandbox should always be used to talk to the api.
+  var request = this.sandbox.client.favoriteDataset(this.button.val())
+  request.done(jQuery.proxy(this._onSuccess, this));
+},
+_onSuccess: function () {
+  // We can perform interpolation on messages.
+  var message = this.i18n(&#39;done&#39;, {id: this.button.val()});
+
+  // Notify allows global messages to be displayed to the user.
+  this.sandbox.notify(message, &#39;success&#39;);
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="options">
+<h3>Options<a class="headerlink" href="javascript-module-tutorial.html#options" title="Permalink to this headline">¶</a></h3>
+<p>Displaying an id to the user isn&#8217;t very friendly. We can use the
+<tt class="docutils literal"><span class="pre">data-module</span></tt> attributes to pass options through to the module.</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;form action=&quot;/favourite&quot; method=&quot;post&quot; data-module=&quot;favorite&quot; data-module-dataset=&quot;my dataset&quot;&gt;
+</pre></div>
+</div>
+<p>This will override the defaults in the options object.</p>
+<div class="highlight-python"><div class="highlight"><pre>ckan.module(&#39;favorite&#39;, function (jQuery, _) {
+  return {
+    options: {
+      dataset: &#39;&#39;,
+      i18n: {...}
+    }
+    initialize: function () {
+      console.log(&#39;this dataset is: %s&#39;, this.options.dataset);
+      //=&gt; &quot;this dataset is: my dataset&quot;
+    }
+  };
+});
+</pre></div>
+</div>
+</div>
+<div class="section" id="error-handling">
+<h3>Error handling<a class="headerlink" href="javascript-module-tutorial.html#error-handling" title="Permalink to this headline">¶</a></h3>
+<p>When ever we make an Ajax request we want to make sure that we notify
+the user if the request fails. Again we can use
+<tt class="docutils literal"><span class="pre">this.sandbox.notify()</span></tt> to do this.</p>
+<div class="highlight-python"><div class="highlight"><pre>favorite: function () {
+  // The client on the sandbox should always be used to talk to the api.
+  var request = this.sandbox.client.favoriteDataset(this.button.val())
+  request.done(jQuery.proxy(this._onSuccess, this));
+  request.fail(jQuery.proxy(this._onError, this));
+},
+_onError: function () {
+  var message = this.i18n(&#39;error&#39;, {id: this.button.val()});
+
+  // Notify allows global messages to be displayed to the user.
+  this.sandbox.notify(message, &#39;error&#39;);
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="module-scope">
+<h3>Module Scope<a class="headerlink" href="javascript-module-tutorial.html#module-scope" title="Permalink to this headline">¶</a></h3>
+<p>You may have noticed we keep making calls to <tt class="docutils literal"><span class="pre">jQuery.proxy()</span></tt> within
+these methods. This is to ensure that <tt class="docutils literal"><span class="pre">this</span></tt> when the callback is
+called is the module it belongs to.</p>
+<p>We have a shortcut method called <tt class="docutils literal"><span class="pre">jQuery.proxyAll()</span></tt> that can be used
+in the <tt class="docutils literal"><span class="pre">.initialize()</span></tt> method to do all the binding at once. It can
+accept method names or simply a regexp.</p>
+<div class="highlight-python"><div class="highlight"><pre>initialize: function () {
+  jQuery.proxyAll(this, &#39;_onSuccess&#39;);
+
+  // Same as:
+  this._onSuccess = jQuery.proxy(this, &#39;_onSuccess&#39;);
+
+  // Even better do all methods starting with _on at once.
+  jQuery.proxyAll(this, /_on/);
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="publish-subscribe">
+<h3>Publish/Subscribe<a class="headerlink" href="javascript-module-tutorial.html#publish-subscribe" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes we want modules to be able to talk to each other in order to
+keep the page state up to date. The sandbox has the <tt class="docutils literal"><span class="pre">.publish()</span></tt> and
+<tt class="docutils literal"><span class="pre">.subscribe()</span></tt> methods for just this cause.</p>
+<p>For example say we had a counter up in the header that showed how many
+favourite datasets the user had. This would be incorrect when the user
+clicked the ajax button. We can publish an event when the favorite
+button is successful.</p>
+<div class="highlight-python"><div class="highlight"><pre>_onSuccess: function () {
+  // Notify allows global messages to be displayed to the user.
+  this.sandbox.notify(message, &#39;success&#39;);
+
+  // Tell other modules about this event.
+  this.sandbox.publish(&#39;favorite&#39;, this.button.val());
+}
+</pre></div>
+</div>
+<p>Now in our other module &#8216;user-favorite-counter&#8217; we can listen for this.</p>
+<div class="highlight-python"><div class="highlight"><pre>ckan.module(&#39;user-favorite-counter&#39;, function (jQuery, _) {
+  return {
+    initialize: function () {
+      jQuery.proxyAll(this, /_on/);
+      this.sandbox.subscribe(&#39;favorite&#39;, this._onFavorite);
+    },
+    teardown: function () {
+      // We must always unsubscribe on teardown to prevent memory leaks.
+      this.sandbox.unsubscribe(&#39;favorite&#39;, this._onFavorite);
+    },
+    incrementCounter: function () {
+      var count = this.el.text() + 1;
+      this.el.text(count);
+    },
+    _onFavorite: function (id) {
+      this.incrementCounter();
+    }
+  };
+});
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="unit-tests">
+<h2>Unit Tests<a class="headerlink" href="javascript-module-tutorial.html#unit-tests" title="Permalink to this headline">¶</a></h2>
+<p>Every module has unit tests. These use Mocha, Chai and Sinon to assert
+the expected functionality of the module.</p>
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="documentation-guidelines.html"
+                  title="Documentation guidelines" accesskey="N">
+                    
+                      
+                    
+                    Documentation guidelines→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="template-blocks.html"
+                  title="Template Blocks" accesskey="P">
+                    
+                      
+                    
+                    ← Template Blocks
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/ckan/ckan">Source</a>
+&mdash;
+<a href="https://github.com/ckan/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Upgrading a source install &mdash; CKAN Documentation 2.1.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.1.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN Documentation 2.1.5 documentation" href="index.html" />
+    <link rel="up" title="Upgrading CKAN" href="upgrading.html" />
+    <link rel="next" title="Getting Started" href="getting-started.html" />
+    <link rel="prev" title="Upgrading a CKAN 2 package install to a new minor release" href="upgrade-package-to-minor-release.html" />
+
+
+<!-- RTD Extra Head -->
+
+
+
+  
+  <!-- 
+  Always link to the latest version, as canonical.
+  http://docs.readthedocs.org/en/latest/canonical.html
+  -->
+  <link rel="canonical" href="http://docs.ckan.org//en/latest/upgrade-source.html" />
+  
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "ckan",
+    version: "ckan-2.1.5",
+    language: "en",
+    page: "upgrade-source",
+    builder: "sphinx",
+    theme: "sphinx-theme-okfn",
+    docroot: "/doc/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org/",
+    commit: "1d691ae3ba38a6b98dc69d0e2c16c71e186cd36e"
+  }
+  // Old variables
+  var doc_version = "ckan-2.1.5";
+  var doc_slug = "ckan";
+  var page_name = "upgrade-source";
+  var html_theme = "sphinx-theme-okfn";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body role="document">
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="index.html"><img src="http://docs.ckan.org/en/ckan-2.1.5/_static/http://assets.okfn.org/p/opendatahandbook/img/data-wrench-inverted.png" alt="CKAN Documentation" /></a>
+        
+        <a class="brand" href="index.html">CKAN Documentation<span class="version"> v2.1.5</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.1.5/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="upgrade-package-to-minor-release.html"
+                        title="previous chapter">Upgrading a CKAN 2 package install to a new minor release</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="getting-started.html"
+                        title="next chapter">Getting Started</a></p><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing CKAN</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="upgrading.html#ckan-releases">CKAN releases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading.html#release-process">Release process</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="upgrading.html#upgrading">Upgrading CKAN</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="upgrading.html#backup-your-database">1. Backup your database</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="upgrading.html#upgrade-ckan">2. Upgrade CKAN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="writing-extensions.html">Writing Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="index.html">CKAN Documentation 2.1.5 documentation</a> &raquo;
+              <a href="upgrading.html"
+                    accesskey="U">
+                    Upgrading CKAN
+                  </a>
+                   &raquo;
+        </div>
+
+        
+  <div class="section" id="upgrading-a-source-install">
+<h1>Upgrading a source install<a class="headerlink" href="upgrade-source.html#upgrading-a-source-install" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Before upgrading CKAN you should check the compatibility of any custom
+themes or extensions you&#8217;re using, check the changelog, and backup your
+database. See <a class="reference internal" href="upgrading.html#upgrading"><span>Upgrading CKAN</span></a>.</p>
+</div>
+<p>The process for upgrading a source install is the same, no matter what type of
+CKAN release you&#8217;re upgrading to:</p>
+<ol class="arabic">
+<li><p class="first">Activate your virtualenv and switch to the ckan source directory, e.g.:</p>
+<pre class="literal-block">
+. /usr/lib/ckan/default/bin/activate
+cd /usr/lib/ckan/default/src/ckan
+</pre>
+</li>
+<li><p class="first">Checkout the new CKAN version from git, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre>git fetch
+git checkout release-v2.0
+</pre></div>
+</div>
+<p>If you have any CKAN extensions installed from source, you may need to
+checkout newer versions of the extensions at this point as well. Refer to
+the documentation for each extension.</p>
+</li>
+<li><p class="first">Update CKAN&#8217;s dependencies:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --upgrade -r pip-requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p class="first">Register any new or updated plugins:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py develop
+</pre></div>
+</div>
+</li>
+<li><p class="first">If you are upgrading to a new <a class="reference internal" href="upgrading.html#releases"><span>major release</span></a> you need to
+update your Solr schema symlink.</p>
+<p>When <a class="reference internal" href="solr-setup.html#setting-up-solr"><span>Setting up Solr</span></a> you created a symlink
+<code class="docutils literal"><span class="pre">/etc/solr/conf/schema.xml</span></code> linking to a CKAN Solr schema file such as
+/usr/lib/ckan/default/src/ckan/ckan/config/solr/schema-2.0.xml. This symlink
+should be updated to point to the latest schema file in
+/usr/lib/ckan/default/src/ckan/ckan/config/solr/, if it doesn&#8217;t already.</p>
+<p>For example, to update the symlink:</p>
+<pre class="literal-block">
+sudo rm /etc/solr/conf/schema.xml
+sudo ln -s /usr/lib/ckan/default/src/ckan/ckan/config/solr/schema-2.0.xml /etc/solr/conf/schema.xml
+</pre>
+<p>You will need to restart Jetty for the changes to take effect:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo service jetty restart
+</pre></div>
+</div>
+</li>
+<li><p class="first">If you are upgrading to a new <a class="reference internal" href="upgrading.html#releases"><span>major release</span></a> update your
+CKAN database&#8217;s schema using the <code class="docutils literal"><span class="pre">db</span> <span class="pre">upgrade</span></code> command.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">To avoid problems during the database upgrade, comment out any plugins
+that you have enabled in your ini file. You can uncomment them again when
+the upgrade finishes.</p>
+</div>
+<p>For example:</p>
+<pre class="literal-block">
+paster db upgrade --config=/etc/ckan/default/development.ini
+</pre>
+<p>See <a class="reference internal" href="paster.html#paster-db"><span>db: Manage databases</span></a> for details of the <code class="docutils literal"><span class="pre">db</span> <span class="pre">upgrade</span></code>
+command.</p>
+</li>
+<li><p class="first">Rebuild your search index by running the <code class="docutils literal"><span class="pre">ckan</span> <span class="pre">search-index</span> <span class="pre">rebuild</span></code>
+command:</p>
+<pre class="literal-block">
+paster search-index rebuild -r --config=/etc/ckan/default/development.ini
+</pre>
+<p>See <a class="reference internal" href="paster.html#rebuild-search-index"><span>search-index: Rebuild search index</span></a> for details of the
+<code class="docutils literal"><span class="pre">ckan</span> <span class="pre">search-index</span> <span class="pre">rebuild</span></code> command.</p>
+</li>
+<li><p class="first">Finally, restart your web server. For example if you have deployed CKAN
+using the Apache web server on Ubuntu linux, run this command:</p>
+<pre class="literal-block">
+sudo service apache2 reload
+</pre>
+</li>
+<li><p class="first">You&#8217;re done!</p>
+</li>
+</ol>
+<p>You should now be able to visit your CKAN website in your web browser and see
+that it&#8217;s running the new version of CKAN.</p>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="getting-started.html"
+                  title="Getting Started" accesskey="N">
+                    
+                      
+                    
+                    Getting Started→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="upgrade-package-to-minor-release.html"
+                  title="Upgrading a CKAN 2 package install to a new minor release" accesskey="P">
+                    
+                      
+                    
+                    ← Upgrading a CKAN 2 package install to a new minor ...
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2012, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0" 
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/okfn/ckan">Source</a>
+&mdash;
+<a href="https://github.com/okfn/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

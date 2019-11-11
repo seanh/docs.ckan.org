@@ -1,0 +1,395 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>HTML Coding Standards &mdash; CKAN Documentation 2.1.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.1.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN Documentation 2.1.5 documentation" href="index.html" />
+    <link rel="up" title="Contributing to CKAN" href="contributing.html" />
+    <link rel="next" title="CSS Coding Standards" href="css-coding-standards.html" />
+    <link rel="prev" title="Python Coding Standards" href="python-coding-standards.html" />
+
+
+<!-- RTD Extra Head -->
+
+
+
+  
+  <!-- 
+  Always link to the latest version, as canonical.
+  http://docs.readthedocs.org/en/latest/canonical.html
+  -->
+  <link rel="canonical" href="http://docs.ckan.org//en/latest/html-coding-standards.html" />
+  
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "ckan",
+    version: "ckan-2.1.5",
+    language: "en",
+    page: "html-coding-standards",
+    builder: "sphinx",
+    theme: "sphinx-theme-okfn",
+    docroot: "/doc/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org/",
+    commit: "1d691ae3ba38a6b98dc69d0e2c16c71e186cd36e"
+  }
+  // Old variables
+  var doc_version = "ckan-2.1.5";
+  var doc_slug = "ckan";
+  var page_name = "html-coding-standards";
+  var html_theme = "sphinx-theme-okfn";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body role="document">
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="index.html"><img src="http://docs.ckan.org/en/ckan-2.1.5/_static/http://assets.okfn.org/p/opendatahandbook/img/data-wrench-inverted.png" alt="CKAN Documentation" /></a>
+        
+        <a class="brand" href="index.html">CKAN Documentation<span class="version"> v2.1.5</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.1.5/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="python-coding-standards.html"
+                        title="previous chapter">Python Coding Standards</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="css-coding-standards.html"
+                        title="next chapter">CSS Coding Standards</a></p><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="writing-extensions.html">Writing Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="index.html">CKAN Documentation 2.1.5 documentation</a> &raquo;
+              <a href="contributing.html"
+                    accesskey="U">
+                    Contributing to CKAN
+                  </a>
+                   &raquo;
+        </div>
+
+        
+  <div class="section" id="html-coding-standards">
+<h1>HTML Coding Standards<a class="headerlink" href="html-coding-standards.html#html-coding-standards" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="formatting">
+<h2>Formatting<a class="headerlink" href="html-coding-standards.html#formatting" title="Permalink to this headline">¶</a></h2>
+<p>All HTML documents must use <strong>two spaces</strong> for indentation and there should be
+no trailing whitespace. XHTML syntax must be used (this is more a Genshi
+requirement) and all attributes must use double quotes around attributes.</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;!-- XHTML boolean attributes must still have values and self closing tags must have a closing / --&gt;
+&lt;video autoplay=&quot;autoplay&quot; poster=&quot;poster_image.jpg&quot;&gt;
+  &lt;source src=&quot;foo.ogg&quot; type=&quot;video/ogg&quot; /&gt;
+&lt;/video&gt;
+</pre></div>
+</div>
+<p>HTML5 elements should be used where appropriate reserving <code class="docutils literal"><span class="pre">&lt;div&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;span&gt;</span></code>
+elements for situations where there is no semantic value (such as wrapping
+elements to provide styling hooks).</p>
+</div>
+<div class="section" id="doctype-and-layout">
+<h2>Doctype and layout<a class="headerlink" href="html-coding-standards.html#doctype-and-layout" title="Permalink to this headline">¶</a></h2>
+<p>All documents must be using the HTML5 doctype and the <code class="docutils literal"><span class="pre">&lt;html&gt;</span></code> element should
+have a <code class="docutils literal"><span class="pre">&quot;lang&quot;</span></code> attribute. The <code class="docutils literal"><span class="pre">&lt;head&gt;</span></code> should also at a minimum include
+<code class="docutils literal"><span class="pre">&quot;viewport&quot;</span></code> and <code class="docutils literal"><span class="pre">&quot;charset&quot;</span></code> meta tags.</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;title&gt;Example Site&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="forms">
+<h2>Forms<a class="headerlink" href="html-coding-standards.html#forms" title="Permalink to this headline">¶</a></h2>
+<p>Form fields must always include a <code class="docutils literal"><span class="pre">&lt;label&gt;</span></code> element with a <code class="docutils literal"><span class="pre">&quot;for&quot;</span></code> attribute
+matching the <code class="docutils literal"><span class="pre">&quot;id&quot;</span></code> on the input. This helps accessibility by focusing the
+input when the label is clicked, it also helps screen readers match labels to
+their respective inputs.</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;label for=&quot;field-email&quot;&gt;email&lt;/label&gt;
+&lt;input type=&quot;email&quot; id=&quot;field-email&quot; name=&quot;email&quot; value=&quot;&quot; /&gt;
+</pre></div>
+</div>
+<p>Each <code class="docutils literal"><span class="pre">&lt;input&gt;</span></code> should have an <code class="docutils literal"><span class="pre">&quot;id&quot;</span></code> that is unique to the page. It does not
+have to match the <code class="docutils literal"><span class="pre">&quot;name&quot;</span></code> attribute.</p>
+<p>Forms should take advantage of the new HTML5 input types where they make sense
+to do so, placeholder attributes should also be included where relevant.
+Including these can provided enhancements in browsers that support them such as
+tailored inputs and keyboards.</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;div&gt;
+  &lt;label for=&quot;field-email&quot;&gt;Email&lt;/label&gt;
+  &lt;input type=&quot;email&quot; id=&quot;field-email&quot; name=&quot;email&quot; value=&quot;name@example.com&quot; /&gt;
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;label for=&quot;field-phone&quot;&gt;Phone&lt;/label&gt;
+  &lt;input type=&quot;phone&quot; id=&quot;field-phone&quot; name=&quot;phone&quot; value=&quot;&quot; placeholder=&quot;+44 077 12345 678&quot; /&gt;
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;label for=&quot;field-url&quot;&gt;Homepage&lt;/label&gt;
+  &lt;input type=&quot;url&quot; id=&quot;field-url&quot; name=&quot;url&quot; value=&quot;&quot; placeholder=&quot;http://example.com&quot; /&gt;
+&lt;/div&gt;
+</pre></div>
+</div>
+<p>Wufoo provides an <a class="reference external" href="http://wufoo.com/html5/">excellent reference</a> for these attributes.</p>
+</div>
+<div class="section" id="including-meta-data">
+<h2>Including meta data<a class="headerlink" href="html-coding-standards.html#including-meta-data" title="Permalink to this headline">¶</a></h2>
+<p>Classes should ideally only be used as styling hooks. If you need to include
+additional data in the html document, for example to pass data to JavaScript,
+then the HTML5 <code class="docutils literal"><span class="pre">data-</span></code> attributes should be used.</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;a class=&quot;btn&quot; data-format=&quot;csv&quot;&gt;Download CSV&lt;/a&gt;
+</pre></div>
+</div>
+<p>These can then be accessed easily via jQuery using the <code class="docutils literal"><span class="pre">.data()</span></code> method.</p>
+<div class="highlight-python"><div class="highlight"><pre>jQuery(&#39;.btn&#39;).data(&#39;format&#39;); //=&gt; &quot;csv&quot;
+
+// Get the contents of all data attributes.
+jQuery(&#39;.btn&#39;).data(); =&gt; {format: &quot;csv&quot;}
+</pre></div>
+</div>
+<p>One thing to note is that the JavaScript API for datasets will convert all
+attribute names into camelCase. So <code class="docutils literal"><span class="pre">&quot;data-file-format&quot;</span></code> will become <code class="docutils literal"><span class="pre">fileFormat</span></code>.</p>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;a class=&quot;btn&quot; data-file-format=&quot;csv&quot;&gt;Download CSV&lt;/a&gt;
+</pre></div>
+</div>
+<p>Will become:</p>
+<div class="highlight-python"><div class="highlight"><pre>jQuery(&#39;.btn&#39;).data(&#39;fileFormat&#39;); //=&gt; &quot;csv&quot;
+jQuery(&#39;.btn&#39;).data(); =&gt; {fileFormat: &quot;csv&quot;}
+</pre></div>
+</div>
+</div>
+<div class="section" id="targeting-internet-explorer">
+<h2>Targeting Internet Explorer<a class="headerlink" href="html-coding-standards.html#targeting-internet-explorer" title="Permalink to this headline">¶</a></h2>
+<p>Targeting lower versions of Internet Explorer (IE), those below version 9,
+should be handled by the stylesheets. Small fixes should be provided inline
+using the <code class="docutils literal"><span class="pre">.ie</span></code> specific class names. Larger fixes may require a separate
+stylesheet but try to avoid this if at all possible.</p>
+<p>Adding IE specific classes:</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;!doctype html&gt;
+&lt;!--[if lt IE 7]&gt; &lt;html lang=&quot;en&quot; class=&quot;ie ie6&quot;&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 7]&gt;    &lt;html lang=&quot;en&quot; class=&quot;ie ie7&quot;&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 8]&gt;    &lt;html lang=&quot;en&quot; class=&quot;ie ie8&quot;&gt; &lt;![endif]--&gt;
+&lt;!--[if gt IE 8]&gt;&lt;!--&gt; &lt;html lang=&quot;en&quot;&gt; &lt;!--&lt;![endif]--&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only add lines for classes that are actually being used.</p>
+</div>
+<p>These can then be used within the CSS:</p>
+<div class="highlight-python"><div class="highlight"><pre>.clear:before,
+.clear:after {
+    content: &quot;&quot;;
+    display: table;
+}
+
+.clear:after {
+    clear: both;
+}
+
+.ie7 .clear {
+    zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="i18n">
+<h2>i18n<a class="headerlink" href="html-coding-standards.html#i18n" title="Permalink to this headline">¶</a></h2>
+<p>Don&#8217;t include line breaks within <code class="docutils literal"><span class="pre">&lt;p&gt;</span></code> blocks.  ie do this:</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;p&gt;Blah foo blah&lt;/p&gt;
+&lt;p&gt;New paragraph, blah&lt;/p&gt;
+</pre></div>
+</div>
+<p>And <strong>not</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;p&gt;Blah foo blah
+   New paragraph, blah&lt;/p&gt;
+</pre></div>
+</div>
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="css-coding-standards.html"
+                  title="CSS Coding Standards" accesskey="N">
+                    
+                      
+                    
+                    CSS Coding Standards→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="python-coding-standards.html"
+                  title="Python Coding Standards" accesskey="P">
+                    
+                      
+                    
+                    ← Python Coding Standards
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2012, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0" 
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/okfn/ckan">Source</a>
+&mdash;
+<a href="https://github.com/okfn/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

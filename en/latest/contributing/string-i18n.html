@@ -1,0 +1,717 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>String internationalization &mdash; CKAN 2.7.0a documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="CKAN 2.7.0a documentation" href="../index.html"/>
+        <link rel="up" title="Contributing guide" href="index.html"/>
+        <link rel="next" title="Unicode handling" href="unicode.html"/>
+        <link rel="prev" title="Python coding standards" href="python.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/contributing/string-i18n.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'contributing/string-i18n'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> CKAN
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="http://docs.ckan.org//en/latest/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maintaining/index.html">Maintainer&#8217;s guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extending guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theming/index.html">Theming guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Contributing guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="issues.html">Reporting issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html">Translating CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commit-messages.html">Writing commit messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pull-requests.html">Making a pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reviewing.html">Reviewing and merging a pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">Writing documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple-code-contributions.html">Projects for beginner CKAN developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">CKAN code architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css.html">CSS coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html.html">HTML coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">JavaScript coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python coding standards</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="string-i18n.html">String internationalization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="string-i18n.html#internationalizating-strings-in-jinja2-templates">Internationalizating strings in Jinja2 templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="string-i18n.html#internationalizing-strings-in-python-code">Internationalizing strings in Python code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="string-i18n.html#internationalizing-strings-in-javascript-code">Internationalizing strings in JavaScript code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="string-i18n.html#general-guidelines-for-internationalizing-strings">General guidelines for internationalizing strings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unicode.html">Unicode handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Testing coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="frontend/index.html">Frontend development guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database-migrations.html">Database migrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading-dependencies.html">Upgrading CKAN&#8217;s dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release-process.html">Doing a CKAN release</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Contributing guide</a> &raquo;</li>
+      
+    <li>String internationalization</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/ckan/ckan/blob/master/doc/contributing/string-i18n.rst" class="fa fa-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="string-internationalization">
+<h1>String internationalization<a class="headerlink" href="string-i18n.html#string-internationalization" title="Permalink to this headline">¶</a></h1>
+<p>All user-facing Strings in CKAN Python, JavaScript and Jinja2 code should be
+internationalized, so that our translators can then localize the
+strings for each of the many languages that CKAN supports. This guide shows
+CKAN developers how to internationalize strings, and what to look for regarding
+string internationalization when reviewing a pull request.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><em>Internationalization</em> (or i18n) is the process of marking strings for
+translation, so that the strings can be extracted from the source code and
+given to translators.
+<em>Localization</em> (l10n) is the process of translating the marked strings into
+different languages.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="i18n.html"><em>Translating CKAN</em></a></dt>
+<dd>If you want to translate CKAN, this page documents
+the process that translators follow to localize CKAN into different
+languages.</dd>
+<dt><a class="reference internal" href="release-process.html"><em>Doing a CKAN release</em></a></dt>
+<dd>The processes for extracting internationalized strings from CKAN and
+uploading them to Transifex to be translated, and for downloading the
+translations from Transifex and loading them into CKAN to be displayed
+are documented on this page.</dd>
+</dl>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Much of the existing code in CKAN was written before we had these
+guidelines, so it doesn&#8217;t always do things as described on this page.
+When writing new code you should follow the guidelines on this page, not the
+existing code.</p>
+</div>
+<div class="section" id="internationalizating-strings-in-jinja2-templates">
+<span id="jinja-i18n"></span><h2>Internationalizating strings in Jinja2 templates<a class="headerlink" href="string-i18n.html#internationalizating-strings-in-jinja2-templates" title="Permalink to this headline">¶</a></h2>
+<p>Most user-visible strings should be in the Jinja2 templates, rather than in
+Python or JavaScript code. This doesn&#8217;t really matter to translators, but it&#8217;s
+good for the code to separate logic and content.  Of course this isn&#8217;t always
+possible. For example when error messages are delivered through the API,
+there&#8217;s no Jinja2 template involved.</p>
+<p>The preferred way to internationalize strings in Jinja2 templates is by using
+<a class="reference external" href="http://jinja.pocoo.org/docs/templates/#i18n">the trans tag from Jinja2&#8217;s i18n extension</a>,
+which is available to all CKAN core and extension templates and snippets.</p>
+<p>Most of the following examples are taken from the Jinja2 docs.</p>
+<p>To internationalize a string put it inside a <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">trans</span> <span class="pre">%}</span></tt> tag:</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x">&lt;p&gt;</span><span class="cp">{%</span> <span class="k">trans</span> <span class="cp">%}</span><span class="x">This paragraph is translatable.</span><span class="cp">{%</span> <span class="k">endtrans</span> <span class="cp">%}</span><span class="x">&lt;/p&gt;</span>
+</pre></div>
+</div>
+<p>You can also use variables from the template&#8217;s namespace inside a
+<tt class="docutils literal"><span class="pre">{%</span> <span class="pre">trans</span> <span class="pre">%}</span></tt>:</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x">&lt;p&gt;</span><span class="cp">{%</span> <span class="k">trans</span> <span class="cp">%}</span><span class="x">Hello </span><span class="cp">{{</span> <span class="nv">user</span> <span class="cp">}}</span><span class="x">!</span><span class="cp">{%</span> <span class="k">endtrans</span> <span class="cp">%}</span><span class="x">&lt;/p&gt;</span>
+</pre></div>
+</div>
+<p>(Only variable tags are allowed inside trans tags, not statements.)</p>
+<p>You can pass one or more arguments to the <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">trans</span> <span class="pre">%}</span></tt> tag to bind variable
+names for use within the tag:</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x"> &lt;p&gt;</span><span class="cp">{%</span> <span class="k">trans</span> <span class="nv">user</span><span class="o">=</span><span class="nv">user.username</span> <span class="cp">%}</span><span class="x">Hello </span><span class="cp">{{</span> <span class="nv">user</span> <span class="cp">}}</span><span class="x">!</span><span class="cp">{%</span> <span class="k">endtrans</span> <span class="cp">%}</span><span class="x">&lt;/p&gt;</span>
+
+<span class="cp">{%</span> <span class="k">trans</span> <span class="nv">book_title</span><span class="o">=</span><span class="nv">book.title</span><span class="o">,</span> <span class="nv">author</span><span class="o">=</span><span class="nv">author.name</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">This is </span><span class="cp">{{</span> <span class="nv">book_title</span> <span class="cp">}}</span><span class="x"> by </span><span class="cp">{{</span> <span class="nv">author</span> <span class="cp">}}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endtrans</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>To handle different singular and plural forms of a string, use a <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">pluralize</span>
+<span class="pre">%}</span></tt> tag:</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">trans</span> <span class="nv">count</span><span class="o">=</span><span class="nv">list</span><span class="o">|</span><span class="nf">length</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">There is </span><span class="cp">{{</span> <span class="nv">count</span> <span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span> <span class="nv">name</span> <span class="cp">}}</span><span class="x"> object.</span>
+<span class="cp">{%</span> <span class="k">pluralize</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">There are </span><span class="cp">{{</span> <span class="nv">count</span> <span class="cp">}}</span><span class="x"> </span><span class="cp">{{</span> <span class="nv">name</span> <span class="cp">}}</span><span class="x"> objects.</span>
+<span class="cp">{%</span> <span class="k">endtrans</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>(In English the first string will be rendered if <tt class="docutils literal"><span class="pre">count</span></tt> is 1, the second
+otherwise.  For other languages translators will be able to provide their own
+strings for different values of <tt class="docutils literal"><span class="pre">count</span></tt>.)</p>
+<p>The first variable in the block (<tt class="docutils literal"><span class="pre">count</span></tt> in the example above) is used to
+determine which of the singular or plural forms to use. Alternatively you can
+explicitly specify which variable to use:</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">trans</span> <span class="p">...</span><span class="o">,</span> <span class="nv">user_count</span><span class="o">=</span><span class="nv">users</span><span class="o">|</span><span class="nf">length</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">   ...</span>
+<span class="cp">{%</span> <span class="k">pluralize</span> <span class="nv">user_count</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">   ...</span>
+<span class="cp">{%</span> <span class="k">endtrans</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">trans</span> <span class="pre">%}</span></tt> tag is preferable, but if you need to pluralize a string
+within a Jinja2 expression you can use the <tt class="docutils literal"><span class="pre">_()</span></tt> and <tt class="docutils literal"><span class="pre">ungettext()</span></tt>
+functions:</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">set</span> <span class="nv">hello</span> <span class="o">=</span> <span class="kp">_</span><span class="o">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="o">)</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>To use variables in strings, use Python <a class="reference external" href="https://docs.python.org/2/library/string.html#formatstrings">format string syntax</a>
+and then call the <tt class="docutils literal"><span class="pre">.format()</span></tt> method on the string that <tt class="docutils literal"><span class="pre">_()</span></tt> returns:</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">set</span> <span class="nv">hello</span> <span class="o">=</span> <span class="kp">_</span><span class="o">(</span><span class="s1">&#39;Hello {name}!&#39;</span><span class="o">)</span><span class="nv">.format</span><span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="nv">user.name</span><span class="o">)</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Singular and plural forms are handled by <tt class="docutils literal"><span class="pre">ungettext()</span></tt>:</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">set</span> <span class="nv">text</span> <span class="o">=</span> <span class="nv">ungettext</span><span class="o">(</span>
+       <span class="s1">&#39;{num} apple&#39;</span><span class="o">,</span> <span class="s1">&#39;{num} apples&#39;</span><span class="o">,</span> <span class="nv">num_apples</span><span class="o">)</span><span class="nv">.format</span><span class="o">(</span><span class="nv">num</span><span class="o">=</span><span class="nv">num_apples</span><span class="o">)</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>There are also <tt class="docutils literal"><span class="pre">gettext()</span></tt> and <tt class="docutils literal"><span class="pre">ngettext()</span></tt> functions available to
+templates, but we recommend using <tt class="docutils literal"><span class="pre">_()</span></tt> and <tt class="docutils literal"><span class="pre">ungettext()</span></tt> for
+consistency with CKAN&#8217;s Python code.
+This deviates from the Jinja2 docs, which do use <tt class="docutils literal"><span class="pre">gettext()</span></tt> and
+<tt class="docutils literal"><span class="pre">ngettext()</span></tt>.</p>
+<p class="last"><tt class="docutils literal"><span class="pre">_()</span></tt> is not an alias for <tt class="docutils literal"><span class="pre">gettext()</span></tt> in CKAN&#8217;s Jinja2 templates,
+<tt class="docutils literal"><span class="pre">_()</span></tt> is the function provided by Pylons, whereas <tt class="docutils literal"><span class="pre">gettext()</span></tt> is the
+version provided by Jinja2, their behaviors are not exactly the same.</p>
+</div>
+</div>
+<div class="section" id="internationalizing-strings-in-python-code">
+<h2>Internationalizing strings in Python code<a class="headerlink" href="string-i18n.html#internationalizing-strings-in-python-code" title="Permalink to this headline">¶</a></h2>
+<p>CKAN uses the <tt class="xref py py-func docutils literal"><span class="pre">_()</span></tt> and <tt class="xref py py-func docutils literal"><span class="pre">ungettext()</span></tt>
+functions from the <a class="reference external" href="http://docs.pylonsproject.org/projects/pylons-webframework/en/latest/modules/i18n_translation.html#module-pylons.i18n.translation">pylons.i18n.translation</a> module to internationalize
+strings in Python code.</p>
+<p>Core CKAN modules should import <tt class="xref py py-func docutils literal"><span class="pre">_()</span></tt> and
+<tt class="xref py py-func docutils literal"><span class="pre">ungettext()</span></tt> from <tt class="xref py py-mod docutils literal"><span class="pre">ckan.common</span></tt>,
+i.e. <tt class="docutils literal"><span class="pre">from</span> <span class="pre">ckan.common</span> <span class="pre">import</span> <span class="pre">_,</span> <span class="pre">ungettext</span></tt>
+(don&#8217;t import <tt class="xref py py-func docutils literal"><span class="pre">pylons.i18n.translation._()</span></tt> directly, for example).</p>
+<p>CKAN plugins should import <a class="reference internal" href="../extensions/plugins-toolkit.html#module-ckan.plugins.toolkit" title="ckan.plugins.toolkit"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.plugins.toolkit</span></tt></a> and use
+<tt class="xref py py-func docutils literal"><span class="pre">ckan.plugins.toolkit._()</span></tt> and
+<tt class="xref py py-func docutils literal"><span class="pre">ckan.plugins.toolkit.ungettext()</span></tt>, i.e. do
+<tt class="docutils literal"><span class="pre">import</span> <span class="pre">ckan.plugins.toolkit</span> <span class="pre">as</span> <span class="pre">toolkit</span></tt> and then use <tt class="docutils literal"><span class="pre">toolkit._()</span></tt> and
+<tt class="docutils literal"><span class="pre">toolkit.ungettext()</span></tt> (see <a class="reference internal" href="../extensions/plugins-toolkit.html"><em>Plugins toolkit reference</em></a>).</p>
+<p>To internationalize a string pass it to the <tt class="docutils literal"><span class="pre">_()</span></tt> function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">my_string</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s2">&quot;This paragraph is translatable.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To use variables in a string, call the <tt class="docutils literal"><span class="pre">.format()</span></tt> method on the translated
+string that <tt class="docutils literal"><span class="pre">_()</span></tt> returns:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s2">&quot;Hello {user}!&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="n">book_description</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s2">&quot;This is { book_title } by { author }&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="n">book_title</span><span class="o">=</span><span class="n">book</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="n">author</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To handle different plural and singular forms of a string, use <tt class="docutils literal"><span class="pre">ungettext()</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">translated_string</span> <span class="o">=</span> <span class="n">ungettext</span><span class="p">(</span>
+    <span class="s2">&quot;There is {count} {name} object.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;There are {count} {name} objects.&quot;</span><span class="p">,</span>
+    <span class="n">num_objects</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">count</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="internationalizing-strings-in-javascript-code">
+<span id="javascript-i18n"></span><h2>Internationalizing strings in JavaScript code<a class="headerlink" href="string-i18n.html#internationalizing-strings-in-javascript-code" title="Permalink to this headline">¶</a></h2>
+<p>Each <a class="reference internal" href="../theming/javascript.html#javascript-modules"><em>CKAN JavaScript module</em></a> offers the methods
+<tt class="docutils literal"><span class="pre">_</span></tt> and <tt class="docutils literal"><span class="pre">ngettext</span></tt> for translating singular and plural strings,
+respectively:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">ckan</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;i18n-demo&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="s1">&#39;Translate me!&#39;</span><span class="p">));</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ngettext</span><span class="p">(</span><span class="s1">&#39;%(num)d item&#39;</span><span class="p">,</span> <span class="s1">&#39;%(num)d items&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>To translate a fixed singular string, use <tt class="docutils literal"><span class="pre">_</span></tt>. It returns the translation of
+the string for the currently selected locale. If the current locale doesn&#8217;t
+provide a translation for the string then it is returned unchanged.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="s1">&#39;Something that should be translated&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Placeholders are supported via <a class="reference external" href="http://www.diveintojavascript.com/projects/javascript-sprintf">sprintf-syntax</a>, the corresponding values are
+passed via another parameter:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="s2">&quot;My name is %(name)s and I&#39;m from %(hometown)s.&quot;</span><span class="p">,</span>
+       <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Sarah&#39;</span><span class="p">,</span> <span class="nx">hometown</span><span class="o">:</span> <span class="s1">&#39;Cape Town&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p><tt class="docutils literal"><span class="pre">ngettext</span></tt> allows you to translate a string that may be either singular or
+plural, depending on some variable:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">ngettext</span><span class="p">(</span><span class="s1">&#39;Deleted %(num)d item&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;Deleted %(num)d items&#39;</span><span class="p">,</span>
+              <span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If <tt class="docutils literal"><span class="pre">items.length</span></tt> is 1 then the translation for the first argument will be
+returned, otherwise that of the second argument. <tt class="docutils literal"><span class="pre">num</span></tt> is a magical
+placeholder that is automatically provided by <tt class="docutils literal"><span class="pre">ngettext</span></tt> and contains the
+value of the third parameter.</p>
+<p>Like <tt class="docutils literal"><span class="pre">_</span></tt>, <tt class="docutils literal"><span class="pre">ngettext</span></tt> can take additional placeholders:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">ngettext</span><span class="p">(</span><span class="s2">&quot;I&#39;m %(name)s and I&#39;m %(num)d year old&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;I&#39;m %(name)s and I&#39;m %(num)d years old&quot;</span><span class="p">,</span>
+              <span class="nx">age</span><span class="p">,</span>
+              <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>CKAN&#8217;s JavaScript code automatically downloads the appropriate translations
+at request time from the CKAN server. Since CKAN 2.7 the corresponding
+translation files are regenerated automatically if necessary when CKAN
+starts.</p>
+<p>You can also regenerate the translation files manually using <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">trans</span>
+<span class="pre">js</span></tt>:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>python setup.py extract_messages  # Extract translatable strings
+# Update .po files as desired
+python setup.py compile_catalog   # Compile .mo files for Python/Jinja
+paster trans js                   # Compile JavaScript catalogs
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Prior to CKAN 2.7, JavaScript modules received a similar but different
+<tt class="docutils literal"><span class="pre">_</span></tt> function for string translation as a parameter. This is still
+supported but deprecated and will be removed in a future release.</p>
+</div>
+</div>
+<div class="section" id="general-guidelines-for-internationalizing-strings">
+<h2>General guidelines for internationalizing strings<a class="headerlink" href="string-i18n.html#general-guidelines-for-internationalizing-strings" title="Permalink to this headline">¶</a></h2>
+<p>Below are some guidelines to follow when marking your strings for translation.
+These apply to strings in Jinja2 templates or in Python or JavaScript code.
+These are mostly meant to make life easier for translators, and help to improve
+the quality of CKAN&#8217;s translations:</p>
+<ul>
+<li><p class="first">Leave as much HTML and other code out of the translation string as possible.</p>
+<p>For example, don&#8217;t include surrounding <tt class="docutils literal"><span class="pre">&lt;p&gt;...&lt;/p&gt;</span></tt> tags in the marked
+string. These aren&#8217;t necessary for the translator to do the translation,
+and if the translator accidentally changes them in the translation string
+the HTML will be broken.</p>
+<p>Good:</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="x">&lt;p&gt;</span><span class="cp">{%</span> <span class="k">trans</span> <span class="cp">%}</span><span class="x">Don&#39;t put HTML tags inside translatable strings</span><span class="cp">{%</span> <span class="k">endtrans</span> <span class="cp">%}</span><span class="x">&lt;/p&gt;</span>
+</pre></div>
+</div>
+<p>Bad (<tt class="docutils literal"><span class="pre">&lt;p&gt;</span></tt> tags don&#8217;t need to be in the translation string):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">mystring</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s2">&quot;&lt;p&gt;Don&#39;t put HTML tags inside translatable strings&lt;/p&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">But don&#8217;t split a string into separate strings.</p>
+<p>Translators need as much context as possible to translate strings well, and
+if you split a string up into separate strings and mark each for translation
+separately, translators must translate each of these separate strings in
+isolation. Also, some languages may need to change the order of words in a
+sentence or even change the order of sentences in a paragraph, splitting
+into separate strings makes assumptions about word order.</p>
+<p>It&#8217;s better to leave HTML tags or other code in strings than to split a
+string.  For example, it&#8217;s often best to leave HTML <tt class="docutils literal"><span class="pre">&lt;a&gt;</span></tt> tags in rather
+than split a string.</p>
+<p>Good:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Don&#39;t split a string containing some &lt;b&gt;markup&lt;/b&gt; into separate strings.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Bad (text will be difficult to translate or untranslatable):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Don&#39;t split a string containing some &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&lt;b&gt;&quot;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s2">&quot;markup&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">+</span> <span class="n">_</span><span class="p">(</span><span class="s2">&quot;into separate strings.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">You can split long strings over multiple lines using parentheses to avoid
+long lines, Python will concatenate them into a single string:</p>
+<p>Good:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;This is a really long string that would just make this line far too &quot;</span>
+  <span class="s2">&quot;long to fit in the window&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Leave unnecessary whitespace out of translatable strings, but do put
+punctuation into translatable strings.</p>
+</li>
+<li><p class="first">Try not to make translators translate strings that don&#8217;t need to be
+translated.</p>
+<p>For example, <tt class="docutils literal"><span class="pre">'legacy_templates'</span></tt> is the name of a directory, it doesn&#8217;t
+need to be marked for translation.</p>
+</li>
+<li><p class="first">Mark singular and plural forms of strings correctly.</p>
+<p>In Jinja2 templates this means using <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">trans</span> <span class="pre">%}</span></tt> and <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">pluralize</span> <span class="pre">%}</span></tt>
+or <tt class="docutils literal"><span class="pre">ungettext()</span></tt>. In Python it means using <tt class="docutils literal"><span class="pre">ungettext()</span></tt>. See above
+for examples.</p>
+<p>Singular and plural forms work differently in different languages.
+For example English has singular and plural nouns, but Slovenian has
+singular, dual and plural.</p>
+<p>Good:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">num_people</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">translated_string</span> <span class="o">=</span> <span class="n">ungettext</span><span class="p">(</span>
+    <span class="s1">&#39;There is one person here&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;There are {num_people} people here&#39;</span><span class="p">,</span>
+    <span class="n">num_people</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_people</span><span class="o">=</span><span class="n">num_people</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Bad (this assumes that all languages have the same plural forms as English):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">num_people</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">translated_string</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;There is one person here&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">translated_string</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span>
+        <span class="s1">&#39;There are {num_people} people here&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_people</span><span class="o">=</span><span class="n">num_people</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Don&#8217;t use <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#string-formatting">old-style %s string formatting</a>
+in Python, use the new <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#str.format">.format() method</a>
+instead.</p>
+<p>Strings formatted with <tt class="docutils literal"><span class="pre">.format()</span></tt> give translators more context.
+The <tt class="docutils literal"><span class="pre">.format()</span></tt> method is also more expressive, and is the preferred way
+to format strings in Python 3.</p>
+<p>Good:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="s2">&quot;Welcome to {site_title}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">site_title</span><span class="o">=</span><span class="n">site_title</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Bad (not enough context for translators):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="s2">&quot;Welcome to </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">site_title</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Use descriptive names for replacement fields in strings.</p>
+<p>This gives translators more context.</p>
+<p>Good:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="s2">&quot;Welcome to {site_title}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">site_title</span><span class="o">=</span><span class="n">site_title</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Bad (not enough context for translators):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="s2">&quot;Welcome to {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">site_title</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Worse (doesn&#8217;t work in Python 2.6):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="s2">&quot;Welcome to {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">site_title</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Use <tt class="docutils literal"><span class="pre">TRANSLATORS:</span></tt> comments to provide extra context for translators
+for difficult to find, very short, or obscure strings.</p>
+<p>For example, in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># TRANSLATORS: This is a helpful comment.</span>
+<span class="n">_</span><span class="p">(</span><span class="s2">&quot;This is an ambiguous string&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In Jinja2:</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span></span><span class="c">{# TRANSLATORS: This heading is displayed on the user&#39;s profile page. #}</span><span class="x"></span>
+<span class="x">&lt;h1&gt;</span><span class="cp">{%</span> <span class="k">trans</span> <span class="cp">%}</span><span class="x">Heading</span><span class="cp">{%</span> <span class="k">endtrans</span> <span class="cp">%}</span><span class="x">&lt;/h1&gt;</span>
+</pre></div>
+</div>
+<p>In JavaScript:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">// TRANSLATORS: &quot;Manual&quot; refers to the user manual</span>
+<span class="nx">_</span><span class="p">(</span><span class="s2">&quot;Manual&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These comments end up in the <tt class="docutils literal"><span class="pre">ckan.pot</span></tt> file and translators will see them
+when they&#8217;re translating the strings (Transifex shows them, for example).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The comment must be on the line before the line with the <tt class="docutils literal"><span class="pre">_()</span></tt>,
+<tt class="docutils literal"><span class="pre">ungettext()</span></tt> or <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">trans</span> <span class="pre">%}</span></tt>, and must start with the exact string
+<tt class="docutils literal"><span class="pre">TRANSLATORS:</span></tt> (in upper-case and with the colon). This string is
+configured in <tt class="docutils literal"><span class="pre">setup.cfg</span></tt>.</p>
+</div>
+</li>
+</ul>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p>Explain how to use <em>message contexts</em>, where the same exact string may
+appear in two different places in the UI but have different meanings.</p>
+<p>For example &#8220;filter&#8221; can be a noun or a verb in English, and may need two
+different translations in another language. Currently if the string
+<tt class="docutils literal"><span class="pre">_(&quot;filter&quot;)</span></tt> appears in different places in CKAN this will only
+produce one string to be translated in the <tt class="docutils literal"><span class="pre">ckan.pot</span></tt> file.</p>
+<p class="last">I think the right way to handle this with gettext is using <tt class="docutils literal"><span class="pre">msgctxt</span></tt>,
+but it looks like babel doesn&#8217;t support it yet.</p>
+</div>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">Explain how we internationalize dates, currencies and numbers
+(e.g. different positioning and separators used for decimal points in
+different languages).</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="unicode.html" class="btn btn-neutral float-right"
+           title="Unicode handling"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="python.html" class="btn btn-neutral"
+           title="Python coding standards">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>Support the <a href="http://ckan.org">CKAN Association</a>.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: latest
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../index.html">latest</a></dd>
+        
+          <dd><a href="../../ckan-2.6.0/index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../../ckan-2.5.3/index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../../ckan-2.4.4/index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../../ckan-2.3.5/index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/pdf/latest/">pdf</a></dd>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/htmlzip/latest/">htmlzip</a></dd>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/epub/latest/">epub</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.7.0a',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

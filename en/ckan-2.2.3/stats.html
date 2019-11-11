@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Stats Extension &mdash; CKAN 2.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN 2.2.3 documentation" href="index.html" />
+    <link rel="up" title="Features" href="features.html" />
+    <link rel="next" title="Writing CKAN extensions" href="extensions/index.html" />
+    <link rel="prev" title="Multilingual Extension" href="multilingual.html" />
+
+  
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/stats.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'stats'
+</script>
+
+<script type="text/javascript" src="_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+  <body>
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="contents.html"><img src="_static/ckanlogo.png" alt="CKAN" /></a>
+        
+        <a class="brand" href="contents.html">CKAN<span class="version"> v2.2.3</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.2.3/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to CKAN&#8217;s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="features.html">Features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html">Organizations and authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html">Data Viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filestore.html">FileStore and file uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html">DataStore extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background-tasks.html">Background tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email-notifications.html">Email notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html">Page View Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multilingual.html">Multilingual Extension</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="stats.html">Stats Extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="stats.html#enabling-the-stats-extension">Enabling the Stats Extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stats.html#viewing-the-statistics">Viewing the Statistics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extensions/index.html">Writing CKAN extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/index.html">Appendices</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="contents.html">CKAN 2.2.3 documentation</a> &raquo;
+              <a href="features.html"
+                    accesskey="U">
+                    Features
+                  </a>
+                   &raquo;
+        </div>
+
+        
+  <div class="section" id="stats-extension">
+<span id="stats"></span><h1>Stats Extension<a class="headerlink" href="stats.html#stats-extension" title="Permalink to this headline">¶</a></h1>
+<p>CKAN&#8217;s stats extension analyzes your CKAN database and displays several tables
+and graphs with statistics about your site, including:</p>
+<ul class="simple">
+<li>Total number of datasets</li>
+<li>Dataset revisions per week</li>
+<li>Top-rated datasets</li>
+<li>Most-edited Datasets</li>
+<li>Largest groups</li>
+<li>Top tags</li>
+<li>Users owning most datasets</li>
+</ul>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">CKAN&#8217;s <a class="reference internal" href="tracking.html#tracking"><em>built-in page view tracking feature</em></a>, which tracks
+visits to pages.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference external" href="https://github.com/ckan/ckanext-googleanalytics">ckanext-googleanalytics</a></dt>
+<dd>A CKAN extension that integrates Google Analytics into CKAN.</dd>
+</dl>
+</div>
+<div class="section" id="enabling-the-stats-extension">
+<h2>Enabling the Stats Extension<a class="headerlink" href="stats.html#enabling-the-stats-extension" title="Permalink to this headline">¶</a></h2>
+<p>To enable the stats extensions add <tt class="docutils literal"><span class="pre">stats</span></tt> to the <a class="reference internal" href="configuration.html#ckan-plugins"><em>ckan.plugins</em></a> option
+in your CKAN config file, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ckan</span><span class="o">.</span><span class="n">plugins</span> <span class="o">=</span> <span class="n">stats</span>
+</pre></div>
+</div>
+<p>If you also set the <a class="reference internal" href="configuration.html#ckanext-stats-cache-enabled"><em>ckanext.stats.cache_enabled</em></a> option to <tt class="docutils literal"><span class="pre">true</span></tt>, CKAN
+will cache the stats for one day instead of calculating them each time a user
+visits the stats page.</p>
+</div>
+<div class="section" id="viewing-the-statistics">
+<h2>Viewing the Statistics<a class="headerlink" href="stats.html#viewing-the-statistics" title="Permalink to this headline">¶</a></h2>
+<p>To view the statistics reported by the stats extension, visit the <tt class="docutils literal"><span class="pre">/stats</span></tt>
+page, for example: <a class="reference external" href="http://demo.ckan.org/stats">http://demo.ckan.org/stats</a></p>
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="extensions/index.html"
+                  title="Writing CKAN extensions" accesskey="N">
+                    
+                      
+                    
+                    Writing CKAN extensions→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="multilingual.html"
+                  title="Multilingual Extension" accesskey="P">
+                    
+                      
+                    
+                    ← Multilingual Extension
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/ckan/ckan">Source</a>
+&mdash;
+<a href="https://github.com/ckan/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

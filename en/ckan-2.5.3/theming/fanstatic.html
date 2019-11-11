@@ -1,0 +1,418 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Adding CSS and JavaScript files using Fanstatic &mdash; CKAN 2.5.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="CKAN 2.5.3 documentation" href="../index.html"/>
+        <link rel="up" title="Theming guide" href="index.html"/>
+        <link rel="next" title="Customizing CKAN’s JavaScript" href="javascript.html"/>
+        <link rel="prev" title="Customizing CKAN’s CSS" href="css.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/theming/fanstatic.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'theming/fanstatic'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> CKAN
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                ckan-2.5.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="http://docs.ckan.org/en/ckan-2.5.3/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maintaining/index.html">Maintainer&#8217;s guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extending guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Theming guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Customizing CKAN&#8217;s templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="static-files.html">Adding static files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css.html">Customizing CKAN&#8217;s CSS</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="fanstatic.html">Adding CSS and JavaScript files using Fanstatic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Customizing CKAN&#8217;s JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="best-practices.html">Best practices for writing CKAN themes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jinja-tags.html">Custom Jinja2 tags reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables-and-functions.html">Variables and functions available to templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript-module-objects-and-methods.html">Objects and methods available to JavaScript modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="template-helper-functions.html">Template helper functions reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="template-snippets.html">Template snippets reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript-sandbox.html">JavaScript sandbox reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript-api-client.html">JavaScript API client reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jquery-plugins.html">CKAN jQuery plugins reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Theming guide</a> &raquo;</li>
+      
+    <li>Adding CSS and JavaScript files using Fanstatic</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/ckan/ckan/blob/ckan-2.5.3/doc/theming/fanstatic.rst" class="fa fa-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="adding-css-and-javascript-files-using-fanstatic">
+<h1>Adding CSS and JavaScript files using Fanstatic<a class="headerlink" href="fanstatic.html#adding-css-and-javascript-files-using-fanstatic" title="Permalink to this headline">¶</a></h1>
+<p>If you&#8217;re adding CSS files to your theme, you can add them
+using <a class="reference external" href="http://www.fanstatic.org/">Fanstatic</a> rather than the simple
+<a class="reference internal" href="../maintaining/configuration.html#extra-public-paths"><em>extra_public_paths</em></a> method described in <a class="reference internal" href="static-files.html"><em>Adding static files</em></a>.
+If you&#8217;re adding a JavaScript module, you <em>must</em> use Fanstatic.</p>
+<p>Using Fanstatic to add JavaScript and CSS files takes advantage
+of Fanstatic&#8217;s features, such as automatically serving minified files in
+production, caching and bundling files together to reduce page load times,
+specifying dependencies between files so that the files a page needs (and only
+the files it needs) are always loaded, and other tricks to optimize page load
+times.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">CKAN will only serve <tt class="docutils literal"><span class="pre">*.js</span></tt> and <tt class="docutils literal"><span class="pre">*.css</span></tt> files as Fanstatic resources,
+other types of static files (eg. image files, PDF files) must be added
+using the <a class="reference internal" href="../maintaining/configuration.html#extra-public-paths"><em>extra_public_paths</em></a> method described in <a class="reference internal" href="static-files.html"><em>Adding static files</em></a>.</p>
+</div>
+<p>Adding a custom JavaScript or CSS file to CKAN using Fanstatic is simple.
+We&#8217;ll demonstrate by changing our previous custom CSS example (see <a class="reference internal" href="css.html"><em>Customizing CKAN&#8217;s CSS</em></a>)
+to serve the CSS file with Fanstatic.</p>
+<ol class="arabic">
+<li><p class="first">First, create a <tt class="docutils literal"><span class="pre">fanstatic</span></tt> directory in your extension and move the CSS
+file from <tt class="docutils literal"><span class="pre">public</span></tt> into <tt class="docutils literal"><span class="pre">fanstatic</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>ckanext-example_theme/
+  ckanext/
+    example_theme/
+      public/
+        promoted-image.jpg
+      fanstatic/
+        example_theme.css
+</pre></div>
+</div>
+</li>
+<li><p class="first">Use CKAN&#8217;s <a class="reference internal" href="../extensions/plugins-toolkit.html#ckan.plugins.toolkit.add_resource" title="ckan.plugins.toolkit.add_resource"><tt class="xref py py-func docutils literal"><span class="pre">add_resource()</span></tt></a> function to
+register your fanstatic directory with CKAN. Edit the <tt class="docutils literal"><span class="pre">update_config()</span></tt>
+method in your <tt class="docutils literal"><span class="pre">plugin.py</span></tt> file:</p>
+<div class="highlight-python"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">update_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+
+        <span class="c"># Add this plugin&#39;s templates dir to CKAN&#39;s extra_template_paths, so</span>
+        <span class="c"># that CKAN will use this plugin&#39;s custom templates.</span>
+        <span class="n">toolkit</span><span class="o">.</span><span class="n">add_template_directory</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s">&#39;templates&#39;</span><span class="p">)</span>
+
+        <span class="c"># Add this plugin&#39;s public dir to CKAN&#39;s extra_public_paths, so</span>
+        <span class="c"># that CKAN will use this plugin&#39;s custom static files.</span>
+        <span class="n">toolkit</span><span class="o">.</span><span class="n">add_public_directory</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s">&#39;public&#39;</span><span class="p">)</span>
+
+        <span class="c"># Register this plugin&#39;s fanstatic directory with CKAN.</span>
+        <span class="c"># Here, &#39;fanstatic&#39; is the path to the fanstatic directory</span>
+        <span class="c"># (relative to this plugin.py file), and &#39;example_theme&#39; is the name</span>
+        <span class="c"># that we&#39;ll use to refer to this fanstatic directory from CKAN</span>
+        <span class="c"># templates.</span>
+        <span class="n">toolkit</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span><span class="s">&#39;fanstatic&#39;</span><span class="p">,</span> <span class="s">&#39;example_theme&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Finally, edit your extension&#8217;s <tt class="docutils literal"><span class="pre">templates/base.html</span></tt> file and use CKAN&#8217;s
+custom Jinja2 tag <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">resource</span> <span class="pre">%}</span></tt> instead of the normal <tt class="docutils literal"><span class="pre">&lt;link&gt;</span></tt> tag to
+import the file:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">ckan_extends</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">styles</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{{</span> <span class="nb">super</span><span class="o">()</span> <span class="cp">}}</span><span class="x"></span>
+
+<span class="x">  </span><span class="c">{# Import example_theme.css using Fanstatic.</span>
+<span class="c">     &#39;example_theme/&#39; is the name that the example_theme/fanstatic directory</span>
+<span class="c">     was registered with when the toolkit.add_resource() function was called.</span>
+<span class="c">     &#39;example_theme.css&#39; is the path to the CSS file, relative to the root of</span>
+<span class="c">     the fanstatic directory. #}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">resource</span> <span class="s1">&#39;example_theme/example_theme.css&#39;</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You can put <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">resource</span> <span class="pre">%}</span></tt> tags anywhere in any template, and Fanstatic
+will insert the necessary <tt class="docutils literal"><span class="pre">&lt;style&gt;</span></tt> and <tt class="docutils literal"><span class="pre">&lt;script&gt;</span></tt> tags to include your
+CSS and JavaScript files and their dependencies in the right places in
+the HTML output (CSS files in the HTML <tt class="docutils literal"><span class="pre">&lt;head&gt;</span></tt>, JavaScript files at
+the bottom of the page).</p>
+<p class="last">Resources will <em>not</em> be included on the line where the <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">resource</span> <span class="pre">%}</span></tt>
+tag is.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A config file can be used to configure how Fanstatic should serve each resource
+file (whether or not to bundle files, what order to include files in, whether
+to include files at the top or bottom of the page, dependencies between files,
+etc.) See <a class="reference internal" href="../contributing/frontend/resources.html"><em>Resources</em></a> for details.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="javascript.html" class="btn btn-neutral float-right"
+           title="Customizing CKAN’s JavaScript"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="css.html" class="btn btn-neutral"
+           title="Customizing CKAN’s CSS">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: ckan-2.5.3
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../index.html">latest</a></dd>
+        
+          <dd><a href="../../ckan-2.6.0/index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../../ckan-2.4.4/index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../../ckan-2.3.5/index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Converter functions reference &mdash; CKAN 2.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN 2.2.3 documentation" href="../index.html" />
+    <link rel="up" title="Writing CKAN extensions" href="index.html" />
+    <link rel="next" title="Validator functions reference" href="validators.html" />
+    <link rel="prev" title="Plugins toolkit reference" href="plugins-toolkit.html" />
+
+  
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/extensions/converters.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'extensions/converters'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+  <body>
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="../contents.html"><img src="../_static/ckanlogo.png" alt="CKAN" /></a>
+        
+        <a class="brand" href="../contents.html">CKAN<span class="version"> v2.2.3</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.2.3/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to CKAN&#8217;s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installing.html">Installing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Writing CKAN extensions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html">Writing extensions tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing-extensions.html">Testing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="best-practices.html">Best practices for writing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin-interfaces.html">Plugin interfaces reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins-toolkit.html">Plugins toolkit reference</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="converters.html">Converter functions reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validators.html">Validator functions reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">Appendices</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="../contents.html">CKAN 2.2.3 documentation</a> &raquo;
+              <a href="index.html"
+                    accesskey="U">
+                    Writing CKAN extensions
+                  </a>
+                   &raquo;
+        </div>
+
+        
+  <div class="section" id="module-ckan.logic.converters">
+<span id="converter-functions-reference"></span><h1>Converter functions reference<a class="headerlink" href="converters.html#module-ckan.logic.converters" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="ckan.logic.converters.convert_to_extras">
+<tt class="descclassname">ckan.logic.converters.</tt><tt class="descname">convert_to_extras</tt><big>(</big><em>key</em>, <em>data</em>, <em>errors</em>, <em>context</em><big>)</big><a class="headerlink" href="converters.html#ckan.logic.converters.convert_to_extras" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.logic.converters.convert_from_extras">
+<tt class="descclassname">ckan.logic.converters.</tt><tt class="descname">convert_from_extras</tt><big>(</big><em>key</em>, <em>data</em>, <em>errors</em>, <em>context</em><big>)</big><a class="headerlink" href="converters.html#ckan.logic.converters.convert_from_extras" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.logic.converters.date_to_db">
+<tt class="descclassname">ckan.logic.converters.</tt><tt class="descname">date_to_db</tt><big>(</big><em>value</em>, <em>context</em><big>)</big><a class="headerlink" href="converters.html#ckan.logic.converters.date_to_db" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.logic.converters.date_to_form">
+<tt class="descclassname">ckan.logic.converters.</tt><tt class="descname">date_to_form</tt><big>(</big><em>value</em>, <em>context</em><big>)</big><a class="headerlink" href="converters.html#ckan.logic.converters.date_to_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.logic.converters.free_tags_only">
+<tt class="descclassname">ckan.logic.converters.</tt><tt class="descname">free_tags_only</tt><big>(</big><em>key</em>, <em>data</em>, <em>errors</em>, <em>context</em><big>)</big><a class="headerlink" href="converters.html#ckan.logic.converters.free_tags_only" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.logic.converters.convert_to_tags">
+<tt class="descclassname">ckan.logic.converters.</tt><tt class="descname">convert_to_tags</tt><big>(</big><em>vocab</em><big>)</big><a class="headerlink" href="converters.html#ckan.logic.converters.convert_to_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.logic.converters.convert_from_tags">
+<tt class="descclassname">ckan.logic.converters.</tt><tt class="descname">convert_from_tags</tt><big>(</big><em>vocab</em><big>)</big><a class="headerlink" href="converters.html#ckan.logic.converters.convert_from_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.logic.converters.convert_user_name_or_id_to_id">
+<tt class="descclassname">ckan.logic.converters.</tt><tt class="descname">convert_user_name_or_id_to_id</tt><big>(</big><em>user_name_or_id</em>, <em>context</em><big>)</big><a class="headerlink" href="converters.html#ckan.logic.converters.convert_user_name_or_id_to_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the user id for the given user name or id.</p>
+<p>The point of this function is to convert user names to ids. If you have
+something that may be a user name or a user id you can pass it into this
+function and get the user id out either way.</p>
+<p>Also validates that a user with the given name or id exists.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the id of the user with the given user name or id</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">ckan.lib.navl.dictization_functions.Invalid if no user can be
+found with the given id or user name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.logic.converters.convert_package_name_or_id_to_id">
+<tt class="descclassname">ckan.logic.converters.</tt><tt class="descname">convert_package_name_or_id_to_id</tt><big>(</big><em>package_name_or_id</em>, <em>context</em><big>)</big><a class="headerlink" href="converters.html#ckan.logic.converters.convert_package_name_or_id_to_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the package id for the given package name or id.</p>
+<p>The point of this function is to convert package names to ids. If you have
+something that may be a package name or id you can pass it into this
+function and get the id out either way.</p>
+<p>Also validates that a package with the given name or id exists.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the id of the package with the given name or id</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">ckan.lib.navl.dictization_functions.Invalid if there is no
+package with the given name or id</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.logic.converters.convert_group_name_or_id_to_id">
+<tt class="descclassname">ckan.logic.converters.</tt><tt class="descname">convert_group_name_or_id_to_id</tt><big>(</big><em>group_name_or_id</em>, <em>context</em><big>)</big><a class="headerlink" href="converters.html#ckan.logic.converters.convert_group_name_or_id_to_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the group id for the given group name or id.</p>
+<p>The point of this function is to convert group names to ids. If you have
+something that may be a group name or id you can pass it into this
+function and get the id out either way.</p>
+<p>Also validates that a group with the given name or id exists.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the id of the group with the given name or id</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">ckan.lib.navl.dictization_functions.Invalid if there is no
+group with the given name or id</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.logic.converters.convert_to_json_if_string">
+<tt class="descclassname">ckan.logic.converters.</tt><tt class="descname">convert_to_json_if_string</tt><big>(</big><em>value</em>, <em>context</em><big>)</big><a class="headerlink" href="converters.html#ckan.logic.converters.convert_to_json_if_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.logic.converters.remove_whitespace">
+<tt class="descclassname">ckan.logic.converters.</tt><tt class="descname">remove_whitespace</tt><big>(</big><em>value</em>, <em>context</em><big>)</big><a class="headerlink" href="converters.html#ckan.logic.converters.remove_whitespace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="validators.html"
+                  title="Validator functions reference" accesskey="N">
+                    
+                      
+                    
+                    Validator functions reference→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="plugins-toolkit.html"
+                  title="Plugins toolkit reference" accesskey="P">
+                    
+                      
+                    
+                    ← Plugins toolkit reference
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/ckan/ckan">Source</a>
+&mdash;
+<a href="https://github.com/ckan/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

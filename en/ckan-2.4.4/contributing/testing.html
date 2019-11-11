@@ -1,0 +1,1369 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Testing coding standards &mdash; CKAN 2.4.4 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+    <link rel="top" title="CKAN 2.4.4 documentation" href="../index.html"/>
+        <link rel="up" title="Contributing guide" href="index.html"/>
+        <link rel="next" title="Frontend development guidelines" href="frontend/index.html"/>
+        <link rel="prev" title="String internationalization" href="string-i18n.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/contributing/testing.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'contributing/testing'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../contents.html" class="fa fa-home"> CKAN</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://docs.ckan.org/en/ckan-2.4.4/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide.html#what-is-ckan">What is CKAN?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide.html#using-ckan">Using CKAN</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#creating-a-sysadmin-account">Creating a sysadmin account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#customizing-look-and-feel">Customizing look and feel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#managing-organizations-and-datasets">Managing organizations and datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#permanently-deleting-datasets">Permanently deleting datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#managing-users">Managing users</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../maintaining/index.html">Maintainer&#8217;s guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/installing/index.html">Installing CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/upgrading/index.html">Upgrading CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/getting-started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/authorization.html">Organizations and authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/data-viewer.html">Data preview and visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/filestore.html">FileStore and file uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/datastore.html">DataStore extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/background-tasks.html">Background tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/email-notifications.html">Email notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/tracking.html">Page View Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/multilingual.html">Multilingual Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/stats.html">Stats Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/configuration.html">Configuration Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/solr-multicore.html">Multicore Solr setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/legacy-api.html">Legacy APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#making-an-api-request">Making an API request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#example-importing-datasets-with-the-ckan-api">Example: Importing datasets with the CKAN API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#api-versions">API versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#authentication-and-api-keys">Authentication and API keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#get-able-api-functions">GET-able API functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#jsonp-support">JSONP support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#api-examples">API Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#action-api-reference">Action API reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extending guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/tutorial.html">Writing extensions tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/custom-config-settings.html">Using custom config settings in extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/remote-config-update.html">Making configuration options runtime-editable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/testing-extensions.html">Testing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/best-practices.html">Best practices for writing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/adding-custom-fields.html">Customizing dataset and resource metadata fields using IDatasetForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/plugin-interfaces.html">Plugin interfaces reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/plugins-toolkit.html">Plugins toolkit reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/validators.html">Validator functions reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theming/index.html">Theming guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../theming/templates.html">Customizing CKAN&#8217;s templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/static-files.html">Adding static files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/css.html">Customizing CKAN&#8217;s CSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/fanstatic.html">Adding CSS and JavaScript files using Fanstatic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/javascript.html">Customizing CKAN&#8217;s JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/best-practices.html">Best practices for writing CKAN themes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/jinja-tags.html">Custom Jinja2 tags reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/variables-and-functions.html">Variables and functions available to templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/javascript-module-objects-and-methods.html">Objects and methods available to JavaScript modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/template-helper-functions.html">Template helper functions reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/template-snippets.html">Template snippets reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/javascript-sandbox.html">JavaScript sandbox reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/javascript-api-client.html">JavaScript API client reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/jquery-plugins.html">CKAN jQuery plugins reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Contributing guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="issues.html">Reporting issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html">Translating CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commit-messages.html">Writing commit messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pull-requests.html">Making a pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reviewing.html">Reviewing and merging a pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">Writing documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple-code-contributions.html">Projects for beginner CKAN developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">CKAN code architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css.html">CSS coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html.html">HTML coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">JavaScript coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string-i18n.html">String internationalization</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="testing.html">Testing coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="frontend/index.html">Frontend development guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database-migrations.html">Database migrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading-dependencies.html">Upgrading CKAN&#8217;s dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release-process.html">Doing a CKAN release</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Contributing guide</a> &raquo;</li>
+      
+    <li>Testing coding standards</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/ckan/ckan/blob/ckan-2.4.4/doc/contributing/testing.rst" class="fa fa-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="testing-coding-standards">
+<h1>Testing coding standards<a class="headerlink" href="testing.html#testing-coding-standards" title="Permalink to this headline">¶</a></h1>
+<p><strong>All new code, or changes to existing code, should have new or updated tests
+before being merged into master</strong>. This document gives some guidelines for
+developers who are writing tests or reviewing code for CKAN.</p>
+<div class="section" id="transitioning-from-legacy-to-new-tests">
+<h2>Transitioning from legacy to new tests<a class="headerlink" href="testing.html#transitioning-from-legacy-to-new-tests" title="Permalink to this headline">¶</a></h2>
+<p>CKAN is an old code base with a large legacy test suite in
+<tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests.legacy</span></tt>. The legacy tests are difficult to maintain and
+extend, but are too many to be replaced all at once in a single effort.  So
+we&#8217;re following this strategy:</p>
+<ol class="arabic simple">
+<li>A new test suite has been started in <tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests</span></tt>.</li>
+<li>For now, we&#8217;ll run both the legacy tests and the new tests before
+merging something into the master branch.</li>
+<li>Whenever we add new code, or change existing code, we&#8217;ll add new-style tests
+for it.</li>
+<li>If you change the behavior of some code and break some legacy tests,
+consider adding new tests for that code and deleting the legacy tests,
+rather than updating the legacy tests.</li>
+<li>Now and then, we&#8217;ll write a set of new tests to cover part of the code,
+and delete the relevant legacy tests. For example if you want to refactor
+some code that doesn&#8217;t have good tests, write a set of new-style tests for
+it first, refactor, then delete the relevant legacy tests.</li>
+</ol>
+<p>In this way we can incrementally extend the new tests to cover CKAN one &#8220;island
+of code&#8221; at a time, and eventually we can delete the legacy <tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests</span></tt>
+directory entirely.</p>
+</div>
+<div class="section" id="guidelines-for-writing-new-style-tests">
+<h2>Guidelines for writing new-style tests<a class="headerlink" href="testing.html#guidelines-for-writing-new-style-tests" title="Permalink to this headline">¶</a></h2>
+<p>We want the tests in <tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests</span></tt> to be:</p>
+<dl class="docutils">
+<dt>Fast</dt>
+<dd><ul class="first last">
+<li><p class="first">Don&#8217;t share setup code between tests (e.g. in test class <tt class="docutils literal"><span class="pre">setup()</span></tt> or
+<tt class="docutils literal"><span class="pre">setup_class()</span></tt> methods, saved against the <tt class="docutils literal"><span class="pre">self</span></tt> attribute of test
+classes, or in test helper modules).</p>
+<p>Instead write helper functions that create test objects and return them,
+and have each test method call just the helpers it needs to do the setup
+that it needs.</p>
+</li>
+<li><p class="first">Where appropriate, use the <tt class="docutils literal"><span class="pre">mock</span></tt> library to avoid pulling in other parts
+of CKAN (especially the database), see <a class="reference internal" href="testing.html#mock"><em>Mocking: the mock library</em></a>.</p>
+</li>
+</ul>
+</dd>
+<dt>Independent</dt>
+<dd><ul class="first last simple">
+<li>Each test module, class and method should be able to be run on its own.</li>
+<li>Tests shouldn&#8217;t be tightly coupled to each other, changing a test shouldn&#8217;t
+affect other tests.</li>
+</ul>
+</dd>
+<dt>Clear</dt>
+<dd><p class="first">It should be quick and easy to see what went wrong when a test fails, or
+to see what a test does and how it works if you have to debug or update
+a test. If you think the test or helper method isn&#8217;t clear by itself, add
+docstrings.</p>
+<p>You shouldn&#8217;t have to figure out what a complex test method does, or go and
+look up a lot of code in other files to understand a test method.</p>
+<ul class="last simple">
+<li>Tests should follow the canonical form for a unit test, see
+<a class="reference internal" href="testing.html#test-recipe"><em>Recipe for a test method</em></a>.</li>
+<li>Write lots of small, simple test methods not a few big, complex tests.</li>
+<li>Each test method should test just One Thing.</li>
+<li>The name of a test method should clearly explain the intent of the test.
+See <a class="reference internal" href="testing.html#naming"><em>Naming test methods</em></a>.</li>
+</ul>
+</dd>
+<dt>Easy to find</dt>
+<dd><p class="first">It should be easy to know where to add new tests for some new or changed
+code, or to find the existing tests for some code.</p>
+<ul class="last simple">
+<li>See <a class="reference internal" href="testing.html#organization"><em>How should tests be organized?</em></a></li>
+<li>See <a class="reference internal" href="testing.html#naming"><em>Naming test methods</em></a>.</li>
+</ul>
+</dd>
+<dt>Easy to write</dt>
+<dd>Writing lots of small, clear and simple tests that all follow similar
+recipes and organization should make tests easy to write, as well as easy
+to read.</dd>
+</dl>
+<p>The follow sections give some more specific guidelines and tips for writing
+CKAN tests.</p>
+<div class="section" id="how-should-tests-be-organized">
+<span id="organization"></span><h3>How should tests be organized?<a class="headerlink" href="testing.html#how-should-tests-be-organized" title="Permalink to this headline">¶</a></h3>
+<p>The organization of test modules in <tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests</span></tt> mirrors the
+organization of the source modules in <tt class="xref py py-mod docutils literal"><span class="pre">ckan</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>ckan/
+  tests/
+    controllers/
+      test_package.py &lt;-- Tests for ckan/controllers/package.py
+      ...
+    lib/
+      test_helpers.py &lt;-- Tests for ckan/lib/helpers.py
+      ...
+    logic/
+      action/
+        test_get.py
+        ...
+      auth/
+        test_get.py
+        ...
+      test_converters.py
+      test_validators.py
+    migration/
+      versions/
+        test_001_add_existing_tables.py
+        ...
+    model/
+      test_package.py
+      ...
+    ...
+</pre></div>
+</div>
+<p>There are a few exceptional test modules that don&#8217;t fit into this structure,
+for example PEP8 tests and coding standards tests. These modules can just go in
+the top-level <tt class="docutils literal"><span class="pre">ckan/tests/</span></tt> directory. There shouldn&#8217;t be too many of these.</p>
+<div class="section" id="naming-test-methods">
+<span id="naming"></span><h4>Naming test methods<a class="headerlink" href="testing.html#naming-test-methods" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="http://docs.pylonsproject.org/en/latest/community/testing.html#rule-name-tcms-to-indicate-what-they-test">The name of a test method should clearly explain the intent of the test</a>.</p>
+<p>Test method names are printed out when tests fail, so the user can often
+see what went wrong without having to look into the test file. When they
+do need to look into the file to debug or update a test, the test name
+helps to clarify the test.</p>
+<p>Do this even if it means your method name gets really long, since we don&#8217;t
+write code that calls our test methods there&#8217;s no advantage to having short
+test method names.</p>
+<p>Some modules in CKAN contain large numbers of loosely related functions.
+For example, <a class="reference internal" href="../api/index.html#module-ckan.logic.action.update" title="ckan.logic.action.update"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.logic.action.update</span></tt></a> contains all functions for
+updating things in CKAN. This means that
+<tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests.logic.action.test_update</span></tt> is going to contain an even larger
+number of test functions.</p>
+<p>So as well as the name of each test method explaining the intent of the test,
+tests should be grouped by a test class that aggregates tests against a model
+entity or action type, for instance:</p>
+<div class="highlight-python"><div class="highlight"><pre>class TestPackageCreate(object):
+    # ...
+    def test_it_validates_name(self):
+        # ...
+
+    def test_it_validates_url(self):
+        # ...
+
+
+class TestResourceCreate(object)
+    # ...
+    def test_it_validates_package_id(self):
+        # ...
+
+# ...
+</pre></div>
+</div>
+<p>Good test names:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">TestUserUpdate.test_update_with_id_that_does_not_exist</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">TestUserUpdate.test_update_with_no_id</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">TestUserUpdate.test_update_with_invalid_name</span></tt></li>
+</ul>
+<p>Bad test names:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">test_user_update</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">test_update_pkg_1</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">test_package</span></tt></li>
+</ul>
+</div>
+</div>
+<div class="section" id="recipe-for-a-test-method">
+<span id="test-recipe"></span><h3>Recipe for a test method<a class="headerlink" href="testing.html#recipe-for-a-test-method" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="http://docs.pylonsproject.org/en/latest/community/testing.html#tips-for-avoiding-bad-unit-tests">Pylons Unit Testing Guidelines</a>
+give the following recipe for all unit test methods to follow:</p>
+<ol class="arabic simple">
+<li>Set up the preconditions for the method / function being tested.</li>
+<li>Call the method / function exactly one time, passing in the values
+established in the first step.</li>
+<li>Make assertions about the return value, and / or any side effects.</li>
+<li>Do absolutely nothing else.</li>
+</ol>
+<p>Most CKAN tests should follow this form. Here&#8217;s an example of a simple action
+function test demonstrating the recipe:</p>
+<div class="highlight-python"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">test_user_update_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Test that updating a user&#39;s name works successfully.&#39;&#39;&#39;</span>
+
+        <span class="c"># The canonical form of a test has four steps:</span>
+        <span class="c"># 1. Setup any preconditions needed for the test.</span>
+        <span class="c"># 2. Call the function that&#39;s being tested, once only.</span>
+        <span class="c"># 3. Make assertions about the return value and/or side-effects of</span>
+        <span class="c">#    of the function that&#39;s being tested.</span>
+        <span class="c"># 4. Do nothing else!</span>
+
+        <span class="c"># 1. Setup.</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="p">()</span>
+
+        <span class="c"># 2. Call the function that&#39;s being tested, once only.</span>
+        <span class="c"># FIXME we have to pass the email address and password to user_update</span>
+        <span class="c"># even though we&#39;re not updating those fields, otherwise validation</span>
+        <span class="c"># fails.</span>
+        <span class="n">helpers</span><span class="o">.</span><span class="n">call_action</span><span class="p">(</span><span class="s">&#39;user_update&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">user</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span>
+                            <span class="n">email</span><span class="o">=</span><span class="n">user</span><span class="p">[</span><span class="s">&#39;email&#39;</span><span class="p">],</span>
+                            <span class="n">password</span><span class="o">=</span><span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">attributes</span><span class="p">()[</span><span class="s">&#39;password&#39;</span><span class="p">],</span>
+                            <span class="n">name</span><span class="o">=</span><span class="s">&#39;updated&#39;</span><span class="p">,</span>
+                            <span class="p">)</span>
+
+        <span class="c"># 3. Make assertions about the return value and/or side-effects.</span>
+        <span class="n">updated_user</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">call_action</span><span class="p">(</span><span class="s">&#39;user_show&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">user</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">])</span>
+        <span class="c"># Note that we check just the field we were trying to update, not the</span>
+        <span class="c"># entire dict, only assert what we&#39;re actually testing.</span>
+        <span class="k">assert</span> <span class="n">updated_user</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;updated&#39;</span>
+
+        <span class="c"># 4. Do nothing else!</span>
+</pre></div>
+</div>
+<p>One common exception is when you want to use a <tt class="docutils literal"><span class="pre">for</span></tt> loop to call the
+function being tested multiple times, passing it lots of different arguments
+that should all produce the same return value and/or side effects. For example,
+this test from <tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests.logic.action.test_update</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">test_user_update_with_invalid_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="p">()</span>
+
+        <span class="n">invalid_names</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="s">&#39;new&#39;</span><span class="p">,</span> <span class="s">&#39;edit&#39;</span><span class="p">,</span> <span class="s">&#39;search&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;a&#39;</span> <span class="o">*</span> <span class="mi">200</span><span class="p">,</span> <span class="s">&#39;Hi!&#39;</span><span class="p">,</span> <span class="s">&#39;i++%&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">invalid_names</span><span class="p">:</span>
+            <span class="n">user</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+            <span class="n">assert_raises</span><span class="p">(</span><span class="n">logic</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">,</span>
+                          <span class="n">helpers</span><span class="o">.</span><span class="n">call_action</span><span class="p">,</span> <span class="s">&#39;user_update&#39;</span><span class="p">,</span>
+                          <span class="o">**</span><span class="n">user</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The behavior of <a class="reference internal" href="../api/index.html#ckan.logic.action.update.user_update" title="ckan.logic.action.update.user_update"><tt class="xref py py-func docutils literal"><span class="pre">user_update()</span></tt></a> is the same
+for every invalid value.
+We do want to test <a class="reference internal" href="../api/index.html#ckan.logic.action.update.user_update" title="ckan.logic.action.update.user_update"><tt class="xref py py-func docutils literal"><span class="pre">user_update()</span></tt></a> with lots
+of different invalid names, but we obviously don&#8217;t want to write a dozen
+separate test methods that are all the same apart from the value used for the
+invalid user name. We don&#8217;t really want to define a helper method and a dozen
+test methods that call it either. So we use a simple loop. Technically this
+test calls the function being tested more than once, but there&#8217;s only one line
+of code that calls it.</p>
+</div>
+<div class="section" id="how-detailed-should-tests-be">
+<h3>How detailed should tests be?<a class="headerlink" href="testing.html#how-detailed-should-tests-be" title="Permalink to this headline">¶</a></h3>
+<p>Generally, what we&#8217;re trying to do is test the <em>interfaces</em> between modules in
+a way that supports modularization: if you change the code within a function,
+method, class or module, if you don&#8217;t break any of that code&#8217;s tests you
+should be able to expect that CKAN as a whole will not be broken.</p>
+<p>As a general guideline, the tests for a function or method should:</p>
+<ul class="simple">
+<li>Test for success:<ul>
+<li>Test the function with typical, valid input values</li>
+<li>Test with valid, edge-case inputs</li>
+<li>If the function has multiple parameters, test them in different
+combinations</li>
+</ul>
+</li>
+<li>Test for failure:<ul>
+<li>Test that the function fails correctly (e.g. raises the expected type of
+exception) when given likely invalid inputs (for example, if the user
+passes an invalid user_id as a parameter)</li>
+<li>Test that the function fails correctly when given bizarre input</li>
+</ul>
+</li>
+<li>Test that the function behaves correctly when given unicode characters as
+input</li>
+<li>Cover the interface of the function: test all the parameters and features of
+the function</li>
+</ul>
+<div class="section" id="module-ckan.tests.factories">
+<span id="creating-test-objects-ckan-tests-factories"></span><span id="factory-boy"></span><h4>Creating test objects: <a class="reference internal" href="testing.html#module-ckan.tests.factories" title="ckan.tests.factories"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests.factories</span></tt></a><a class="headerlink" href="testing.html#module-ckan.tests.factories" title="Permalink to this headline">¶</a></h4>
+<p>This is a collection of factory classes for building CKAN users, datasets,
+etc.</p>
+<p>These are meant to be used by tests to create any objects that are needed for
+the tests. They&#8217;re written using <tt class="docutils literal"><span class="pre">factory_boy</span></tt>:</p>
+<p><a class="reference external" href="http://factoryboy.readthedocs.org/en/latest/">http://factoryboy.readthedocs.org/en/latest/</a></p>
+<p>These are not meant to be used for the actual testing, e.g. if you&#8217;re writing
+a test for the <a class="reference internal" href="../api/index.html#ckan.logic.action.create.user_create" title="ckan.logic.action.create.user_create"><tt class="xref py py-func docutils literal"><span class="pre">user_create()</span></tt></a> function then
+call <a class="reference internal" href="testing.html#ckan.tests.helpers.call_action" title="ckan.tests.helpers.call_action"><tt class="xref py py-func docutils literal"><span class="pre">call_action()</span></tt></a>, don&#8217;t test it via the
+<a class="reference internal" href="testing.html#ckan.tests.factories.User" title="ckan.tests.factories.User"><tt class="xref py py-class docutils literal"><span class="pre">User</span></tt></a> factory below.</p>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Create a user with the factory&#39;s default attributes, and get back a</span>
+<span class="c"># user dict:</span>
+<span class="n">user_dict</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="p">()</span>
+
+<span class="c"># You can create a second user the same way. For attributes that can&#39;t be</span>
+<span class="c"># the same (e.g. you can&#39;t have two users with the same name) a new value</span>
+<span class="c"># will be generated each time you use the factory:</span>
+<span class="n">another_user_dict</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="p">()</span>
+
+<span class="c"># Create a user and specify your own user name and email (this works</span>
+<span class="c"># with any params that CKAN&#39;s user_create() accepts):</span>
+<span class="n">custom_user_dict</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;bob&#39;</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">&#39;bob@bob.com&#39;</span><span class="p">)</span>
+
+<span class="c"># Get a user dict containing the attributes (name, email, password, etc.)</span>
+<span class="c"># that the factory would use to create a user, but without actually</span>
+<span class="c"># creating the user in CKAN:</span>
+<span class="n">user_attributes_dict</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">attributes</span><span class="p">()</span>
+
+<span class="c"># If you later want to create a user using these attributes, just pass them</span>
+<span class="c"># to the factory:</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="p">(</span><span class="o">**</span><span class="n">user_attributes_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="ckan.tests.factories.User">
+<em class="property">class </em><tt class="descclassname">ckan.tests.factories.</tt><tt class="descname">User</tt><a class="headerlink" href="testing.html#ckan.tests.factories.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>A factory class for creating CKAN users.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.tests.factories.Resource">
+<em class="property">class </em><tt class="descclassname">ckan.tests.factories.</tt><tt class="descname">Resource</tt><a class="headerlink" href="testing.html#ckan.tests.factories.Resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>A factory class for creating CKAN resources.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.tests.factories.ResourceView">
+<em class="property">class </em><tt class="descclassname">ckan.tests.factories.</tt><tt class="descname">ResourceView</tt><a class="headerlink" href="testing.html#ckan.tests.factories.ResourceView" title="Permalink to this definition">¶</a></dt>
+<dd><p>A factory class for creating CKAN resource views.</p>
+<p>Note: if you use this factory, you need to load the <cite>image_view</cite> plugin
+on your test class (and unload it later), otherwise you will get an error.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TestSomethingWithResourceViews</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">setup_class</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">p</span><span class="o">.</span><span class="n">plugin_loaded</span><span class="p">(</span><span class="s">&#39;image_view&#39;</span><span class="p">):</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;image_view&#39;</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">teardown_class</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">unload</span><span class="p">(</span><span class="s">&#39;image_view&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.tests.factories.Sysadmin">
+<em class="property">class </em><tt class="descclassname">ckan.tests.factories.</tt><tt class="descname">Sysadmin</tt><a class="headerlink" href="testing.html#ckan.tests.factories.Sysadmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>A factory class for creating sysadmin users.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.tests.factories.Group">
+<em class="property">class </em><tt class="descclassname">ckan.tests.factories.</tt><tt class="descname">Group</tt><a class="headerlink" href="testing.html#ckan.tests.factories.Group" title="Permalink to this definition">¶</a></dt>
+<dd><p>A factory class for creating CKAN groups.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.tests.factories.Organization">
+<em class="property">class </em><tt class="descclassname">ckan.tests.factories.</tt><tt class="descname">Organization</tt><a class="headerlink" href="testing.html#ckan.tests.factories.Organization" title="Permalink to this definition">¶</a></dt>
+<dd><p>A factory class for creating CKAN organizations.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.tests.factories.Related">
+<em class="property">class </em><tt class="descclassname">ckan.tests.factories.</tt><tt class="descname">Related</tt><a class="headerlink" href="testing.html#ckan.tests.factories.Related" title="Permalink to this definition">¶</a></dt>
+<dd><p>A factory class for creating related items.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.tests.factories.Dataset">
+<em class="property">class </em><tt class="descclassname">ckan.tests.factories.</tt><tt class="descname">Dataset</tt><a class="headerlink" href="testing.html#ckan.tests.factories.Dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>A factory class for creating CKAN datasets.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.tests.factories.MockUser">
+<em class="property">class </em><tt class="descclassname">ckan.tests.factories.</tt><tt class="descname">MockUser</tt><a class="headerlink" href="testing.html#ckan.tests.factories.MockUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>A factory class for creating mock CKAN users using the mock library.</p>
+<dl class="attribute">
+<dt id="ckan.tests.factories.MockUser.FACTORY_FOR">
+<tt class="descname">FACTORY_FOR</tt><a class="headerlink" href="testing.html#ckan.tests.factories.MockUser.FACTORY_FOR" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">MagicMock</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.tests.factories.SystemInfo">
+<em class="property">class </em><tt class="descclassname">ckan.tests.factories.</tt><tt class="descname">SystemInfo</tt><a class="headerlink" href="testing.html#ckan.tests.factories.SystemInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>A factory class for creating SystemInfo objects (config objects
+stored in the DB).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.tests.factories.validator_data_dict">
+<tt class="descclassname">ckan.tests.factories.</tt><tt class="descname">validator_data_dict</tt><big>(</big><big>)</big><a class="headerlink" href="testing.html#ckan.tests.factories.validator_data_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a data dict with some arbitrary data in it, suitable to be passed
+to validator functions for testing.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.tests.factories.validator_errors_dict">
+<tt class="descclassname">ckan.tests.factories.</tt><tt class="descname">validator_errors_dict</tt><big>(</big><big>)</big><a class="headerlink" href="testing.html#ckan.tests.factories.validator_errors_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an errors dict with some arbitrary errors in it, suitable to be
+passed to validator functions for testing.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.tests.factories.Vocabulary">
+<em class="property">class </em><tt class="descclassname">ckan.tests.factories.</tt><tt class="descname">Vocabulary</tt><a class="headerlink" href="testing.html#ckan.tests.factories.Vocabulary" title="Permalink to this definition">¶</a></dt>
+<dd><p>A factory class for creating tag vocabularies.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ckan.tests.helpers">
+<span id="test-helper-functions-ckan-tests-helpers"></span><h4>Test helper functions: <a class="reference internal" href="testing.html#module-ckan.tests.helpers" title="ckan.tests.helpers"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests.helpers</span></tt></a><a class="headerlink" href="testing.html#module-ckan.tests.helpers" title="Permalink to this headline">¶</a></h4>
+<p>This is a collection of helper functions for use in tests.</p>
+<p>We want to avoid sharing test helper functions between test modules as
+much as possible, and we definitely don&#8217;t want to share test fixtures between
+test modules, or to introduce a complex hierarchy of test class subclasses,
+etc.</p>
+<p>We want to reduce the amount of &#8220;travel&#8221; that a reader needs to undertake to
+understand a test method &#8211; reducing the number of other files they need to go
+and read to understand what the test code does. And we want to avoid tightly
+coupling test modules to each other by having them share code.</p>
+<p>But some test helper functions just increase the readability of tests so much
+and make writing tests so much easier, that it&#8217;s worth having them despite the
+potential drawbacks.</p>
+<p>This module is reserved for these very useful functions.</p>
+<dl class="function">
+<dt id="ckan.tests.helpers.reset_db">
+<tt class="descclassname">ckan.tests.helpers.</tt><tt class="descname">reset_db</tt><big>(</big><big>)</big><a class="headerlink" href="testing.html#ckan.tests.helpers.reset_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset CKAN&#8217;s database.</p>
+<p>If a test class uses the database, then it should call this function in its
+<tt class="docutils literal"><span class="pre">setup()</span></tt> method to make sure that it has a clean database to start with
+(nothing left over from other test classes or from previous test runs).</p>
+<p>If a test class doesn&#8217;t use the database (and most test classes shouldn&#8217;t
+need to) then it doesn&#8217;t need to call this function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><tt class="docutils literal"><span class="pre">None</span></tt></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.tests.helpers.call_action">
+<tt class="descclassname">ckan.tests.helpers.</tt><tt class="descname">call_action</tt><big>(</big><em>action_name</em>, <em>context=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="testing.html#ckan.tests.helpers.call_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call the named <tt class="docutils literal"><span class="pre">ckan.logic.action</span></tt> function and return the result.</p>
+<p>This is just a nicer way for user code to call action functions, nicer than
+either calling the action function directly or via
+<tt class="xref py py-func docutils literal"><span class="pre">ckan.logic.get_action()</span></tt>.</p>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">user_dict</span> <span class="o">=</span> <span class="n">call_action</span><span class="p">(</span><span class="s">&#39;user_create&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;seanh&#39;</span><span class="p">,</span>
+                        <span class="n">email</span><span class="o">=</span><span class="s">&#39;seanh@seanh.com&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&#39;pass&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Any keyword arguments given will be wrapped in a dict and passed to the
+action function as its <tt class="docutils literal"><span class="pre">data_dict</span></tt> argument.</p>
+<p>Note: this skips authorization! It passes &#8216;ignore_auth&#8217;: True to action
+functions in their <tt class="docutils literal"><span class="pre">context</span></tt> dicts, so the corresponding authorization
+functions will not be run.
+This is because ckan.tests.logic.action tests only the actions, the
+authorization functions are tested separately in
+ckan.tests.logic.auth.
+See the <a class="reference internal" href="testing.html"><em>testing guidelines</em></a> for more info.</p>
+<p>This function should eventually be moved to
+<tt class="xref py py-func docutils literal"><span class="pre">ckan.logic.call_action()</span></tt> and the current
+<tt class="xref py py-func docutils literal"><span class="pre">ckan.logic.get_action()</span></tt> function should be
+deprecated. The tests may still need their own wrapper function for
+<tt class="xref py py-func docutils literal"><span class="pre">ckan.logic.call_action()</span></tt>, e.g. to insert <tt class="docutils literal"><span class="pre">'ignore_auth':</span> <span class="pre">True</span></tt>
+into the <tt class="docutils literal"><span class="pre">context</span></tt> dict.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>action_name</strong> (<em>string</em>) &#8211; the name of the action function to call, e.g.
+<tt class="docutils literal"><span class="pre">'user_update'</span></tt></li>
+<li><strong>context</strong> (<em>dict</em>) &#8211; the context dict to pass to the action function
+(optional, if no context is given a default one will be supplied)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the dict or other value that the action function returns</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.tests.helpers.call_auth">
+<tt class="descclassname">ckan.tests.helpers.</tt><tt class="descname">call_auth</tt><big>(</big><em>auth_name</em>, <em>context</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="testing.html#ckan.tests.helpers.call_auth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call the named <tt class="docutils literal"><span class="pre">ckan.logic.auth</span></tt> function and return the result.</p>
+<p>This is just a convenience function for tests in
+<a class="reference internal" href="testing.html#module-ckan.tests.logic.auth" title="ckan.tests.logic.auth"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests.logic.auth</span></tt></a> to use.</p>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">result</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">call_auth</span><span class="p">(</span><span class="s">&#39;user_update&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span>
+                           <span class="nb">id</span><span class="o">=</span><span class="s">&#39;some_user_id&#39;</span><span class="p">,</span>
+                           <span class="n">name</span><span class="o">=</span><span class="s">&#39;updated_user_name&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>auth_name</strong> (<em>string</em>) &#8211; the name of the auth function to call, e.g.
+<tt class="docutils literal"><span class="pre">'user_update'</span></tt></li>
+<li><strong>context</strong> (<em>dict</em>) &#8211; the context dict to pass to the auth function, must
+contain <tt class="docutils literal"><span class="pre">'user'</span></tt> and <tt class="docutils literal"><span class="pre">'model'</span></tt> keys,
+e.g. <tt class="docutils literal"><span class="pre">{'user':</span> <span class="pre">'fred',</span> <span class="pre">'model':</span> <span class="pre">my_mock_model_object}</span></tt></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the dict that the auth function returns, e.g.
+<tt class="docutils literal"><span class="pre">{'success':</span> <span class="pre">True}</span></tt> or <tt class="docutils literal"><span class="pre">{'success':</span> <span class="pre">False,</span> <span class="pre">msg:</span> <span class="pre">'...'}</span></tt>
+or just <tt class="docutils literal"><span class="pre">{'success':</span> <span class="pre">False}</span></tt></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.tests.helpers.FunctionalTestBase">
+<em class="property">class </em><tt class="descclassname">ckan.tests.helpers.</tt><tt class="descname">FunctionalTestBase</tt><a class="headerlink" href="testing.html#ckan.tests.helpers.FunctionalTestBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>A base class for functional test classes to inherit from.</p>
+<p>Allows configuration changes by overriding _apply_config_changes and
+resetting the CKAN config after your test class has run. It creates a
+webtest.TestApp at self.app for your class to use to make HTTP requests
+to the CKAN web UI or API.</p>
+<p>If you&#8217;re overriding methods that this class provides, like setup_class()
+and teardown_class(), make sure to use super() to call this class&#8217;s methods
+at the top of yours!</p>
+<dl class="method">
+<dt id="ckan.tests.helpers.FunctionalTestBase.setup">
+<tt class="descname">setup</tt><big>(</big><big>)</big><a class="headerlink" href="testing.html#ckan.tests.helpers.FunctionalTestBase.setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the database and clear the search indexes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.tests.helpers.submit_and_follow">
+<tt class="descclassname">ckan.tests.helpers.</tt><tt class="descname">submit_and_follow</tt><big>(</big><em>app</em>, <em>form</em>, <em>extra_environ</em>, <em>name=None</em>, <em>value=None</em>, <em>**args</em><big>)</big><a class="headerlink" href="testing.html#ckan.tests.helpers.submit_and_follow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call webtest_submit with name/value passed expecting a redirect
+and return the response from following that redirect.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.tests.helpers.webtest_submit">
+<tt class="descclassname">ckan.tests.helpers.</tt><tt class="descname">webtest_submit</tt><big>(</big><em>form</em>, <em>name=None</em>, <em>index=None</em>, <em>value=None</em>, <em>**args</em><big>)</big><a class="headerlink" href="testing.html#ckan.tests.helpers.webtest_submit" title="Permalink to this definition">¶</a></dt>
+<dd><p>backported version of webtest.Form.submit that actually works
+for submitting with different submit buttons.</p>
+<p>We&#8217;re stuck on an old version of webtest because we&#8217;re stuck
+on an old version of webob because we&#8217;re stuck on an old version
+of Pylons. This prolongs our suffering, but on the bright side
+it lets us have functional tests that work.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.tests.helpers.webtest_submit_fields">
+<tt class="descclassname">ckan.tests.helpers.</tt><tt class="descname">webtest_submit_fields</tt><big>(</big><em>form</em>, <em>name=None</em>, <em>index=None</em>, <em>submit_value=None</em><big>)</big><a class="headerlink" href="testing.html#ckan.tests.helpers.webtest_submit_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>backported version of webtest.Form.submit_fields that actually works
+for submitting with different submit buttons.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.tests.helpers.change_config">
+<tt class="descclassname">ckan.tests.helpers.</tt><tt class="descname">change_config</tt><big>(</big><em>key</em>, <em>value</em><big>)</big><a class="headerlink" href="testing.html#ckan.tests.helpers.change_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator to temporarily changes Pylons&#8217; config to a new value</p>
+<p>This allows you to easily create tests that need specific config values to
+be set, making sure it&#8217;ll be reverted to what it was originally, after your
+test is run.</p>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@helpers.change_config</span><span class="p">(</span><span class="s">&#39;ckan.site_title&#39;</span><span class="p">,</span> <span class="s">&#39;My Test CKAN&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_ckan_site_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">pylons</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;ckan.site_title&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;My Test CKAN&#39;</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<em>string</em>) &#8211; the config key to be changed, e.g. <tt class="docutils literal"><span class="pre">'ckan.site_title'</span></tt></li>
+<li><strong>value</strong> (<em>string</em>) &#8211; the new config key&#8217;s value, e.g. <tt class="docutils literal"><span class="pre">'My</span> <span class="pre">Test</span> <span class="pre">CKAN'</span></tt></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="mocking-the-mock-library">
+<span id="mock"></span><h4>Mocking: the <tt class="docutils literal"><span class="pre">mock</span></tt> library<a class="headerlink" href="testing.html#mocking-the-mock-library" title="Permalink to this headline">¶</a></h4>
+<p>We use the <a class="reference external" href="http://www.voidspace.org.uk/python/mock/">mock library</a> to
+replace parts of CKAN with mock objects. This allows a CKAN
+function to be tested independently of other parts of CKAN or third-party
+libraries that the function uses. This generally makes the test simpler and
+faster (especially when <tt class="xref py py-mod docutils literal"><span class="pre">ckan.model</span></tt> is mocked out so that the tests
+don&#8217;t touch the database). With mock objects we can also make assertions about
+what methods the function called on the mock object and with which arguments.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Overuse of mocking is discouraged as it can make tests difficult to
+understand and maintain. Mocking can be useful and make tests both faster
+and simpler when used appropriately. Some rules of thumb:</p>
+<ul class="last">
+<li><p class="first">Don&#8217;t mock out more than one or two objects in a single test method.</p>
+</li>
+<li><p class="first">Don&#8217;t use mocking in more functional-style tests. For example the action
+function tests in <a class="reference internal" href="testing.html#module-ckan.tests.logic.action" title="ckan.tests.logic.action"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests.logic.action</span></tt></a> and the
+frontend tests in <a class="reference internal" href="testing.html#module-ckan.tests.controllers" title="ckan.tests.controllers"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests.controllers</span></tt></a> are functional
+tests, and probably shouldn&#8217;t do any mocking.</p>
+</li>
+<li><p class="first">Do use mocking in more unit-style tests. For example the authorization
+function tests in <a class="reference internal" href="testing.html#module-ckan.tests.logic.auth" title="ckan.tests.logic.auth"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests.logic.auth</span></tt></a>, the converter and
+validator tests in <a class="reference internal" href="testing.html#module-ckan.tests.logic.auth" title="ckan.tests.logic.auth"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests.logic.auth</span></tt></a>, and most (all?)
+lib tests in <a class="reference internal" href="testing.html#module-ckan.tests.lib" title="ckan.tests.lib"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests.lib</span></tt></a> are unit tests and should use
+mocking when necessary (often it&#8217;s possible to unit test a method in
+isolation from other CKAN code without doing any mocking, which is ideal).</p>
+<p>In these kind of tests we can often mock one or two objects in a simple
+and easy to understand way, and make the test both simpler and faster.</p>
+</li>
+</ul>
+</div>
+<p>A mock object is a special object that allows user code to access any attribute
+name or call any method name (and pass any parameters) on the object, and the
+code will always get another mock object back:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mock</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_mock</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_mock</span><span class="o">.</span><span class="n">foo</span>
+<span class="go">&lt;MagicMock name=&#39;mock.foo&#39; id=&#39;56032400&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_mock</span><span class="o">.</span><span class="n">bar</span>
+<span class="go">&lt;MagicMock name=&#39;mock.bar&#39; id=&#39;54093968&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_mock</span><span class="o">.</span><span class="n">foobar</span><span class="p">()</span>
+<span class="go">&lt;MagicMock name=&#39;mock.foobar()&#39; id=&#39;54115664&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_mock</span><span class="o">.</span><span class="n">foobar</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;barfoo&#39;</span><span class="p">)</span>
+<span class="go">&lt;MagicMock name=&#39;mock.foobar()&#39; id=&#39;54115664&#39;&gt;</span>
+</pre></div>
+</div>
+<p>When a test needs a mock object to actually have some behavior besides always
+returning other mock objects, it can set the value of a certain attribute on
+the mock object, set the return value of a certain method, specify that a
+certain method should raise a certain exception, etc.</p>
+<p>You should read the mock library&#8217;s documentation to really understand what&#8217;s
+going on, but here&#8217;s an example of a test from
+<tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests.logic.auth.test_update</span></tt> that tests the
+<tt class="xref py py-func docutils literal"><span class="pre">user_update()</span></tt> authorization function and mocks
+out <tt class="xref py py-mod docutils literal"><span class="pre">ckan.model</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">test_user_update_user_cannot_update_another_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Users should not be able to update other users&#39; accounts.&#39;&#39;&#39;</span>
+
+        <span class="c"># 1. Setup.</span>
+
+        <span class="c"># Make a mock ckan.model.User object, Fred.</span>
+        <span class="n">fred</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">MockUser</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;fred&#39;</span><span class="p">)</span>
+
+        <span class="c"># Make a mock ckan.model object.</span>
+        <span class="n">mock_model</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
+        <span class="c"># model.User.get(user_id) should return Fred.</span>
+        <span class="n">mock_model</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">fred</span>
+
+        <span class="c"># Put the mock model in the context.</span>
+        <span class="c"># This is easier than patching import ckan.model.</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;model&#39;</span><span class="p">:</span> <span class="n">mock_model</span><span class="p">}</span>
+
+        <span class="c"># The logged-in user is going to be Bob, not Fred.</span>
+        <span class="n">context</span><span class="p">[</span><span class="s">&#39;user&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;bob&#39;</span>
+
+        <span class="c"># 2. Call the function that&#39;s being tested, once only.</span>
+
+        <span class="c"># Make Bob try to update Fred&#39;s user account.</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&#39;id&#39;</span><span class="p">:</span> <span class="n">fred</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;updated_user_name&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c"># 3. Make assertions about the return value and/or side-effects.</span>
+
+        <span class="n">nose</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">assert_raises</span><span class="p">(</span><span class="n">logic</span><span class="o">.</span><span class="n">NotAuthorized</span><span class="p">,</span> <span class="n">helpers</span><span class="o">.</span><span class="n">call_auth</span><span class="p">,</span>
+                                 <span class="s">&#39;user_update&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+        <span class="c"># 4. Do nothing else!</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>The following sections will give specific guidelines and examples for writing
+tests for each module in CKAN.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>When we say that <em>all</em> functions should have tests in the sections below, we
+mean all <em>public</em> functions that the module or class exports for use by
+other modules or classes in CKAN or by extensions or templates.</p>
+<p class="last"><em>Private</em> helper methods (with names beginning with <tt class="docutils literal"><span class="pre">_</span></tt>) never have to
+have their own tests, although they can have tests if helpful.</p>
+</div>
+</div>
+<div class="section" id="module-ckan.tests.logic.action">
+<span id="writing-ckan-logic-action-tests"></span><h4>Writing <tt class="xref py py-mod docutils literal"><span class="pre">ckan.logic.action</span></tt> tests<a class="headerlink" href="testing.html#module-ckan.tests.logic.action" title="Permalink to this headline">¶</a></h4>
+<p><strong>All action functions should have tests.</strong></p>
+<p>Most action function tests will be high-level tests that both test the code in
+the action function itself, and also indirectly test the code in
+<tt class="xref py py-mod docutils literal"><span class="pre">ckan.lib</span></tt>, <tt class="xref py py-mod docutils literal"><span class="pre">ckan.model</span></tt>, <tt class="xref py py-mod docutils literal"><span class="pre">ckan.logic.schema</span></tt> etc. that the
+action function calls. This means that most action function tests should <em>not</em>
+use mocking.</p>
+<p>Tests for action functions should use the
+<a class="reference internal" href="testing.html#ckan.tests.helpers.call_action" title="ckan.tests.helpers.call_action"><tt class="xref py py-func docutils literal"><span class="pre">ckan.tests.helpers.call_action()</span></tt></a> function to call the action
+functions.</p>
+<p>One thing <a class="reference internal" href="testing.html#ckan.tests.helpers.call_action" title="ckan.tests.helpers.call_action"><tt class="xref py py-func docutils literal"><span class="pre">call_action()</span></tt></a> does is to add
+<tt class="docutils literal"><span class="pre">ignore_auth:</span> <span class="pre">True</span></tt> into the <tt class="docutils literal"><span class="pre">context</span></tt> dict that&#8217;s passed to the action
+function, so that CKAN will not call the action function&#8217;s authorization
+function.  The tests for an action function <em>don&#8217;t</em> need to cover
+authorization, because the authorization functions have their own tests in
+<a class="reference internal" href="testing.html#module-ckan.tests.logic.auth" title="ckan.tests.logic.auth"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests.logic.auth</span></tt></a>. But action function tests <em>do</em> need to cover
+validation, more on that later.</p>
+<p>Action function tests <em>should</em> test the logic of the actions themselves, and
+<em>should</em> test validation (e.g. that various kinds of valid input work as
+expected, and invalid inputs raise the expected exceptions).</p>
+<p>Here&#8217;s an example of a simple <tt class="xref py py-mod docutils literal"><span class="pre">ckan.logic.action</span></tt> test:</p>
+<div class="highlight-python"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">test_user_update_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Test that updating a user&#39;s name works successfully.&#39;&#39;&#39;</span>
+
+        <span class="c"># The canonical form of a test has four steps:</span>
+        <span class="c"># 1. Setup any preconditions needed for the test.</span>
+        <span class="c"># 2. Call the function that&#39;s being tested, once only.</span>
+        <span class="c"># 3. Make assertions about the return value and/or side-effects of</span>
+        <span class="c">#    of the function that&#39;s being tested.</span>
+        <span class="c"># 4. Do nothing else!</span>
+
+        <span class="c"># 1. Setup.</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="p">()</span>
+
+        <span class="c"># 2. Call the function that&#39;s being tested, once only.</span>
+        <span class="c"># FIXME we have to pass the email address and password to user_update</span>
+        <span class="c"># even though we&#39;re not updating those fields, otherwise validation</span>
+        <span class="c"># fails.</span>
+        <span class="n">helpers</span><span class="o">.</span><span class="n">call_action</span><span class="p">(</span><span class="s">&#39;user_update&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">user</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span>
+                            <span class="n">email</span><span class="o">=</span><span class="n">user</span><span class="p">[</span><span class="s">&#39;email&#39;</span><span class="p">],</span>
+                            <span class="n">password</span><span class="o">=</span><span class="n">factories</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">attributes</span><span class="p">()[</span><span class="s">&#39;password&#39;</span><span class="p">],</span>
+                            <span class="n">name</span><span class="o">=</span><span class="s">&#39;updated&#39;</span><span class="p">,</span>
+                            <span class="p">)</span>
+
+        <span class="c"># 3. Make assertions about the return value and/or side-effects.</span>
+        <span class="n">updated_user</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">call_action</span><span class="p">(</span><span class="s">&#39;user_show&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">user</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">])</span>
+        <span class="c"># Note that we check just the field we were trying to update, not the</span>
+        <span class="c"># entire dict, only assert what we&#39;re actually testing.</span>
+        <span class="k">assert</span> <span class="n">updated_user</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;updated&#39;</span>
+
+        <span class="c"># 4. Do nothing else!</span>
+</pre></div>
+</div>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Insert the names of all tests for <tt class="docutils literal"><span class="pre">ckan.logic.action.update.user_update</span></tt>,
+for example, to show what level of detail things should be tested in.</p>
+</div>
+</div>
+<div class="section" id="module-ckan.tests.logic.auth">
+<span id="writing-ckan-logic-auth-tests"></span><h4>Writing <tt class="xref py py-mod docutils literal"><span class="pre">ckan.logic.auth</span></tt> tests<a class="headerlink" href="testing.html#module-ckan.tests.logic.auth" title="Permalink to this headline">¶</a></h4>
+<p><strong>All auth functions should have tests.</strong></p>
+<p>Most auth function tests should be unit tests that test the auth function in
+isolation, without bringing in other parts of CKAN or touching the database.
+This requires using the <tt class="docutils literal"><span class="pre">mock</span></tt> library to mock <tt class="docutils literal"><span class="pre">ckan.model</span></tt>, see
+<a class="reference internal" href="testing.html#mock"><em>Mocking: the mock library</em></a>.</p>
+<p>Tests for auth functions should use the
+<a class="reference internal" href="testing.html#ckan.tests.helpers.call_auth" title="ckan.tests.helpers.call_auth"><tt class="xref py py-func docutils literal"><span class="pre">ckan.tests.helpers.call_auth()</span></tt></a> function to call auth functions.</p>
+<p>Here&#8217;s an example of a simple <tt class="xref py py-mod docutils literal"><span class="pre">ckan.logic.auth</span></tt> test:</p>
+<div class="highlight-python"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">test_user_update_user_cannot_update_another_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Users should not be able to update other users&#39; accounts.&#39;&#39;&#39;</span>
+
+        <span class="c"># 1. Setup.</span>
+
+        <span class="c"># Make a mock ckan.model.User object, Fred.</span>
+        <span class="n">fred</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">MockUser</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;fred&#39;</span><span class="p">)</span>
+
+        <span class="c"># Make a mock ckan.model object.</span>
+        <span class="n">mock_model</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
+        <span class="c"># model.User.get(user_id) should return Fred.</span>
+        <span class="n">mock_model</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">fred</span>
+
+        <span class="c"># Put the mock model in the context.</span>
+        <span class="c"># This is easier than patching import ckan.model.</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;model&#39;</span><span class="p">:</span> <span class="n">mock_model</span><span class="p">}</span>
+
+        <span class="c"># The logged-in user is going to be Bob, not Fred.</span>
+        <span class="n">context</span><span class="p">[</span><span class="s">&#39;user&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;bob&#39;</span>
+
+        <span class="c"># 2. Call the function that&#39;s being tested, once only.</span>
+
+        <span class="c"># Make Bob try to update Fred&#39;s user account.</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&#39;id&#39;</span><span class="p">:</span> <span class="n">fred</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;updated_user_name&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c"># 3. Make assertions about the return value and/or side-effects.</span>
+
+        <span class="n">nose</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">assert_raises</span><span class="p">(</span><span class="n">logic</span><span class="o">.</span><span class="n">NotAuthorized</span><span class="p">,</span> <span class="n">helpers</span><span class="o">.</span><span class="n">call_auth</span><span class="p">,</span>
+                                 <span class="s">&#39;user_update&#39;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+        <span class="c"># 4. Do nothing else!</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="writing-converter-and-validator-tests">
+<h4>Writing converter and validator tests<a class="headerlink" href="testing.html#writing-converter-and-validator-tests" title="Permalink to this headline">¶</a></h4>
+<p><strong>All converter and validator functions should have unit tests.</strong></p>
+<p>Although these converter and validator functions are tested indirectly by the
+action function tests, this may not catch all the converters and validators and
+all their options, and converters and validators are not only used by the
+action functions but are also available to plugins. Having unit tests will also
+help to clarify the intended behavior of each converter and validator.</p>
+<p>CKAN&#8217;s action functions call
+<tt class="xref py py-func docutils literal"><span class="pre">ckan.lib.navl.dictization_functions.validate()</span></tt> to validate data posted
+by the user. Each action function passes a schema from
+<tt class="xref py py-mod docutils literal"><span class="pre">ckan.logic.schema</span></tt> to
+<tt class="xref py py-func docutils literal"><span class="pre">validate()</span></tt>. The schema gives
+<tt class="xref py py-func docutils literal"><span class="pre">validate()</span></tt> lists of validation
+and conversion functions to apply to the user data. These validation and
+conversion functions are defined in <a class="reference internal" href="../extensions/validators.html#module-ckan.logic.validators" title="ckan.logic.validators"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.logic.validators</span></tt></a>,
+<a class="reference internal" href="../extensions/validators.html#module-ckan.logic.converters" title="ckan.logic.converters"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.logic.converters</span></tt></a> and <tt class="xref py py-mod docutils literal"><span class="pre">ckan.lib.navl.validators</span></tt>.</p>
+<p>Most validator and converter tests should be unit tests that test the validator
+or converter function in isolation, without bringing in other parts of CKAN or
+touching the database.  This requires using the <tt class="docutils literal"><span class="pre">mock</span></tt> library to mock
+<tt class="docutils literal"><span class="pre">ckan.model</span></tt>, see <a class="reference internal" href="testing.html#mock"><em>Mocking: the mock library</em></a>.</p>
+<p>When testing validators, we often want to make the same assertions in many
+tests: assert that the validator didn&#8217;t modify the <tt class="docutils literal"><span class="pre">data</span></tt> dict, assert that
+the validator didn&#8217;t modify the <tt class="docutils literal"><span class="pre">errors</span></tt> dict, assert that the validator
+raised <tt class="docutils literal"><span class="pre">Invalid</span></tt>, etc. Decorator functions are defined at the top of
+validator test modules like <tt class="xref py py-mod docutils literal"><span class="pre">ckan.tests.logic.test_validators</span></tt> to
+make these common asserts easy. To use one of these decorators you have to:</p>
+<ol class="arabic simple">
+<li>Define a nested function inside your test method, that simply calls the
+validator function that you&#8217;re trying to test.</li>
+<li>Apply the decorators that you want to this nested function.</li>
+<li>Call the nested function.</li>
+</ol>
+<p>Here&#8217;s an example of a simple validator test that uses this technique:</p>
+<div class="highlight-python"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">test_user_name_validator_with_non_string_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;user_name_validator() should raise Invalid if given a non-string</span>
+<span class="sd">        value.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">non_string_values</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="mi">13</span><span class="p">,</span>
+            <span class="mf">23.7</span><span class="p">,</span>
+            <span class="il">100L</span><span class="p">,</span>
+            <span class="mf">1.0j</span><span class="p">,</span>
+            <span class="bp">None</span><span class="p">,</span>
+            <span class="bp">True</span><span class="p">,</span>
+            <span class="bp">False</span><span class="p">,</span>
+            <span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">False</span><span class="p">),</span>
+            <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">True</span><span class="p">],</span>
+            <span class="p">{</span><span class="s">&#39;foo&#39;</span><span class="p">:</span> <span class="s">&#39;bar&#39;</span><span class="p">},</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="p">]</span>
+
+        <span class="c"># Mock ckan.model.</span>
+        <span class="n">mock_model</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
+        <span class="c"># model.User.get(some_user_id) needs to return None for this test.</span>
+        <span class="n">mock_model</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,)</span>
+        <span class="k">for</span> <span class="n">non_string_value</span> <span class="ow">in</span> <span class="n">non_string_values</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">validator_data_dict</span><span class="p">()</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">non_string_value</span>
+            <span class="n">errors</span> <span class="o">=</span> <span class="n">factories</span><span class="o">.</span><span class="n">validator_errors_dict</span><span class="p">()</span>
+            <span class="n">errors</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="nd">@t.does_not_modify_data_dict</span>
+            <span class="nd">@raises_Invalid</span>
+            <span class="k">def</span> <span class="nf">call_validator</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">validators</span><span class="o">.</span><span class="n">user_name_validator</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">call_validator</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;model&#39;</span><span class="p">:</span> <span class="n">mock_model</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="module-ckan.tests.logic.test_schema">
+<span id="no-tests-for-ckan-logic-schema-py"></span><h4>No tests for <tt class="xref py py-mod docutils literal"><span class="pre">ckan.logic.schema.py</span></tt><a class="headerlink" href="testing.html#module-ckan.tests.logic.test_schema" title="Permalink to this headline">¶</a></h4>
+<p>We <em>don&#8217;t</em> write tests for the schemas defined in <tt class="xref py py-mod docutils literal"><span class="pre">ckan.logic.schema</span></tt>.
+The validation done by the schemas is instead tested indirectly by the action
+function tests.  The reason for this is that CKAN actually does validation in
+multiple places: some validation is done using schemas, some validation is done
+in the action functions themselves, some is done in dictization, and some in
+the model.  By testing all the different valid and invalid inputs at the action
+function level, we catch it all in one place.</p>
+</div>
+<div class="section" id="module-ckan.tests.controllers">
+<span id="writing-ckan-controllers-tests"></span><h4>Writing <tt class="xref py py-mod docutils literal"><span class="pre">ckan.controllers</span></tt> tests<a class="headerlink" href="testing.html#module-ckan.tests.controllers" title="Permalink to this headline">¶</a></h4>
+<p>Controller tests probably shouldn&#8217;t use mocking.</p>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p>Write the tests for one controller, figuring out the best way to write
+controller tests. Then fill in this guidelines section, using the first set
+of controller tests as an example.</p>
+<p>Some things have been decided already:</p>
+<ul class="last">
+<li><p class="first">All controller methods should have tests</p>
+</li>
+<li><p class="first">Controller tests should be high-level tests that work by posting simulated
+HTTP requests to CKAN URLs and testing the response. So the controller
+tests are also testing CKAN&#8217;s templates and rendering - these are CKAN&#8217;s
+front-end tests.</p>
+<p>For example, maybe we use a webtests testapp and then use beautiful soup
+to parse the HTML?</p>
+</li>
+<li><p class="first">In general the tests for a controller shouldn&#8217;t need to be too detailed,
+because there shouldn&#8217;t be a lot of complicated logic and code in
+controller classes. The logic should be handled in other places such as
+<tt class="xref py py-mod docutils literal"><span class="pre">ckan.logic</span></tt> and <tt class="xref py py-mod docutils literal"><span class="pre">ckan.lib</span></tt>, where it can be tested easily and
+also shared with other code.</p>
+</li>
+<li><p class="first">The tests for a controller should:</p>
+<ul class="simple">
+<li>Make sure that the template renders without crashing.</li>
+<li>Test that the page contents seem basically correct, or test certain
+important elements in the page contents (but don&#8217;t do too much HTML
+parsing).</li>
+<li>Test that submitting any forms on the page works without crashing and
+has the expected side-effects.</li>
+<li>When asserting side-effects after submitting a form, controller tests
+should user the <a class="reference internal" href="testing.html#ckan.tests.helpers.call_action" title="ckan.tests.helpers.call_action"><tt class="xref py py-func docutils literal"><span class="pre">ckan.tests.helpers.call_action()</span></tt></a> function. For
+example after creating a new user by submitting the new user form, a
+test could call the <a class="reference internal" href="../api/index.html#ckan.logic.action.get.user_show" title="ckan.logic.action.get.user_show"><tt class="xref py py-func docutils literal"><span class="pre">user_show()</span></tt></a> action
+function to verify that the user was created with the correct values.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Some CKAN controllers <em>do</em> contain a lot of complicated logic code.  These
+controllers should be refactored to move the logic into <tt class="xref py py-mod docutils literal"><span class="pre">ckan.logic</span></tt> or
+<tt class="xref py py-mod docutils literal"><span class="pre">ckan.lib</span></tt> where it can be tested easily.  Unfortunately in cases like
+this it may be necessary to write a lot of controller tests to get this
+code&#8217;s behavior into a test harness before it can be safely refactored.</p>
+</div>
+</div>
+<div class="section" id="module-ckan.tests.model">
+<span id="writing-ckan-model-tests"></span><h4>Writing <tt class="xref py py-mod docutils literal"><span class="pre">ckan.model</span></tt> tests<a class="headerlink" href="testing.html#module-ckan.tests.model" title="Permalink to this headline">¶</a></h4>
+<p><strong>All model methods should have tests</strong>.</p>
+<div class="admonition-todo admonition" id="index-2">
+<p class="first admonition-title">Todo</p>
+<p class="last">Write the tests for one <tt class="docutils literal"><span class="pre">ckan.model</span></tt> module, figuring out the best way
+to write model tests. Then fill in this guidelines section, using the first
+set of model tests as an example.</p>
+</div>
+</div>
+<div class="section" id="module-ckan.tests.lib">
+<span id="writing-ckan-lib-tests"></span><h4>Writing <tt class="xref py py-mod docutils literal"><span class="pre">ckan.lib</span></tt> tests<a class="headerlink" href="testing.html#module-ckan.tests.lib" title="Permalink to this headline">¶</a></h4>
+<p><strong>All lib functions should have tests</strong>.</p>
+<div class="admonition-todo admonition" id="index-3">
+<p class="first admonition-title">Todo</p>
+<p>Write the tests for one <tt class="docutils literal"><span class="pre">ckan.lib</span></tt> module, figuring out the best way
+to write lib tests. Then fill in this guidelines section, using the first</p>
+<p>We probably want to make these unit tests rather than high-level tests and
+mock out <tt class="docutils literal"><span class="pre">ckan.model</span></tt>, so the tests are really fast and simple.</p>
+<p class="last">Note that some things in lib are particularly important, e.g. the functions
+in <a class="reference internal" href="../theming/template-helper-functions.html#module-ckan.lib.helpers" title="ckan.lib.helpers"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.lib.helpers</span></tt></a> are exported for templates (including
+extensions) to use, so all of these functions should really have tests and
+docstrings. It&#8217;s probably worth focusing on these modules first.</p>
+</div>
+</div>
+<div class="section" id="module-ckan.tests.plugins">
+<span id="writing-ckan-plugins-tests"></span><h4>Writing <tt class="xref py py-mod docutils literal"><span class="pre">ckan.plugins</span></tt> tests<a class="headerlink" href="testing.html#module-ckan.tests.plugins" title="Permalink to this headline">¶</a></h4>
+<p>The plugin interfaces in <a class="reference internal" href="../extensions/plugin-interfaces.html#module-ckan.plugins.interfaces" title="ckan.plugins.interfaces"><tt class="xref py py-mod docutils literal"><span class="pre">ckan.plugins.interfaces</span></tt></a> are not directly
+testable because they don&#8217;t contain any code, <em>but</em>:</p>
+<ul class="simple">
+<li>Each plugin interface should have an example plugin in <tt class="xref py py-mod docutils literal"><span class="pre">ckan.ckanext</span></tt>
+and the example plugin should have its own functional tests.</li>
+<li>The tests for the code that calls the plugin interface methods should test
+that the methods are called correctly.</li>
+</ul>
+<p>For example <a class="reference internal" href="../api/index.html#ckan.logic.action.get.package_show" title="ckan.logic.action.get.package_show"><tt class="xref py py-func docutils literal"><span class="pre">ckan.logic.action.get.package_show()</span></tt></a> calls
+<tt class="xref py py-meth docutils literal"><span class="pre">ckan.plugins.interfaces.IDatasetForm.read()</span></tt>, so the
+<a class="reference internal" href="../api/index.html#ckan.logic.action.get.package_show" title="ckan.logic.action.get.package_show"><tt class="xref py py-func docutils literal"><span class="pre">package_show()</span></tt></a> tests should include tests
+that <tt class="xref py py-meth docutils literal"><span class="pre">read()</span></tt> is called at the
+right times and with the right parameters.</p>
+<p>Everything in <tt class="xref py py-mod docutils literal"><span class="pre">ckan.plugins.toolkit</span></tt> should have tests, because these
+functions are part of the API for extensions to use. But
+<tt class="xref py py-mod docutils literal"><span class="pre">toolkit</span></tt> imports most of these functions from elsewhere
+in CKAN, so the tests should be elsewhere also, in the test modules for the
+modules where the functions are defined.</p>
+<p>Other than the plugin interfaces and plugins toolkit, any other code in
+<tt class="xref py py-mod docutils literal"><span class="pre">ckan.plugins</span></tt> should have tests.</p>
+</div>
+<div class="section" id="module-ckan.tests.migration">
+<span id="writing-ckan-migration-tests"></span><h4>Writing <tt class="xref py py-mod docutils literal"><span class="pre">ckan.migration</span></tt> tests<a class="headerlink" href="testing.html#module-ckan.tests.migration" title="Permalink to this headline">¶</a></h4>
+<p><strong>All migration scripts should have tests.</strong></p>
+<div class="admonition-todo admonition" id="index-4">
+<p class="first admonition-title">Todo</p>
+<p class="last">Write some tests for a migration script, and then use them as an example to
+fill out this guidelines section.</p>
+</div>
+</div>
+<div class="section" id="writing-ckan-ckanext-tests">
+<h4>Writing <tt class="xref py py-mod docutils literal"><span class="pre">ckan.ckanext</span></tt> tests<a class="headerlink" href="testing.html#writing-ckan-ckanext-tests" title="Permalink to this headline">¶</a></h4>
+<p>Within extensions, follow the same guidelines as for CKAN core. For example if
+an extension adds an action function then the action function should have
+tests, etc.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="frontend/index.html" class="btn btn-neutral float-right"
+           title="Frontend development guidelines"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="string-i18n.html" class="btn btn-neutral"
+           title="String internationalization">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: ckan-2.4.4
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../index.html">latest</a></dd>
+        
+          <dd><a href="../../ckan-2.6.0/index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../../ckan-2.5.3/index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../../ckan-2.3.5/index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.4.4',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

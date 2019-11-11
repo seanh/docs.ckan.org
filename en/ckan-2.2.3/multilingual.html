@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Multilingual Extension &mdash; CKAN 2.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN 2.2.3 documentation" href="index.html" />
+    <link rel="up" title="Features" href="features.html" />
+    <link rel="next" title="Stats Extension" href="stats.html" />
+    <link rel="prev" title="Page View Tracking" href="tracking.html" />
+
+  
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/multilingual.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'multilingual'
+</script>
+
+<script type="text/javascript" src="_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+  <body>
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="contents.html"><img src="_static/ckanlogo.png" alt="CKAN" /></a>
+        
+        <a class="brand" href="contents.html">CKAN<span class="version"> v2.2.3</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.2.3/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to CKAN&#8217;s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="features.html">Features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html">Organizations and authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html">Data Viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filestore.html">FileStore and file uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html">DataStore extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background-tasks.html">Background tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email-notifications.html">Email notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html">Page View Tracking</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="multilingual.html">Multilingual Extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="multilingual.html#setup-and-configuration">Setup and Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multilingual.html#loading-test-translations">Loading Test Translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multilingual.html#testing-the-multilingual-extension">Testing The Multilingual Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="stats.html">Stats Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extensions/index.html">Writing CKAN extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/index.html">Appendices</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="contents.html">CKAN 2.2.3 documentation</a> &raquo;
+              <a href="features.html"
+                    accesskey="U">
+                    Features
+                  </a>
+                   &raquo;
+        </div>
+
+        
+  <div class="section" id="multilingual-extension">
+<h1>Multilingual Extension<a class="headerlink" href="multilingual.html#multilingual-extension" title="Permalink to this headline">¶</a></h1>
+<p>For translating CKAN&#8217;s web interface see <a class="reference internal" href="i18n.html#i18n"><em>Internationalize CKAN</em></a>. In addition to user interface internationalization, a CKAN administrator can also enter translations into CKAN&#8217;s database for terms that may appear in the contents of datasets, groups or tags created by users. When a user is viewing the CKAN site, if the translation terms database contains a translation in the user&#8217;s language for the name or description of a dataset or resource, the name of a tag or group, etc. then the translated term will be shown to the user in place of the original.</p>
+<div class="section" id="setup-and-configuration">
+<h2>Setup and Configuration<a class="headerlink" href="multilingual.html#setup-and-configuration" title="Permalink to this headline">¶</a></h2>
+<p>By default term translations are disabled. To enable them, you have to specify the multilingual plugins using the <tt class="docutils literal"><span class="pre">ckan.plugins</span></tt> setting in your CKAN configuration file, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre># List the names of CKAN extensions to activate.
+ckan.plugins = multilingual_dataset multilingual_group multilingual_tag
+</pre></div>
+</div>
+<p>Of course, you won&#8217;t see any terms getting translated until you load some term translations into the database. You can do this using the <tt class="docutils literal"><span class="pre">term_translation_update</span></tt> and <tt class="docutils literal"><span class="pre">term_translation_update_many</span></tt> actions of the CKAN API, See <a class="reference internal" href="api.html"><em>The CKAN API</em></a> for more details.</p>
+</div>
+<div class="section" id="loading-test-translations">
+<h2>Loading Test Translations<a class="headerlink" href="multilingual.html#loading-test-translations" title="Permalink to this headline">¶</a></h2>
+<p>If you want to quickly test the term translation feature without having to provide your own translations, you can load CKAN&#8217;s test translations into the database by running this command from your shell:</p>
+<div class="highlight-python"><div class="highlight"><pre>paster --plugin=ckan create-test-data translations
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="paster.html"><em>Command Line Interface</em></a> for more details.</p>
+</div>
+<div class="section" id="testing-the-multilingual-extension">
+<h2>Testing The Multilingual Extension<a class="headerlink" href="multilingual.html#testing-the-multilingual-extension" title="Permalink to this headline">¶</a></h2>
+<p>If you have a source installation of CKAN you can test the multilingual extension by running the tests located in <tt class="docutils literal"><span class="pre">ckanext/multilingual/tests</span></tt>. You must first install the packages needed for running CKAN tests into your virtual environment, and then run this command from your shell:</p>
+<div class="highlight-python"><div class="highlight"><pre>nosetests --ckan ckanext/multilingual/tests
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="test.html"><em>Testing CKAN</em></a> for more information.</p>
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="stats.html"
+                  title="Stats Extension" accesskey="N">
+                    
+                      
+                    
+                    Stats Extension→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="tracking.html"
+                  title="Page View Tracking" accesskey="P">
+                    
+                      
+                    
+                    ← Page View Tracking
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/ckan/ckan">Source</a>
+&mdash;
+<a href="https://github.com/ckan/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

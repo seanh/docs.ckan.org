@@ -1,0 +1,1330 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Customizing CKAN’s templates &mdash; CKAN 2.3.5 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+    <link rel="top" title="CKAN 2.3.5 documentation" href="../index.html"/>
+        <link rel="up" title="Theming guide" href="index.html"/>
+        <link rel="next" title="Adding static files" href="static-files.html"/>
+        <link rel="prev" title="Theming guide" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/theming/templates.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'theming/templates'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../contents.html" class="fa fa-home"> CKAN</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://docs.ckan.org/en/ckan-2.3.5/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide.html#what-is-ckan">What is CKAN?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide.html#using-ckan">Using CKAN</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#creating-a-sysadmin-account">Creating a sysadmin account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#customizing-look-and-feel">Customizing look and feel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#managing-organizations-and-datasets">Managing organizations and datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#permanently-deleting-datasets">Permanently deleting datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#managing-users">Managing users</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../maintaining/index.html">Maintainer&#8217;s guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/installing/index.html">Installing CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/upgrading/index.html">Upgrading CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/getting-started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/authorization.html">Organizations and authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/data-viewer.html">Data preview and visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/filestore.html">FileStore and file uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/datastore.html">DataStore extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/background-tasks.html">Background tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/email-notifications.html">Email notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/tracking.html">Page View Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/multilingual.html">Multilingual Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/stats.html">Stats Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/configuration.html">Config File Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/solr-multicore.html">Multicore Solr setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/legacy-api.html">Legacy APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#making-an-api-request">Making an API request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#example-importing-datasets-with-the-ckan-api">Example: Importing datasets with the CKAN API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#api-versions">API versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#authentication-and-api-keys">Authentication and API keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#get-able-api-functions">GET-able API functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#jsonp-support">JSONP support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#api-examples">API Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#action-api-reference">Action API reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extending guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/tutorial.html">Writing extensions tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/custom-config-settings.html">Using custom config settings in extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/testing-extensions.html">Testing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/best-practices.html">Best practices for writing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/adding-custom-fields.html">Customizing dataset and resource metadata fields using IDatasetForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/plugin-interfaces.html">Plugin interfaces reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/plugins-toolkit.html">Plugins toolkit reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/validators.html">Validator functions reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Theming guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="templates.html">Customizing CKAN&#8217;s templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="static-files.html">Adding static files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css.html">Customizing CKAN&#8217;s CSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fanstatic.html">Adding CSS and JavaScript files using Fanstatic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Customizing CKAN&#8217;s JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="best-practices.html">Best practices for writing CKAN themes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jinja-tags.html">Custom Jinja2 tags reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables-and-functions.html">Variables and functions available to templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript-module-objects-and-methods.html">Objects and methods available to JavaScript modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="template-helper-functions.html">Template helper functions reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="template-snippets.html">Template snippets reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript-sandbox.html">JavaScript sandbox reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript-api-client.html">JavaScript API client reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jquery-plugins.html">CKAN jQuery plugins reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/issues.html">Reporting issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/i18n.html">Translating CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/test.html">Testing CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/commit-messages.html">Writing commit messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/pull-requests.html">Making a pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/reviewing.html">Reviewing and merging a pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/documentation.html">Writing documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/simple-code-contributions.html">Projects for beginner CKAN developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/architecture.html">CKAN code architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/css.html">CSS coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/html.html">HTML coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/javascript.html">JavaScript coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/python.html">Python coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/string-i18n.html">String internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/testing.html">Testing coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/frontend/index.html">Frontend development guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/database-migrations.html">Database migrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/upgrading-dependencies.html">Upgrading CKAN&#8217;s dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/release-process.html">Doing a CKAN release</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Theming guide</a> &raquo;</li>
+      
+    <li>Customizing CKAN&#8217;s templates</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/ckan/ckan/blob/ckan-2.3.5/doc/theming/templates.rst" class="fa fa-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="customizing-ckan-s-templates">
+<h1>Customizing CKAN&#8217;s templates<a class="headerlink" href="templates.html#customizing-ckan-s-templates" title="Permalink to this headline">¶</a></h1>
+<p>CKAN pages are generated from <a class="reference external" href="http://jinja.pocoo.org/">Jinja2</a> template files. This tutorial will walk
+you through the process of writing your own template files to modify and
+replace the default ones, and change the layout and content of CKAN pages.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="../contributing/string-i18n.html"><em>String internationalization</em></a></dt>
+<dd>How to mark strings for translation in your template files.</dd>
+</dl>
+</div>
+<div class="section" id="creating-a-ckan-extension">
+<h2>Creating a CKAN extension<a class="headerlink" href="templates.html#creating-a-ckan-extension" title="Permalink to this headline">¶</a></h2>
+<p>A CKAN theme is simply a CKAN plugin that contains some custom templates and
+static files, so before getting started on our CKAN theme we&#8217;ll have to create
+an extension and plugin. For a detailed explanation of the steps below, see
+<a class="reference internal" href="../extensions/tutorial.html"><em>Writing extensions tutorial</em></a>.</p>
+<ol class="arabic">
+<li><p class="first">Use the <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">create</span></tt> command to create an empty extension:</p>
+<pre class="literal-block">
+. /usr/lib/ckan/default/bin/activate
+cd /usr/lib/ckan/default/src
+paster --plugin=ckan create -t ckanext <tt class="docutils literal"><span class="pre">ckanext-example_theme</span></tt>
+</pre>
+</li>
+<li><p class="first">Create the file <tt class="docutils literal"><span class="pre">ckanext-example_theme/ckanext/example_theme/plugin.py</span></tt> with the following contents:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ckan.plugins</span> <span class="kn">as</span> <span class="nn">plugins</span>
+
+
+<span class="k">class</span> <span class="nc">ExampleThemePlugin</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">SingletonPlugin</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;An example theme plugin.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Edit the <tt class="docutils literal"><span class="pre">entry_points</span></tt> in <tt class="docutils literal"><span class="pre">ckanext-example_theme/setup.py</span></tt> to look like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">entry_points</span><span class="o">=</span><span class="s">&#39;&#39;&#39;</span>
+<span class="s">    [ckan.plugins]</span>
+<span class="s">    example_theme=ckanext.example_theme.plugin:ExampleThemePlugin</span>
+<span class="s">&#39;&#39;&#39;</span><span class="p">,</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Run <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">develop</span></tt>:</p>
+<pre class="literal-block">
+cd <tt class="docutils literal"><span class="pre">ckanext-example_theme</span></tt>
+python setup.py develop
+</pre>
+</li>
+<li><p class="first">Add the plugin to the <tt class="docutils literal"><span class="pre">ckan.plugins</span></tt> setting in your /etc/ckan/default/development.ini
+file:</p>
+<div class="highlight-python"><div class="highlight"><pre>ckan.plugins = stats text_view recline_view example_theme
+</pre></div>
+</div>
+</li>
+<li><p class="first">Start CKAN in the development web server:</p>
+<pre class="literal-block">
+$ paster serve --reload /etc/ckan/default/development.ini
+Starting server in PID 13961.
+serving on 0.0.0.0:5000 view at <a class="reference external" href="http://127.0.0.1:5000">http://127.0.0.1:5000</a>
+</pre>
+<p>Open the <a class="reference external" href="http://127.0.0.1:5000">CKAN front page</a> in your web browser.  If your plugin is in the
+<a class="reference internal" href="../maintaining/configuration.html#ckan-plugins"><em>ckan.plugins</em></a> setting and CKAN starts without crashing, then your
+plugin is installed and CKAN can find it. Of course, your plugin doesn&#8217;t
+<em>do</em> anything yet.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="replacing-a-default-template-file">
+<span id="template-overriding"></span><h2>Replacing a default template file<a class="headerlink" href="templates.html#replacing-a-default-template-file" title="Permalink to this headline">¶</a></h2>
+<p>Every CKAN page is generated by rendering a particular template. For each
+page of a CKAN site there&#8217;s a corresponding template file. For example the
+front page is generated from the
+<a class="reference external" href="https://github.com/ckan/ckan/blob/master/ckan/templates/home/index.html">ckan/templates/home/index.html</a>
+file, the <tt class="docutils literal"><span class="pre">/about</span></tt> page is generated from
+<a class="reference external" href="https://github.com/ckan/ckan/blob/master/ckan/templates/home/about.html">ckan/templates/home/about.html</a>,
+the datasets page at <tt class="docutils literal"><span class="pre">/dataset</span></tt> is generated from
+<a class="reference external" href="https://github.com/ckan/ckan/blob/master/ckan/templates/package/search.html">ckan/templates/package/search.html</a>,
+etc.</p>
+<p>To customize pages, our plugin needs to register its own custom template
+directory containing template files that override the default ones.
+Edit the <tt class="docutils literal"><span class="pre">ckanext-example_theme/ckanext/example_theme/plugin.py</span></tt> file that we created earlier, so that it looks like
+this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&#39;&#39;&#39;plugin.py</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">ckan.plugins</span> <span class="kn">as</span> <span class="nn">plugins</span>
+<span class="kn">import</span> <span class="nn">ckan.plugins.toolkit</span> <span class="kn">as</span> <span class="nn">toolkit</span>
+
+
+<span class="k">class</span> <span class="nc">ExampleThemePlugin</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">SingletonPlugin</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;An example theme plugin.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c"># Declare that this class implements IConfigurer.</span>
+    <span class="n">plugins</span><span class="o">.</span><span class="n">implements</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">IConfigurer</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+
+        <span class="c"># Add this plugin&#39;s templates dir to CKAN&#39;s extra_template_paths, so</span>
+        <span class="c"># that CKAN will use this plugin&#39;s custom templates.</span>
+        <span class="c"># &#39;templates&#39; is the path to the templates dir, relative to this</span>
+        <span class="c"># plugin.py file.</span>
+        <span class="n">toolkit</span><span class="o">.</span><span class="n">add_template_directory</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s">&#39;templates&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This new code does a few things:</p>
+<ol class="arabic">
+<li><p class="first">It imports CKAN&#8217;s <a class="reference internal" href="../extensions/plugins-toolkit.html"><em>plugins toolkit</em></a>
+module:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ckan.plugins.toolkit</span> <span class="kn">as</span> <span class="nn">toolkit</span>
+</pre></div>
+</div>
+<p>The plugins toolkit is a Python module containing core functions, classes
+and exceptions for CKAN plugins to use. For more about the plugins toolkit,
+see <a class="reference internal" href="../extensions/tutorial.html"><em>Writing extensions tutorial</em></a>.</p>
+</li>
+<li><p class="first">It calls <a class="reference internal" href="../extensions/plugin-interfaces.html#ckan.plugins.implements" title="ckan.plugins.implements"><tt class="xref py py-func docutils literal"><span class="pre">implements()</span></tt></a> to declare that it
+implements the <a class="reference internal" href="../extensions/plugin-interfaces.html#ckan.plugins.interfaces.IConfigurer" title="ckan.plugins.interfaces.IConfigurer"><tt class="xref py py-class docutils literal"><span class="pre">IConfigurer</span></tt></a> plugin
+interface:</p>
+<div class="highlight-python"><div class="highlight"><pre>    <span class="n">plugins</span><span class="o">.</span><span class="n">implements</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">IConfigurer</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This tells CKAN that our
+<tt class="xref py py-class docutils literal"><span class="pre">ExampleThemePlugin</span></tt> class
+implements the methods declared in the
+<a class="reference internal" href="../extensions/plugin-interfaces.html#ckan.plugins.interfaces.IConfigurer" title="ckan.plugins.interfaces.IConfigurer"><tt class="xref py py-class docutils literal"><span class="pre">IConfigurer</span></tt></a> interface. CKAN will call
+these methods of our plugin class at the appropriate times.</p>
+</li>
+<li><p class="first">It implements the
+<a class="reference internal" href="../extensions/plugin-interfaces.html#ckan.plugins.interfaces.IConfigurer.update_config" title="ckan.plugins.interfaces.IConfigurer.update_config"><tt class="xref py py-meth docutils literal"><span class="pre">update_config()</span></tt></a> method, which
+is the only method declared in the
+<a class="reference internal" href="../extensions/plugin-interfaces.html#ckan.plugins.interfaces.IConfigurer" title="ckan.plugins.interfaces.IConfigurer"><tt class="xref py py-class docutils literal"><span class="pre">IConfigurer</span></tt></a> interface:</p>
+<div class="highlight-python"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">update_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+
+        <span class="c"># Add this plugin&#39;s templates dir to CKAN&#39;s extra_template_paths, so</span>
+        <span class="c"># that CKAN will use this plugin&#39;s custom templates.</span>
+        <span class="c"># &#39;templates&#39; is the path to the templates dir, relative to this</span>
+        <span class="c"># plugin.py file.</span>
+        <span class="n">toolkit</span><span class="o">.</span><span class="n">add_template_directory</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s">&#39;templates&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>CKAN will call this method when it starts up, to give our plugin a chance to
+modify CKAN&#8217;s configuration settings. Our
+<tt class="xref py py-meth docutils literal"><span class="pre">update_config()</span></tt>
+method calls <a class="reference internal" href="../extensions/plugins-toolkit.html#ckan.plugins.toolkit.add_template_directory" title="ckan.plugins.toolkit.add_template_directory"><tt class="xref py py-func docutils literal"><span class="pre">add_template_directory()</span></tt></a> to
+register its custom template directory with CKAN.
+This tells CKAN to look for template files in <tt class="docutils literal"><span class="pre">ckanext-example_theme/ckanext/example_theme/templates</span></tt> whenever
+it renders a page. Any template file in this directory that has the same
+name as one of CKAN&#8217;s default template files, will be used instead of the
+default file.</p>
+</li>
+</ol>
+<p>Now, let&#8217;s customize the CKAN front page. We first need to discover which
+template file CKAN uses to render the front page, so we can replace it.
+Set <a class="reference internal" href="../maintaining/configuration.html#debug"><em>debug</em></a> to <tt class="docutils literal"><span class="pre">true</span></tt> in your /etc/ckan/default/development.ini file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">DEFAULT</span><span class="p">]</span>
+
+<span class="c"># WARNING: *THIS SETTING MUST BE SET TO FALSE ON A PRODUCTION ENVIRONMENT*</span>
+<span class="n">debug</span> <span class="o">=</span> <span class="n">true</span>
+</pre></div>
+</div>
+<p id="debug-footer">Reload the <a class="reference external" href="http://127.0.0.1:5000">CKAN front page</a> in your browser, and you should see a <em>Debug</em>
+link in the footer at the bottom of the page. Click on this link to open the
+debug footer. The debug footer displays various information useful for CKAN
+frontend development and debugging, including the names of the template files
+that were used to render the current page:</p>
+<img alt="The debug footer." src="../_images/debug-footer.png" />
+<p>The first template file listed is the one we&#8217;re interested in:</p>
+<div class="highlight-python"><div class="highlight"><pre>Template name: home/index.html
+Template path: /usr/lib/ckan/default/src/ckan/ckan/templates/home/index.html
+</pre></div>
+</div>
+<p>This tells us that <tt class="docutils literal"><span class="pre">home/index.html</span></tt> is the root template file used to render
+the front page. The debug footer appears at the bottom of every CKAN page, and
+can always be used to find the page&#8217;s template files, and other information
+about the page.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Most CKAN pages are rendered from multiple template files.
+The first file listed in the debug footer is the root template file of the
+page. All other template files used to render the page (listed further down
+in the debug footer) are either included by the root file, or included by
+another file that is included by the root file.</p>
+<p class="last">To figure out which template file renders a particular part of the page you
+have to inspect the
+<a class="reference external" href="https://github.com/ckan/ckan/tree/master/ckan/templates">source code of the template files</a>,
+starting with the root file.</p>
+</div>
+<p>Now let&#8217;s override <tt class="docutils literal"><span class="pre">home/index.html</span></tt> using our plugins&#8217; custom <tt class="docutils literal"><span class="pre">templates</span></tt>
+directory. Create the <tt class="docutils literal"><span class="pre">ckanext-example_theme/ckanext/example_theme/templates</span></tt> directory, create a <tt class="docutils literal"><span class="pre">home</span></tt> directory
+inside the <tt class="docutils literal"><span class="pre">templates</span></tt> directory, and create an empty <tt class="docutils literal"><span class="pre">index.html</span></tt> file
+inside the <tt class="docutils literal"><span class="pre">home</span></tt> directory:</p>
+<pre class="literal-block">
+<tt class="docutils literal"><span class="pre">ckanext-example_theme</span></tt>/
+  ckanext/
+    example_theme/
+      templates/
+        home/
+          index.html  &lt;-- An empty file.
+</pre>
+<p>If you now restart the development web server (kill the server using Ctrl-c,
+then run the <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">serve</span></tt> command again) and reload the <a class="reference external" href="http://127.0.0.1:5000">CKAN front page</a>
+in your web browser, you should see an empty page, because we&#8217;ve replaced the
+template file for the front page with an empty file.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you run <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">serve</span></tt> with the <tt class="docutils literal"><span class="pre">--reload</span></tt> option, then it isn&#8217;t
+usually necessary to restart the server after editing a Python file,
+a template file, your CKAN config file, or any other CKAN file. If you&#8217;ve
+added a new file or directory, however, you need to restart the server
+manually.</p>
+</div>
+</div>
+<div class="section" id="jinja2">
+<h2>Jinja2<a class="headerlink" href="templates.html#jinja2" title="Permalink to this headline">¶</a></h2>
+<p>CKAN template files are written in the <a class="reference external" href="http://jinja.pocoo.org/">Jinja2</a> templating language. Jinja
+template files, such as our <tt class="docutils literal"><span class="pre">index.html</span></tt> file, are simply text files that,
+when processed, generate any text-based output format such as <tt class="docutils literal"><span class="pre">HTML</span></tt>,
+<tt class="docutils literal"><span class="pre">XML</span></tt>, <tt class="docutils literal"><span class="pre">CSV</span></tt>, etc. Most of the template files in CKAN generate <tt class="docutils literal"><span class="pre">HTML</span></tt>.</p>
+<p>We&#8217;ll introduce some Jinja2 basics below. Jinja2 templates have many more
+features than these, for full details see the
+<a class="reference external" href="http://jinja.pocoo.org/docs/templates">Jinja2 docs</a>.</p>
+<div class="section" id="expressions-and-variables">
+<span id="id1"></span><h3>Expressions and variables<a class="headerlink" href="templates.html#expressions-and-variables" title="Permalink to this headline">¶</a></h3>
+<p>Jinja2 <em>expressions</em> are snippets of code between <tt class="docutils literal"><span class="pre">{{</span> <span class="pre">...</span> <span class="pre">}}</span></tt> delimiters,
+when a template is rendered any expressions are evaluated and replaced with
+the resulting value.</p>
+<p>The simplest use of an expression is to display the value of a variable, for
+example <tt class="docutils literal"><span class="pre">{{</span> <span class="pre">foo</span> <span class="pre">}}</span></tt> in a template file will be replaced with the value of the
+variable <tt class="docutils literal"><span class="pre">foo</span></tt> when the template is rendered.</p>
+<p>CKAN makes a number of global variables available to all templates. One such
+variable is <a class="reference internal" href="variables-and-functions.html#app_globals" title="app_globals"><tt class="xref py py-data docutils literal"><span class="pre">app_globals</span></tt></a>, which can be used to access certain global
+attributes including some of the settings from your CKAN config file. For
+example, to display the value of the <a class="reference internal" href="../maintaining/configuration.html#ckan-site-title"><em>ckan.site_title</em></a> setting from your
+config file you would put this code in any template file:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="x">&lt;p&gt;The title of this site is: </span><span class="cp">{{</span> <span class="nv">app_globals.site_title</span> <span class="cp">}}</span><span class="x">.&lt;/p&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <a class="reference internal" href="variables-and-functions.html#app_globals" title="app_globals"><tt class="xref py py-data docutils literal"><span class="pre">app_globals</span></tt></a> variable is also sometimes called <a class="reference internal" href="variables-and-functions.html#g" title="g"><tt class="xref py py-data docutils literal"><span class="pre">g</span></tt></a>
+(an alias), you may see <a class="reference internal" href="variables-and-functions.html#g" title="g"><tt class="xref py py-data docutils literal"><span class="pre">g</span></tt></a> in some CKAN templates.
+See <a class="reference internal" href="variables-and-functions.html"><em>Variables and functions available to templates</em></a>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Not all config settings are available to templates via
+<a class="reference internal" href="variables-and-functions.html#app_globals" title="app_globals"><tt class="xref py py-data docutils literal"><span class="pre">app_globals</span></tt></a>. The <a class="reference internal" href="../maintaining/configuration.html#sqlalchemy-url"><em>sqlalchemy.url</em></a> setting, for example,
+contains your database password, so making that variable available to
+templates might be a security risk.</p>
+<p class="last">If you&#8217;ve added your own custom options to your config file, these will not
+be available in <a class="reference internal" href="variables-and-functions.html#app_globals" title="app_globals"><tt class="xref py py-data docutils literal"><span class="pre">app_globals</span></tt></a> automatically.
+See <a class="reference internal" href="templates.html#accessing-custom-config-settings-from-templates"><em>Accessing custom config settings from templates</em></a>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If a template tries to render a variable or attribute that doesn&#8217;t exist,
+rather than crashing or giving an error message, the Jinja2 expression
+simply evaluates to nothing (an empty string). For example, these Jinja2
+expressions will output nothing:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{{</span> <span class="n">app_globals</span><span class="o">.</span><span class="n">an_attribute_that_does_not_exist</span> <span class="p">}}</span>
+
+<span class="p">{{</span> <span class="n">a_variable_that_does_not_exist</span> <span class="p">}}</span>
+</pre></div>
+</div>
+<p>If, on the other hand, you try to render an attribute of a variable that
+doesn&#8217;t exist, then Jinja2 will crash. For example, this Jinja2 expression
+will crash with an
+<tt class="docutils literal"><span class="pre">UndefinedError:</span> <span class="pre">'a_variable_that_does_not_exist'</span> <span class="pre">is</span> <span class="pre">undefined</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{{</span> <span class="n">a_variable_that_does_not_exist</span><span class="o">.</span><span class="n">an_attribute_that_does_not_exist</span> <span class="p">}}</span>
+</pre></div>
+</div>
+<p class="last">See the <a class="reference external" href="http://jinja.pocoo.org/docs/templates/#variables">Jinja2 variables docs</a>
+for details.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Jinja2 expressions can do much more than print out the values of variables,
+for example
+they can call Jinja2&#8217;s <a class="reference external" href="http://jinja.pocoo.org/docs/templates/#list-of-global-functions">global functions</a>,
+CKAN&#8217;s <a class="reference internal" href="templates.html#template-helper-functions"><em>template helper functions</em></a> and any
+<a class="reference internal" href="templates.html#custom-template-helper-functions"><em>custom template helper functions</em></a>
+provided by your extension,
+and use any of the
+<a class="reference external" href="http://jinja.pocoo.org/docs/templates/#expressions">literals and operators</a>
+that Jinja provides.</p>
+<p class="last">See <a class="reference internal" href="variables-and-functions.html"><em>Variables and functions available to templates</em></a> for a list of variables and
+functions available to templates.</p>
+</div>
+</div>
+<div class="section" id="tags">
+<h3>Tags<a class="headerlink" href="templates.html#tags" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../maintaining/configuration.html#ckan-site-title"><em>ckan.site_title</em></a> is an example of a simple string variable.
+Some variables, such as <a class="reference internal" href="../maintaining/configuration.html#ckan-plugins"><em>ckan.plugins</em></a>, are lists, and can be looped over
+using Jinja&#8217;s <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">for</span> <span class="pre">%}</span></tt> tag.</p>
+<p>Jinja <em>tags</em> are snippets of code between <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">...</span> <span class="pre">%}</span></tt> delimiters that control
+the logic of the template. For example, we can output a list of the currently
+enabled plugins with this code in any template file:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="x">&lt;p&gt;The currently enabled plugins are:&lt;/p&gt;</span>
+<span class="x">&lt;ul&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">plugin</span> <span class="k">in</span> <span class="nv">app_globals.plugins</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;li&gt;</span><span class="cp">{{</span> <span class="nv">plugin</span> <span class="cp">}}</span><span class="x">&lt;/li&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">&lt;/ul&gt;</span>
+</pre></div>
+</div>
+<p>Other variables, such as <a class="reference internal" href="../maintaining/configuration.html#ckan-tracking-enabled"><em>ckan.tracking_enabled</em></a>, are booleans, and can be
+tested using Jinja&#8217;s <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">if</span> <span class="pre">%}</span></tt> tag:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">if</span> <span class="nv">g.tracking_enabled</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  &lt;p&gt;CKAN&#39;s page-view tracking feature is enabled.&lt;/p&gt;</span>
+<span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  &lt;p&gt;CKAN&#39;s page-view tracking feature is &lt;i&gt;not&lt;/i&gt; enabled.&lt;/p&gt;</span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comments">
+<h3>Comments<a class="headerlink" href="templates.html#comments" title="Permalink to this headline">¶</a></h3>
+<p>Finally, any text between <tt class="docutils literal"><span class="pre">{#</span> <span class="pre">...</span> <span class="pre">#}</span></tt> delimiters in a Jinja2 template is a
+<em>comment</em>, and will not be output when the template is rendered:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="c">{# This text will not appear in the output when this template is rendered. #}</span><span class="x"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="extending-templates-with-ckan-extends">
+<h2>Extending templates with <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">ckan_extends</span> <span class="pre">%}</span></tt><a class="headerlink" href="templates.html#extending-templates-with-ckan-extends" title="Permalink to this headline">¶</a></h2>
+<p>CKAN provides a custom Jinja tag <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">ckan_extends</span> <span class="pre">%}</span></tt> that we can use to
+declare that our <tt class="docutils literal"><span class="pre">home/index.html</span></tt> template extends the default
+<tt class="docutils literal"><span class="pre">home/index.html</span></tt> template, instead of completely replacing it.
+Edit the empty <tt class="docutils literal"><span class="pre">index.html</span></tt> file you just created, and add one line:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">ckan_extends</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>If you now reload the <a class="reference external" href="http://127.0.0.1:5000">CKAN front page</a> in your browser, you should see the
+normal front page appear again. When CKAN processes our <tt class="docutils literal"><span class="pre">index.html</span></tt> file,
+the <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">ckan_extends</span> <span class="pre">%}</span></tt> tag tells it to process the default
+<tt class="docutils literal"><span class="pre">home/index.html</span></tt> file first.</p>
+</div>
+<div class="section" id="replacing-template-blocks-with-block">
+<h2>Replacing template blocks with <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">%}</span></tt><a class="headerlink" href="templates.html#replacing-template-blocks-with-block" title="Permalink to this headline">¶</a></h2>
+<p>Jinja templates can contain <em>blocks</em> that child templates can override.  For
+example, CKAN&#8217;s default <tt class="docutils literal"><span class="pre">home/layout1.html</span></tt> template (one of the files used
+to render the CKAN front page) has a block that contains the Jinja and HTML
+code for the &#8220;featured group&#8221; that appears on the front page:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="x">        </span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">featured_group</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">          </span><span class="cp">{%</span> <span class="k">snippet</span> <span class="s1">&#39;home/snippets/featured_group.html&#39;</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">        </span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This code calls a <a class="reference internal" href="templates.html#snippets"><em>template snippet</em></a> that contains the
+actual Jinja and HTML code for the featured group, more on snippets later.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The CKAN front page supports a number of different layouts: layout1,
+layout2, layout3, etc. The layout can be chosen by a sysadmin using the
+<a class="reference internal" href="../sysadmin-guide.html#admin-page"><em>admin page</em></a>. This tutorial assumes your CKAN is set to
+use the first (default) layout.</p>
+</div>
+<p>When a custom template file extends one of CKAN&#8217;s default template files using
+<tt class="docutils literal"><span class="pre">{%</span> <span class="pre">ckan_extends</span> <span class="pre">%}</span></tt>, it can replace any of the blocks from the default
+template with its own code by using <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">%}</span></tt>. Create the file
+<tt class="docutils literal"><span class="pre">ckanext-example_theme/ckanext/example_theme/templates/home/layout1.html</span></tt> with these contents:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">ckan_extends</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">featured_group</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  Hello block world!</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>This file extends the default <tt class="docutils literal"><span class="pre">layout1.html</span></tt> template, and overrides the
+<tt class="docutils literal"><span class="pre">featured_group</span></tt> block.  Restart the development web server and reload the
+<a class="reference external" href="http://127.0.0.1:5000">CKAN front page</a> in your browser.  You should see that the featured groups
+section of the page has been replaced, but the rest of the page remains intact.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Most template files in CKAN contain multiple blocks.
+To find out what blocks a template has, and which block renders a particular
+part of the page, you have to look at the
+<a class="reference external" href="https://github.com/ckan/ckan/tree/master/ckan/templates">source code of the default template files</a>.</p>
+</div>
+</div>
+<div class="section" id="extending-parent-blocks-with-jinja-s-super">
+<h2>Extending parent blocks with Jinja&#8217;s <tt class="docutils literal"><span class="pre">{{</span> <span class="pre">super()</span> <span class="pre">}}</span></tt><a class="headerlink" href="templates.html#extending-parent-blocks-with-jinja-s-super" title="Permalink to this headline">¶</a></h2>
+<p>If you want to add some code to a block but don&#8217;t want to replace the entire
+block, you can use Jinja&#8217;s <tt class="docutils literal"><span class="pre">{{</span> <span class="pre">super()</span> <span class="pre">}}</span></tt> tag:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">ckan_extends</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">featured_group</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="x">  &lt;p&gt;This paragraph will be added to the top of the</span>
+<span class="x">  &lt;code&gt;featured_group&lt;/code&gt; block.&lt;/p&gt;</span>
+
+<span class="x">  </span><span class="c">{# Insert the contents of the original featured_group block: #}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{{</span> <span class="nb">super</span><span class="o">()</span> <span class="cp">}}</span><span class="x"></span>
+
+<span class="x">  &lt;p&gt;This paragraph will be added to the bottom of the</span>
+<span class="x">  &lt;code&gt;featured_group&lt;/code&gt; block.&lt;/p&gt;</span>
+
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>When the child block above is rendered, Jinja will replace the
+<tt class="docutils literal"><span class="pre">{{</span> <span class="pre">super()</span> <span class="pre">}}</span></tt> tag with the contents of the parent block.
+The <tt class="docutils literal"><span class="pre">{{</span> <span class="pre">super()</span> <span class="pre">}}</span></tt> tag can be placed anywhere in the block.</p>
+</div>
+<div class="section" id="template-helper-functions">
+<span id="id2"></span><h2>Template helper functions<a class="headerlink" href="templates.html#template-helper-functions" title="Permalink to this headline">¶</a></h2>
+<p>Now let&#8217;s put some interesting content into our custom template block.
+One way for templates to get content out of CKAN is by calling CKAN&#8217;s
+<em>template helper functions</em>.</p>
+<p>For example, let&#8217;s replace the featured group on the front page with an
+activity stream of the site&#8217;s recently created, updated and deleted datasets.
+Change the code in <tt class="docutils literal"><span class="pre">ckanext-example_theme/ckanext/example_theme/templates/home/layout1.html</span></tt> to this:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">ckan_extends</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">featured_group</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{{</span> <span class="nv">h.recently_changed_packages_activity_stream</span><span class="o">(</span><span class="nv">limit</span><span class="o">=</span><span class="m">4</span><span class="o">)</span> <span class="cp">}}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Reload the <a class="reference external" href="http://127.0.0.1:5000">CKAN front page</a> in your browser and you should see a new activity
+stream:</p>
+<img alt="The recently changed packages activity stream." src="../_images/recently-changed-packages-activity-stream.png" />
+<p>To call a template helper function we use a Jinja2 <em>expression</em> (code wrapped
+in <tt class="docutils literal"><span class="pre">{{</span> <span class="pre">...</span> <span class="pre">}}</span></tt> brackets), and we use the global variable <a class="reference internal" href="variables-and-functions.html#h" title="h"><tt class="xref py py-data docutils literal"><span class="pre">h</span></tt></a>
+(available to all templates) to access the helper:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="x">  </span><span class="cp">{{</span> <span class="nv">h.recently_changed_packages_activity_stream</span><span class="o">(</span><span class="nv">limit</span><span class="o">=</span><span class="m">4</span><span class="o">)</span> <span class="cp">}}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>To see what other template helper functions are available, look at the
+<a class="reference internal" href="template-helper-functions.html"><em>template helper functions reference docs</em></a>.</p>
+</div>
+<div class="section" id="adding-your-own-template-helper-functions">
+<span id="custom-template-helper-functions"></span><h2>Adding your own template helper functions<a class="headerlink" href="templates.html#adding-your-own-template-helper-functions" title="Permalink to this headline">¶</a></h2>
+<p>Plugins can add their own template helper functions by implementing CKAN&#8217;s
+<a class="reference internal" href="../extensions/plugin-interfaces.html#ckan.plugins.interfaces.ITemplateHelpers" title="ckan.plugins.interfaces.ITemplateHelpers"><tt class="xref py py-class docutils literal"><span class="pre">ITemplateHelpers</span></tt></a> plugin interface.
+(see <a class="reference internal" href="../extensions/tutorial.html"><em>Writing extensions tutorial</em></a> for a detailed explanation of CKAN plugins and
+plugin interfaces).</p>
+<p>Let&#8217;s add another item to our custom front page: a list of the most &#8220;popular&#8221;
+groups on the site (the groups with the most datasets).  We&#8217;ll add a custom
+template helper function to select the groups to be shown.  First, in our
+<tt class="docutils literal"><span class="pre">plugin.py</span></tt> file we need to implement
+<a class="reference internal" href="../extensions/plugin-interfaces.html#ckan.plugins.interfaces.ITemplateHelpers" title="ckan.plugins.interfaces.ITemplateHelpers"><tt class="xref py py-class docutils literal"><span class="pre">ITemplateHelpers</span></tt></a> and provide our helper
+function. Change the contents of <tt class="docutils literal"><span class="pre">plugin.py</span></tt> to look like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ckan.plugins</span> <span class="kn">as</span> <span class="nn">plugins</span>
+<span class="kn">import</span> <span class="nn">ckan.plugins.toolkit</span> <span class="kn">as</span> <span class="nn">toolkit</span>
+
+
+<span class="k">def</span> <span class="nf">most_popular_groups</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Return a sorted list of the groups with the most datasets.&#39;&#39;&#39;</span>
+
+    <span class="c"># Get a list of all the site&#39;s groups from CKAN, sorted by number of</span>
+    <span class="c"># datasets.</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">get_action</span><span class="p">(</span><span class="s">&#39;group_list&#39;</span><span class="p">)(</span>
+        <span class="n">data_dict</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;sort&#39;</span><span class="p">:</span> <span class="s">&#39;packages desc&#39;</span><span class="p">,</span> <span class="s">&#39;all_fields&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">})</span>
+
+    <span class="c"># Truncate the list to the 10 most popular groups only.</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">groups</span>
+
+
+<span class="k">class</span> <span class="nc">ExampleThemePlugin</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">SingletonPlugin</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;An example theme plugin.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">plugins</span><span class="o">.</span><span class="n">implements</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">IConfigurer</span><span class="p">)</span>
+
+    <span class="c"># Declare that this plugin will implement ITemplateHelpers.</span>
+    <span class="n">plugins</span><span class="o">.</span><span class="n">implements</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">ITemplateHelpers</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+
+        <span class="c"># Add this plugin&#39;s templates dir to CKAN&#39;s extra_template_paths, so</span>
+        <span class="c"># that CKAN will use this plugin&#39;s custom templates.</span>
+        <span class="n">toolkit</span><span class="o">.</span><span class="n">add_template_directory</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s">&#39;templates&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_helpers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Register the most_popular_groups() function above as a template</span>
+<span class="sd">        helper function.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c"># Template helper function names should begin with the name of the</span>
+        <span class="c"># extension they belong to, to avoid clashing with functions from</span>
+        <span class="c"># other extensions.</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">&#39;example_theme_most_popular_groups&#39;</span><span class="p">:</span> <span class="n">most_popular_groups</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>We&#8217;ve added a number of new features to <tt class="docutils literal"><span class="pre">plugin.py</span></tt>. First, we defined a
+function to get the most popular groups from CKAN:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">most_popular_groups</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Return a sorted list of the groups with the most datasets.&#39;&#39;&#39;</span>
+
+    <span class="c"># Get a list of all the site&#39;s groups from CKAN, sorted by number of</span>
+    <span class="c"># datasets.</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">get_action</span><span class="p">(</span><span class="s">&#39;group_list&#39;</span><span class="p">)(</span>
+        <span class="n">data_dict</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;sort&#39;</span><span class="p">:</span> <span class="s">&#39;packages desc&#39;</span><span class="p">,</span> <span class="s">&#39;all_fields&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">})</span>
+
+    <span class="c"># Truncate the list to the 10 most popular groups only.</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">groups</span>
+</pre></div>
+</div>
+<p>This function calls one of CKAN&#8217;s <em>action functions</em> to get the groups from
+CKAN.  See <a class="reference internal" href="../extensions/tutorial.html"><em>Writing extensions tutorial</em></a> for more about action functions.</p>
+<p>Next, we called <a class="reference internal" href="../extensions/plugin-interfaces.html#ckan.plugins.implements" title="ckan.plugins.implements"><tt class="xref py py-func docutils literal"><span class="pre">implements()</span></tt></a> to declare that our class
+now implements <a class="reference internal" href="../extensions/plugin-interfaces.html#ckan.plugins.interfaces.ITemplateHelpers" title="ckan.plugins.interfaces.ITemplateHelpers"><tt class="xref py py-class docutils literal"><span class="pre">ITemplateHelpers</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>    <span class="n">plugins</span><span class="o">.</span><span class="n">implements</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">ITemplateHelpers</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we implemented the
+<a class="reference internal" href="../extensions/plugin-interfaces.html#ckan.plugins.interfaces.ITemplateHelpers.get_helpers" title="ckan.plugins.interfaces.ITemplateHelpers.get_helpers"><tt class="xref py py-meth docutils literal"><span class="pre">get_helpers()</span></tt></a> method from
+<a class="reference internal" href="../extensions/plugin-interfaces.html#ckan.plugins.interfaces.ITemplateHelpers" title="ckan.plugins.interfaces.ITemplateHelpers"><tt class="xref py py-class docutils literal"><span class="pre">ITemplateHelpers</span></tt></a> to register our function
+as a template helper:</p>
+<div class="highlight-python"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">get_helpers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Register the most_popular_groups() function above as a template</span>
+<span class="sd">        helper function.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c"># Template helper function names should begin with the name of the</span>
+        <span class="c"># extension they belong to, to avoid clashing with functions from</span>
+        <span class="c"># other extensions.</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">&#39;example_theme_most_popular_groups&#39;</span><span class="p">:</span> <span class="n">most_popular_groups</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Now that we&#8217;ve registered our helper function, we need to call it from our
+template. As with CKAN&#8217;s default template helpers, templates access custom
+helpers via the global variable <a class="reference internal" href="variables-and-functions.html#h" title="h"><tt class="xref py py-data docutils literal"><span class="pre">h</span></tt></a>.
+Edit <tt class="docutils literal"><span class="pre">ckanext-example_theme/ckanext/example_theme/templates/home/layout1.html</span></tt> to look like this:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">ckan_extends</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">featured_group</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{{</span> <span class="nv">h.recently_changed_packages_activity_stream</span><span class="o">(</span><span class="nv">limit</span><span class="o">=</span><span class="m">4</span><span class="o">)</span> <span class="cp">}}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">featured_organization</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="x">  </span><span class="c">{# Show a list of the site&#39;s most popular groups. #}</span><span class="x"></span>
+<span class="x">  &lt;h3&gt;Most popular groups&lt;/h3&gt;</span>
+<span class="x">  &lt;ul&gt;</span>
+<span class="x">    </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">group</span> <span class="k">in</span> <span class="nv">h.example_theme_most_popular_groups</span><span class="o">()</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">      &lt;li&gt;</span><span class="cp">{{</span> <span class="nv">group.display_name</span> <span class="cp">}}</span><span class="x">&lt;/li&gt;</span>
+<span class="x">    </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  &lt;/ul&gt;</span>
+
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Now reload your <a class="reference external" href="http://127.0.0.1:5000">CKAN front page</a> in your browser. You should see the featured
+organization section replaced with a list of the most popular groups:</p>
+<img alt="The most popular groups." src="../_images/most-popular-groups.png" />
+<p>Simply displaying a list of group titles isn&#8217;t very good. We want the groups to
+be hyperlinked to their pages, and also to show some other information about
+the group such as its description and logo image. To display our groups nicely,
+we&#8217;ll use CKAN&#8217;s <em>template snippets</em>...</p>
+</div>
+<div class="section" id="template-snippets">
+<span id="snippets"></span><h2>Template snippets<a class="headerlink" href="templates.html#template-snippets" title="Permalink to this headline">¶</a></h2>
+<p><em>Template snippets</em> are small snippets of template code that, just like helper
+functions, can be called from any template file. To call a snippet, you use
+another of CKAN&#8217;s custom Jinja2 tags: <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">snippet</span> <span class="pre">%}</span></tt>. CKAN comes with a
+selection of snippets, which you can find in the various <tt class="docutils literal"><span class="pre">snippets</span></tt>
+directories in <a class="reference external" href="https://github.com/ckan/ckan/tree/master/ckan/templates">ckan/templates/</a>,
+such as <a class="reference external" href="https://github.com/ckan/ckan/tree/master/ckan/templates/snippets">ckan/templates/snippets/</a>
+and <a class="reference external" href="https://github.com/ckan/ckan/tree/master/ckan/templates/package/snippets">ckan/templates/package/snippets/</a>.
+For a complete list of the default snippets available to templates, see
+<a class="reference internal" href="template-snippets.html"><em>Template snippets reference</em></a>.</p>
+<p><tt class="docutils literal"><span class="pre">ckan/templates/group/snippets/group_list.html</span></tt> is a snippet that renders a
+list of groups nicely (it&#8217;s used to render the groups on CKAN&#8217;s <tt class="docutils literal"><span class="pre">/group</span></tt> page
+and on user dashboard pages, for example):</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="c">{#</span>
+<span class="c">Display a grid of group items.</span>
+
+<span class="c">groups - A list of groups.</span>
+
+<span class="c">Example:</span>
+
+<span class="c">    {% snippet &quot;group/snippets/group_list.html&quot; %}</span>
+
+<span class="c">#}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">group_list</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">&lt;ul class=&quot;media-grid&quot; data-module=&quot;media-grid&quot;&gt;</span>
+<span class="x">	</span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">group_list_inner</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">group</span> <span class="k">in</span> <span class="nv">groups</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    </span><span class="cp">{%</span> <span class="k">snippet</span> <span class="s2">&quot;group/snippets/group_item.html&quot;</span><span class="o">,</span> <span class="nv">group</span><span class="o">=</span><span class="nv">group</span><span class="o">,</span> <span class="nv">position</span><span class="o">=</span><span class="nb">loop</span><span class="nv">.index</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">&lt;/ul&gt;</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>(As you can see, this snippet calls another snippet, <tt class="docutils literal"><span class="pre">group_item.html</span></tt>, to
+render each individual group.)</p>
+<p>Let&#8217;s change our <tt class="docutils literal"><span class="pre">ckanext-example_theme/ckanext/example_theme/templates/home/layout1.html</span></tt> file to call this snippet:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">ckan_extends</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">featured_group</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="x">  </span><span class="cp">{{</span> <span class="nv">h.recently_changed_packages_activity_stream</span><span class="o">(</span><span class="nv">limit</span><span class="o">=</span><span class="m">4</span><span class="o">)</span> <span class="cp">}}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">featured_organization</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="x">  &lt;h3&gt;Most popular groups&lt;/h3&gt;</span>
+
+<span class="x">  </span><span class="c">{# Call the group_list.html snippet. #}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">snippet</span> <span class="s1">&#39;group/snippets/group_list.html&#39;</span><span class="o">,</span>
+             <span class="nv">groups</span><span class="o">=</span><span class="nv">h.example_theme_most_popular_groups</span><span class="o">()</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Here we pass two arguments to the <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">snippet</span> <span class="pre">%}</span></tt> tag:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="x">  </span><span class="cp">{%</span> <span class="k">snippet</span> <span class="s1">&#39;group/snippets/group_list.html&#39;</span><span class="o">,</span>
+             <span class="nv">groups</span><span class="o">=</span><span class="nv">h.example_theme_most_popular_groups</span><span class="o">()</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>the first argument is the name of the snippet file to call. The second
+argument, separated by a comma, is the list of groups to pass into the snippet.
+After the filename you can pass any number of variables into a snippet, and
+these will all be available to the snippet code as top-level global variables.
+As in the <tt class="docutils literal"><span class="pre">group_list.html</span></tt> docstring above, each snippet&#8217;s docstring
+should document the parameters it requires.</p>
+<p>If you reload your <a class="reference external" href="http://127.0.0.1:5000">CKAN front page</a> in your web browser now, you should see
+the most popular groups rendered in the same style as the list of groups on
+the <tt class="docutils literal"><span class="pre">/groups</span></tt> page:</p>
+<img alt="The most popular groups, rendered by a default snippet." src="../_images/most-popular-groups-snippet.png" />
+<p>This style isn&#8217;t really what we want for our front page, each group is too big.
+To render the groups in a custom style, we can define a custom snippet...</p>
+</div>
+<div class="section" id="adding-your-own-template-snippets">
+<h2>Adding your own template snippets<a class="headerlink" href="templates.html#adding-your-own-template-snippets" title="Permalink to this headline">¶</a></h2>
+<p>Just as plugins can add their own template helper functions, they can also add
+their own snippets. To add template snippets, all a plugin needs to do is add a
+<tt class="docutils literal"><span class="pre">snippets</span></tt> directory in its <tt class="docutils literal"><span class="pre">templates</span></tt> directory, and start adding files.
+The snippets will be callable from other templates immediately.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For CKAN to find your plugins&#8217; snippets directories, you should already have
+added your plugin&#8217;s custom template directory to CKAN, see <a class="reference internal" href="templates.html#template-overriding"><em>Replacing a default template file</em></a>.</p>
+</div>
+<p>Let&#8217;s create a custom snippet to display our most popular groups, we&#8217;ll put
+the <tt class="docutils literal"><span class="pre">&lt;h3&gt;Most</span> <span class="pre">popular</span> <span class="pre">groups&lt;/h3&gt;</span></tt> heading into the snippet and make it nice
+and modular, so that we can reuse the whole thing on different parts of the
+site if we want to.</p>
+<p>Create a new directory <tt class="docutils literal"><span class="pre">ckanext-example_theme/ckanext/example_theme/templates/snippets</span></tt> containing a file named
+<tt class="docutils literal"><span class="pre">example_theme_most_popular_groups.html</span></tt> with these contents:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="c">{#</span>
+
+<span class="c">Renders a list of the site&#39;s most popular groups.</span>
+
+<span class="c">groups - the list of groups to render</span>
+
+<span class="c">#}</span><span class="x"></span>
+<span class="x">&lt;h3&gt;Most popular groups&lt;/h3&gt;</span>
+<span class="x">&lt;ul&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">group</span> <span class="k">in</span> <span class="nv">groups</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;li&gt;</span>
+<span class="x">      &lt;a href=&quot;</span><span class="cp">{{</span> <span class="nv">h.url_for</span><span class="o">(</span><span class="s1">&#39;group_read&#39;</span><span class="o">,</span> <span class="nv">action</span><span class="o">=</span><span class="s1">&#39;read&#39;</span><span class="o">,</span> <span class="nv">id</span><span class="o">=</span><span class="nv">group.name</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&quot;&gt;</span>
+<span class="x">        &lt;h3&gt;</span><span class="cp">{{</span> <span class="nv">group.display_name</span> <span class="cp">}}</span><span class="x">&lt;/h3&gt;</span>
+<span class="x">      &lt;/a&gt;</span>
+<span class="x">      </span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">group.description</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">        &lt;p&gt;</span>
+<span class="x">          </span><span class="cp">{{</span> <span class="nv">h.markdown_extract</span><span class="o">(</span><span class="nv">group.description</span><span class="o">,</span> <span class="nv">extract_length</span><span class="o">=</span><span class="m">80</span><span class="o">)</span> <span class="cp">}}</span><span class="x"></span>
+<span class="x">        &lt;/p&gt;</span>
+<span class="x">      </span><span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">        &lt;p&gt;</span><span class="cp">{{</span> <span class="kp">_</span><span class="o">(</span><span class="s1">&#39;This group has no description&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/p&gt;</span>
+<span class="x">      </span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">      </span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">group.packages</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">        &lt;strong&gt;</span><span class="cp">{{</span> <span class="nv">ungettext</span><span class="o">(</span><span class="s1">&#39;{num} Dataset&#39;</span><span class="o">,</span> <span class="s1">&#39;{num} Datasets&#39;</span><span class="o">,</span> <span class="nv">group.packages</span><span class="o">)</span><span class="nv">.format</span><span class="o">(</span><span class="nv">num</span><span class="o">=</span><span class="nv">group.packages</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/strong&gt;</span>
+<span class="x">      </span><span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">        &lt;span&gt;</span><span class="cp">{{</span> <span class="kp">_</span><span class="o">(</span><span class="s1">&#39;0 Datasets&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/span&gt;</span>
+<span class="x">      </span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;/li&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">&lt;/ul&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As in the example above, a snippet should have a docstring at the top of the
+file that briefly documents what the snippet does and what parameters it
+requires. See <a class="reference internal" href="best-practices.html#snippet-docstrings-best-practice"><em>Snippets should have docstrings</em></a>.</p>
+</div>
+<p>This code uses a Jinja2 <tt class="docutils literal"><span class="pre">for</span></tt> loop to render each of the groups, and calls a
+number of CKAN&#8217;s template helper functions:</p>
+<ul class="simple">
+<li>To hyperlink each group&#8217;s name to the group&#8217;s page, it calls
+<a class="reference internal" href="template-helper-functions.html#ckan.lib.helpers.url_for" title="ckan.lib.helpers.url_for"><tt class="xref py py-func docutils literal"><span class="pre">url_for()</span></tt></a>.</li>
+<li>If the group has a description, it calls
+<a class="reference internal" href="template-helper-functions.html#ckan.lib.helpers.markdown_extract" title="ckan.lib.helpers.markdown_extract"><tt class="xref py py-func docutils literal"><span class="pre">markdown_extract()</span></tt></a> to render the description
+nicely.</li>
+<li>If the group doesn&#8217;t have a description, it uses the <a class="reference internal" href="variables-and-functions.html#_" title="_"><tt class="xref py py-func docutils literal"><span class="pre">_()</span></tt></a> function to
+mark the <tt class="docutils literal"><span class="pre">'This</span> <span class="pre">group</span> <span class="pre">has</span> <span class="pre">no</span> <span class="pre">description'</span></tt> message for translation.
+When the page is rendered in a user&#8217;s web browser, this string will be shown
+in the user&#8217;s language (if there&#8217;s a translation of the string into that
+language).</li>
+<li>When rendering the group&#8217;s number of datasets, it uses the
+<a class="reference internal" href="variables-and-functions.html#ungettext" title="ungettext"><tt class="xref py py-func docutils literal"><span class="pre">ungettext()</span></tt></a> function to mark the message for translation with
+localized handling of plural forms.</li>
+</ul>
+<p>The code also accesses the attributes of each group: <tt class="docutils literal"><span class="pre">{{</span> <span class="pre">group.name</span> <span class="pre">}}`,</span>
+<span class="pre">``{{</span> <span class="pre">group.display_name</span> <span class="pre">}}</span></tt>, <tt class="docutils literal"><span class="pre">{{</span> <span class="pre">group.description</span> <span class="pre">}}</span></tt>,
+<tt class="docutils literal"><span class="pre">{{</span> <span class="pre">group.packages</span> <span class="pre">}}</span></tt>, etc. To see what attributes a group or any other CKAN
+object (packages/datasets, organizations, users...) has, you can use
+<a class="reference internal" href="../api/index.html"><em>CKAN&#8217;s API</em></a> to inspect the object. For example to find out what
+attributes a group has, call the <a class="reference internal" href="../api/index.html#ckan.logic.action.get.group_show" title="ckan.logic.action.get.group_show"><tt class="xref py py-func docutils literal"><span class="pre">group_show()</span></tt></a>
+function.</p>
+<p>Now edit your <tt class="docutils literal"><span class="pre">ckanext-example_theme/ckanext/example_theme/templates/home/layout1.html</span></tt> file and change it to use our new snippet instead
+of the default one:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">ckan_extends</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">featured_group</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{{</span> <span class="nv">h.recently_changed_packages_activity_stream</span><span class="o">(</span><span class="nv">limit</span><span class="o">=</span><span class="m">4</span><span class="o">)</span> <span class="cp">}}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">featured_organization</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">snippet</span> <span class="s1">&#39;snippets/example_theme_most_popular_groups.html&#39;</span><span class="o">,</span>
+             <span class="nv">groups</span><span class="o">=</span><span class="nv">h.example_theme_most_popular_groups</span><span class="o">()</span>  <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Restart the development web server and reload the <a class="reference external" href="http://127.0.0.1:5000">CKAN front page</a> and you
+should see the most popular groups rendered differently:</p>
+<img alt="The most popular groups, rendered by a custom snippet." src="../_images/most-popular-groups-custom-snippet.png" />
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Default snippets can be overridden.
+If a plugin adds a snippet with the same name as one of CKAN&#8217;s default
+snippets, the plugin&#8217;s snippet will override the default snippet wherever
+the default snippet is used.</p>
+<p>Also if two plugins both have snippets with the same name, one of the
+snippets will override the other.</p>
+<p class="last">To avoid unintended conflicts, we recommend that snippet filenames begin
+with the name of the extension they belong to, e.g.
+<tt class="docutils literal"><span class="pre">snippets/example_theme_*.html</span></tt>.
+See <a class="reference internal" href="best-practices.html#snippet-filenames-best-practice"><em>Snippet filenames should begin with the name of the extension</em></a>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Snippets don&#8217;t have access to the global template context variable,
+<a class="reference internal" href="variables-and-functions.html#c" title="c"><tt class="xref py py-data docutils literal"><span class="pre">c</span></tt></a> (see <a class="reference internal" href="variables-and-functions.html"><em>Variables and functions available to templates</em></a>).
+Snippets <em>can</em> access other global variables such as <a class="reference internal" href="variables-and-functions.html#h" title="h"><tt class="xref py py-data docutils literal"><span class="pre">h</span></tt></a>,
+<a class="reference internal" href="variables-and-functions.html#app_globals" title="app_globals"><tt class="xref py py-data docutils literal"><span class="pre">app_globals</span></tt></a> and <a class="reference internal" href="variables-and-functions.html#request" title="request"><tt class="xref py py-data docutils literal"><span class="pre">request</span></tt></a>, as well as any variables
+explicitly passed into the snippet by the parent template when it calls the
+snippet with a <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">snippet</span> <span class="pre">%}</span></tt> tag.</p>
+</div>
+</div>
+<div class="section" id="html-tags-and-css-classes">
+<h2>HTML tags and CSS classes<a class="headerlink" href="templates.html#html-tags-and-css-classes" title="Permalink to this headline">¶</a></h2>
+<p>Our additions to the front page so far don&#8217;t look very good or fit in very well
+with the CKAN theme. Let&#8217;s make them look better by tweaking our template to
+use the right HTML tags and CSS classes.</p>
+<p>There are two places to look for CSS classes available in CKAN:</p>
+<ol class="arabic">
+<li><p class="first">The <a class="reference external" href="http://docs.ckan.org/en/ckan-2.3.5/theming/bootstrap">Bootstrap 2.3.2 docs</a>. All of the HTML, CSS and JavaScript
+provided by Bootstrap is available to use in CKAN.</p>
+</li>
+<li><p class="first">CKAN&#8217;s development primer page, which can be found on any CKAN site at
+<tt class="docutils literal"><span class="pre">/development/primer.html</span></tt>, for example
+<a class="reference external" href="http://demo.ckan.org/development/primer.html">demo.ckan.org/development/primer.html</a>.</p>
+<p>The primer page demonstrates many of the HTML and CSS elements available in
+CKAN, and by viewing the source of the page you can see what HTML tags and
+CSS classes they use.</p>
+</li>
+</ol>
+<p>Edit your <tt class="docutils literal"><span class="pre">example_theme_most_popular_groups.html</span></tt> file to look like this:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="c">{# Renders a list of the site&#39;s most popular groups. #}</span><span class="x"></span>
+
+<span class="x">&lt;div class=&quot;box&quot;&gt;</span>
+<span class="x">  &lt;header class=&quot;module-heading&quot;&gt;</span>
+<span class="x">    &lt;h3&gt;Most popular groups&lt;/h3&gt;</span>
+<span class="x">  &lt;/header&gt;</span>
+<span class="x">  &lt;section class=&quot;module-content&quot;&gt;</span>
+<span class="x">    &lt;ul class=&quot;unstyled&quot;&gt;</span>
+<span class="x">      </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">group</span> <span class="k">in</span> <span class="nv">h.example_theme_most_popular_groups</span><span class="o">()</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">        &lt;li&gt;</span>
+<span class="x">          &lt;a href=&quot;</span><span class="cp">{{</span> <span class="nv">h.url_for</span><span class="o">(</span><span class="s1">&#39;group_read&#39;</span><span class="o">,</span> <span class="nv">action</span><span class="o">=</span><span class="s1">&#39;read&#39;</span><span class="o">,</span> <span class="nv">id</span><span class="o">=</span><span class="nv">group.name</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&quot;&gt;</span>
+<span class="x">            &lt;h3&gt;</span><span class="cp">{{</span> <span class="nv">group.display_name</span> <span class="cp">}}</span><span class="x">&lt;/h3&gt;</span>
+<span class="x">          &lt;/a&gt;</span>
+<span class="x">          </span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">group.description</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">            &lt;p&gt;</span>
+<span class="x">              </span><span class="cp">{{</span> <span class="nv">h.markdown_extract</span><span class="o">(</span><span class="nv">group.description</span><span class="o">,</span> <span class="nv">extract_length</span><span class="o">=</span><span class="m">80</span><span class="o">)</span> <span class="cp">}}</span><span class="x"></span>
+<span class="x">            &lt;/p&gt;</span>
+<span class="x">          </span><span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">            &lt;p&gt;</span><span class="cp">{{</span> <span class="kp">_</span><span class="o">(</span><span class="s1">&#39;This group has no description&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/p&gt;</span>
+<span class="x">          </span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">          </span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">group.packages</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">            &lt;strong&gt;</span><span class="cp">{{</span> <span class="nv">ungettext</span><span class="o">(</span><span class="s1">&#39;{num} Dataset&#39;</span><span class="o">,</span> <span class="s1">&#39;{num} Datasets&#39;</span><span class="o">,</span> <span class="nv">group.packages</span><span class="o">)</span><span class="nv">.format</span><span class="o">(</span><span class="nv">num</span><span class="o">=</span><span class="nv">group.packages</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/strong&gt;</span>
+<span class="x">          </span><span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">            &lt;span&gt;</span><span class="cp">{{</span> <span class="kp">_</span><span class="o">(</span><span class="s1">&#39;0 Datasets&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/span&gt;</span>
+<span class="x">          </span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">        &lt;/li&gt;</span>
+<span class="x">      </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;/ul&gt;</span>
+<span class="x">  &lt;section&gt;</span>
+<span class="x">&lt;/div&gt;</span>
+</pre></div>
+</div>
+<p>This simply wraps the code in a <tt class="docutils literal"><span class="pre">&lt;div</span> <span class="pre">class=&quot;box&quot;&gt;</span></tt>,
+a <tt class="docutils literal"><span class="pre">&lt;header</span> <span class="pre">class=&quot;module-heading&quot;&gt;</span></tt>,
+and a <tt class="docutils literal"><span class="pre">&lt;section</span> <span class="pre">class=&quot;module-content&quot;&gt;</span></tt>. We also added Bootstrap&#8217;s
+<tt class="docutils literal"><span class="pre">class=&quot;unstyled&quot;</span></tt> to the <tt class="docutils literal"><span class="pre">&lt;ul&gt;</span></tt> tag to get rid of the bullet points.
+If you reload the <a class="reference external" href="http://127.0.0.1:5000">CKAN front page</a>, the most popular groups should look much
+better.</p>
+<p>To wrap your activity stream in a similar box, edit <tt class="docutils literal"><span class="pre">layout1.html</span></tt> to look
+like this:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">ckan_extends</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">featured_group</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  &lt;div class=&quot;box&quot;&gt;</span>
+<span class="x">    &lt;header class=&quot;module-heading&quot;&gt;</span>
+<span class="x">      &lt;h3&gt;Recent activity&lt;/h3&gt;</span>
+<span class="x">    &lt;/header&gt;</span>
+<span class="x">    &lt;div class=&quot;module-content&quot;&gt;</span>
+<span class="x">      </span><span class="cp">{{</span> <span class="nv">h.recently_changed_packages_activity_stream</span><span class="o">(</span><span class="nv">limit</span><span class="o">=</span><span class="m">4</span><span class="o">)</span> <span class="cp">}}</span><span class="x"></span>
+<span class="x">    &lt;/div&gt;</span>
+<span class="x">  &lt;/div&gt;</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">featured_organization</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">snippet</span> <span class="s1">&#39;snippets/example_theme_most_popular_groups.html&#39;</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Reload the <a class="reference external" href="http://127.0.0.1:5000">CKAN front page</a>, and you should see your activity stream and
+most popular groups looking much better:</p>
+<img alt="The activity stream and most popular groups, with better CSS." src="../_images/html_and_css.png" />
+</div>
+<div class="section" id="accessing-custom-config-settings-from-templates">
+<span id="id3"></span><h2>Accessing custom config settings from templates<a class="headerlink" href="templates.html#accessing-custom-config-settings-from-templates" title="Permalink to this headline">¶</a></h2>
+<p>Not all CKAN config settings are available to templates via
+<a class="reference internal" href="variables-and-functions.html#app_globals" title="app_globals"><tt class="xref py py-data docutils literal"><span class="pre">app_globals</span></tt></a>. In particular, if an extension wants to use its own
+custom config setting, this setting will not be available. If you need to
+access a custom config setting from a template, you can do so by wrapping the
+config setting in a helper function.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">For more on custom config settings, see
+<a class="reference internal" href="../extensions/custom-config-settings.html"><em>Using custom config settings in extensions</em></a>.</p>
+</div>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">I&#8217;m not sure if making config settings available to templates like this is
+a very good idea. Is there an alternative best practice?</p>
+</div>
+<p>Let&#8217;s add a config setting, <tt class="docutils literal"><span class="pre">show_most_popular_groups</span></tt>, to enable or disable
+the most popular groups on the front page. First, add a new helper function to
+<tt class="docutils literal"><span class="pre">plugin.py</span></tt> to wrap the config setting.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pylons.config</span> <span class="kn">as</span> <span class="nn">config</span>
+
+<span class="kn">import</span> <span class="nn">ckan.plugins</span> <span class="kn">as</span> <span class="nn">plugins</span>
+<span class="kn">import</span> <span class="nn">ckan.plugins.toolkit</span> <span class="kn">as</span> <span class="nn">toolkit</span>
+
+
+<span class="k">def</span> <span class="nf">show_most_popular_groups</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Return the value of the most_popular_groups config setting.</span>
+
+<span class="sd">    To enable showing the most popular groups, add this line to the</span>
+<span class="sd">    [app:main] section of your CKAN config file::</span>
+
+<span class="sd">      ckan.example_theme.show_most_popular_groups = True</span>
+
+<span class="sd">    Returns ``False`` by default, if the setting is not in the config file.</span>
+
+<span class="sd">    :rtype: boolean</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;ckan.example_theme.show_most_popular_groups&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">asbool</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span>
+
+
+<span class="k">def</span> <span class="nf">most_popular_groups</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Return a sorted list of the groups with the most datasets.&#39;&#39;&#39;</span>
+
+    <span class="c"># Get a list of all the site&#39;s groups from CKAN, sorted by number of</span>
+    <span class="c"># datasets.</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">get_action</span><span class="p">(</span><span class="s">&#39;group_list&#39;</span><span class="p">)(</span>
+        <span class="n">data_dict</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;sort&#39;</span><span class="p">:</span> <span class="s">&#39;packages desc&#39;</span><span class="p">,</span> <span class="s">&#39;all_fields&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">})</span>
+
+    <span class="c"># Truncate the list to the 10 most popular groups only.</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">groups</span>
+
+
+<span class="k">class</span> <span class="nc">ExampleThemePlugin</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">SingletonPlugin</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;An example theme plugin.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">plugins</span><span class="o">.</span><span class="n">implements</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">IConfigurer</span><span class="p">)</span>
+
+    <span class="c"># Declare that this plugin will implement ITemplateHelpers.</span>
+    <span class="n">plugins</span><span class="o">.</span><span class="n">implements</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">ITemplateHelpers</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+
+        <span class="c"># Add this plugin&#39;s templates dir to CKAN&#39;s extra_template_paths, so</span>
+        <span class="c"># that CKAN will use this plugin&#39;s custom templates.</span>
+        <span class="n">toolkit</span><span class="o">.</span><span class="n">add_template_directory</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s">&#39;templates&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_helpers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Register the most_popular_groups() function above as a template</span>
+<span class="sd">        helper function.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c"># Template helper function names should begin with the name of the</span>
+        <span class="c"># extension they belong to, to avoid clashing with functions from</span>
+        <span class="c"># other extensions.</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">&#39;example_theme_most_popular_groups&#39;</span><span class="p">:</span> <span class="n">most_popular_groups</span><span class="p">,</span>
+                <span class="s">&#39;example_theme_show_most_popular_groups&#39;</span><span class="p">:</span>
+                <span class="n">show_most_popular_groups</span><span class="p">,</span>
+                <span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">show_most_popular_groups</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Return the value of the most_popular_groups config setting.</span>
+
+<span class="sd">    To enable showing the most popular groups, add this line to the</span>
+<span class="sd">    [app:main] section of your CKAN config file::</span>
+
+<span class="sd">      ckan.example_theme.show_most_popular_groups = True</span>
+
+<span class="sd">    Returns ``False`` by default, if the setting is not in the config file.</span>
+
+<span class="sd">    :rtype: boolean</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;ckan.example_theme.show_most_popular_groups&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">asbool</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Names of config settings provided by extensions should include the name
+of the extension, to avoid conflicting with core config settings or with
+config settings from other extensions.
+See <a class="reference internal" href="../extensions/best-practices.html#extension-config-setting-names-best-practice"><em>Names of config settings should include the name of the extension</em></a>.</p>
+</div>
+<p>Now we can call this helper function from our <tt class="docutils literal"><span class="pre">layout1.html</span></tt> template:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">block</span> <span class="nv">featured_organization</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">h.example_theme_show_most_popular_groups</span><span class="o">()</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    </span><span class="cp">{%</span> <span class="k">snippet</span> <span class="s1">&#39;snippets/example_theme_most_popular_groups.html&#39;</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    </span><span class="cp">{{</span> <span class="nb">super</span><span class="o">()</span> <span class="cp">}}</span><span class="x"></span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>If the user sets this config setting to <tt class="docutils literal"><span class="pre">True</span></tt> in their CKAN config file,
+then the most popular groups will be displayed on the front page, otherwise
+the block will fall back to its default contents.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="static-files.html" class="btn btn-neutral float-right"
+           title="Adding static files"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral"
+           title="Theming guide">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: ckan-2.3.5
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../index.html">latest</a></dd>
+        
+          <dd><a href="../../ckan-2.6.0/index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../../ckan-2.5.3/index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../../ckan-2.4.4/index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.3.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

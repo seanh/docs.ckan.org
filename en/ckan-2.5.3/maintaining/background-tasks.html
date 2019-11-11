@@ -1,0 +1,503 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Background tasks &mdash; CKAN 2.5.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="CKAN 2.5.3 documentation" href="../index.html"/>
+        <link rel="up" title="Maintainer’s guide" href="index.html"/>
+        <link rel="next" title="Email notifications" href="email-notifications.html"/>
+        <link rel="prev" title="Linked Data and RDF" href="linked-data-and-rdf.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/maintaining/background-tasks.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'maintaining/background-tasks'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> CKAN
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                ckan-2.5.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="http://docs.ckan.org/en/ckan-2.5.3/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Maintainer&#8217;s guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installing/index.html">Installing CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/index.html">Upgrading CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html">Organizations and authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html">Data preview and visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filestore.html">FileStore and file uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html">DataStore extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="background-tasks.html">Background tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="background-tasks.html#enabling-background-tasks">Enabling background tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="background-tasks.html#writing-background-tasks">Writing background tasks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="background-tasks.html#examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="background-tasks.html#setup">Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="background-tasks.html#implementing-the-tasks">Implementing the tasks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="background-tasks.html#calling-the-task">Calling the task</a></li>
+<li class="toctree-l4"><a class="reference internal" href="background-tasks.html#retrying-on-errors">Retrying on errors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="email-notifications.html">Email notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html">Page View Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multilingual.html">Multilingual Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stats.html">Stats Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Configuration Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solr-multicore.html">Multicore Solr setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extending guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theming/index.html">Theming guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Maintainer&#8217;s guide</a> &raquo;</li>
+      
+    <li>Background tasks</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/ckan/ckan/blob/ckan-2.5.3/doc/maintaining/background-tasks.rst" class="fa fa-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="background-tasks">
+<h1>Background tasks<a class="headerlink" href="background-tasks.html#background-tasks" title="Permalink to this headline">¶</a></h1>
+<p>CKAN allows you to create tasks that run in the &#8216;background&#8217;, that is
+asynchronously and without blocking the main application (these tasks can also
+be automatically retried in the case of transient failures). Such tasks can be
+created in <a class="reference internal" href="../extensions/index.html"><em>Extensions</em></a> or in core CKAN.</p>
+<p>Background tasks can be essential to providing certain kinds of functionality,
+for example:</p>
+<ul class="simple">
+<li>Creating webhooks that notify other services when certain changes occur (for
+example a dataset is updated)</li>
+<li>Performing processing or validation or on data (as done by the Archiver and
+DataStorer Extensions)</li>
+</ul>
+<div class="section" id="enabling-background-tasks">
+<h2>Enabling background tasks<a class="headerlink" href="background-tasks.html#enabling-background-tasks" title="Permalink to this headline">¶</a></h2>
+<p>To manage and run background tasks requires a job queue and CKAN uses <a class="reference external" href="http://celeryproject.org/">celery</a>
+(plus the CKAN database) for this purpose. Thus, to use background tasks you
+need to install and run <a class="reference external" href="http://celeryproject.org/">celery</a>.</p>
+<p>Installation of <a class="reference external" href="http://celeryproject.org/">celery</a> will normally be taken care of by whichever component
+or extension utilizes it so we skip that here.</p>
+<p>To run the celery daemon you have two options:</p>
+<ol class="arabic">
+<li><p class="first">In development setup you can just use paster. This can be done as simply
+as:</p>
+<div class="highlight-python"><div class="highlight"><pre>paster celeryd
+</pre></div>
+</div>
+<p>This only works if you have a <tt class="docutils literal"><span class="pre">development.ini</span></tt> file in ckan root.</p>
+</li>
+<li><p class="first">In production, the daemon should be run with a different ini file and be run
+as an init script. The simplest way to do this is to install supervisor:</p>
+<div class="highlight-python"><div class="highlight"><pre>apt-get install supervisor
+</pre></div>
+</div>
+<p>Using this file as a template and copy to <tt class="docutils literal"><span class="pre">/etc/supservisor/conf.d</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>https://github.com/ckan/ckan/blob/master/ckan/config/celery-supervisor.conf
+</pre></div>
+</div>
+<p>Alternatively, you can run:</p>
+<div class="highlight-python"><div class="highlight"><pre>paster celeryd --config=/path/to/file.ini
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="writing-background-tasks">
+<h2>Writing background tasks<a class="headerlink" href="background-tasks.html#writing-background-tasks" title="Permalink to this headline">¶</a></h2>
+<p>These instructions should show you how to write an background task and how to
+call it from inside CKAN or another extension using celery.</p>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="background-tasks.html#examples" title="Permalink to this headline">¶</a></h3>
+<p>Here are some existing real examples of writing CKAN tasks:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/ckan/ckanext-archiver">https://github.com/ckan/ckanext-archiver</a></li>
+<li><a class="reference external" href="https://github.com/ckan/ckanext-qa">https://github.com/ckan/ckanext-qa</a></li>
+<li><a class="reference external" href="https://github.com/ckan/ckanext-datastorer">https://github.com/ckan/ckanext-datastorer</a></li>
+</ul>
+</div>
+<div class="section" id="setup">
+<h3>Setup<a class="headerlink" href="background-tasks.html#setup" title="Permalink to this headline">¶</a></h3>
+<p>An entry point is required inside the <tt class="docutils literal"><span class="pre">setup.py</span></tt> for your extension, and so
+you should add something resembling the following that points to a function in
+a module. In this case the function is called task_imports in the
+<tt class="docutils literal"><span class="pre">ckanext.NAME.celery_import</span></tt> module:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">entry_points</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">  [ckan.celery_task]</span>
+<span class="s">  tasks = ckanext.NAME.celery_import:task_imports</span>
+<span class="s">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>The function, in this case <tt class="docutils literal"><span class="pre">task_imports</span></tt> should be a function that returns
+fully qualified module paths to modules that contain the defined task (see the
+next section).  In this case we will put all of our tasks in a file called
+<tt class="docutils literal"><span class="pre">tasks.py</span></tt> and so <tt class="docutils literal"><span class="pre">task_imports</span></tt> should be in a file called
+<tt class="docutils literal"><span class="pre">ckanext/NAME/celery_import.py</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">task_imports</span><span class="p">():</span>
+  <span class="k">return</span> <span class="p">[</span><span class="s">&#39;ckanext.NAME.tasks&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This returns an iterable of all of the places to look to find tasks, in this
+example we are only putting them in one place.</p>
+</div>
+<div class="section" id="implementing-the-tasks">
+<h3>Implementing the tasks<a class="headerlink" href="background-tasks.html#implementing-the-tasks" title="Permalink to this headline">¶</a></h3>
+<p>The most straightforward way of defining tasks in our <tt class="docutils literal"><span class="pre">tasks.py</span></tt> module, is
+to use the decorators provided by celery. These decorators make it easy to just
+define a function and then give it a name and make it accessible to celery.
+Make sure you import celery from ckan.lib.celery_app:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">ckan.lib.celery_app</span> <span class="kn">import</span> <span class="n">celery</span>
+</pre></div>
+</div>
+<p>Implement your function, specifying the arguments you wish it to take. For our
+sample we will use a simple echo task that will print out its argument to the
+console:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">echo</span><span class="p">(</span> <span class="n">message</span> <span class="p">):</span>
+  <span class="k">print</span> <span class="n">message</span>
+</pre></div>
+</div>
+<p>Next it is important to decorate your function with the celery task decorator.
+You should give the task a name, which is used later on when calling the task:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@celery.task</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;NAME.echofunction&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">echo</span><span class="p">(</span> <span class="n">message</span> <span class="p">):</span>
+  <span class="k">print</span> <span class="n">message</span>
+</pre></div>
+</div>
+<p>That&#8217;s it, your function is ready to be run asynchronously outside of the main
+execution of the CKAN app.  Next you should make sure you run <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span>
+<span class="pre">develop</span></tt> in your extensions folder and then go to your CKAN installation
+folder (normally pyenv/src/ckan/) to run the following command:</p>
+<div class="highlight-python"><div class="highlight"><pre>paster celeryd
+</pre></div>
+</div>
+<p>Once you have done this your task name <tt class="docutils literal"><span class="pre">NAME.echofunction</span></tt> should appear in
+the list of tasks loaded. If it is there then you are all set and ready to go.
+If not then you should try the following to try and resolve the problem:</p>
+<ol class="arabic simple">
+<li>Make sure the entry point is defined correctly in your <tt class="docutils literal"><span class="pre">setup.py</span></tt> and that
+you have executed <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">develop</span></tt></li>
+<li>Check that your task_imports function returns an iterable with valid module
+names in</li>
+<li>Ensure that the decorator marks the functions (if there is more than one
+decorator, make sure the celery.task is the first one - which means it will
+execute last).</li>
+<li>If none of the above helps, go into #ckan on irc.freenode.net where there
+should be people who can help you resolve your issue.</li>
+</ol>
+</div>
+<div class="section" id="calling-the-task">
+<h3>Calling the task<a class="headerlink" href="background-tasks.html#calling-the-task" title="Permalink to this headline">¶</a></h3>
+<p>Now that the task is defined, and has been loaded by celery it is ready to be
+called.  To call a background task you need to know only the name of the task,
+and the arguments that it expects as well as providing it a task id.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">from</span> <span class="nn">ckan.lib.celery_app</span> <span class="kn">import</span> <span class="n">celery</span>
+<span class="n">celery</span><span class="o">.</span><span class="n">send_task</span><span class="p">(</span><span class="s">&quot;NAME.echofunction&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;Hello World&quot;</span><span class="p">],</span> <span class="n">task_id</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()))</span>
+</pre></div>
+</div>
+<p>After executing this code you should see the message printed in the console
+where you ran <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">celeryd</span></tt>.</p>
+</div>
+<div class="section" id="retrying-on-errors">
+<h3>Retrying on errors<a class="headerlink" href="background-tasks.html#retrying-on-errors" title="Permalink to this headline">¶</a></h3>
+<p>Should your task fail to complete because of a transient error, it is possible
+to ask celery to retry the task, after some period of time.  The default wait
+before retrying is three minutes, but you can optionally specify this in the
+call to retry via the countdown parameter, and you can also specify the
+exception that triggered the failure.  For our example the call to retry would
+look like the following - note that it calls the function name, not the task
+name given in the decorator:</p>
+<div class="highlight-python"><div class="highlight"><pre>try:
+  ... some work that may fail, http request?
+except Exception, e:
+  # Retry again in 2 minutes
+  echo.retry(args=(message), exc=e, countdown=120, max_retries=10)
+</pre></div>
+</div>
+<p>If you don&#8217;t want to wait a period of time you can use the eta datetime
+parameter to specify an explicit time to run the task (i.e. 9AM tomorrow)</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="email-notifications.html" class="btn btn-neutral float-right"
+           title="Email notifications"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="linked-data-and-rdf.html" class="btn btn-neutral"
+           title="Linked Data and RDF">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: ckan-2.5.3
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../index.html">latest</a></dd>
+        
+          <dd><a href="../../ckan-2.6.0/index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../../ckan-2.4.4/index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../../ckan-2.3.5/index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.5.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

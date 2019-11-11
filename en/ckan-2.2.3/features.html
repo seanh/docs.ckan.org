@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Features &mdash; CKAN 2.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN 2.2.3 documentation" href="index.html" />
+    <link rel="next" title="Command Line Interface" href="paster.html" />
+    <link rel="prev" title="Getting started" href="getting-started.html" />
+
+  
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/features.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'features'
+</script>
+
+<script type="text/javascript" src="_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+  <body>
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="contents.html"><img src="_static/ckanlogo.png" alt="CKAN" /></a>
+        
+        <a class="brand" href="contents.html">CKAN<span class="version"> v2.2.3</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.2.3/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to CKAN&#8217;s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="features.html">Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html">Organizations and authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html">Data Viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filestore.html">FileStore and file uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html">DataStore extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background-tasks.html">Background tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email-notifications.html">Email notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html">Page View Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multilingual.html">Multilingual Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stats.html">Stats Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extensions/index.html">Writing CKAN extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/index.html">Appendices</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="contents.html">CKAN 2.2.3 documentation</a> &raquo;
+        </div>
+
+        
+  <div class="section" id="features">
+<h1>Features<a class="headerlink" href="features.html#features" title="Permalink to this headline">¶</a></h1>
+<p>The following sections describe features (both core features and built-in
+extensions) that come with CKAN, including how to enable, setup and configure
+each feature or extension.</p>
+<p>Beyond these core features, further features can be added to CKAN by
+downloading and installing external extensions. A good place to find extensions
+is the
+<a class="reference external" href="https://github.com/ckan/ckan/wiki/List-of-extensions">list of extensions on the CKAN wiki</a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="paster.html">Command Line Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="paster.html#troubleshooting-paster-commands">Troubleshooting Paster Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paster.html#paster-commands-reference">Paster Commands Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Organizations and authorization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html#organizations">Organizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html#configuration-file-options">Configuration File Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html#extensions">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data-viewer.html">Data Viewer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html#viewing-images-and-text-files">Viewing images and text files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html#viewing-structured-data-the-data-explorer">Viewing structured data: the Data Explorer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html#viewing-highlighted-xml-json-and-plain-text-data">Viewing highlighted XML, JSON and plain text data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html#viewing-pdf-documents">Viewing PDF documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html#viewing-remote-resources-the-resource-proxy">Viewing remote resources: the resource proxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html#embedding-previews-in-other-web-pages">Embedding previews in other web pages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="filestore.html">FileStore and file uploads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="filestore.html#setup-file-uploads">Setup file uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filestore.html#filestore-api">FileStore API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filestore.html#migration-from-2-1-to-2-2">Migration from 2.1 to 2.2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="datastore.html">DataStore extension</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html#relationship-to-filestore">Relationship to FileStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html#setting-up-the-datastore">Setting up the DataStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html#datapusher-automatically-add-data-to-the-datastore">DataPusher: Automatically Add Data to the DataStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html#the-datastore-api">The DataStore API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-vocabularies.html">Tag Vocabularies</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tag-vocabularies.html#properties-of-tag-vocabularies">Properties of Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tag-vocabularies.html#using-vocabularies">Using Vocabularies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="form-integration.html">Form Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="form-integration.html#redirecting-ckan-forms">Redirecting CKAN Forms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linked-data-and-rdf.html">Linked Data and RDF</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linked-data-and-rdf.html#enabling-and-configuring-linked-data-support">Enabling and Configuring Linked Data Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linked-data-and-rdf.html#accessing-linked-data">Accessing Linked Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linked-data-and-rdf.html#schema-mapping">Schema Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="background-tasks.html">Background tasks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="background-tasks.html#enabling-background-tasks">Enabling background tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background-tasks.html#writing-background-tasks">Writing background tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="email-notifications.html">Email notifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tracking.html">Page View Tracking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html#enabling-page-view-tracking">Enabling Page View Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html#retrieving-tracking-data">Retrieving Tracking Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html#sorting-datasets-by-popularity">Sorting Datasets by Popularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html#highlighting-popular-datasets-and-resources">Highlighting Popular Datasets and Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multilingual.html">Multilingual Extension</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="multilingual.html#setup-and-configuration">Setup and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multilingual.html#loading-test-translations">Loading Test Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multilingual.html#testing-the-multilingual-extension">Testing The Multilingual Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">Stats Extension</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stats.html#enabling-the-stats-extension">Enabling the Stats Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stats.html#viewing-the-statistics">Viewing the Statistics</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="paster.html"
+                  title="Command Line Interface" accesskey="N">
+                    
+                      
+                    
+                    Command Line Interface→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="getting-started.html"
+                  title="Getting started" accesskey="P">
+                    
+                      
+                    
+                    ← Getting started
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/ckan/ckan">Source</a>
+&mdash;
+<a href="https://github.com/ckan/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

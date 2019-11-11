@@ -1,0 +1,471 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Database Management &mdash; CKAN 2.7.0a documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="CKAN 2.7.0a documentation" href="../index.html"/>
+        <link rel="up" title="Maintainer’s guide" href="index.html"/>
+        <link rel="next" title="Command Line Interface" href="paster.html"/>
+        <link rel="prev" title="Getting started" href="getting-started.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/maintaining/database-management.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'maintaining/database-management'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> CKAN
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="http://docs.ckan.org//en/latest/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Maintainer&#8217;s guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installing/index.html">Installing CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/index.html">Upgrading CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="database-management.html">Database Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="database-management.html#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="database-management.html#cleaning">Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="database-management.html#import-and-export">Import and Export</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="database-management.html#dumping-and-loading-databases-to-from-a-file">Dumping and Loading databases to/from a file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="database-management.html#exporting-datasets-to-json-lines">Exporting Datasets to JSON Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="database-management.html#exporting-user-accounts-to-json-lines">Exporting User Accounts to JSON Lines</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="database-management.html#upgrading">Upgrading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html">Organizations and authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html">Data preview and visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filestore.html">FileStore and file uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html">DataStore extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background-tasks.html">Background jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email-notifications.html">Email notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html">Page View Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multilingual.html">Multilingual Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stats.html">Stats Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Configuration Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extending guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theming/index.html">Theming guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Maintainer&#8217;s guide</a> &raquo;</li>
+      
+    <li>Database Management</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/ckan/ckan/blob/master/doc/maintaining/database-management.rst" class="fa fa-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="database-management">
+<span id="id1"></span><h1>Database Management<a class="headerlink" href="database-management.html#database-management" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See <a class="reference internal" href="paster.html"><em>Command Line Interface</em></a> for details on running the <tt class="docutils literal"><span class="pre">paster</span></tt> commands
+mentioned below.</p>
+</div>
+<div class="section" id="initialization">
+<span id="db-init"></span><h2>Initialization<a class="headerlink" href="database-management.html#initialization" title="Permalink to this headline">¶</a></h2>
+<p>Before you can run CKAN for the first time, you need to run <tt class="docutils literal"><span class="pre">db</span> <span class="pre">init</span></tt> to
+initialize your database:</p>
+<pre class="literal-block">
+paster db init -c /etc/ckan/default/production.ini
+</pre>
+<p>If you forget to do this you&#8217;ll see this error message in your web browser:</p>
+<blockquote>
+<div>503 Service Unavailable:  This site is currently off-line. Database is not
+initialised.</div></blockquote>
+</div>
+<div class="section" id="cleaning">
+<span id="db-clean"></span><h2>Cleaning<a class="headerlink" href="database-management.html#cleaning" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This will delete all data from your CKAN database!</p>
+</div>
+<p>You can delete everything in the CKAN database, including the tables, to start
+from scratch:</p>
+<pre class="literal-block">
+paster db clean -c /etc/ckan/default/production.ini
+</pre>
+<p>After cleaning the database you must do either <a class="reference internal" href="database-management.html#initialization">initialize it</a> or <a class="reference internal" href="database-management.html#db-dumping-and-loading">import
+a previously created dump</a>.</p>
+</div>
+<div class="section" id="import-and-export">
+<h2>Import and Export<a class="headerlink" href="database-management.html#import-and-export" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dumping-and-loading-databases-to-from-a-file">
+<span id="db-dumping-and-loading"></span><h3>Dumping and Loading databases to/from a file<a class="headerlink" href="database-management.html#dumping-and-loading-databases-to-from-a-file" title="Permalink to this headline">¶</a></h3>
+<p>PostgreSQL offers the command line tools <a class="reference external" href="https://www.postgresql.org/docs/current/static/app-pgdump.html">pg_dump</a> and <a class="reference external" href="https://www.postgresql.org/docs/current/static/app-pgrestore.html">pg_restore</a> for dumping
+and restoring a database and its content to/from a file.</p>
+<p>For example, first dump your CKAN database:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>sudo -u postgres pg_dump --format=custom -d ckan_default &gt; ckan.dump
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The exported file is a complete backup of the database, and includes API
+keys and other user data which may be regarded as private. So keep it
+secure, like your database server.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you&#8217;ve chosen a non-default database name (i.e. <em>not</em> <tt class="docutils literal"><span class="pre">ckan_default</span></tt>)
+then you need to adapt the commands accordingly.</p>
+</div>
+<p>Then restore it again:</p>
+<pre class="literal-block">
+paster db clean -c /etc/ckan/default/production.ini
+sudo -u postgres pg_restore --clean --if-exists -d ckan_default &lt; ckan.dump
+</pre>
+<p>If you&#8217;re importing a dump from an older version of CKAN you must <a class="reference internal" href="database-management.html#db-upgrade"><em>upgrade
+the database schema</em></a> after the import.</p>
+<p>Once the import (and a potential upgrade) is complete you should <a class="reference internal" href="paster.html#rebuild-search-index"><em>rebuild
+the search index</em></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Earlier versions of CKAN offered the <tt class="docutils literal"><span class="pre">paster</span></tt> commands <tt class="docutils literal"><span class="pre">db</span> <span class="pre">dump</span></tt> and
+<tt class="docutils literal"><span class="pre">db</span> <span class="pre">load</span></tt>. These are still available but are deprecated in favor of
+the native tools of PostgreSQL mentioned above. <tt class="docutils literal"><span class="pre">db</span> <span class="pre">dump</span></tt> and <tt class="docutils literal"><span class="pre">db</span> <span class="pre">load</span></tt>
+will be removed in future versions of CKAN.</p>
+</div>
+</div>
+<div class="section" id="exporting-datasets-to-json-lines">
+<span id="datasets-dump"></span><h3>Exporting Datasets to JSON Lines<a class="headerlink" href="database-management.html#exporting-datasets-to-json-lines" title="Permalink to this headline">¶</a></h3>
+<p>You can export all of your CKAN site&#8217;s datasets from your database to a JSON
+Lines file using <a class="reference external" href="https://github.com/ckan/ckanapi">ckanapi</a>:</p>
+<pre class="literal-block">
+ckanapi dump datasets -c /etc/ckan/default/production.ini -O my_datasets.jsonl
+</pre>
+<p>This is useful to create a simple public listing of the datasets, with no user
+information. Some simple additions to the Apache config can serve the dump
+files to users in a directory listing. To do this, add these lines to your
+virtual Apache config file (e.g. /etc/apache2/sites-available/ckan_default.conf):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>Alias /dump/ /home/okfn/var/srvc/ckan.net/dumps/
+
+# Disable the mod_python handler for static files
+&lt;Location /dump&gt;
+    SetHandler None
+    Options +Indexes
+&lt;/Location&gt;
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Don&#8217;t serve an SQL dump of your database (created using the <tt class="docutils literal"><span class="pre">pg_dump</span></tt>
+command), as those contain private user information such as email
+addresses and API keys.</p>
+</div>
+</div>
+<div class="section" id="exporting-user-accounts-to-json-lines">
+<span id="users-dump"></span><h3>Exporting User Accounts to JSON Lines<a class="headerlink" href="database-management.html#exporting-user-accounts-to-json-lines" title="Permalink to this headline">¶</a></h3>
+<p>You can export all of your CKAN site&#8217;s user accounts from your database to
+a JSON Lines file using <a class="reference external" href="https://github.com/ckan/ckanapi">ckanapi</a>:</p>
+<pre class="literal-block">
+ckanapi dump users -c /etc/ckan/default/production.ini -O my_database_users.jsonl
+</pre>
+</div>
+</div>
+<div class="section" id="upgrading">
+<span id="db-upgrade"></span><h2>Upgrading<a class="headerlink" href="database-management.html#upgrading" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>You should <a class="reference internal" href="database-management.html#db-dumping-and-loading"><em>create a backup of your database</em></a>
+before upgrading it.</p>
+<p class="last">To avoid problems during the database upgrade, comment out any plugins
+that you have enabled in your ini file. You can uncomment them again when
+the upgrade finishes.</p>
+</div>
+<p>If you are upgrading to a new CKAN <a class="reference internal" href="upgrading/index.html#releases"><em>major release</em></a> update your
+CKAN database&#8217;s schema using the <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">db</span> <span class="pre">upgrade</span></tt> command:</p>
+<pre class="literal-block">
+paster db upgrade -c /etc/ckan/default/production.ini
+</pre>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="paster.html" class="btn btn-neutral float-right"
+           title="Command Line Interface"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="getting-started.html" class="btn btn-neutral"
+           title="Getting started">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>Support the <a href="http://ckan.org">CKAN Association</a>.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: latest
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../index.html">latest</a></dd>
+        
+          <dd><a href="../../ckan-2.6.0/index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../../ckan-2.5.3/index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../../ckan-2.4.4/index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../../ckan-2.3.5/index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/pdf/latest/">pdf</a></dd>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/htmlzip/latest/">htmlzip</a></dd>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/epub/latest/">epub</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.7.0a',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

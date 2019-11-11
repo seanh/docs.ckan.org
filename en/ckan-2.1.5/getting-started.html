@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting Started &mdash; CKAN Documentation 2.1.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.1.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN Documentation 2.1.5 documentation" href="index.html" />
+    <link rel="next" title="Features" href="features.html" />
+    <link rel="prev" title="Upgrading a source install" href="upgrade-source.html" />
+
+
+<!-- RTD Extra Head -->
+
+
+
+  
+  <!-- 
+  Always link to the latest version, as canonical.
+  http://docs.readthedocs.org/en/latest/canonical.html
+  -->
+  <link rel="canonical" href="http://docs.ckan.org//en/latest/getting-started.html" />
+  
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "ckan",
+    version: "ckan-2.1.5",
+    language: "en",
+    page: "getting-started",
+    builder: "sphinx",
+    theme: "sphinx-theme-okfn",
+    docroot: "/doc/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org/",
+    commit: "1d691ae3ba38a6b98dc69d0e2c16c71e186cd36e"
+  }
+  // Old variables
+  var doc_version = "ckan-2.1.5";
+  var doc_slug = "ckan";
+  var page_name = "getting-started";
+  var html_theme = "sphinx-theme-okfn";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body role="document">
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="index.html"><img src="http://docs.ckan.org/en/ckan-2.1.5/_static/http://assets.okfn.org/p/opendatahandbook/img/data-wrench-inverted.png" alt="CKAN Documentation" /></a>
+        
+        <a class="brand" href="index.html">CKAN Documentation<span class="version"> v2.1.5</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.1.5/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="upgrade-source.html"
+                        title="previous chapter">Upgrading a source install</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="features.html"
+                        title="next chapter">Features</a></p><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="getting-started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#creating-a-sysadmin-user">Creating a Sysadmin User</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#creating-test-data">Creating Test Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#the-admin-page">The Admin Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#the-config-file">The Config File</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="writing-extensions.html">Writing Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="index.html">CKAN Documentation 2.1.5 documentation</a> &raquo;
+        </div>
+
+        
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="getting-started.html#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>Once you&#8217;ve finished <a class="reference internal" href="installing.html"><em>installing CKAN</em></a>, this section
+will walk you through getting started with your new CKAN website, including
+creating a CKAN sysadmin user and some test data, and the basics of
+administering and configuring your CKAN site.</p>
+<div class="section" id="creating-a-sysadmin-user">
+<span id="create-admin-user"></span><h2>Creating a Sysadmin User<a class="headerlink" href="getting-started.html#creating-a-sysadmin-user" title="Permalink to this headline">¶</a></h2>
+<p>You have to use CKAN&#8217;s command line interface to create your first sysadmin
+user, and it can also be useful to create some test data from the command line.
+For full documentation of CKAN&#8217;s command line interface (including
+troubleshooting) see <a class="reference internal" href="paster.html"><em>Command Line Interface</em></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>CKAN commands are executed using the <code class="docutils literal"><span class="pre">paster</span></code> command on the server that
+CKAN is installed on.  Before running the paster commands below, you need to
+make sure that your virtualenv is activated and that you&#8217;re in your ckan
+source directory.  For example:</p>
+<pre class="last literal-block">
+. /usr/lib/ckan/default/bin/activate
+cd /usr/lib/ckan/default/src/ckan
+</pre>
+</div>
+<p>You have to create your first CKAN sysadmin user from the command line. For
+example, to create a user called <code class="docutils literal"><span class="pre">seanh</span></code> and make him a sysadmin:</p>
+<pre class="literal-block">
+paster sysadmin add seanh -c /etc/ckan/default/development.ini
+</pre>
+<p>If a user called <code class="docutils literal"><span class="pre">seanh</span></code> already exists he will be promoted to a sysadmin. If
+the user account doesn&#8217;t exist yet you&#8217;ll be prompted to enter a password and
+the account will be created.</p>
+<p>For a list of other command line commands for managing sysadmins, run:</p>
+<div class="highlight-python"><div class="highlight"><pre>paster sysadmin --help
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-test-data">
+<span id="create-test-data"></span><h2>Creating Test Data<a class="headerlink" href="getting-started.html#creating-test-data" title="Permalink to this headline">¶</a></h2>
+<p>It can be handy to have some test data to start with, to quickly check that
+everything works. You can add a standard set of test data to your site from the
+command line with the <code class="docutils literal"><span class="pre">create-test-data</span></code> command:</p>
+<pre class="literal-block">
+paster create-test-data -c /etc/ckan/default/development.ini
+</pre>
+<p>If you later want to delete this test data and start again with an empty
+database, you can use the <code class="docutils literal"><span class="pre">db</span> <span class="pre">clean</span></code> command, see <a class="reference internal" href="paster.html#paster-db"><span>db: Manage databases</span></a>.</p>
+<p>For a list of other command line commands for creating tests data, run:</p>
+<div class="highlight-python"><div class="highlight"><pre>paster create-test-data --help
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-admin-page">
+<h2>The Admin Page<a class="headerlink" href="getting-started.html#the-admin-page" title="Permalink to this headline">¶</a></h2>
+<p>If you login with a sysadmin account (see <a class="reference internal" href="getting-started.html#create-admin-user"><span>Creating a Sysadmin User</span></a>) you&#8217;ll see
+a link in the top-right corner of the site to the administration page:</p>
+<img alt="The admin page" class="align-center" src="_images/admin-page.png" />
+<p>From the admin page you can set various CKAN options including the site title
+and logo, the about page text, the intro text on the front page, custom CSS,
+etc.</p>
+</div>
+<div class="section" id="the-config-file">
+<h2>The Config File<a class="headerlink" href="getting-started.html#the-config-file" title="Permalink to this headline">¶</a></h2>
+<p>All of the options that can be set in the admin page and many more can be set
+by editing CKAN&#8217;s config file. By default, the config file is located at
+/etc/ckan/default/development.ini for development sites or /etc/ckan/default/production.ini for production
+sites. The config file can be edited in any text editor. For example, to change
+the title of your site you would find the <code class="docutils literal"><span class="pre">ckan.site_title</span></code> line in your
+config file and edit it:</p>
+<div class="highlight-python"><div class="highlight"><pre>ckan.site_title = Masaq Data Hub
+</pre></div>
+</div>
+<p>Make sure the line is not commented-out (lines in the config file that begin
+with <code class="docutils literal"><span class="pre">#</span></code> are considered comments, so if there&#8217;s a <code class="docutils literal"><span class="pre">#</span></code> at the start of a
+line you&#8217;ve edited, delete it), save the file, and then restart your web server
+for the changes to take effect. For example, if using Apache on Ubuntu:</p>
+<pre class="literal-block">
+sudo service apache2 reload
+</pre>
+<p>For full documentation of CKAN&#8217;s config file and all the options you can set,
+see <a class="reference internal" href="configuration.html"><em>Config File Options</em></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If the same option is set in both the config file and in the admin page,
+the admin page setting takes precedence. You can use the <em>Reset</em> button on
+the admin page to clear your settings, and allow settings from the config
+file to take effect.</p>
+</div>
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="features.html"
+                  title="Features" accesskey="N">
+                    
+                      
+                    
+                    Features→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="upgrade-source.html"
+                  title="Upgrading a source install" accesskey="P">
+                    
+                      
+                    
+                    ← Upgrading a source install
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2012, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0" 
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/okfn/ckan">Source</a>
+&mdash;
+<a href="https://github.com/okfn/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

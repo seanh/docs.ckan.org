@@ -1,0 +1,418 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CKAN Coding Standards &mdash; CKAN 2.2.3 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/badge_only.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.2.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN 2.2.3 documentation" href="index.html" />
+    <link rel="up" title="Contributing to CKAN" href="contributing.html" />
+    <link rel="next" title="Creating a new migration script" href="migration.html" />
+    <link rel="prev" title="Internationalize CKAN" href="i18n.html" />
+
+  
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/ckan-coding-standards.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'ckan-coding-standards'
+</script>
+
+<script type="text/javascript" src="_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+  <body>
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="contents.html"><img src="_static/ckanlogo.png" alt="CKAN" /></a>
+        
+        <a class="brand" href="contents.html">CKAN<span class="version"> v2.2.3</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.2.3/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to CKAN&#8217;s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions/index.html">Writing CKAN extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/index.html">Appendices</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="contents.html">CKAN 2.2.3 documentation</a> &raquo;
+              <a href="contributing.html"
+                    accesskey="U">
+                    Contributing to CKAN
+                  </a>
+                   &raquo;
+        </div>
+
+        
+  <div class="section" id="ckan-coding-standards">
+<h1>CKAN Coding Standards<a class="headerlink" href="ckan-coding-standards.html#ckan-coding-standards" title="Permalink to this headline">¶</a></h1>
+<p>This section documents our CKAN-specific coding standards, which are guidelines
+for writing code that is consistent with the intended design and architecture
+of CKAN.</p>
+<p>For more general coding standards, see also:</p>
+<ul class="simple">
+<li><a class="reference internal" href="python-coding-standards.html"><em>Python coding standards</em></a></li>
+<li><a class="reference internal" href="html-coding-standards.html"><em>HTML Coding Standards</em></a></li>
+<li><a class="reference internal" href="css-coding-standards.html"><em>CSS coding standards</em></a></li>
+<li><a class="reference internal" href="javascript-coding-standards.html"><em>Javascript Coding Standards</em></a></li>
+</ul>
+<div class="section" id="encapsulate-sqlalchemy-in-ckan-model">
+<h2>Encapsulate SQLAlchemy in <tt class="docutils literal"><span class="pre">ckan.model</span></tt><a class="headerlink" href="ckan-coding-standards.html#encapsulate-sqlalchemy-in-ckan-model" title="Permalink to this headline">¶</a></h2>
+<p>Ideally SQLAlchemy should only be used within <tt class="docutils literal"><span class="pre">ckan.model</span></tt> and not from other
+packages such as <tt class="docutils literal"><span class="pre">ckan.logic</span></tt>.  For example instead of using an SQLAlchemy
+query from the logic package to retrieve a particular user from the database,
+we add a <tt class="docutils literal"><span class="pre">get()</span></tt> method to <tt class="docutils literal"><span class="pre">ckan.model.user.User</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>@classmethod
+def get(cls, user_id):
+    query = ...
+    .
+    .
+    .
+    return query.first()
+</pre></div>
+</div>
+<p>Now we can call this method from the logic package.</p>
+</div>
+<div class="section" id="database-migrations">
+<h2>Database Migrations<a class="headerlink" href="ckan-coding-standards.html#database-migrations" title="Permalink to this headline">¶</a></h2>
+<p>When changes are made to the model classes in <tt class="docutils literal"><span class="pre">ckan.model</span></tt> that alter CKAN&#8217;s
+database schema, a migration script has to be added to migrate old CKAN
+databases to the new database schema when they upgrade their copies of CKAN.
+See <a class="reference internal" href="migration.html"><em>Creating a new migration script</em></a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="always-go-through-the-action-functions">
+<h2>Always go through the Action Functions<a class="headerlink" href="ckan-coding-standards.html#always-go-through-the-action-functions" title="Permalink to this headline">¶</a></h2>
+<p>Whenever some code, for example in <tt class="docutils literal"><span class="pre">ckan.lib</span></tt> or <tt class="docutils literal"><span class="pre">ckan.controllers</span></tt>, wants
+to get, create, update or delete an object from CKAN&#8217;s model it should do so by
+calling a function from the <tt class="docutils literal"><span class="pre">ckan.logic.action</span></tt> package, and <em>not</em> by
+accessing <tt class="docutils literal"><span class="pre">ckan.model</span></tt> directly.</p>
+</div>
+<div class="section" id="action-functions-are-exposed-in-the-api">
+<h2>Action Functions are Exposed in the API<a class="headerlink" href="ckan-coding-standards.html#action-functions-are-exposed-in-the-api" title="Permalink to this headline">¶</a></h2>
+<p>The functions in <tt class="docutils literal"><span class="pre">ckan.logic.action</span></tt> are exposed to the world as the
+<a class="reference internal" href="api.html"><em>The CKAN API</em></a>.  The API URL for an action function is automatically generated
+from the function name, for example
+<tt class="docutils literal"><span class="pre">ckan.logic.action.create.package_create()</span></tt> is exposed at
+<tt class="docutils literal"><span class="pre">/api/action/package_create</span></tt>. See <a class="reference external" href="https://plus.google.com/112678702228711889851/posts/eVeouesvaVX">Steve Yegge&#8217;s Google platforms rant</a> for some
+interesting discussion about APIs.</p>
+<p><strong>All</strong> publicly visible functions in the
+<tt class="docutils literal"><span class="pre">ckan.logic.action.{create,delete,get,update}</span></tt> namespaces will be exposed
+through the <a class="reference internal" href="api.html"><em>The CKAN API</em></a>. <strong>This includes functions imported</strong> by those
+modules, <strong>as well as any helper functions</strong> defined within those modules.  To
+prevent inadvertent exposure of non-action functions through the action api,
+care should be taken to:</p>
+<ol class="arabic">
+<li><p class="first">Import modules correctly (see <a class="reference internal" href="python-coding-standards.html#imports"><em>Imports</em></a>).  For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ckan.lib.search</span> <span class="kn">as</span> <span class="nn">search</span>
+
+<span class="n">search</span><span class="o">.</span><span class="n">query_for</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Hide any locally defined helper functions:</p>
+<div class="highlight-python"><div class="highlight"><pre>def _a_useful_helper_function(x, y, z):
+   &#39;&#39;&#39;This function is not exposed because it is marked as private```
+   return x+y+z
+</pre></div>
+</div>
+</li>
+<li><p class="first">Bring imported convenience functions into the module namespace as private
+members:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">_get_or_bust</span> <span class="o">=</span> <span class="n">logic</span><span class="o">.</span><span class="n">get_or_bust</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="use-get-action">
+<h2>Use <tt class="docutils literal"><span class="pre">get_action()</span></tt><a class="headerlink" href="ckan-coding-standards.html#use-get-action" title="Permalink to this headline">¶</a></h2>
+<p>Don&#8217;t call <tt class="docutils literal"><span class="pre">logic.action</span></tt> functions directly, instead use <tt class="docutils literal"><span class="pre">get_action()</span></tt>.
+This allows plugins to override action functions using the <tt class="docutils literal"><span class="pre">IActions</span></tt> plugin
+interface. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ckan</span><span class="o">.</span><span class="n">logic</span><span class="o">.</span><span class="n">get_action</span><span class="p">(</span><span class="s">&#39;group_activity_list_html&#39;</span><span class="p">)(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Instead of</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ckan</span><span class="o">.</span><span class="n">logic</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">group_activity_list_html</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="auth-functions-and-check-access">
+<h2>Auth Functions and <tt class="docutils literal"><span class="pre">check_access()</span></tt><a class="headerlink" href="ckan-coding-standards.html#auth-functions-and-check-access" title="Permalink to this headline">¶</a></h2>
+<p>Each action function defined in <tt class="docutils literal"><span class="pre">ckan.logic.action</span></tt> should use its own
+corresponding auth function defined in <tt class="docutils literal"><span class="pre">ckan.logic.auth</span></tt>. Instead of calling
+its auth function directly, an action function should go through
+<tt class="docutils literal"><span class="pre">ckan.logic.check_access</span></tt> (which is aliased <tt class="docutils literal"><span class="pre">_check_access</span></tt> in the action
+modules) because this allows plugins to override auth functions using the
+<tt class="docutils literal"><span class="pre">IAuthFunctions</span></tt> plugin interface. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">package_show</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">):</span>
+    <span class="n">_check_access</span><span class="p">(</span><span class="s">&#39;package_show&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><tt class="docutils literal"><span class="pre">check_access</span></tt> will raise an exception if the user is not authorized, which
+the action function should not catch. When this happens the user will be shown
+an authorization error in their browser (or will receive one in their response
+from the API).</p>
+</div>
+<div class="section" id="logic-get-or-bust">
+<h2><tt class="docutils literal"><span class="pre">logic.get_or_bust()</span></tt><a class="headerlink" href="ckan-coding-standards.html#logic-get-or-bust" title="Permalink to this headline">¶</a></h2>
+<p>The <tt class="docutils literal"><span class="pre">data_dict</span></tt> parameter of logic action functions may be user provided, so
+required files may be invalid or absent. Naive Code like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nb">id</span> <span class="o">=</span> <span class="n">data_dict</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>may raise a <tt class="docutils literal"><span class="pre">KeyError</span></tt> and cause CKAN to crash with a 500 Server Error
+and no message to explain what went wrong. Instead do:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nb">id</span> <span class="o">=</span> <span class="n">_get_or_bust</span><span class="p">(</span><span class="n">data_dict</span><span class="p">,</span> <span class="s">&quot;id&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which will raise <tt class="docutils literal"><span class="pre">ValidationError</span></tt> if <tt class="docutils literal"><span class="pre">&quot;id&quot;</span></tt> is not in <tt class="docutils literal"><span class="pre">data_dict</span></tt>. The
+<tt class="docutils literal"><span class="pre">ValidationError</span></tt> will be caught and the user will get a 400 Bad Request
+response and an error message explaining the problem.</p>
+</div>
+<div class="section" id="validation-and-ckan-logic-schema">
+<h2>Validation and <tt class="docutils literal"><span class="pre">ckan.logic.schema</span></tt><a class="headerlink" href="ckan-coding-standards.html#validation-and-ckan-logic-schema" title="Permalink to this headline">¶</a></h2>
+<p>Logic action functions can use schema defined in <tt class="docutils literal"><span class="pre">ckan.logic.schema</span></tt> to
+validate the contents of the <tt class="docutils literal"><span class="pre">data_dict</span></tt> parameters that users pass to them.</p>
+<p>An action function should first check for a custom schema provided in the
+context, and failing that should retrieve its default schema directly, and
+then call <tt class="docutils literal"><span class="pre">_validate()</span></tt> to validate and convert the data. For example, here
+is the validation code from the <tt class="docutils literal"><span class="pre">user_create()</span></tt> action function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">schema</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;schema&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">ckan</span><span class="o">.</span><span class="n">logic</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">default_user_schema</span><span class="p">()</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">context</span><span class="p">[</span><span class="s">&#39;session&#39;</span><span class="p">]</span>
+<span class="n">validated_data_dict</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">_validate</span><span class="p">(</span><span class="n">data_dict</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">errors</span><span class="p">:</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+    <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="controller-template-helper-functions">
+<h3>Controller &amp; Template Helper Functions<a class="headerlink" href="ckan-coding-standards.html#controller-template-helper-functions" title="Permalink to this headline">¶</a></h3>
+<p><tt class="docutils literal"><span class="pre">ckan.lib.helpers</span></tt> contains helper functions that can be used from
+<tt class="docutils literal"><span class="pre">ckan.controllers</span></tt> or from templates. When developing for ckan core, only use
+the helper functions found in <tt class="docutils literal"><span class="pre">ckan.lib.helpers.__allowed_functions__</span></tt>.</p>
+</div>
+<div class="section" id="testing">
+<span id="id1"></span><h3>Testing<a class="headerlink" href="ckan-coding-standards.html#testing" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Functional tests which test the behaviour of the web user interface, and the
+APIs should be placed within <tt class="docutils literal"><span class="pre">ckan/tests/functional</span></tt>.  These tests can be a
+lot slower to run that unit tests which don&#8217;t access the database or solr.  So
+try to bear that in mind, and attempt to cover just what is neccessary, leaving
+what can be tested via unit-testing in unit-tests.</li>
+<li><tt class="docutils literal"><span class="pre">nose.tools.assert_in</span></tt> and <tt class="docutils literal"><span class="pre">nose.tools.assert_not_in</span></tt> are only available
+in Python&gt;=2.7.  So import them from <tt class="docutils literal"><span class="pre">ckan.tests</span></tt>, which will provide
+alternatives if they&#8217;re not available.</li>
+<li>the <a class="reference external" href="http://pypi.python.org/pypi/mock">mock</a> library can be used to create and interrogate mock objects.</li>
+</ul>
+<p>See <a class="reference internal" href="test.html"><em>Testing CKAN</em></a> for further information on testing in CKAN.</p>
+</div>
+<div class="section" id="writing-extensions">
+<h3>Writing Extensions<a class="headerlink" href="ckan-coding-standards.html#writing-extensions" title="Permalink to this headline">¶</a></h3>
+<p>Please see <a class="reference internal" href="extensions/index.html"><em>Writing CKAN extensions</em></a> for information about writing ckan
+extensions, including details on the API available to extensions.</p>
+</div>
+<div class="section" id="deprecation">
+<h3>Deprecation<a class="headerlink" href="ckan-coding-standards.html#deprecation" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Anything that may be used by extensions (see <a class="reference internal" href="extensions/index.html"><em>Writing CKAN extensions</em></a>) needs
+to maintain backward compatibility at call-site.  ie - template helper
+functions and functions defined in the plugins toolkit.</p>
+</li>
+<li><p class="first">The length of time of deprecation is evaluated on a function-by-function
+basis.  At minimum, a function should be marked as deprecated during a point
+release.</p>
+</li>
+<li><p class="first">To mark a helper function, use the <tt class="docutils literal"><span class="pre">deprecated</span></tt> decorator found in
+<tt class="docutils literal"><span class="pre">ckan.lib.maintain</span></tt> eg:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@deprecated</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">facet_items</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    DEPRECATED: Use the new facet data structure, and `unselected_facet_items()`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># rest of function definition.</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="migration.html"
+                  title="Creating a new migration script" accesskey="N">
+                    
+                      
+                    
+                    Creating a new migration script→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="i18n.html"
+                  title="Internationalize CKAN" accesskey="P">
+                    
+                      
+                    
+                    ← Internationalize CKAN
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/ckan/ckan">Source</a>
+&mdash;
+<a href="https://github.com/ckan/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

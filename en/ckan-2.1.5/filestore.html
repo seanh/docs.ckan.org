@@ -1,0 +1,428 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FileStore and File Uploads &mdash; CKAN Documentation 2.1.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/fix.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/bootstrap-responsive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/badge_only.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnmedia.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.1.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/underscore.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnmedia.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-css-tweaks.js"></script>
+    <link rel="top" title="CKAN Documentation 2.1.5 documentation" href="index.html" />
+    <link rel="up" title="Features" href="features.html" />
+    <link rel="next" title="DataStore Extension" href="datastore.html" />
+    <link rel="prev" title="Data Viewer" href="data-viewer.html" />
+
+
+<!-- RTD Extra Head -->
+
+
+
+  
+  <!-- 
+  Always link to the latest version, as canonical.
+  http://docs.readthedocs.org/en/latest/canonical.html
+  -->
+  <link rel="canonical" href="http://docs.ckan.org//en/latest/filestore.html" />
+  
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "ckan",
+    version: "ckan-2.1.5",
+    language: "en",
+    page: "filestore",
+    builder: "sphinx",
+    theme: "sphinx-theme-okfn",
+    docroot: "/doc/",
+    source_suffix: ".rst",
+    api_host: "https://readthedocs.org/",
+    commit: "1d691ae3ba38a6b98dc69d0e2c16c71e186cd36e"
+  }
+  // Old variables
+  var doc_version = "ckan-2.1.5";
+  var doc_slug = "ckan";
+  var page_name = "filestore";
+  var html_theme = "sphinx-theme-okfn";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body role="document">
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <a class="logo-icon pull-left" href="index.html"><img src="http://docs.ckan.org/en/ckan-2.1.5/_static/http://assets.okfn.org/p/opendatahandbook/img/data-wrench-inverted.png" alt="CKAN Documentation" /></a>
+        
+        <a class="brand" href="index.html">CKAN Documentation<span class="version"> v2.1.5</span></a>
+        
+        
+        <a class="okfn-logo pull-right" href="http://okfn.org/" title="An Open Knowledge Foundation Project">
+          <img src="https://s3.amazonaws.com/assets.okfn.org/p/okfn/img/logo_28x30.png" alt="Open Knowledge Foundation logo" />
+        </a>
+        
+        
+          
+<form class="pull-right navbar-search" action="http://docs.ckan.org/en/ckan-2.1.5/search.html" method="get">
+  <input type="text" name="q" placeholder="Search" class="search-query span2" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="well sidebar-nav">
+        
+          
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="data-viewer.html"
+                        title="previous chapter">Data Viewer</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="datastore.html"
+                        title="next chapter">DataStore Extension</a></p><div class="widget toc">
+  <h3>Table of Contents</h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="features.html">Features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html">Authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-viewer.html">Data Viewer</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="filestore.html">FileStore and File Uploads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="filestore.html#setup-the-filestore-with-local-file-storage">Setup the FileStore with Local File Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="filestore.html#setup-the-filestore-with-cloud-storage">Setup the FileStore with Cloud Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="filestore.html#filestore-web-interface">FileStore Web Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="filestore.html#filestore-api">FileStore API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="filestore.html#datastore-integration">DataStore Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html">DataStore Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background-tasks.html">Background Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email-notifications.html">Email Notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html">Page View Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multilingual.html">Multilingual Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stats.html">Stats Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="writing-extensions.html">Writing Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The CKAN API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing CKAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+
+        </div>
+      </div>
+        
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span8">
+      <div class="content">
+
+        
+        <div style="font-size:smaller;">
+              <a href="index.html">CKAN Documentation 2.1.5 documentation</a> &raquo;
+              <a href="features.html"
+                    accesskey="U">
+                    Features
+                  </a>
+                   &raquo;
+        </div>
+
+        
+  <div class="section" id="filestore-and-file-uploads">
+<h1>FileStore and File Uploads<a class="headerlink" href="filestore.html#filestore-and-file-uploads" title="Permalink to this headline">¶</a></h1>
+<p>CKAN allows users to upload files directly to file storage either on the local
+file system or to online &#8216;cloud&#8217; storage like Amazon S3 or Google Storage. The
+uploaded files will be stored in the configured location.</p>
+<div class="section" id="setup-the-filestore-with-local-file-storage">
+<h2>Setup the FileStore with Local File Storage<a class="headerlink" href="filestore.html#setup-the-filestore-with-local-file-storage" title="Permalink to this headline">¶</a></h2>
+<p>To setup CKAN&#8217;s FileStore with local file storage:</p>
+<ol class="arabic">
+<li><p class="first">Create the directory where CKAN will store uploaded files:</p>
+<pre class="literal-block">
+sudo mkdir -p /var/lib/ckan/default
+</pre>
+</li>
+<li><p class="first">Add the following lines to your CKAN config file, after the <code class="docutils literal"><span class="pre">[app:main]</span></code>
+line:</p>
+<pre class="literal-block">
+ofs.impl = pairtree
+ofs.storage_dir = /var/lib/ckan/default
+</pre>
+</li>
+<li><p class="first">Set the permissions of the <code class="docutils literal"><span class="pre">storage_dir</span></code>. For example if you&#8217;re running
+CKAN with Apache, then Apache&#8217;s user (<code class="docutils literal"><span class="pre">www-data</span></code> on Ubuntu) must have
+read, write and execute permissions for the <code class="docutils literal"><span class="pre">storage_dir</span></code>:</p>
+<pre class="literal-block">
+sudo chown www-data /var/lib/ckan/default
+sudo chmod u+rwx /var/lib/ckan/default
+</pre>
+</li>
+<li><p class="first">Make sure you&#8217;ve set <a class="reference internal" href="configuration.html#ckan-site-url"><span>ckan.site_url</span></a> in your config file.</p>
+</li>
+<li><p class="first">Restart your web server, for example to restart Apache:</p>
+<pre class="literal-block">
+sudo service apache2 reload
+</pre>
+</li>
+</ol>
+</div>
+<div class="section" id="setup-the-filestore-with-cloud-storage">
+<h2>Setup the FileStore with Cloud Storage<a class="headerlink" href="filestore.html#setup-the-filestore-with-cloud-storage" title="Permalink to this headline">¶</a></h2>
+<p>Important: you must install boto library for cloud storage to function:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install boto
+</pre></div>
+</div>
+<p>In your config for google:</p>
+<div class="highlight-python"><div class="highlight"><pre>## OFS configuration
+ofs.impl = google
+ofs.gs_access_key_id = GOOG....
+ofs.gs_secret_access_key = ....
+</pre></div>
+</div>
+<p>For S3:</p>
+<div class="highlight-python"><div class="highlight"><pre>## OFS configuration
+ofs.impl = s3
+ofs.aws_access_key_id = ....
+ofs.aws_secret_access_key = ....
+</pre></div>
+</div>
+</div>
+<div class="section" id="filestore-web-interface">
+<h2>FileStore Web Interface<a class="headerlink" href="filestore.html#filestore-web-interface" title="Permalink to this headline">¶</a></h2>
+<p>Upload of files to storage is integrated directly into the the Dataset creation
+and editing system with files being associated to Resources.</p>
+</div>
+<div class="section" id="filestore-api">
+<h2>FileStore API<a class="headerlink" href="filestore.html#filestore-api" title="Permalink to this headline">¶</a></h2>
+<p>CKAN&#8217;s FileStore API lets you upload files to CKAN&#8217;s
+<a class="reference internal" href="filestore.html"><em>FileStore</em></a>. If you&#8217;re looking for an example,
+<a class="reference external" href="https://github.com/okfn/ckanclient">ckanclient</a> contains
+<a class="reference external" href="https://github.com/okfn/ckanclient/blob/master/ckanclient/__init__.py#L546">Python code for uploading a file to CKAN using the FileStore API</a>.</p>
+<div class="section" id="filestore-metadata-api">
+<h3>FileStore Metadata API<a class="headerlink" href="filestore.html#filestore-metadata-api" title="Permalink to this headline">¶</a></h3>
+<p>The API is located at:</p>
+<div class="highlight-python"><div class="highlight"><pre>/api/storage/metadata/{label}
+</pre></div>
+</div>
+<p>It supports the following methods:</p>
+<ul class="simple">
+<li>GET will return the metadata</li>
+<li>POST will add/update metadata</li>
+<li>PUT will replace metadata</li>
+</ul>
+<p>Metadata is a json dict of key values which for POST and PUT should be send in body of request.</p>
+<p>A standard response looks like:</p>
+<div class="highlight-python"><div class="highlight"><pre>{
+  &quot;_bucket&quot;: &quot;ckannet-storage&quot;,
+  _content_length: 1074
+  _format: &quot;text/plain&quot;
+  _label: &quot;/file/8630a664-0ae4-485f-99c2-126dae95653a&quot;
+  _last_modified: &quot;Fri, 29 Apr 2011 19:27:31 GMT&quot;
+  _location: &quot;some-location&quot;
+  _owner: null
+  uploaded-by: &quot;bff737ef-b84c-4519-914c-b4285144d8e6&quot;
+}
+</pre></div>
+</div>
+<p>Note that values with &#8216;_&#8217; are standard OFS metadata and are mostly read-only &#8211; _format i.e. content-type can be set).</p>
+</div>
+<div class="section" id="filestore-form-authentication-api">
+<h3>FileStore Form Authentication API<a class="headerlink" href="filestore.html#filestore-form-authentication-api" title="Permalink to this headline">¶</a></h3>
+<p>Provides credentials for doing operations on storage directly from a client
+(using web form style POSTs).</p>
+<p>The API is located at:</p>
+<div class="highlight-python"><div class="highlight"><pre>/api/storage/auth/form/{label}
+</pre></div>
+</div>
+<p>Provide fields for a form upload to storage including authentication:</p>
+<div class="highlight-python"><div class="highlight"><pre>:param label: label.
+:return: json-encoded dictionary with action parameter and fields list.
+</pre></div>
+</div>
+</div>
+<div class="section" id="filestore-request-authentication-api">
+<h3>FileStore Request Authentication API<a class="headerlink" href="filestore.html#filestore-request-authentication-api" title="Permalink to this headline">¶</a></h3>
+<p>Provides credentials for doing operations on storage directly from a client.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This API is currently disabled and will likely be deprecated.
+Use the form authentication instead.</p>
+</div>
+<p>The API is at:</p>
+<div class="highlight-python"><div class="highlight"><pre>/api/storage/auth/request/{label}
+</pre></div>
+</div>
+<p>Provide authentication information for a request so a client can
+interact with backend storage directly:</p>
+<div class="highlight-python"><div class="highlight"><pre>:param label: label.
+:param kwargs: sent either via query string for GET or json-encoded
+    dict for POST). Interpreted as http headers for request plus an
+    (optional) method parameter (being the HTTP method).
+
+    Examples of headers are:
+
+        Content-Type
+        Content-Encoding (optional)
+        Content-Length
+        Content-MD5
+        Expect (should be &#39;100-Continue&#39;)
+
+:return: is a json hash containing various attributes including a
+headers dictionary containing an Authorization field which is good for
+15m.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="datastore-integration">
+<h2>DataStore Integration<a class="headerlink" href="filestore.html#datastore-integration" title="Permalink to this headline">¶</a></h2>
+<p>It is also possible to have uploaded files (if of a suitable format) stored in
+the DataStore which will then provides an API to the data. See <a class="reference internal" href="datastore.html#datastorer"><span>DataStorer: Automatically Add Data to the DataStore</span></a> for more details.</p>
+</div>
+</div>
+
+
+
+        
+        <div style="font-size:smaller;">
+          <hr/>
+          
+            
+          
+            
+              <div class="pull-right">
+                <a href="datastore.html"
+                  title="DataStore Extension" accesskey="N">
+                    
+                      
+                    
+                    DataStore Extension→
+                </a>
+              </div>
+            
+          
+            
+              <div >
+                <a href="data-viewer.html"
+                  title="Data Viewer" accesskey="P">
+                    
+                      
+                    
+                    ← Data Viewer
+                </a>
+              </div>
+            
+          
+          <div style="clear:both;"></div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- / row -->
+</div>
+
+<footer>
+  <div class="inner">
+    <div class="container-fluid">
+      <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+<p class="copyright">
+  &copy; 2009-2012, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0" 
+      alt="{{ _('Open Content') }}" /></a>
+  <br/>
+</p>
+
+<p>
+<a href="https://github.com/okfn/ckan">Source</a>
+&mdash;
+<a href="https://github.com/okfn/ckan/issues">Issues</a>
+&mdash;
+<a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+&mdash;
+<a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+</p>
+
+<p>
+Related Projects:
+<a href="http://thedatahub.org/">The DataHub</a>
+&mdash;
+<a href="http://datacatalogs.org">DataCatalogs.org</a>
+&mdash;
+<a href="http://openspending.org">OpenSpending.org</a>
+&mdash;
+<a href="http://opendatahandbook.org">Open Data Handbook</a>
+</p>
+
+    </div>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,507 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Making configuration options runtime-editable &mdash; CKAN 2.6.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="CKAN 2.6.0 documentation" href="../index.html"/>
+        <link rel="up" title="Extending guide" href="index.html"/>
+        <link rel="next" title="Testing extensions" href="testing-extensions.html"/>
+        <link rel="prev" title="Using custom config settings in extensions" href="custom-config-settings.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/extensions/remote-config-update.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'extensions/remote-config-update'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> CKAN
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                ckan-2.6.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="http://docs.ckan.org/en/ckan-2.6.0/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maintaining/index.html">Maintainer&#8217;s guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Extending guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html">Writing extensions tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-config-settings.html">Using custom config settings in extensions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="remote-config-update.html">Making configuration options runtime-editable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing-extensions.html">Testing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="best-practices.html">Best practices for writing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adding-custom-fields.html">Customizing dataset and resource metadata fields using IDatasetForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin-interfaces.html">Plugin interfaces reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins-toolkit.html">Plugins toolkit reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validators.html">Validator functions reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating-extensions.html">Internationalizing strings in extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theming/index.html">Theming guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Extending guide</a> &raquo;</li>
+      
+    <li>Making configuration options runtime-editable</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/ckan/ckan/blob/ckan-2.6.0/doc/extensions/remote-config-update.rst" class="fa fa-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="making-configuration-options-runtime-editable">
+<h1>Making configuration options runtime-editable<a class="headerlink" href="remote-config-update.html#making-configuration-options-runtime-editable" title="Permalink to this headline">¶</a></h1>
+<p>Extensions can allow certain configuration options to be edited during
+<a class="reference internal" href="../maintaining/configuration.html#runtime-config"><em>runtime</em></a>, as opposed to having to edit the
+<a class="reference external" href="../maintaining/configuration.html#ckan-configuration-file">configuration file</a> and restart the server.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Only configuration options which are not critical, sensitive or could cause the
+CKAN instance to break should be made runtime-editable. You should only add config options that you are comfortable
+they can be edited during runtime, such as ones you&#8217;ve added in your
+own extension, or have reviewed the use of in core CKAN.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only sysadmin users are allowed to modify runtime-editable configuration options.</p>
+</div>
+<p>In this tutorial we will show how to make changes to our extension to make two
+configuration options runtime-editable: <a class="reference internal" href="../maintaining/configuration.html#ckan-datasets-per-page"><em>ckan.datasets_per_page</em></a> and a custom one named
+<tt class="docutils literal"><span class="pre">ckanext.example_iconfigurer.test_conf</span></tt>. You can see the changes in the <tt class="xref py py-mod docutils literal"><span class="pre">example_iconfigurer</span></tt> extension that&#8217;s packaged with CKAN. If you haven&#8217;t done yet, you
+should check the <a class="reference internal" href="tutorial.html"><em>Writing extensions tutorial</em></a> first.</p>
+<p>This tutorial assumes that we have CKAN running on the paster development server at <a class="reference external" href="http://localhost:5000">http://localhost:5000</a>, and that we are using the <a class="reference internal" href="../api/index.html#api-authentication"><em>API key</em></a> of a sysadmin user.</p>
+<p>First of all, let&#8217;s call the <a class="reference internal" href="../api/index.html#ckan.logic.action.get.config_option_list" title="ckan.logic.action.get.config_option_list"><tt class="xref py py-func docutils literal"><span class="pre">config_option_list()</span></tt></a> API action to see what configuration options are editable during runtime (the <tt class="docutils literal"><span class="pre">|</span> <span class="pre">python</span> <span class="pre">-m</span> <span class="pre">json.tool</span></tt> bit at the end is added to format the output nicely):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>curl -H &quot;Authorization: XXX&quot; http://localhost:5000/api/action/config_option_list | python -m json.tool
+{
+    &quot;help&quot;: &quot;http://localhost:5000/api/3/action/help_show?name=config_option_list&quot;,
+    &quot;result&quot;: [
+        &quot;ckan.site_custom_css&quot;,
+        &quot;ckan.main_css&quot;,
+        &quot;ckan.site_title&quot;,
+        &quot;ckan.site_about&quot;,
+        &quot;ckan.site_url&quot;,
+        &quot;ckan.site_logo&quot;,
+        &quot;ckan.site_description&quot;,
+        &quot;ckan.site_intro_text&quot;,
+        &quot;ckan.homepage_style&quot;,
+        &quot;ckan.hola&quot;
+    ],
+    &quot;success&quot;: true
+}
+</pre></div>
+</div>
+<p>We can see that the two options that we want to make runtime-editable are not on the list. Trying to update one of them with the <a class="reference internal" href="../api/index.html#ckan.logic.action.update.config_option_update" title="ckan.logic.action.update.config_option_update"><tt class="xref py py-func docutils literal"><span class="pre">config_option_update()</span></tt></a> action would return an error.</p>
+<p>To include them, we need to add them to the schema that CKAN will use to decide which configuration options can be edited safely at runtime. This is done with the <a class="reference internal" href="plugin-interfaces.html#ckan.plugins.interfaces.IConfigurer.update_config_schema" title="ckan.plugins.interfaces.IConfigurer.update_config_schema"><tt class="xref py py-meth docutils literal"><span class="pre">update_config_schema()</span></tt></a> method of the <a class="reference internal" href="plugin-interfaces.html#ckan.plugins.interfaces.IConfigurer" title="ckan.plugins.interfaces.IConfigurer"><tt class="xref py py-class docutils literal"><span class="pre">IConfigurer</span></tt></a> interface.</p>
+<p>Let&#8217;s have a look at how our extension should look like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># encoding: utf-8</span>
+
+<span class="kn">import</span> <span class="nn">ckan.plugins</span> <span class="kn">as</span> <span class="nn">plugins</span>
+<span class="kn">import</span> <span class="nn">ckan.plugins.toolkit</span> <span class="kn">as</span> <span class="nn">toolkit</span>
+
+
+<span class="k">class</span> <span class="nc">ExampleIConfigurerPlugin</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">SingletonPlugin</span><span class="p">):</span>
+
+    <span class="n">plugins</span><span class="o">.</span><span class="n">implements</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">IConfigurer</span><span class="p">)</span>
+
+    <span class="c1"># IConfigurer</span>
+
+    <span class="k">def</span> <span class="nf">update_config_schema</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">schema</span><span class="p">):</span>
+
+        <span class="n">ignore_missing</span> <span class="o">=</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">get_validator</span><span class="p">(</span><span class="s1">&#39;ignore_missing&#39;</span><span class="p">)</span>
+        <span class="n">is_positive_integer</span> <span class="o">=</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">get_validator</span><span class="p">(</span><span class="s1">&#39;is_positive_integer&#39;</span><span class="p">)</span>
+
+        <span class="n">schema</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+            <span class="c1"># This is an existing CKAN core configuration option, we are just</span>
+            <span class="c1"># making it available to be editable at runtime</span>
+            <span class="s1">&#39;ckan.datasets_per_page&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">ignore_missing</span><span class="p">,</span> <span class="n">is_positive_integer</span><span class="p">],</span>
+
+            <span class="c1"># This is a custom configuration option</span>
+            <span class="s1">&#39;ckanext.example_iconfigurer.test_conf&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">ignore_missing</span><span class="p">,</span> <span class="nb">unicode</span><span class="p">],</span>
+        <span class="p">})</span>
+
+        <span class="k">return</span> <span class="n">schema</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">update_config_schema</span></tt> method will receive the default schema for runtime-editable configuration options used by CKAN core. We can
+then add keys to it to make new options runtime-editable (or remove them if we don&#8217;t want them to be runtime-editable). The schema is a dictionary mapping configuration option keys to lists
+of validator and converter functions to be applied to those keys. To get validator functions defined in CKAN core we use the <a class="reference internal" href="plugins-toolkit.html#ckan.plugins.toolkit.get_validator" title="ckan.plugins.toolkit.get_validator"><tt class="xref py py-func docutils literal"><span class="pre">get_validator()</span></tt></a> function.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure that the first validator applied to each key is the <tt class="docutils literal"><span class="pre">ignore_missing</span></tt> one,
+otherwise this key will need to be always set when updating the configuration.</p>
+</div>
+<p>Restart the web server and do another request to the <a class="reference internal" href="../api/index.html#ckan.logic.action.get.config_option_list" title="ckan.logic.action.get.config_option_list"><tt class="xref py py-func docutils literal"><span class="pre">config_option_list()</span></tt></a> API action:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>curl -H &quot;Authorization: XXX&quot; http://localhost:5000/api/action/config_option_list | python -m json.tool
+{
+    &quot;help&quot;: &quot;http://localhost:5000/api/3/action/help_show?name=config_option_list&quot;,
+    &quot;result&quot;: [
+        &quot;ckan.datasets_per_page&quot;,
+        &quot;ckanext.example_iconfigurer.test_conf&quot;,
+        &quot;ckan.site_custom_css&quot;,
+        &quot;ckan.main_css&quot;,
+        &quot;ckan.site_title&quot;,
+        &quot;ckan.site_about&quot;,
+        &quot;ckan.site_url&quot;,
+        &quot;ckan.site_logo&quot;,
+        &quot;ckan.site_description&quot;,
+        &quot;ckan.site_intro_text&quot;,
+        &quot;ckan.homepage_style&quot;,
+        &quot;ckan.hola&quot;
+    ],
+    &quot;success&quot;: true
+}
+</pre></div>
+</div>
+<p>Our two new configuration options are available to be edited at runtime. We can test it calling the <a class="reference internal" href="../api/index.html#ckan.logic.action.update.config_option_update" title="ckan.logic.action.update.config_option_update"><tt class="xref py py-func docutils literal"><span class="pre">config_option_update()</span></tt></a> action:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>curl -X POST -H &quot;Authorization: XXX&quot; http://localhost:5000/api/action/config_option_update -d &quot;{\&quot;ckan.datasets_per_page\&quot;: 5}&quot; | python -m json.tool
+{
+    &quot;help&quot;: &quot;http://localhost:5001/api/3/action/help_show?name=config_option_update&quot;,
+    &quot;result&quot;: {
+        &quot;ckan.datasets_per_page&quot;: 5
+    },
+    &quot;success&quot;: true
+}
+</pre></div>
+</div>
+<p>The configuration has now been updated. If you visit the main search page at <a class="reference external" href="http://localhost:5000/dataset">http://localhost:5000/dataset</a> only 5 datasets should appear in the results as opposed to the usual 20.</p>
+<p>At this point both our configuration options can be updated via the API, but we also want to make them available on the <a class="reference internal" href="../sysadmin-guide.html#admin-page"><em>administration interface</em></a> so non-technical users don&#8217;t need to use the API to change them.</p>
+<p>To do so, we will extend the CKAN core template as described in the <a class="reference internal" href="../theming/templates.html"><em>Customizing CKAN&#8217;s templates</em></a> documentation.</p>
+<p>First add the <a class="reference internal" href="plugin-interfaces.html#ckan.plugins.interfaces.IConfigurer.update_config" title="ckan.plugins.interfaces.IConfigurer.update_config"><tt class="xref py py-meth docutils literal"><span class="pre">update_config()</span></tt></a> method to your plugin and register the extension <tt class="docutils literal"><span class="pre">templates</span></tt> folder:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># encoding: utf-8</span>
+
+<span class="kn">import</span> <span class="nn">ckan.plugins</span> <span class="kn">as</span> <span class="nn">plugins</span>
+<span class="kn">import</span> <span class="nn">ckan.plugins.toolkit</span> <span class="kn">as</span> <span class="nn">toolkit</span>
+
+
+<span class="k">class</span> <span class="nc">ExampleIConfigurerPlugin</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">SingletonPlugin</span><span class="p">):</span>
+
+    <span class="n">plugins</span><span class="o">.</span><span class="n">implements</span><span class="p">(</span><span class="n">plugins</span><span class="o">.</span><span class="n">IConfigurer</span><span class="p">)</span>
+
+    <span class="c1"># IConfigurer</span>
+
+    <span class="k">def</span> <span class="nf">update_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="c1"># Add extension templates directory</span>
+        <span class="n">toolkit</span><span class="o">.</span><span class="n">add_template_directory</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s1">&#39;templates&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update_config_schema</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">schema</span><span class="p">):</span>
+
+        <span class="n">ignore_missing</span> <span class="o">=</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">get_validator</span><span class="p">(</span><span class="s1">&#39;ignore_missing&#39;</span><span class="p">)</span>
+        <span class="n">is_positive_integer</span> <span class="o">=</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">get_validator</span><span class="p">(</span><span class="s1">&#39;is_positive_integer&#39;</span><span class="p">)</span>
+
+        <span class="n">schema</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+            <span class="c1"># This is an existing CKAN core configuration option, we are just</span>
+            <span class="c1"># making it available to be editable at runtime</span>
+            <span class="s1">&#39;ckan.datasets_per_page&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">ignore_missing</span><span class="p">,</span> <span class="n">is_positive_integer</span><span class="p">],</span>
+
+            <span class="c1"># This is a custom configuration option</span>
+            <span class="s1">&#39;ckanext.example_iconfigurer.test_conf&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">ignore_missing</span><span class="p">,</span> <span class="nb">unicode</span><span class="p">],</span>
+        <span class="p">})</span>
+
+        <span class="k">return</span> <span class="n">schema</span>
+</pre></div>
+</div>
+<p>Now create a new file <tt class="docutils literal"><span class="pre">config.html</span></tt> file under <tt class="docutils literal"><span class="pre">ckanext/yourextension/templates/admin/</span></tt> with the following contents:</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span>{% ckan_extends %}
+
+{% import &#39;macros/form.html&#39; as form %}
+
+{% block admin_form %}
+
+  {{ super() }}
+
+  <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Custom configuration options <span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+
+  {{ form.input(&#39;ckan.datasets_per_page&#39;, id=&#39;field-ckan.datasets_per_page&#39;, label=_(&#39;Datasets per page&#39;), value=data[&#39;ckan.datasets_per_page&#39;], error=errors[&#39;ckan.datasets_per_page&#39;]) }}
+
+  {{ form.input(&#39;ckanext.example_iconfigurer.test_conf&#39;, id=&#39;field-ckanext.example_iconfigurer.test_conf&#39;, label=_(&#39;Test conf&#39;), value=data[&#39;ckanext.example_iconfigurer.test_conf&#39;], error=errors[&#39;ckanext.example_iconfigurer.test_conf&#39;]) }}
+
+
+{% endblock %}
+
+
+{% block admin_form_help %}
+
+  {{ super() }}
+
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Datasets per page:<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> Number of datasets displayed in dataset listings (eg search page).<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Test conf:<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> An example configuration option, set from an extension.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+{% endblock %}
+</pre></div>
+</div>
+<p>This template is extending the default core one. The first block adds two new fields for our configuration options below the existing ones. The second adds a helper text for them on the left hand column.</p>
+<p>Restart the server and navigate to <a class="reference external" href="http://localhost:5000/ckan-admin/config">http://localhost:5000/ckan-admin/config</a>. You should see the newfields at the bottom of the form:</p>
+<img alt="../_images/custom_config_fields.png" src="../_images/custom_config_fields.png" />
+<p>Updating the values on the form should update the configuration as before.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="testing-extensions.html" class="btn btn-neutral float-right"
+           title="Testing extensions"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="custom-config-settings.html" class="btn btn-neutral"
+           title="Using custom config settings in extensions">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>Support the <a href="http://ckan.org">CKAN Association</a>.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: ckan-2.6.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../index.html">latest</a></dd>
+        
+          <dd><a href="../index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../../ckan-2.5.3/index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../../ckan-2.4.4/index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../../ckan-2.3.5/index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.6.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

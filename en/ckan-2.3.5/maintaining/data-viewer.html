@@ -1,0 +1,669 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Data preview and visualization &mdash; CKAN 2.3.5 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+    <link rel="top" title="CKAN 2.3.5 documentation" href="../index.html"/>
+        <link rel="up" title="Maintainer’s guide" href="index.html"/>
+        <link rel="next" title="FileStore and file uploads" href="filestore.html"/>
+        <link rel="prev" title="Organizations and authorization" href="authorization.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/maintaining/data-viewer.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'maintaining/data-viewer'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../contents.html" class="fa fa-home"> CKAN</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://docs.ckan.org/en/ckan-2.3.5/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide.html#what-is-ckan">What is CKAN?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide.html#using-ckan">Using CKAN</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#creating-a-sysadmin-account">Creating a sysadmin account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#customizing-look-and-feel">Customizing look and feel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#managing-organizations-and-datasets">Managing organizations and datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#permanently-deleting-datasets">Permanently deleting datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#managing-users">Managing users</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Maintainer&#8217;s guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installing/index.html">Installing CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/index.html">Upgrading CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html">Organizations and authorization</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="data-viewer.html">Data preview and visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filestore.html">FileStore and file uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html">DataStore extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background-tasks.html">Background tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email-notifications.html">Email notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracking.html">Page View Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multilingual.html">Multilingual Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stats.html">Stats Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Config File Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solr-multicore.html">Multicore Solr setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/legacy-api.html">Legacy APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#making-an-api-request">Making an API request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#example-importing-datasets-with-the-ckan-api">Example: Importing datasets with the CKAN API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#api-versions">API versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#authentication-and-api-keys">Authentication and API keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#get-able-api-functions">GET-able API functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#jsonp-support">JSONP support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#api-examples">API Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#action-api-reference">Action API reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extending guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/tutorial.html">Writing extensions tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/custom-config-settings.html">Using custom config settings in extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/testing-extensions.html">Testing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/best-practices.html">Best practices for writing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/adding-custom-fields.html">Customizing dataset and resource metadata fields using IDatasetForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/plugin-interfaces.html">Plugin interfaces reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/plugins-toolkit.html">Plugins toolkit reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/validators.html">Validator functions reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theming/index.html">Theming guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../theming/templates.html">Customizing CKAN&#8217;s templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/static-files.html">Adding static files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/css.html">Customizing CKAN&#8217;s CSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/fanstatic.html">Adding CSS and JavaScript files using Fanstatic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/javascript.html">Customizing CKAN&#8217;s JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/best-practices.html">Best practices for writing CKAN themes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/jinja-tags.html">Custom Jinja2 tags reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/variables-and-functions.html">Variables and functions available to templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/javascript-module-objects-and-methods.html">Objects and methods available to JavaScript modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/template-helper-functions.html">Template helper functions reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/template-snippets.html">Template snippets reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/javascript-sandbox.html">JavaScript sandbox reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/javascript-api-client.html">JavaScript API client reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming/jquery-plugins.html">CKAN jQuery plugins reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/issues.html">Reporting issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/i18n.html">Translating CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/test.html">Testing CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/commit-messages.html">Writing commit messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/pull-requests.html">Making a pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/reviewing.html">Reviewing and merging a pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/documentation.html">Writing documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/simple-code-contributions.html">Projects for beginner CKAN developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/architecture.html">CKAN code architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/css.html">CSS coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/html.html">HTML coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/javascript.html">JavaScript coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/python.html">Python coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/string-i18n.html">String internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/testing.html">Testing coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/frontend/index.html">Frontend development guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/database-migrations.html">Database migrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/upgrading-dependencies.html">Upgrading CKAN&#8217;s dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/release-process.html">Doing a CKAN release</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Maintainer&#8217;s guide</a> &raquo;</li>
+      
+    <li>Data preview and visualization</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/ckan/ckan/blob/ckan-2.3.5/doc/maintaining/data-viewer.rst" class="fa fa-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="data-preview-and-visualization">
+<h1><a class="toc-backref" href="data-viewer.html#id3">Data preview and visualization</a><a class="headerlink" href="data-viewer.html#data-preview-and-visualization" title="Permalink to this headline">¶</a></h1>
+<div class="versionchanged">
+<p><span class="versionmodified">Changed in version 2.3: </span>The whole way resource previews are handled was changed on CKAN 2.3.
+Please refer to previous versions of the documentation if you are using
+an older CKAN version.</p>
+</div>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="data-viewer.html#data-preview-and-visualization" id="id3">Data preview and visualization</a><ul>
+<li><a class="reference internal" href="data-viewer.html#overview" id="id4">Overview</a></li>
+<li><a class="reference internal" href="data-viewer.html#managing-resource-views" id="id5">Managing resource views</a></li>
+<li><a class="reference internal" href="data-viewer.html#defining-views-to-appear-by-default" id="id6">Defining views to appear by default</a></li>
+<li><a class="reference internal" href="data-viewer.html#available-view-plugins" id="id7">Available view plugins</a><ul>
+<li><a class="reference internal" href="data-viewer.html#data-explorer" id="id8">Data Explorer</a></li>
+<li><a class="reference internal" href="data-viewer.html#datastore-grid" id="id9">DataStore Grid</a></li>
+<li><a class="reference internal" href="data-viewer.html#datastore-graph" id="id10">DataStore Graph</a></li>
+<li><a class="reference internal" href="data-viewer.html#datastore-map" id="id11">DataStore Map</a></li>
+<li><a class="reference internal" href="data-viewer.html#text-view" id="id12">Text view</a></li>
+<li><a class="reference internal" href="data-viewer.html#image-view" id="id13">Image view</a></li>
+<li><a class="reference internal" href="data-viewer.html#web-page-view" id="id14">Web page view</a></li>
+<li><a class="reference internal" href="data-viewer.html#other-view-plugins" id="id15">Other view plugins</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="data-viewer.html#resource-proxy" id="id16">Resource Proxy</a></li>
+<li><a class="reference internal" href="data-viewer.html#migrating-from-previous-ckan-versions" id="id17">Migrating from previous CKAN versions</a></li>
+<li><a class="reference internal" href="data-viewer.html#command-line-interface" id="id18">Command line interface</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="data-viewer.html#id4">Overview</a><a class="headerlink" href="data-viewer.html#overview" title="Permalink to this headline">¶</a></h2>
+<p>The CKAN resource page can contain one or more visualizations of the resource
+data or file contents (a table, a bar chart, a map, etc). These are commonly
+referred to as <em>resource views</em>.</p>
+<img alt="../_images/views_overview.png" src="../_images/views_overview.png" />
+<p>The main features of resource views are:</p>
+<ul class="simple">
+<li>One resource can have multiple views of the same data (for example a grid
+and some graphs for tabular data).</li>
+<li>Dataset editors can choose which views to show, reorder them and configure
+them individually.</li>
+<li>Individual views can be embedded on external sites.</li>
+</ul>
+<p>Different view types are implemented via custom plugins, which can be activated
+on a particular CKAN site. Once these plugins are added, instance
+administrators can decide which views should be created by default if the
+resource is suitable (for instance a table on resources uploaded to the
+DataStore, a map for spatial data, etc.).</p>
+<p>Whether a particular resource can be rendered by the different view plugins is
+decided by the view plugins themselves. This is generally done checking the
+resource format or whether its data is on the <a class="reference internal" href="datastore.html"><em>DataStore extension</em></a> or
+not.</p>
+</div>
+<div class="section" id="managing-resource-views">
+<h2><a class="toc-backref" href="data-viewer.html#id5">Managing resource views</a><a class="headerlink" href="data-viewer.html#managing-resource-views" title="Permalink to this headline">¶</a></h2>
+<p>Users who are allowed to edit a particular dataset can also manage the views
+for its resources. To access the management interface, click on the <em>Manage</em>
+button on the resource page and then on the <em>Views</em> tab. From here you can
+create new views, update or delete existing ones and reorder them.</p>
+<img alt="../_images/manage_views.png" src="../_images/manage_views.png" />
+<p>The <em>New view</em> dropdown will show the available view types for this particular
+resource. If the list is empty, you may need to add the relevant view plugins
+to the <a class="reference internal" href="configuration.html#ckan-plugins"><em>ckan.plugins</em></a> setting on your configuration file, eg:</p>
+<div class="highlight-python"><div class="highlight"><pre>ckan.plugins = ... image_view recline_view pdf_view
+</pre></div>
+</div>
+</div>
+<div class="section" id="defining-views-to-appear-by-default">
+<h2><a class="toc-backref" href="data-viewer.html#id6">Defining views to appear by default</a><a class="headerlink" href="data-viewer.html#defining-views-to-appear-by-default" title="Permalink to this headline">¶</a></h2>
+<p>From the management interface you can create and edit views manually, but in most
+cases you will want views to be created automatically on certain resource types,
+so data can be visualized straight away after uploading or linking to a file.</p>
+<p>To do so, you define a set of view plugins that should be checked whenever a
+dataset or resource is created or updated. For each of them, if the resource is
+a suitable one, a view will be created.</p>
+<p>This is configured with the <a class="reference internal" href="configuration.html#ckan-views-default-views"><em>ckan.views.default_views</em></a> setting. In it you
+define the view plugins that you want to be created as default:</p>
+<div class="highlight-python"><div class="highlight"><pre>ckan.views.default_views = recline_view pdf_view geojson_view
+</pre></div>
+</div>
+<p>This configuration does not mean that each new resource will get all of these
+views by default, but that for instance if the uploaded file is a PDF file,
+a PDF viewer will be created automatically and so on.</p>
+</div>
+<div class="section" id="available-view-plugins">
+<h2><a class="toc-backref" href="data-viewer.html#id7">Available view plugins</a><a class="headerlink" href="data-viewer.html#available-view-plugins" title="Permalink to this headline">¶</a></h2>
+<p>Some view plugins for common formats are included in the main CKAN repository.
+These don&#8217;t require further setup and can be directly added to the
+<a class="reference internal" href="configuration.html#ckan-plugins"><em>ckan.plugins</em></a> setting.</p>
+<div class="section" id="data-explorer">
+<span id="id1"></span><h3><a class="toc-backref" href="data-viewer.html#id8">Data Explorer</a><a class="headerlink" href="data-viewer.html#data-explorer" title="Permalink to this headline">¶</a></h3>
+<img alt="../_images/recline_view.png" src="../_images/recline_view.png" />
+<p>View plugin: <tt class="docutils literal"><span class="pre">recline_view</span></tt></p>
+<p>Adds a rich widget, based on the <a class="reference external" href="https://github.com/okfn/recline/">Recline</a> Javascript library. It  allows
+querying, filtering, graphing and mapping data. The Data Explorer is optimized
+for displaying structured data hosted on the <a class="reference internal" href="datastore.html"><em>DataStore extension</em></a>.</p>
+<p>The Data Explorer can also display certain formats of tabular data (CSV and
+Excel files) without its contents being uploaded to the DataStore. This is
+done via the <a class="reference external" href="https://github.com/okfn/dataproxy">DataProxy</a>, an external service that will parse the contents of
+the file and return a response that the view widget understands. However, as
+the resource must be downloaded by the DataProxy service and parsed before it
+is viewed, this option is slower and less reliable than viewing data that is
+in the DataStore. It also does not properly support different encodings, proper
+field type detection, etc so users are strongly encouraged to host data on the
+DataStore instead.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Support for the DataProxy will be dropped on future CKAN releases</p>
+</div>
+<p>The three main panes of the Data Explorer are also available as separate views.</p>
+</div>
+<div class="section" id="datastore-grid">
+<h3><a class="toc-backref" href="data-viewer.html#id9">DataStore Grid</a><a class="headerlink" href="data-viewer.html#datastore-grid" title="Permalink to this headline">¶</a></h3>
+<img alt="../_images/recline_grid_view.png" src="../_images/recline_grid_view.png" />
+<p>View plugin: <tt class="docutils literal"><span class="pre">recline_grid_view</span></tt></p>
+<p>Displays a filterable, sortable, table view of structured data.</p>
+<p>This plugin requires data to be in the DataStore.</p>
+</div>
+<div class="section" id="datastore-graph">
+<h3><a class="toc-backref" href="data-viewer.html#id10">DataStore Graph</a><a class="headerlink" href="data-viewer.html#datastore-graph" title="Permalink to this headline">¶</a></h3>
+<img alt="../_images/recline_graph_view.png" src="../_images/recline_graph_view.png" />
+<p>View plugin: <tt class="docutils literal"><span class="pre">recline_graph_view</span></tt></p>
+<p>Allows to create graphs from data stored on the DataStore. You can choose the
+graph type (such as lines, bars, columns, etc) and restrict the displayed data,
+by filtering by a certain field value or defining an offset and the number of
+rows.</p>
+<p>This plugin requires data to be in the DataStore.</p>
+</div>
+<div class="section" id="datastore-map">
+<h3><a class="toc-backref" href="data-viewer.html#id11">DataStore Map</a><a class="headerlink" href="data-viewer.html#datastore-map" title="Permalink to this headline">¶</a></h3>
+<img alt="../_images/recline_map_view.png" src="../_images/recline_map_view.png" />
+<p>View plugin: <tt class="docutils literal"><span class="pre">recline_map_view</span></tt></p>
+<p>Shows data stored on the DataStore in an interactive map. It supports plotting
+markers from a pair of latitude / longitude fields or from a field containing
+a <a class="reference external" href="http://geojson.org">GeoJSON</a> representation of the geometries. The configuration also allows to
+cluster markers if there is a high density of them and to zoom automatically
+to the rendered features.</p>
+<p>This plugin requires data to be in the DataStore.</p>
+</div>
+<div class="section" id="text-view">
+<h3><a class="toc-backref" href="data-viewer.html#id12">Text view</a><a class="headerlink" href="data-viewer.html#text-view" title="Permalink to this headline">¶</a></h3>
+<img alt="../_images/text_view.png" src="../_images/text_view.png" />
+<p>View plugin: <tt class="docutils literal"><span class="pre">text_view</span></tt></p>
+<p>Displays files in XML, JSON or plain text based formats with the syntax
+highlighted. The formats detected can be configured using the
+<a class="reference internal" href="configuration.html#ckan-preview-xml-formats"><em>ckan.preview.xml_formats</em></a>, <a class="reference internal" href="configuration.html#ckan-preview-json-formats"><em>ckan.preview.json_formats</em></a>
+and <a class="reference internal" href="configuration.html#ckan-preview-text-formats"><em>ckan.preview.text_formats</em></a> configuration options respectively.</p>
+<p>If you want to display files that are hosted in a different server from your
+CKAN instance (eg that haven&#8217;t been uploaded to CKAN) you will need to enable
+the <a class="reference internal" href="data-viewer.html#id2">Resource Proxy</a> plugin.</p>
+</div>
+<div class="section" id="image-view">
+<h3><a class="toc-backref" href="data-viewer.html#id13">Image view</a><a class="headerlink" href="data-viewer.html#image-view" title="Permalink to this headline">¶</a></h3>
+<img alt="../_images/image_view.png" src="../_images/image_view.png" />
+<p>View plugin: <tt class="docutils literal"><span class="pre">image_view</span></tt></p>
+<p>If the resource format is a common image format like PNG, JPEG or GIF, it adds
+an <tt class="docutils literal"><span class="pre">&lt;img&gt;</span></tt> tag pointing to the resource URL. You can provide an alternative
+URL on the edit view form.</p>
+</div>
+<div class="section" id="web-page-view">
+<h3><a class="toc-backref" href="data-viewer.html#id14">Web page view</a><a class="headerlink" href="data-viewer.html#web-page-view" title="Permalink to this headline">¶</a></h3>
+<img alt="../_images/webpage_view.png" src="../_images/webpage_view.png" />
+<p>View plugin: <tt class="docutils literal"><span class="pre">webpage_view</span></tt></p>
+<p>Adds an <tt class="docutils literal"><span class="pre">&lt;iframe&gt;</span></tt> tag to embed the resource URL. You can provide an
+alternative URL on the edit view form.</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Do not activate this plugin unless you trust the URL sources.
+It is not recommended to enable this view type on instances where all users
+can create datasets.</p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="other-view-plugins">
+<h3><a class="toc-backref" href="data-viewer.html#id15">Other view plugins</a><a class="headerlink" href="data-viewer.html#other-view-plugins" title="Permalink to this headline">¶</a></h3>
+<p>There are many more view plugins developed by the CKAN team and others which
+are hosted on separate repositories. Some examples include:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/ckan/ckanext-dashboard">Dashboard</a>: Allows to combine multiple views into a single dashboard.</li>
+<li><a class="reference external" href="https://github.com/ckan/ckanext-pdfview">PDF viewer</a>: Allows to render PDF files on the resource page.</li>
+<li><a class="reference external" href="https://github.com/ckan/ckanext-spatial">GeoJSON map</a>: Renders <a class="reference external" href="http://geojson.org">GeoJSON</a> files on an interactive map.</li>
+<li><a class="reference external" href="https://github.com/ckan/ckanext-mapviews">Choropleth map</a>: Displays data on the DataStore on a choropleth map.</li>
+<li><a class="reference external" href="https://github.com/ckan/ckanext-basiccharts">Basic charts</a>: Provides alternative graph types and renderings.</li>
+</ul>
+<p>If you want to add another view type to this list, edit this file by sending
+a pull request on GitHub.</p>
+<p>New plugins to render custom view types can be implemented using
+the <a class="reference internal" href="../extensions/plugin-interfaces.html#ckan.plugins.interfaces.IResourceView" title="ckan.plugins.interfaces.IResourceView"><tt class="xref py py-class docutils literal"><span class="pre">IResourceView</span></tt></a> interface.</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Link to a proper tutorial for writing custom views</p>
+</div>
+</div>
+</div>
+<div class="section" id="resource-proxy">
+<span id="id2"></span><h2><a class="toc-backref" href="data-viewer.html#id16">Resource Proxy</a><a class="headerlink" href="data-viewer.html#resource-proxy" title="Permalink to this headline">¶</a></h2>
+<p>As resource views are rendered on the browser, if the file they are accessing
+is located in a different domain than the one CKAN is hosted, the browser will
+block access to it because of the <a class="reference external" href="http://en.wikipedia.org/wiki/Same_origin_policy">same-origin policy</a>. For instance, files
+hosted on <cite>www.example.com</cite> won&#8217;t be able to be accessed from the browser if
+CKAN is hosted on <cite>data.catalog.com</cite>.</p>
+<p>To allow view plugins access to external files you need to activate the
+<tt class="docutils literal"><span class="pre">resource_proxy</span></tt> plugin on your configuration file:</p>
+<div class="highlight-python"><div class="highlight"><pre>ckan.plugins = resource_proxy ...
+</pre></div>
+</div>
+<p>This will request the file on the server side and serve it from the same domain
+as CKAN.</p>
+<p>You can modify the maximum allowed size for proxied files using the
+<a class="reference internal" href="configuration.html#ckan-resource-proxy-max-file-size"><em>ckan.resource_proxy.max_file_size</em></a> configuration setting.</p>
+</div>
+<div class="section" id="migrating-from-previous-ckan-versions">
+<h2><a class="toc-backref" href="data-viewer.html#id17">Migrating from previous CKAN versions</a><a class="headerlink" href="data-viewer.html#migrating-from-previous-ckan-versions" title="Permalink to this headline">¶</a></h2>
+<p>If you are upgrading an existing instance running CKAN version 2.2.x or lower
+to CKAN 2.3 or higher, you need to perform a migration process in order for the
+resource views to appear. If the migration does not take place, resource views
+will only appear when creating or updating datasets or resources, but not on
+existing ones.</p>
+<p>The migration process involves creating the necessary view objects in the
+database, which can be done using the <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">views</span> <span class="pre">create</span></tt> command.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">views</span> <span class="pre">create</span></tt> command uses the search API to get all
+necessary datasets and resources, so make sure your search
+index <a class="reference internal" href="paster.html#rebuild-search-index"><em>is up to date</em></a> before starting the
+migration process.</p>
+</div>
+<p>The way the <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">views</span> <span class="pre">create</span></tt> commands works is getting all or a subset
+of the instance datasets from the search index, and for each of them checking
+against a list of view plugins if it is necessary to create a view object. This
+gets determined by each of the individual view plugins depending on the dataset&#8217;s
+resources fields.</p>
+<p>Before each run, you will be prompted with the number of datasets affected and
+asked if you want to continue (unless you pass the <tt class="docutils literal"><span class="pre">-y</span></tt> option):</p>
+<div class="highlight-python"><div class="highlight"><pre>You are about to check 3336 datasets for the following view plugins: [&#39;image_view&#39;, &#39;recline_view&#39;, &#39;text_view&#39;]
+ Do you want to continue? [Y/n]
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">On large CKAN instances the migration process can take a significant
+time if using the default options. It is worth planning in advance and split
+the process using the search parameters to only check relevant datasets.
+The following documentation provides guidance on how to do this.</p>
+</div>
+<p>If no view types are provided, the default ones are used
+(check <a class="reference internal" href="data-viewer.html#defining-views-to-appear-by-default">Defining views to appear by default</a> to see how these are defined):</p>
+<div class="highlight-python"><div class="highlight"><pre>paster views create
+</pre></div>
+</div>
+<p>Specific view types can be also provided:</p>
+<div class="highlight-python"><div class="highlight"><pre>paster views create image_view recline_view pdf_view
+</pre></div>
+</div>
+<p>For certain view types (the ones with plugins included in the main CKAN core),
+default filters are applied to the search to only get relevant resources. For
+instance if <tt class="docutils literal"><span class="pre">image_view</span></tt> is defined, filters are added to the search to only
+get datasets with resources that have image formats (png, jpg, etc).</p>
+<p>You can also provide arbitrary search parameters like the ones supported by
+<a class="reference internal" href="../api/index.html#ckan.logic.action.get.package_search" title="ckan.logic.action.get.package_search"><tt class="xref py py-func docutils literal"><span class="pre">package_search()</span></tt></a>. This can be useful for
+instance to only include datasets with resources of a certain format:</p>
+<div class="highlight-python"><div class="highlight"><pre>paster views create geojson_view -s &#39;{&quot;fq&quot;: &quot;res_format:GEOJSON&quot;}&#39;
+</pre></div>
+</div>
+<p>To instead avoid certain formats you can do:</p>
+<div class="highlight-python"><div class="highlight"><pre>paster views create -s &#39;{&quot;fq&quot;: &quot;-res_format:HTML&quot;}&#39;
+</pre></div>
+</div>
+<p>Of course this is not limited to resource formats, you can filter out or in
+using any field, as in a normal dataset search:</p>
+<div class="highlight-python"><div class="highlight"><pre>paster views create -s &#39;{&quot;q&quot;: &quot;groups:visualization-examples&quot;}&#39;
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If you set the <tt class="docutils literal"><span class="pre">ckan_logger</span></tt> level to <tt class="docutils literal"><span class="pre">DEBUG</span></tt> on your
+configuration file you can see the full search parameters being sent
+to Solr.</p>
+</div>
+<p>For convenience, there is also an option to create views on a particular
+dataset or datasets:</p>
+<div class="highlight-python"><div class="highlight"><pre>paster views create -d dataset_id
+
+paster views create -d dataset_name -d dataset_name
+</pre></div>
+</div>
+</div>
+<div class="section" id="command-line-interface">
+<h2><a class="toc-backref" href="data-viewer.html#id18">Command line interface</a><a class="headerlink" href="data-viewer.html#command-line-interface" title="Permalink to this headline">¶</a></h2>
+<p>The <tt class="docutils literal"><span class="pre">paster</span> <span class="pre">views</span></tt> command allows to create and remove resource views objects
+from the database in bulk.</p>
+<p>Check the command help for the full options:</p>
+<div class="highlight-python"><div class="highlight"><pre>paster views create -h
+</pre></div>
+</div>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">Tutorial for writing custom view types.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="filestore.html" class="btn btn-neutral float-right"
+           title="FileStore and file uploads"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="authorization.html" class="btn btn-neutral"
+           title="Organizations and authorization">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: ckan-2.3.5
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../index.html">latest</a></dd>
+        
+          <dd><a href="../../ckan-2.6.0/index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../../ckan-2.5.3/index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../../ckan-2.4.4/index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.3.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

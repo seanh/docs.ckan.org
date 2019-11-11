@@ -1,0 +1,1334 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Template helper functions reference &mdash; CKAN 2.4.4 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+    <link rel="top" title="CKAN 2.4.4 documentation" href="../index.html"/>
+        <link rel="up" title="Theming guide" href="index.html"/>
+        <link rel="next" title="Template snippets reference" href="template-snippets.html"/>
+        <link rel="prev" title="Objects and methods available to JavaScript modules" href="javascript-module-objects-and-methods.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/theming/template-helper-functions.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'theming/template-helper-functions'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../contents.html" class="fa fa-home"> CKAN</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://docs.ckan.org/en/ckan-2.4.4/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide.html#what-is-ckan">What is CKAN?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide.html#using-ckan">Using CKAN</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#creating-a-sysadmin-account">Creating a sysadmin account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#customizing-look-and-feel">Customizing look and feel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#managing-organizations-and-datasets">Managing organizations and datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#permanently-deleting-datasets">Permanently deleting datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysadmin-guide.html#managing-users">Managing users</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../maintaining/index.html">Maintainer&#8217;s guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/installing/index.html">Installing CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/upgrading/index.html">Upgrading CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/getting-started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/paster.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/authorization.html">Organizations and authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/data-viewer.html">Data preview and visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/filestore.html">FileStore and file uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/datastore.html">DataStore extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/apps-ideas.html">Apps &amp; Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/tag-vocabularies.html">Tag Vocabularies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/form-integration.html">Form Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/linked-data-and-rdf.html">Linked Data and RDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/background-tasks.html">Background tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/email-notifications.html">Email notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/tracking.html">Page View Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/multilingual.html">Multilingual Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/stats.html">Stats Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/configuration.html">Configuration Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintaining/solr-multicore.html">Multicore Solr setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/legacy-api.html">Legacy APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#making-an-api-request">Making an API request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#example-importing-datasets-with-the-ckan-api">Example: Importing datasets with the CKAN API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#api-versions">API versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#authentication-and-api-keys">Authentication and API keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#get-able-api-functions">GET-able API functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#jsonp-support">JSONP support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#api-examples">API Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#action-api-reference">Action API reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extending guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/tutorial.html">Writing extensions tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/custom-config-settings.html">Using custom config settings in extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/remote-config-update.html">Making configuration options runtime-editable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/testing-extensions.html">Testing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/best-practices.html">Best practices for writing extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/adding-custom-fields.html">Customizing dataset and resource metadata fields using IDatasetForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/plugin-interfaces.html">Plugin interfaces reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/plugins-toolkit.html">Plugins toolkit reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/validators.html">Validator functions reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Theming guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Customizing CKAN&#8217;s templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="static-files.html">Adding static files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css.html">Customizing CKAN&#8217;s CSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fanstatic.html">Adding CSS and JavaScript files using Fanstatic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Customizing CKAN&#8217;s JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="best-practices.html">Best practices for writing CKAN themes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jinja-tags.html">Custom Jinja2 tags reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables-and-functions.html">Variables and functions available to templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript-module-objects-and-methods.html">Objects and methods available to JavaScript modules</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="template-helper-functions.html">Template helper functions reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="template-snippets.html">Template snippets reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript-sandbox.html">JavaScript sandbox reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript-api-client.html">JavaScript API client reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jquery-plugins.html">CKAN jQuery plugins reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/issues.html">Reporting issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/i18n.html">Translating CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/test.html">Testing CKAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/commit-messages.html">Writing commit messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/pull-requests.html">Making a pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/reviewing.html">Reviewing and merging a pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/documentation.html">Writing documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/simple-code-contributions.html">Projects for beginner CKAN developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/architecture.html">CKAN code architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/css.html">CSS coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/html.html">HTML coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/javascript.html">JavaScript coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/python.html">Python coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/string-i18n.html">String internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/testing.html">Testing coding standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/frontend/index.html">Frontend development guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/database-migrations.html">Database migrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/upgrading-dependencies.html">Upgrading CKAN&#8217;s dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/release-process.html">Doing a CKAN release</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Theming guide</a> &raquo;</li>
+      
+    <li>Template helper functions reference</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/ckan/ckan/blob/ckan-2.4.4/doc/theming/template-helper-functions.rst" class="fa fa-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="module-ckan.lib.helpers">
+<span id="template-helper-functions-reference"></span><h1>Template helper functions reference<a class="headerlink" href="template-helper-functions.html#module-ckan.lib.helpers" title="Permalink to this headline">¶</a></h1>
+<p>Helper functions</p>
+<p>Consists of functions to typically be used within templates, but also
+available to Controllers. This module is available to templates as &#8216;h&#8217;.</p>
+<dl class="function">
+<dt id="ckan.lib.helpers.redirect_to">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">redirect_to</tt><big>(</big><em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.redirect_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Issue a redirect: return an HTTP response with a <tt class="docutils literal"><span class="pre">302</span> <span class="pre">Moved</span></tt> header.</p>
+<p>This is a wrapper for <tt class="xref py py-func docutils literal"><span class="pre">routes.redirect_to()</span></tt> that maintains the
+user&#8217;s selected language when redirecting.</p>
+<p>The arguments to this function identify the route to redirect to, they&#8217;re
+the same arguments as <a class="reference internal" href="../extensions/plugins-toolkit.html#ckan.plugins.toolkit.url_for" title="ckan.plugins.toolkit.url_for"><tt class="xref py py-func docutils literal"><span class="pre">ckan.plugins.toolkit.url_for()</span></tt></a> accepts,
+for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ckan.plugins.toolkit</span> <span class="kn">as</span> <span class="nn">toolkit</span>
+
+<span class="c"># Redirect to /dataset/my_dataset.</span>
+<span class="n">toolkit</span><span class="o">.</span><span class="n">redirect_to</span><span class="p">(</span><span class="n">controller</span><span class="o">=</span><span class="s">&#39;package&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&#39;read&#39;</span><span class="p">,</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="s">&#39;my_dataset&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or, using a named route:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">toolkit</span><span class="o">.</span><span class="n">redirect_to</span><span class="p">(</span><span class="s">&#39;dataset_read&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s">&#39;changed&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.url">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">url</tt><big>(</big><em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create url adding i18n information if selected
+wrapper for pylons.url</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.get_site_protocol_and_host">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">get_site_protocol_and_host</tt><big>(</big><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.get_site_protocol_and_host" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the protocol and host of the configured <cite>ckan.site_url</cite>.
+This is needed to generate valid, full-qualified URLs.</p>
+<p>If <cite>ckan.site_url</cite> is set like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>ckan.site_url = http://example.com
+</pre></div>
+</div>
+<p>Then this function would return a tuple <cite>(&#8216;http&#8217;, &#8216;example.com&#8217;)</cite>
+If the setting is missing, <cite>(None, None)</cite> is returned instead.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.url_for">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">url_for</tt><big>(</big><em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.url_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the URL for the given controller, action, id, etc.</p>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre>import ckan.plugins.toolkit as toolkit
+
+url = toolkit.url_for(controller=&#39;package&#39;, action=&#39;read&#39;,
+                      id=&#39;my_dataset&#39;)
+=&gt; returns &#39;/dataset/my_dataset&#39;
+</pre></div>
+</div>
+<p>Or, using a named route:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">toolkit</span><span class="o">.</span><span class="n">url_for</span><span class="p">(</span><span class="s">&#39;dataset_read&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s">&#39;changed&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is a wrapper for <tt class="xref py py-func docutils literal"><span class="pre">routes.url_for()</span></tt> that adds some extra
+features that CKAN needs.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.url_for_static">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">url_for_static</tt><big>(</big><em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.url_for_static" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the URL for static content that doesn&#8217;t get translated (eg CSS)</p>
+<p>It&#8217;ll raise CkanUrlException if called with an external URL</p>
+<p>This is a wrapper for <tt class="xref py py-func docutils literal"><span class="pre">routes.url_for()</span></tt></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.url_for_static_or_external">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">url_for_static_or_external</tt><big>(</big><em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.url_for_static_or_external" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the URL for static content that doesn&#8217;t get translated (eg CSS),
+or external URLs</p>
+<p>This is a wrapper for <tt class="xref py py-func docutils literal"><span class="pre">routes.url_for()</span></tt></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.is_url">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">is_url</tt><big>(</big><em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.is_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if argument parses as a http, https or ftp URL</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.url_is_local">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">url_is_local</tt><big>(</big><em>url</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.url_is_local" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if url is local</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.full_current_url">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">full_current_url</tt><big>(</big><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.full_current_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the fully qualified current url (eg <a class="reference external" href="http://">http://</a>...) useful
+for sharing etc</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.lang">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">lang</tt><big>(</big><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.lang" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the language code for the current locale eg <cite>en</cite></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.lang_native_name">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">lang_native_name</tt><big>(</big><em>lang=None</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.lang_native_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the langage name currently used in it&#8217;s localised form
+either from parameter or current environ setting</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ckan.lib.helpers.Message">
+<em class="property">class </em><tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">Message</tt><big>(</big><em>category</em>, <em>message</em>, <em>allow_html</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.Message" title="Permalink to this definition">¶</a></dt>
+<dd><p>A message returned by <tt class="docutils literal"><span class="pre">Flash.pop_messages()</span></tt>.</p>
+<p>Converting the message to a string returns the message text. Instances
+also have the following attributes:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">message</span></tt>: the message text.</li>
+<li><tt class="docutils literal"><span class="pre">category</span></tt>: the category specified when the message was created.</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.flash_notice">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">flash_notice</tt><big>(</big><em>message</em>, <em>allow_html=False</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.flash_notice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show a flash message of type notice</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.flash_error">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">flash_error</tt><big>(</big><em>message</em>, <em>allow_html=False</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.flash_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show a flash message of type error</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.flash_success">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">flash_success</tt><big>(</big><em>message</em>, <em>allow_html=False</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.flash_success" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show a flash message of type success</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.are_there_flash_messages">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">are_there_flash_messages</tt><big>(</big><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.are_there_flash_messages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if there are flash messages for the current user</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.nav_link">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">nav_link</tt><big>(</big><em>text</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.nav_link" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>class</strong> &#8211; pass extra class(es) to add to the <tt class="docutils literal"><span class="pre">&lt;a&gt;</span></tt> tag</li>
+<li><strong>icon</strong> &#8211; name of ckan icon to use within the link</li>
+<li><strong>condition</strong> &#8211; if <tt class="docutils literal"><span class="pre">False</span></tt> then no link is returned</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.build_nav_main">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">build_nav_main</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.build_nav_main" title="Permalink to this definition">¶</a></dt>
+<dd><p>build a set of menu items.</p>
+<p>args: tuples of (menu type, title) eg (&#8216;login&#8217;, _(&#8216;Login&#8217;))
+outputs &lt;li&gt;&lt;a href=&#8221;...&#8221;&gt;title&lt;/a&gt;&lt;/li&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.build_nav_icon">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">build_nav_icon</tt><big>(</big><em>menu_item</em>, <em>title</em>, <em>**kw</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.build_nav_icon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a navigation item used for example in <tt class="docutils literal"><span class="pre">user/read_base.html</span></tt>.</p>
+<p>Outputs <tt class="docutils literal"><span class="pre">&lt;li&gt;&lt;a</span> <span class="pre">href=&quot;...&quot;&gt;&lt;i</span> <span class="pre">class=&quot;icon..&quot;&gt;&lt;/i&gt;</span> <span class="pre">title&lt;/a&gt;&lt;/li&gt;</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>menu_item</strong> (<em>string</em>) &#8211; the name of the defined menu item defined in
+config/routing as the named route of the same name</li>
+<li><strong>title</strong> (<em>string</em>) &#8211; text used for the link</li>
+<li><strong>kw</strong> &#8211; additional keywords needed for creating url eg <tt class="docutils literal"><span class="pre">id=...</span></tt></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">HTML literal</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.build_nav">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">build_nav</tt><big>(</big><em>menu_item</em>, <em>title</em>, <em>**kw</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.build_nav" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a navigation item used for example breadcrumbs.</p>
+<p>Outputs <tt class="docutils literal"><span class="pre">&lt;li&gt;&lt;a</span> <span class="pre">href=&quot;...&quot;&gt;&lt;/i&gt;</span> <span class="pre">title&lt;/a&gt;&lt;/li&gt;</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>menu_item</strong> (<em>string</em>) &#8211; the name of the defined menu item defined in
+config/routing as the named route of the same name</li>
+<li><strong>title</strong> (<em>string</em>) &#8211; text used for the link</li>
+<li><strong>kw</strong> &#8211; additional keywords needed for creating url eg <tt class="docutils literal"><span class="pre">id=...</span></tt></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">HTML literal</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.build_extra_admin_nav">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">build_extra_admin_nav</tt><big>(</big><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.build_extra_admin_nav" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build extra navigation items used in <tt class="docutils literal"><span class="pre">admin/base.html</span></tt> for values
+defined in the config option <tt class="docutils literal"><span class="pre">ckan.admin_tabs</span></tt>. Typically this is
+populated by extensions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">HTML literal</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.default_group_type">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">default_group_type</tt><big>(</big><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.default_group_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.get_facet_items_dict">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">get_facet_items_dict</tt><big>(</big><em>facet</em>, <em>limit=None</em>, <em>exclude_active=False</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.get_facet_items_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of unselected facet items for the given facet, sorted
+by count.</p>
+<p>Returns the list of unselected facet contraints or facet items (e.g. tag
+names like &#8220;russian&#8221; or &#8220;tolstoy&#8221;) for the given search facet (e.g.
+&#8220;tags&#8221;), sorted by facet item count (i.e. the number of search results that
+match each facet item).</p>
+<p>Reads the complete list of facet items for the given facet from
+c.search_facets, and filters out the facet items that the user has already
+selected.</p>
+<p>Arguments:
+facet &#8211; the name of the facet to filter.
+limit &#8211; the max. number of facet items to return.
+exclude_active &#8211; only return unselected facets.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.has_more_facets">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">has_more_facets</tt><big>(</big><em>facet</em>, <em>limit=None</em>, <em>exclude_active=False</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.has_more_facets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if there are more facet items for the given facet than the
+limit.</p>
+<p>Reads the complete list of facet items for the given facet from
+c.search_facets, and filters out the facet items that the user has already
+selected.</p>
+<p>Arguments:
+facet &#8211; the name of the facet to filter.
+limit &#8211; the max. number of facet items.
+exclude_active &#8211; only return unselected facets.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.unselected_facet_items">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">unselected_facet_items</tt><big>(</big><em>facet</em>, <em>limit=10</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.unselected_facet_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of unselected facet items for the given facet, sorted
+by count.</p>
+<p>Returns the list of unselected facet contraints or facet items (e.g. tag
+names like &#8220;russian&#8221; or &#8220;tolstoy&#8221;) for the given search facet (e.g.
+&#8220;tags&#8221;), sorted by facet item count (i.e. the number of search results that
+match each facet item).</p>
+<p>Reads the complete list of facet items for the given facet from
+c.search_facets, and filters out the facet items that the user has already
+selected.</p>
+<p>Arguments:
+facet &#8211; the name of the facet to filter.
+limit &#8211; the max. number of facet items to return.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.get_param_int">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">get_param_int</tt><big>(</big><em>name</em>, <em>default=10</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.get_param_int" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.sorted_extras">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">sorted_extras</tt><big>(</big><em>package_extras</em>, <em>auto_clean=False</em>, <em>subs=None</em>, <em>exclude=None</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.sorted_extras" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used for outputting package extras</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>package_extras</strong> (<em>dict</em>) &#8211; the package extras</li>
+<li><strong>auto_clean</strong> (<em>bool</em>) &#8211; If true capitalize and replace -_ with spaces</li>
+<li><strong>subs</strong> (<em>dict {&#8216;key&#8217;: &#8216;replacement&#8217;}</em>) &#8211; substitutes to use instead of given keys</li>
+<li><strong>exclude</strong> (<em>list of strings</em>) &#8211; keys to exclude</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.check_access">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">check_access</tt><big>(</big><em>action</em>, <em>data_dict=None</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.check_access" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.linked_user">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">linked_user</tt><big>(</big><em>user</em>, <em>maxlength=0</em>, <em>avatar=20</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.linked_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.group_name_to_title">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">group_name_to_title</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.group_name_to_title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.markdown_extract">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">markdown_extract</tt><big>(</big><em>text</em>, <em>extract_length=190</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.markdown_extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the plain text representation of markdown encoded text.  That
+is the texted without any html tags.  If extract_length is 0 then it
+will not be truncated.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.icon_url">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">icon_url</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.icon_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.icon_html">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">icon_html</tt><big>(</big><em>url</em>, <em>alt=None</em>, <em>inline=True</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.icon_html" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.icon">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">icon</tt><big>(</big><em>name</em>, <em>alt=None</em>, <em>inline=True</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.icon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.resource_icon">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">resource_icon</tt><big>(</big><em>res</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.resource_icon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.format_icon">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">format_icon</tt><big>(</big><em>_format</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.format_icon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.dict_list_reduce">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">dict_list_reduce</tt><big>(</big><em>list_</em>, <em>key</em>, <em>unique=True</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.dict_list_reduce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take a list of dicts and create a new one containing just the
+values for the key with unique values if requested.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.linked_gravatar">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">linked_gravatar</tt><big>(</big><em>email_hash</em>, <em>size=100</em>, <em>default=None</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.linked_gravatar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.gravatar">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">gravatar</tt><big>(</big><em>email_hash</em>, <em>size=100</em>, <em>default=None</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.gravatar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.pager_url">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">pager_url</tt><big>(</big><em>page</em>, <em>partial=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.pager_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="ckan.lib.helpers.Page">
+<em class="property">class </em><tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">Page</tt><big>(</big><em>collection</em>, <em>page=1</em>, <em>items_per_page=20</em>, <em>item_count=None</em>, <em>sqlalchemy_session=None</em>, <em>presliced_list=False</em>, <em>url=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.Page" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="ckan.lib.helpers.Page.pager">
+<tt class="descname">pager</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.Page.pager" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.render_datetime">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">render_datetime</tt><big>(</big><em>datetime_</em>, <em>date_format=None</em>, <em>with_hours=False</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.render_datetime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render a datetime object or timestamp string as a localised date or
+in the requested format.
+If timestamp is badly formatted, then a blank string is returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>datetime</strong> (<em>datetime or ISO string format</em>) &#8211; the date</li>
+<li><strong>date_format</strong> (<em>string</em>) &#8211; a date format</li>
+<li><strong>with_hours</strong> (<em>bool</em>) &#8211; should the <cite>hours:mins</cite> be shown</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.date_str_to_datetime">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">date_str_to_datetime</tt><big>(</big><em>date_str</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.date_str_to_datetime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert ISO-like formatted datestring to datetime object.</p>
+<p>This function converts ISO format date- and datetime-strings into
+datetime objects.  Times may be specified down to the microsecond.  UTC
+offset or timezone information may <strong>not</strong> be included in the string.</p>
+<dl class="docutils">
+<dt>Note - Although originally documented as parsing ISO date(-times), this</dt>
+<dd>function doesn&#8217;t fully adhere to the format.  This function will
+throw a ValueError if the string contains UTC offset information.
+So in that sense, it is less liberal than ISO format.  On the
+other hand, it is more liberal of the accepted delimiters between
+the values in the string.  Also, it allows microsecond precision,
+despite that not being part of the ISO format.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.parse_rfc_2822_date">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">parse_rfc_2822_date</tt><big>(</big><em>date_str</em>, <em>assume_utc=True</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.parse_rfc_2822_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a date string of the form specified in RFC 2822, and return a
+datetime.</p>
+<p>RFC 2822 is the date format used in HTTP headers.  It should contain
+timezone information, but that cannot be relied upon.</p>
+<p>If date_str doesn&#8217;t contain timezone information, then the &#8216;assume_utc&#8217;
+flag determines whether we assume this string is local (with respect to the
+server running this code), or UTC.  In practice, what this means is that if
+assume_utc is True, then the returned datetime is &#8216;aware&#8217;, with an
+associated tzinfo of offset zero.  Otherwise, the returned datetime is
+&#8216;naive&#8217;.</p>
+<p>If timezone information is available in date_str, then the returned
+datetime is &#8216;aware&#8217;, ie - it has an associated tz_info object.</p>
+<p>Returns None if the string cannot be parsed as a valid datetime.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.time_ago_from_timestamp">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">time_ago_from_timestamp</tt><big>(</big><em>timestamp</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.time_ago_from_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a string like <cite>5 months ago</cite> for a datetime relative to now
+:param timestamp: the timestamp or datetime
+:type timestamp: string or datetime</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.button_attr">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">button_attr</tt><big>(</big><em>enable</em>, <em>type='primary'</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.button_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.dataset_display_name">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">dataset_display_name</tt><big>(</big><em>package_or_package_dict</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.dataset_display_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.dataset_link">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">dataset_link</tt><big>(</big><em>package_or_package_dict</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.dataset_link" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.resource_display_name">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">resource_display_name</tt><big>(</big><em>resource_dict</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.resource_display_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.resource_link">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">resource_link</tt><big>(</big><em>resource_dict</em>, <em>package_id</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.resource_link" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.related_item_link">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">related_item_link</tt><big>(</big><em>related_item_dict</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.related_item_link" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.tag_link">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">tag_link</tt><big>(</big><em>tag</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.tag_link" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.group_link">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">group_link</tt><big>(</big><em>group</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.group_link" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.organization_link">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">organization_link</tt><big>(</big><em>organization</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.organization_link" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.dump_json">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">dump_json</tt><big>(</big><em>obj</em>, <em>**kw</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.dump_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.auto_log_message">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">auto_log_message</tt><big>(</big><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.auto_log_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.activity_div">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">activity_div</tt><big>(</big><em>template</em>, <em>activity</em>, <em>actor</em>, <em>object=None</em>, <em>target=None</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.activity_div" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.snippet">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">snippet</tt><big>(</big><em>template_name</em>, <em>**kw</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.snippet" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to load html snippets into pages. keywords
+can be used to pass parameters into the snippet rendering</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.convert_to_dict">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">convert_to_dict</tt><big>(</big><em>object_type</em>, <em>objs</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.convert_to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a helper function for converting lists of objects into
+lists of dicts. It is for backwards compatability only.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.follow_button">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">follow_button</tt><big>(</big><em>obj_type</em>, <em>obj_id</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.follow_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a follow button for the given object type and id.</p>
+<p>If the user is not logged in return an empty string instead.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>obj_type</strong> (<em>string</em>) &#8211; the type of the object to be followed when the follow
+button is clicked, e.g. &#8216;user&#8217; or &#8216;dataset&#8217;</li>
+<li><strong>obj_id</strong> (<em>string</em>) &#8211; the id of the object to be followed when the follow button
+is clicked</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a follow button as an HTML snippet</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.follow_count">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">follow_count</tt><big>(</big><em>obj_type</em>, <em>obj_id</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.follow_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of followers of an object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>obj_type</strong> (<em>string</em>) &#8211; the type of the object, e.g. &#8216;user&#8217; or &#8216;dataset&#8217;</li>
+<li><strong>obj_id</strong> (<em>string</em>) &#8211; the id of the object</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the number of followers of the object</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.add_url_param">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">add_url_param</tt><big>(</big><em>alternative_url=None</em>, <em>controller=None</em>, <em>action=None</em>, <em>extras=None</em>, <em>new_params=None</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.add_url_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds extra parameters to existing ones</p>
+<p>controller action &amp; extras (dict) are used to create the base url via
+<a class="reference internal" href="template-helper-functions.html#ckan.lib.helpers.url_for" title="ckan.lib.helpers.url_for"><tt class="xref py py-func docutils literal"><span class="pre">url_for()</span></tt></a> controller &amp; action default to the
+current ones</p>
+<p>This can be overriden providing an alternative_url, which will be used
+instead.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.remove_url_param">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">remove_url_param</tt><big>(</big><em>key</em>, <em>value=None</em>, <em>replace=None</em>, <em>controller=None</em>, <em>action=None</em>, <em>extras=None</em>, <em>alternative_url=None</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.remove_url_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove one or multiple keys from the current parameters.
+The first parameter can be either a string with the name of the key to
+remove or a list of keys to remove.
+A specific key/value pair can be removed by passing a second value
+argument otherwise all pairs matching the key will be removed. If replace
+is given then a new param key=replace will be added.
+Note that the value and replace parameters only apply to the first key
+provided (or the only one provided if key is a string).</p>
+<p>controller action &amp; extras (dict) are used to create the base url
+via <a class="reference internal" href="template-helper-functions.html#ckan.lib.helpers.url_for" title="ckan.lib.helpers.url_for"><tt class="xref py py-func docutils literal"><span class="pre">url_for()</span></tt></a>
+controller &amp; action default to the current ones</p>
+<p>This can be overriden providing an alternative_url, which will be used
+instead.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.include_resource">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">include_resource</tt><big>(</big><em>resource</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.include_resource" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.urls_for_resource">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">urls_for_resource</tt><big>(</big><em>resource</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.urls_for_resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of urls for the resource specified.  If the resource
+is a group or has dependencies then there can be multiple urls.</p>
+<p>NOTE: This is for special situations only and is not the way to generally
+include resources.  It is advised not to use this function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.debug_inspect">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">debug_inspect</tt><big>(</big><em>arg</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.debug_inspect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output pprint.pformat view of supplied arg</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.debug_full_info_as_list">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">debug_full_info_as_list</tt><big>(</big><em>debug_info</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.debug_full_info_as_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>This dumps the template variables for debugging purposes only.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.popular">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">popular</tt><big>(</big><em>type_</em>, <em>number</em>, <em>min=1</em>, <em>title=None</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.popular" title="Permalink to this definition">¶</a></dt>
+<dd><p>display a popular icon.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.groups_available">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">groups_available</tt><big>(</big><em>am_member=False</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.groups_available" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of the groups that the user is authorized to edit.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>am_member</strong> &#8211; if True return only the groups the logged-in user is a
+member of, otherwise return all groups that the user is authorized to
+edit (for example, sysadmin users are authorized to edit all groups)
+(optional, default: False)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.organizations_available">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">organizations_available</tt><big>(</big><em>permission='edit_group'</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.organizations_available" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of organizations that the current user has the specified
+permission for.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.user_in_org_or_group">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">user_in_org_or_group</tt><big>(</big><em>group_id</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.user_in_org_or_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if user is in a group or organization</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.dashboard_activity_stream">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">dashboard_activity_stream</tt><big>(</big><em>user_id</em>, <em>filter_type=None</em>, <em>filter_id=None</em>, <em>offset=0</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.dashboard_activity_stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the dashboard activity stream of the current user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>user_id</strong> (<em>string</em>) &#8211; the id of the user</li>
+<li><strong>filter_type</strong> (<em>string</em>) &#8211; the type of thing to filter by</li>
+<li><strong>filter_id</strong> (<em>string</em>) &#8211; the id of item to filter by</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">an activity stream as an HTML snippet</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.recently_changed_packages_activity_stream">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">recently_changed_packages_activity_stream</tt><big>(</big><em>limit=None</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.recently_changed_packages_activity_stream" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.escape_js">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">escape_js</tt><big>(</big><em>str_to_escape</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.escape_js" title="Permalink to this definition">¶</a></dt>
+<dd><p>Escapes special characters from a JS string.</p>
+<p>Useful e.g. when you need to pass JSON to the templates</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>str_to_escape</strong> &#8211; string to be escaped</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.get_pkg_dict_extra">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">get_pkg_dict_extra</tt><big>(</big><em>pkg_dict</em>, <em>key</em>, <em>default=None</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.get_pkg_dict_extra" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value for the dataset extra with the provided key.</p>
+<p>If the key is not found, it returns a default value, which is None by
+default.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pkg_dict</strong> &#8211; dictized dataset</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Key:</th><td class="field-body">extra key to lookup</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Default:</th><td class="field-body">default value returned if not found</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.get_request_param">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">get_request_param</tt><big>(</big><em>parameter_name</em>, <em>default=None</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.get_request_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function allows templates to access query string parameters
+from the request. This is useful for things like sort order in
+searches.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.html_auto_link">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">html_auto_link</tt><big>(</big><em>data</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.html_auto_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Linkifies HTML</p>
+<p>tag:... converted to a tag link
+dataset:... converted to a dataset link
+group:... converted to a group link
+<a class="reference external" href="http://">http://</a>... converted to a link</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.render_markdown">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">render_markdown</tt><big>(</big><em>data</em>, <em>auto_link=True</em>, <em>allow_html=False</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.render_markdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the data as rendered markdown</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>auto_link</strong> (<em>bool</em>) &#8211; Should ckan specific links be created e.g. <cite>group:xxx</cite></li>
+<li><strong>allow_html</strong> (<em>bool</em>) &#8211; If True then html entities in the markdown data.
+This is dangerous if users have added malicious content.
+If False all html tags are removed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.format_resource_items">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">format_resource_items</tt><big>(</big><em>items</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.format_resource_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take a resource item list and format nicely with blacklisting etc.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.resource_preview">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">resource_preview</tt><big>(</big><em>resource</em>, <em>package</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.resource_preview" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a rendered snippet for a embedded resource preview.</p>
+<p>Depending on the type, different previews are loaded.
+This could be an img tag where the image is loaded directly or an iframe
+that embeds a web page or a recline preview.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.get_allowed_view_types">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">get_allowed_view_types</tt><big>(</big><em>resource</em>, <em>package</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.get_allowed_view_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.rendered_resource_view">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">rendered_resource_view</tt><big>(</big><em>resource_view</em>, <em>resource</em>, <em>package</em>, <em>embed=False</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.rendered_resource_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a rendered resource view snippet.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.view_resource_url">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">view_resource_url</tt><big>(</big><em>resource_view</em>, <em>resource</em>, <em>package</em>, <em>**kw</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.view_resource_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns url for resource. made to be overridden by extensions. i.e
+by resource proxy.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.resource_view_is_filterable">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">resource_view_is_filterable</tt><big>(</big><em>resource_view</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.resource_view_is_filterable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if the given resource view support filters.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.resource_view_get_fields">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">resource_view_get_fields</tt><big>(</big><em>resource</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.resource_view_get_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns sorted list of text and time fields of a datastore resource.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.resource_view_is_iframed">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">resource_view_is_iframed</tt><big>(</big><em>resource_view</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.resource_view_is_iframed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the given resource view should be displayed in an iframe.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.resource_view_icon">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">resource_view_icon</tt><big>(</big><em>resource_view</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.resource_view_icon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the icon for a particular view type.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.resource_view_display_preview">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">resource_view_display_preview</tt><big>(</big><em>resource_view</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.resource_view_display_preview" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the view should display a preview.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.resource_view_full_page">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">resource_view_full_page</tt><big>(</big><em>resource_view</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.resource_view_full_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns if the edit view page should be full page.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.remove_linebreaks">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">remove_linebreaks</tt><big>(</big><em>string</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.remove_linebreaks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove linebreaks from string to make it usable in JavaScript</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.list_dict_filter">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">list_dict_filter</tt><big>(</big><em>list_</em>, <em>search_field</em>, <em>output_field</em>, <em>value</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.list_dict_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a list of dicts and returns the value of a given key if the
+item has a matching value for a supplied key</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>list</strong> (<em>list of dicts</em>) &#8211; the list to search through for matching items</li>
+<li><strong>search_field</strong> (<em>string</em>) &#8211; the key to use to find matching items</li>
+<li><strong>output_field</strong> (<em>string</em>) &#8211; the key to use to output the value</li>
+<li><strong>value</strong> &#8211; the value to search for</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.SI_number_span">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">SI_number_span</tt><big>(</big><em>number</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.SI_number_span" title="Permalink to this definition">¶</a></dt>
+<dd><p>outputs a span with the number in SI unit eg 14700 -&gt; 14.7k</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.new_activities">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">new_activities</tt><big>(</big><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.new_activities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of activities for the current user.</p>
+<p>See <tt class="xref py py-func docutils literal"><span class="pre">logic.action.get.dashboard_new_activities_count()</span></tt> for more
+details.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.uploads_enabled">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">uploads_enabled</tt><big>(</big><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.uploads_enabled" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.get_featured_organizations">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">get_featured_organizations</tt><big>(</big><em>count=1</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.get_featured_organizations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of favourite organization in the form
+of organization_list action function</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.get_featured_groups">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">get_featured_groups</tt><big>(</big><em>count=1</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.get_featured_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of favourite group the form
+of organization_list action function</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.featured_group_org">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">featured_group_org</tt><big>(</big><em>items</em>, <em>get_action</em>, <em>list_action</em>, <em>count</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.featured_group_org" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.get_site_statistics">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">get_site_statistics</tt><big>(</big><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.get_site_statistics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.resource_formats">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">resource_formats</tt><big>(</big><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.resource_formats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the resource formats as a dict, sourced from the resource format JSON file.
+key:  potential user input value
+value:  [canonical mimetype lowercased, canonical format (lowercase), human readable form]
+Fuller description of the fields are described in
+<cite>ckan/config/resource_formats.json</cite>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.unified_resource_format">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">unified_resource_format</tt><big>(</big><em>format</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.unified_resource_format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.check_config_permission">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">check_config_permission</tt><big>(</big><em>permission</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.check_config_permission" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.get_organization">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">get_organization</tt><big>(</big><em>org=None</em>, <em>include_datasets=False</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.get_organization" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ckan.lib.helpers.license_options">
+<tt class="descclassname">ckan.lib.helpers.</tt><tt class="descname">license_options</tt><big>(</big><em>existing_license_id=None</em><big>)</big><a class="headerlink" href="template-helper-functions.html#ckan.lib.helpers.license_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns [(l.title, l.id), ...] for the licenses configured to be
+offered. Always includes the existing_license_id, if supplied.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="template-snippets.html" class="btn btn-neutral float-right"
+           title="Template snippets reference"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="javascript-module-objects-and-methods.html" class="btn btn-neutral"
+           title="Objects and methods available to JavaScript modules">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>An <a href="http://okfn.org">Open Knowledge Foundation</a> project.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: ckan-2.4.4
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../index.html">latest</a></dd>
+        
+          <dd><a href="../../ckan-2.6.0/index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../../ckan-2.5.3/index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../../ckan-2.3.5/index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.4.4',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

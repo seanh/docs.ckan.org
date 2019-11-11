@@ -1,0 +1,472 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Best practices for writing extensions &mdash; CKAN 2.7.0a documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="CKAN 2.7.0a documentation" href="../index.html"/>
+        <link rel="up" title="Extending guide" href="index.html"/>
+        <link rel="next" title="Customizing dataset and resource metadata fields using IDatasetForm" href="adding-custom-fields.html"/>
+        <link rel="prev" title="Testing extensions" href="testing-extensions.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://docs.ckan.org/en/latest/extensions/best-practices.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'extensions/best-practices'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> CKAN
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="http://docs.ckan.org//en/latest/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user-guide.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysadmin-guide.html">Sysadmin guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maintaining/index.html">Maintainer&#8217;s guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Extending guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html">Writing extensions tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom-config-settings.html">Using custom config settings in extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote-config-update.html">Making configuration options runtime-editable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing-extensions.html">Testing extensions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="best-practices.html">Best practices for writing extensions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="best-practices.html#follow-ckan-s-coding-standards">Follow CKAN&#8217;s coding standards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="best-practices.html#use-the-plugins-toolkit-instead-of-importing-ckan">Use the plugins toolkit instead of importing CKAN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="best-practices.html#don-t-edit-ckan-s-database-tables">Don&#8217;t edit CKAN&#8217;s database tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="best-practices.html#implement-each-plugin-class-in-a-separate-python-module">Implement each plugin class in a separate Python module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="best-practices.html#avoid-name-clashes">Avoid name clashes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="best-practices.html#internationalize-user-visible-strings">Internationalize user-visible strings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="best-practices.html#add-third-party-libraries-to-requirements-txt">Add third party libraries to requirements.txt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="best-practices.html#do-not-automatically-modify-the-database-structure">Do not automatically modify the database structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="adding-custom-fields.html">Customizing dataset and resource metadata fields using IDatasetForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin-interfaces.html">Plugin interfaces reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins-toolkit.html">Plugins toolkit reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validators.html">Validator functions reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translating-extensions.html">Internationalizing strings in extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theming/index.html">Theming guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../contents.html">CKAN</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../contents.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Extending guide</a> &raquo;</li>
+      
+    <li>Best practices for writing extensions</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/ckan/ckan/blob/master/doc/extensions/best-practices.rst" class="fa fa-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="best-practices-for-writing-extensions">
+<h1>Best practices for writing extensions<a class="headerlink" href="best-practices.html#best-practices-for-writing-extensions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="follow-ckan-s-coding-standards">
+<h2>Follow CKAN&#8217;s coding standards<a class="headerlink" href="best-practices.html#follow-ckan-s-coding-standards" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="../contributing/index.html"><em>Contributing guide</em></a>.</p>
+</div>
+<div class="section" id="use-the-plugins-toolkit-instead-of-importing-ckan">
+<span id="use-the-plugins-toolkit"></span><h2>Use the plugins toolkit instead of importing CKAN<a class="headerlink" href="best-practices.html#use-the-plugins-toolkit-instead-of-importing-ckan" title="Permalink to this headline">¶</a></h2>
+<p>Try to limit your extension to interacting with CKAN only through CKAN&#8217;s
+<a class="reference internal" href="plugin-interfaces.html"><em>plugin interfaces</em></a> and
+<a class="reference internal" href="plugins-toolkit.html"><em>plugins toolkit</em></a>. It&#8217;s a good idea to keep your
+extension code separate from CKAN as much as possible, so that internal changes
+in CKAN from one release to the next don&#8217;t break your extension.</p>
+</div>
+<div class="section" id="don-t-edit-ckan-s-database-tables">
+<h2>Don&#8217;t edit CKAN&#8217;s database tables<a class="headerlink" href="best-practices.html#don-t-edit-ckan-s-database-tables" title="Permalink to this headline">¶</a></h2>
+<p>An extension can create its own tables in the CKAN database, but it should <em>not</em>
+write to core CKAN tables directly, add columns to core tables, or use foreign
+keys against core tables.</p>
+</div>
+<div class="section" id="implement-each-plugin-class-in-a-separate-python-module">
+<h2>Implement each plugin class in a separate Python module<a class="headerlink" href="best-practices.html#implement-each-plugin-class-in-a-separate-python-module" title="Permalink to this headline">¶</a></h2>
+<p>This keeps CKAN&#8217;s plugin loading order simple, see <a class="reference internal" href="../maintaining/configuration.html#ckan-plugins"><em>ckan.plugins</em></a>.</p>
+</div>
+<div class="section" id="avoid-name-clashes">
+<span id="id1"></span><h2>Avoid name clashes<a class="headerlink" href="best-practices.html#avoid-name-clashes" title="Permalink to this headline">¶</a></h2>
+<p>Many of the names you pick for your identifiers and files must be unique in
+relation to the names used by core CKAN and other extensions. To avoid
+conflicts you should prefix any public name that your extension introduces with
+the name of your extension. For example:</p>
+<ul>
+<li><p class="first">The names of <em>configuration settings</em> introduced by your extension should
+have the form <tt class="docutils literal"><span class="pre">my_extension.my_config_setting</span></tt>.</p>
+</li>
+<li><p class="first">The names of <em>templates and template snippets</em> introduced by your extension
+should begin with the name of your extension:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">snippets</span><span class="o">/</span><span class="n">my_extension_useful_snippet</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+<p>If you have add a lot of templates you can also put them into a separate
+folder named after your extension instead.</p>
+</li>
+<li><p class="first">The names of <em>template helper functions</em> introduced by your extension should
+begin with the name of your extension. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">get_helpers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Register the most_popular_groups() function above as a template</span>
+<span class="sd">        helper function.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># Template helper function names should begin with the name of the</span>
+        <span class="c1"># extension they belong to, to avoid clashing with functions from</span>
+        <span class="c1"># other extensions.</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;example_theme_most_popular_groups&#39;</span><span class="p">:</span> <span class="n">most_popular_groups</span><span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">The names of <em>JavaScript modules</em> introduced by your extension should begin
+with the name of your extension. For example
+<tt class="docutils literal"><span class="pre">fanstatic/example_theme_popover.js</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>// Enable JavaScript&#39;s strict mode. Strict mode catches some common
+// programming errors and throws exceptions, prevents some unsafe actions from
+// being taken, and disables some confusing and bad JavaScript features.
+&quot;use strict&quot;;
+
+ckan.module(&#39;example_theme_popover&#39;, function ($) {
+  return {
+    initialize: function () {
+      console.log(&quot;I&#39;ve been initialized for element: &quot;, this.el);
+    }
+  };
+});
+</pre></div>
+</div>
+</li>
+<li><p class="first">The names of <em>API action functions</em> introduced by your extension should begin
+with the name of your extension. For example
+<tt class="docutils literal"><span class="pre">my_extension_foobarize_everything</span></tt>.</p>
+</li>
+<li><p class="first">The names of <em>background job queues</em> introduced by your extension should
+begin with the name of your extension. For example
+<tt class="docutils literal"><span class="pre">my_extension:super-special-job-queue</span></tt>.</p>
+</li>
+</ul>
+<p>In some situations, a resource may even be shared between multiple CKAN
+<em>instances</em>, which requires an even higher degree of uniqueness for the
+corresponding names. In that case, you should also prefix your identifiers with
+the CKAN site ID, which is available via</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># CKAN 2.7 and later</span>
+    <span class="kn">from</span> <span class="nn">ckan.common</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="c1"># CKAN 2.6 and earlier</span>
+    <span class="kn">from</span> <span class="nn">pylons</span> <span class="kn">import</span> <span class="n">config</span>
+
+<span class="n">site_id</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">u&#39;ckan.site_id&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Currently this only affects the <a class="reference internal" href="../maintaining/configuration.html#ckan-redis-url"><em>Redis database</em></a>:</p>
+<ul class="simple">
+<li>All <em>keys in the Redis database</em> created by your extension should be prefixed
+with both the CKAN site ID and your extension&#8217;s name.</li>
+</ul>
+</div>
+<div class="section" id="internationalize-user-visible-strings">
+<h2>Internationalize user-visible strings<a class="headerlink" href="best-practices.html#internationalize-user-visible-strings" title="Permalink to this headline">¶</a></h2>
+<p>All user-visible strings should be internationalized, see
+<a class="reference internal" href="../contributing/string-i18n.html"><em>String internationalization</em></a>.</p>
+</div>
+<div class="section" id="add-third-party-libraries-to-requirements-txt">
+<h2>Add third party libraries to requirements.txt<a class="headerlink" href="best-practices.html#add-third-party-libraries-to-requirements-txt" title="Permalink to this headline">¶</a></h2>
+<p>If your extension requires third party libraries, rather than
+adding them to <tt class="docutils literal"><span class="pre">setup.py</span></tt>, they should be added
+to <tt class="docutils literal"><span class="pre">requirements.txt</span></tt>, which can be installed with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>pip install -r requirements.txt
+</pre></div>
+</div>
+<p>To prevent accidental breakage of your extension through backwards-incompatible
+behaviour of newer versions of your dependencies, their versions should be pinned,
+such as:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>requests==2.7.0
+</pre></div>
+</div>
+<p>On the flip side, be mindful that this could also create version conflicts with
+requirements of considerably newer or older extensions.</p>
+</div>
+<div class="section" id="do-not-automatically-modify-the-database-structure">
+<h2>Do not automatically modify the database structure<a class="headerlink" href="best-practices.html#do-not-automatically-modify-the-database-structure" title="Permalink to this headline">¶</a></h2>
+<p>If your extension uses custom database tables then it needs to modify the
+database structure, for example to add the tables after its installation or to
+migrate them after an update. These modifications should not be performed
+automatically when the extension is loaded, since this can lead to <a class="reference external" href="https://github.com/ckan/ideas-and-roadmap/issues/164">dead-locks
+and other problems</a>.</p>
+<p>Instead, create a <a class="reference internal" href="../maintaining/paster.html"><em>paster command</em></a> which can be run separately.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation"
+         aria-label="footer navigation">
+      
+        <a href="adding-custom-fields.html" class="btn btn-neutral float-right"
+           title="Customizing dataset and resource metadata fields using IDatasetForm"/>
+           Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="testing-extensions.html" class="btn btn-neutral"
+           title="Testing extensions">
+           <span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr></hr>
+
+  <p>Support the <a href="http://ckan.org">CKAN Association</a>.</p>
+
+  <p class="copyright">
+      &copy; 2009-2013, <a href="http://okfn.org/">Open Knowledge Foundation</a>.
+    Licensed under <a
+    href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
+    Attribution ShareAlike (Unported) v3.0 License</a>.<br />
+    <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
+    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0"
+      alt="{{ _('Open Content') }}" /></a>
+  
+  </p>
+
+  <p>
+    <a href="https://github.com/ckan/ckan">Source</a>
+    &mdash;
+    <a href="https://github.com/ckan/ckan/issues">Issues</a>
+    &mdash;
+    <a href="http://lists.okfn.org/mailman/listinfo/ckan-dev">Mailing List</a>
+    &mdash;
+    <a href="http://twitter.com/CKANProject">Twitter @CKANProject</a>
+  </p>
+
+  <p>
+    Related Projects:
+    <a href="http://thedatahub.org/">The DataHub</a>
+    &mdash;
+    <a href="http://datacatalogs.org">DataCatalogs.org</a>
+    &mdash;
+    <a href="http://openspending.org">OpenSpending.org</a>
+    &mdash;
+    <a href="http://opendatahandbook.org">Open Data Handbook</a>
+  </p>
+
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a>  provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: latest
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../index.html">latest</a></dd>
+        
+          <dd><a href="../../ckan-2.6.0/index.html">ckan-2.6.0</a></dd>
+        
+          <dd><a href="../../ckan-2.5.3/index.html">ckan-2.5.3</a></dd>
+        
+          <dd><a href="../../ckan-2.4.4/index.html">ckan-2.4.4</a></dd>
+        
+          <dd><a href="../../ckan-2.3.5/index.html">ckan-2.3.5</a></dd>
+        
+          <dd><a href="../../ckan-2.2.3/index.html">ckan-2.2.3</a></dd>
+        
+          <dd><a href="../../ckan-2.1.5/index.html">ckan-2.1.5</a></dd>
+        
+          <dd><a href="http://docs.ckan.org/en/ckan-2.0.7/">ckan-2.0.7</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/pdf/latest/">pdf</a></dd>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/htmlzip/latest/">htmlzip</a></dd>
+        
+          <dd><a href="http://readthedocs.org/projects/ckan/downloads/epub/latest/">epub</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="http://readthedocs.org/projects/ckan/?fromdocs=ckan">Project Home</a>
+          </dd>
+          <dd>
+            <a href="http://readthedocs.org/builds/ckan/?fromdocs=ckan">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.7.0a',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
